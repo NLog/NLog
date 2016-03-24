@@ -1,0 +1,44 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Tools MSBuild Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.MRefBuilder"
+		AssemblyFile="{@SHFBFolder}\MRefBuilder.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.XslTransform"
+		AssemblyFile="{@SHFBFolder}\XslTransform.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.SegregateByNamespace"
+		AssemblyFile="{@SHFBFolder}\SegregateByNamespace.exe" />
+
+	<!-- Task properties -->
+	<PropertyGroup>
+		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+	</PropertyGroup>
+
+	<!-- The build target -->
+	<Target Name="Build">
+		<!-- Run MRefBuilder -->
+		<Microsoft.Ddue.Tools.MSBuild.MRefBuilder
+			WorkingFolder="$(WorkingFolder)"
+			ConfigurationFile="BuildReflectionData.config"
+			ReflectionFilename="reflection.org"
+			Assemblies="@(Assembly)" />
+
+		<!-- Merge duplicate topics (if any), add XAML syntax data if needed, apply the document model
+				 transformation, and add filenames-->
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
+			WorkingFolder="$(WorkingFolder)"
+			Transformations="~\ProductionTransforms\MergeDuplicates.xsl;~\ProductionTransforms\AddXamlSyntaxData.xsl;~\ProductionTransforms\ApplyVSDocModel.xsl;~\ProductionTransforms\AddFilenames.xsl"
+			Arguments="IncludeAllMembersTopic=true;IncludeInheritedOverloadTopics=false"
+			InputFile="reflection.org"
+			OutputFile="reflection.xml" />
+
+		<!-- Segregate the reflection data by namespace -->
+		<Microsoft.Ddue.Tools.MSBuild.SegregateByNamespace
+			WorkingFolder="$(WorkingFolder)"
+			ReflectionFilename="reflection.xml"
+			OutputFolder=".\Segregated" />
+
+	</Target>
+
+	<ItemGroup>
+		{@Assemblies}
+	</ItemGroup>
+</Project>

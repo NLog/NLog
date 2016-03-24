@@ -1,0 +1,709 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Copyright (c) Microsoft Corporation.  All rights reserved. -->
+
+	<!-- API elements -->
+
+	<xsd:element name="reflection">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="assemblies" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="apis" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Assembly data -->
+
+	<xsd:element name="assemblies">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="assembly" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="assembly">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="assemblydata" />
+				<xsd:element ref="attributes" />
+			</xsd:sequence>
+			<xsd:attribute name="name" />
+			<xsd:attribute name="version" />
+			<xsd:attribute name="culture" />
+			<xsd:attribute name="key" />
+			<xsd:attribute name="hash" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="assemblydata">
+		<xsd:complexType>
+			<xsd:attribute name="version" />
+			<xsd:attribute name="culture" />
+			<xsd:attribute name="key" />
+			<xsd:attribute name="hash" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- API data -->
+
+	<xsd:element name="apis">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="api" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<!-- uniqueness constraint can only be applied if duplicates are merged -->
+		<!--
+      <xsd:unique name="uniqueId">
+        <xsd:selector xpath="api" />
+        <xsd:field xpath="@id" />
+      </xsd:unique>
+-->
+	</xsd:element>
+
+	<xsd:element name="api">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="apidata" minOccurs="1" maxOccurs="1" />
+				<xsd:choice>
+					<!-- namespace -->
+					<xsd:sequence>
+						<xsd:element ref="elements" minOccurs="0" />
+					</xsd:sequence>
+					<!-- type -->
+					<xsd:sequence>
+						<xsd:element ref="typedata" minOccurs="1" />
+						<xsd:element ref="enumerationbase" minOccurs="0" />
+						<xsd:element ref="family" minOccurs="0" />
+						<xsd:element ref="templates" minOccurs="0" />
+						<xsd:element ref="parameters" minOccurs="0" />
+						<xsd:element ref="returns" minOccurs="0" />
+						<xsd:element ref="implements" minOccurs="0" />
+						<xsd:element ref="implementors" minOccurs="0" />
+						<xsd:element ref="elements" minOccurs="0" />
+						<xsd:element ref="containers" minOccurs="1" />
+					</xsd:sequence>
+					<!-- member -->
+					<xsd:sequence>
+						<xsd:element ref="memberdata" minOccurs="1" />
+						<xsd:choice>
+							<!-- field -->
+							<xsd:sequence>
+								<xsd:element name="fielddata" minOccurs="1" />
+								<xsd:element ref="returns" minOccurs="1" />
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<!-- procedure-->
+							<xsd:sequence>
+								<xsd:element name="proceduredata" minOccurs="1" />
+								<xsd:element ref="overrides" minOccurs="0" />
+								<xsd:choice>
+									<!-- method -->
+									<xsd:sequence>
+										<xsd:element ref="templates" minOccurs="0" />
+										<xsd:element ref="parameters" minOccurs="0" />
+										<xsd:element ref="returns" minOccurs="0" />
+									</xsd:sequence>
+									<!-- property -->
+									<xsd:sequence>
+										<xsd:element ref="propertydata" minOccurs="1" />
+										<xsd:element ref="getter" minOccurs="0" />
+										<xsd:element ref="setter" minOccurs="0"/>
+										<xsd:element ref="parameters" minOccurs="0" />
+										<xsd:element ref="returns" minOccurs="1" />
+									</xsd:sequence>
+									<!-- event -->
+									<xsd:sequence>
+										<xsd:element ref="eventdata" minOccurs="1" />
+										<xsd:element ref="adder" minOccurs="0" />
+										<xsd:element ref="remover" minOccurs="0"/>
+										<xsd:element ref="eventhandler" minOccurs="1" />
+										<xsd:element ref="eventargs" minOccurs="0" />
+									</xsd:sequence>
+								</xsd:choice>
+								<xsd:element ref="implements" minOccurs="0" />
+							</xsd:sequence>
+							<!-- constructor -->
+							<xsd:sequence>
+								<xsd:element ref="parameters" minOccurs="0" />
+							</xsd:sequence>
+						</xsd:choice>
+						<xsd:element ref="containers"  minOccurs="1" />
+					</xsd:sequence>
+				</xsd:choice>
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="apiId" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:group name="memberContent">
+		<xsd:sequence>
+			<xsd:element name="apidata" minOccurs="1" />
+			<xsd:element ref="memberdata" minOccurs="1" />
+			<xsd:choice>
+				<!-- field -->
+				<xsd:sequence>
+					<xsd:element name="fielddata" minOccurs="1" />
+					<xsd:element ref="returns" minOccurs="1" />
+					<xsd:element name="value" type="xsd:string" minOccurs="0" />
+				</xsd:sequence>
+				<!-- procedure-->
+				<xsd:sequence>
+					<xsd:element name="proceduredata" minOccurs="1" />
+					<xsd:element ref="overrides" minOccurs="0" />
+					<xsd:choice>
+						<!-- method -->
+						<xsd:sequence>
+							<xsd:element ref="templates" minOccurs="0" />
+							<xsd:element ref="parameters" minOccurs="0" />
+							<xsd:element ref="returns" minOccurs="0" />
+						</xsd:sequence>
+						<!-- property -->
+						<xsd:sequence>
+							<xsd:element ref="propertydata" minOccurs="1" />
+							<xsd:element ref="getter" minOccurs="0" />
+							<xsd:element ref="setter" minOccurs="0"/>
+							<xsd:element ref="parameters" minOccurs="0" />
+							<xsd:element ref="returns" minOccurs="1" />
+						</xsd:sequence>
+						<!-- event -->
+						<xsd:sequence>
+							<xsd:element ref="eventdata" minOccurs="1" />
+							<xsd:element ref="adder" minOccurs="0" />
+							<xsd:element ref="remover" minOccurs="0"/>
+							<xsd:element ref="eventhandler" minOccurs="1" />
+							<xsd:element ref="eventargs" minOccurs="0" />
+						</xsd:sequence>
+					</xsd:choice>
+					<xsd:element ref="implements" minOccurs="0" />
+				</xsd:sequence>
+				<!-- constructor -->
+				<xsd:sequence>
+					<xsd:element ref="parameters" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element ref="containers"  minOccurs="1" />
+			<xsd:element ref="attributes" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:complexType name="optionalApiInformation">
+		<xsd:choice minOccurs="0">
+			<xsd:group ref="memberContent" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<!-- Identity and information elements -->
+
+	<xsd:element name="apidata">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="group" type="apiGroupType" use="required" />
+			<xsd:attribute name="subgroup" type="apiSubgroupType" use="optional" />
+			<xsd:attribute name="subsubgroup" type="apiSubsubgroupType" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="typedata">
+		<xsd:complexType>
+			<xsd:attribute name="visibility" type="visibilityType" use="required" />
+			<xsd:attribute name="abstract" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="sealed" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="serializable" type="xsd:boolean" use="optional" />
+			<!-- EFW - Added to support ComImportAttribute -->
+			<xsd:attribute name="comimport" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="layout" type="xsd:string" use="optional" />
+			<!-- EFW - Added size and pack to support StructLayoutAttribute -->
+			<xsd:attribute name="size" type="xsd:int" use="optional" />
+			<xsd:attribute name="pack" type="xsd:int" use="optional" />
+			<xsd:attribute name="format" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="fielddata">
+		<xsd:complexType>
+			<xsd:attribute name="literal" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="initonly" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="volatile" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="serialized" type="xsd:boolean" use="optional" />
+			<!-- EFW - Added to support FieldOffsetAttribute -->
+			<xsd:attribute name="offset" type="xsd:int" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="memberdata">
+		<xsd:complexType>
+			<xsd:attribute name="visibility" type="visibilityType" />
+			<xsd:attribute name="static" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="special" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="default" type="xsd:boolean" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="proceduredata">
+		<xsd:complexType>
+			<xsd:attribute name="abstract" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="virtual" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="final" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="varargs" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="eii" type="xsd:boolean" use="optional" />
+			<!-- EFW - Added to support PreserveSigAttribute -->
+			<xsd:attribute name="preservesig" type="xsd:boolean" use="optional" />
+			<!-- EFW - Added these to support DllImportAttribute -->
+			<xsd:attribute name="module" type="xsd:string" use="optional" />
+			<xsd:attribute name="entrypoint" type="xsd:string" use="optional" />
+			<xsd:attribute name="callingconvention" type="xsd:string" use="optional" />
+			<xsd:attribute name="charset" type="xsd:string" use="optional" />
+			<xsd:attribute name="bestfitmapping" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="exactspelling" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="throwonunmappablechar" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="setlasterror" type="xsd:boolean" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="overrides">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="member" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="propertydata">
+		<xsd:complexType>
+			<xsd:attribute name="get" type="xsd:boolean" />
+			<xsd:attribute name="set" type="xsd:boolean" />
+			<xsd:attribute name="get-visibility" type="visibilityType" use="optional" />
+			<xsd:attribute name="set-visibility" type="visibilityType" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getter">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="setter">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="eventdata">
+		<xsd:complexType>
+			<xsd:attribute name="add" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="remove" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="call" type="xsd:boolean" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="adder">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="remover">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="enumerationbase" type="typeReference" />
+
+	<xsd:element name="eventhandler" type="typeReference" />
+
+	<xsd:element name="eventargs" type="typeReference" />
+
+	<!-- Generic template parameters -->
+
+	<xsd:element name="templates">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="template" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="template">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="constrained" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="api" type="xsd:string" use="optional" />
+			<xsd:attribute name="index" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="constrained">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="type" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="implements" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="ref" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="value" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="ctor" type="xsd:boolean" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Parameters and return values -->
+
+	<xsd:element name="parameters">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="parameter">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="typeReferenceElements" minOccurs="1" />
+				<xsd:group ref="valueReferenceElements" minOccurs="0" />
+				<!-- EFW - Added to include parameter attributes -->
+				<xsd:element ref="attributes" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="in" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="out" type="xsd:boolean" use="optional" />
+			<!-- EFW - Added to support optional parameters using nothing but OptionalAttribute -->
+			<xsd:attribute name="optional" type="xsd:boolean" use="optional" />
+			<xsd:attribute name="params" type="xsd:boolean" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="returns" type="typeReference" />
+
+	<!-- Interface implementations -->
+
+	<xsd:element name="implements">
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="type" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+				<xsd:sequence>
+					<xsd:element ref="member" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="implementors" type="typeReferenceList" />
+
+	<!-- Inheritance -->
+
+	<xsd:element name="family">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ancestors" minOccurs="0" />
+				<xsd:element ref="descendents" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="ancestors">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="type" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="descendents">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="type" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Attributes -->
+
+	<xsd:element name="attributes">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attribute" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="attribute">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="typeReference">
+					<xsd:sequence>
+						<xsd:element ref="argument" minOccurs="0" maxOccurs="unbounded" />
+						<xsd:element ref="assignment" minOccurs="0" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="argument">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="typeReferenceElements" minOccurs="1" />
+				<xsd:group ref="valueReferenceElements" minOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="assignment">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref="typeReferenceElements" minOccurs="1" />
+				<xsd:group ref="valueReferenceElements" minOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Containers -->
+
+	<xsd:element name="containers">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="library" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="namespace" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="type" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="typeContainers">
+		<xsd:sequence>
+			<xsd:element ref="library" minOccurs="1" maxOccurs="1" />
+			<xsd:element ref="namespace" minOccurs="1" maxOccurs="1" />
+			<xsd:element ref="type" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="memberContainers">
+		<xsd:sequence>
+			<xsd:element ref="library" minOccurs="1" maxOccurs="1" />
+			<xsd:element ref="namespace" minOccurs="1" maxOccurs="1" />
+			<xsd:element ref="type" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="library">
+		<xsd:complexType>
+			<xsd:attribute name="assembly" type="xsd:string" />
+			<xsd:attribute name="module" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="outer" type="typeReferenceList" />
+
+	<!-- Elements -->
+
+	<xsd:element name="elements">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="element" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="element">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="optionalApiInformation">
+					<xsd:attribute name="api" type="apiId" use="optional" />
+					<xsd:attribute name="target-api" type="apiId" use="optional" />
+					<xsd:attribute name="display-api" type="apiId" use="optional" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- references -->
+
+	<xsd:element name="namespace">
+		<xsd:complexType>
+			<xsd:attribute name="api" type="namespaceId" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:group name="typeReferenceElements">
+		<xsd:choice>
+			<xsd:element ref="arrayOf" />
+			<xsd:element name="pointerTo" type="typeReference" />
+			<xsd:element name="referenceTo" type="typeReference" />
+			<xsd:element ref="type" />
+			<xsd:element ref="template" />
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:complexType name="typeReference">
+		<xsd:group ref="typeReferenceElements" />
+	</xsd:complexType>
+
+	<xsd:complexType name="typeReferenceList">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:group ref="typeReferenceElements" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="arrayOf">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="typeReference">
+					<xsd:attribute name="rank" type="xsd:positiveInteger" use="required" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="type">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="optionalModifier" type="typeReference" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="requiredModifier" type="typeReference" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref="type"  minOccurs="0" maxOccurs="1" />
+				<xsd:element name="specialization" type="typeReferenceList" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="api" type="typeId" use="required" />
+			<xsd:attribute name="ref" type="xsd:boolean" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- <xsd:element name="specialization" type="typeReferenceList" /> -->
+
+	<xsd:element name="member">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="type" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="optional" />
+			<xsd:attribute name="api" type="xsd:string" use="optional" />
+			<xsd:attribute name="target-api" type="xsd:string" use="optional" />
+			<xsd:attribute name="display-api" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="valueReference">
+		<xsd:complexContent>
+			<xsd:extension base="typeReference">
+				<xsd:choice>
+					<xsd:element name="value" type="xsd:string" />
+					<xsd:element name="typeValue" type="typeReference" />
+					<xsd:element name="enumValue" />
+					<xsd:element name="nullValue" />
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:group name="valueReferenceElements">
+		<xsd:choice>
+			<xsd:element name="value" type="xsd:string" />
+			<xsd:element name="typeValue" type="typeReference" />
+			<xsd:element name="enumValue" />
+			<xsd:element name="nullValue" />
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:simpleType name="rootId">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="R:[_\w\.]+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="namespaceId">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="N:([_\w]+\.)*[_\w]*" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="typeId">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="T:.+" />
+			<!-- <xsd:pattern value="T:([_\w]+\.)*[_\w]+(\{.+\})?(@|\*|(\[\]))*" /> -->
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="fieldReference">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="F:(\w+\.)*[_\w]+(\{.+\})?\.\w+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="memberId">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[FMPE]:.+" />
+			<!-- <xsd:pattern value="[FMPE]:(\w+\.)*[_\w]+(\{.+\})?\.([_\.\w&lt;&gt;,]+|#ctor)(\(.+\))?(~(\w+\.)*[_\w]+(\{.+\})?(@|\*|(\[\]))*)?" /> -->
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="apiId">
+		<xsd:union memberTypes="rootId namespaceId typeId memberId" />
+	</xsd:simpleType>
+
+	<xsd:simpleType name="apiGroupType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="namespace" />
+			<xsd:enumeration value="type" />
+			<xsd:enumeration value="member" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="apiSubgroupType">
+		<xsd:restriction base="xsd:string">
+			<!-- type subgroups -->
+			<xsd:enumeration value="class" />
+			<xsd:enumeration value="structure" />
+			<xsd:enumeration value="interface" />
+			<xsd:enumeration value="enumeration" />
+			<xsd:enumeration value="delegate" />
+			<!-- member subgroups -->
+			<xsd:enumeration value="constructor" />
+			<xsd:enumeration value="method" />
+			<xsd:enumeration value="property" />
+			<xsd:enumeration value="field" />
+			<xsd:enumeration value="event" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="apiSubsubgroupType">
+		<xsd:restriction base="xsd:string">
+			<!-- method sub-subgroups -->
+			<xsd:enumeration value="operator" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="visibilityType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="public" />
+			<xsd:enumeration value="family" />
+			<xsd:enumeration value="assembly" />
+			<xsd:enumeration value="family or assembly" />
+			<xsd:enumeration value="family and assembly" />
+			<xsd:enumeration value="private" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- format, layout -->
+
+</xsd:schema>

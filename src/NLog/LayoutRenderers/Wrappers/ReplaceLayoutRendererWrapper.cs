@@ -164,11 +164,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// A match evaluator for Regular Expression based replacing
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="groupName"></param>
-        /// <param name="replacement"></param>
-        /// <param name="match"></param>
-        /// <returns></returns>
+        /// <param name="input">Input string.</param>
+        /// <param name="groupName">Group name in the regex.</param>
+        /// <param name="replacement">Replace value.</param>
+        /// <param name="match">Match from regex.</param>
+        /// <returns>Groups replaced with <paramref name="replacement"/>.</returns>
         public static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
         {
             var sb = new StringBuilder(input);

@@ -1,0 +1,1600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Web">
+      <topicdata group="api" />
+      <apidata name="Windows.Web" group="namespace" />
+      <elements>
+        <element api="T:Windows.Web.IUriToStreamResolver" />
+        <element api="T:Windows.Web.WebErrorStatus" />
+        <element api="T:Windows.Web.WebError" />
+      </elements>
+      <file name="fcb9e72c-8fda-16ec-3382-417dd7855a5a" />
+    </api>
+    <api id="T:Windows.Web.IUriToStreamResolver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.IUriToStreamResolver" />
+      <apidata name="IUriToStreamResolver" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2964039786</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>39659</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19770</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>149</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>144</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>0</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>60</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>167</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>144</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cfc95eeb-c3bb-7e4f-b2a5-fe03ae9cc1de" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.IUriToStreamResolver">
+      <topicdata name="IUriToStreamResolver" group="list" subgroup="members" typeTopicId="T:Windows.Web.IUriToStreamResolver" />
+      <apidata name="IUriToStreamResolver" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Web.IUriToStreamResolver.UriToStreamAsync(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.IUriToStreamResolver" />
+      </containers>
+      <file name="0faf12ba-dc23-fc3d-8388-9e08693cbc37" />
+    </api>
+    <api id="Methods.T:Windows.Web.IUriToStreamResolver">
+      <topicdata name="IUriToStreamResolver" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.IUriToStreamResolver" />
+      <apidata name="IUriToStreamResolver" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Web.IUriToStreamResolver.UriToStreamAsync(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.IUriToStreamResolver" />
+      </containers>
+      <file name="bf9d7a15-26b2-db1e-fec8-e3d4594d87e9" />
+    </api>
+    <api id="M:Windows.Web.IUriToStreamResolver.UriToStreamAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="UriToStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.IUriToStreamResolver" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="46e1b84d-dfdb-330b-dd14-27bee0c60e24" />
+    </api>
+    <api id="T:Windows.Web.WebError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.WebError" />
+      <apidata name="WebError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4e2f3c5d-fafa-8a90-2b9b-a001c0079662" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.WebError">
+      <topicdata name="WebError" group="list" subgroup="members" typeTopicId="T:Windows.Web.WebError" />
+      <apidata name="WebError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Web.WebError.GetStatus(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebError" />
+      </containers>
+      <file name="6216f9e8-2445-baea-bc81-08f4949b46d1" />
+    </api>
+    <api id="Methods.T:Windows.Web.WebError">
+      <topicdata name="WebError" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.WebError" />
+      <apidata name="WebError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Web.WebError.GetStatus(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebError" />
+      </containers>
+      <file name="ee041156-bfee-f91f-0aec-5e0b1069d510" />
+    </api>
+    <api id="M:Windows.Web.WebError.GetStatus(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hresult" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebError" ref="true" />
+      </containers>
+      <file name="da100c09-abe5-8a03-72a8-19fdea00eb3c" />
+    </api>
+    <api id="T:Windows.Web.WebErrorStatus">
+      <topicdata group="api" />
+      <apidata name="WebErrorStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Web.WebErrorStatus.Unknown" />
+        <element api="F:Windows.Web.WebErrorStatus.CertificateCommonNameIsIncorrect" />
+        <element api="F:Windows.Web.WebErrorStatus.CertificateExpired" />
+        <element api="F:Windows.Web.WebErrorStatus.CertificateContainsErrors" />
+        <element api="F:Windows.Web.WebErrorStatus.CertificateRevoked" />
+        <element api="F:Windows.Web.WebErrorStatus.CertificateIsInvalid" />
+        <element api="F:Windows.Web.WebErrorStatus.ServerUnreachable" />
+        <element api="F:Windows.Web.WebErrorStatus.Timeout" />
+        <element api="F:Windows.Web.WebErrorStatus.ErrorHttpInvalidServerResponse" />
+        <element api="F:Windows.Web.WebErrorStatus.ConnectionAborted" />
+        <element api="F:Windows.Web.WebErrorStatus.ConnectionReset" />
+        <element api="F:Windows.Web.WebErrorStatus.Disconnected" />
+        <element api="F:Windows.Web.WebErrorStatus.HttpToHttpsOnRedirection" />
+        <element api="F:Windows.Web.WebErrorStatus.HttpsToHttpOnRedirection" />
+        <element api="F:Windows.Web.WebErrorStatus.CannotConnect" />
+        <element api="F:Windows.Web.WebErrorStatus.HostNameNotResolved" />
+        <element api="F:Windows.Web.WebErrorStatus.OperationCanceled" />
+        <element api="F:Windows.Web.WebErrorStatus.RedirectFailed" />
+        <element api="F:Windows.Web.WebErrorStatus.UnexpectedStatusCode" />
+        <element api="F:Windows.Web.WebErrorStatus.UnexpectedRedirection" />
+        <element api="F:Windows.Web.WebErrorStatus.UnexpectedClientError" />
+        <element api="F:Windows.Web.WebErrorStatus.UnexpectedServerError" />
+        <element api="F:Windows.Web.WebErrorStatus.MultipleChoices" />
+        <element api="F:Windows.Web.WebErrorStatus.MovedPermanently" />
+        <element api="F:Windows.Web.WebErrorStatus.Found" />
+        <element api="F:Windows.Web.WebErrorStatus.SeeOther" />
+        <element api="F:Windows.Web.WebErrorStatus.NotModified" />
+        <element api="F:Windows.Web.WebErrorStatus.UseProxy" />
+        <element api="F:Windows.Web.WebErrorStatus.TemporaryRedirect" />
+        <element api="F:Windows.Web.WebErrorStatus.BadRequest" />
+        <element api="F:Windows.Web.WebErrorStatus.Unauthorized" />
+        <element api="F:Windows.Web.WebErrorStatus.PaymentRequired" />
+        <element api="F:Windows.Web.WebErrorStatus.Forbidden" />
+        <element api="F:Windows.Web.WebErrorStatus.NotFound" />
+        <element api="F:Windows.Web.WebErrorStatus.MethodNotAllowed" />
+        <element api="F:Windows.Web.WebErrorStatus.NotAcceptable" />
+        <element api="F:Windows.Web.WebErrorStatus.ProxyAuthenticationRequired" />
+        <element api="F:Windows.Web.WebErrorStatus.RequestTimeout" />
+        <element api="F:Windows.Web.WebErrorStatus.Conflict" />
+        <element api="F:Windows.Web.WebErrorStatus.Gone" />
+        <element api="F:Windows.Web.WebErrorStatus.LengthRequired" />
+        <element api="F:Windows.Web.WebErrorStatus.PreconditionFailed" />
+        <element api="F:Windows.Web.WebErrorStatus.RequestEntityTooLarge" />
+        <element api="F:Windows.Web.WebErrorStatus.RequestUriTooLong" />
+        <element api="F:Windows.Web.WebErrorStatus.UnsupportedMediaType" />
+        <element api="F:Windows.Web.WebErrorStatus.RequestedRangeNotSatisfiable" />
+        <element api="F:Windows.Web.WebErrorStatus.ExpectationFailed" />
+        <element api="F:Windows.Web.WebErrorStatus.InternalServerError" />
+        <element api="F:Windows.Web.WebErrorStatus.NotImplemented" />
+        <element api="F:Windows.Web.WebErrorStatus.BadGateway" />
+        <element api="F:Windows.Web.WebErrorStatus.ServiceUnavailable" />
+        <element api="F:Windows.Web.WebErrorStatus.GatewayTimeout" />
+        <element api="F:Windows.Web.WebErrorStatus.HttpVersionNotSupported" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61182d7e-46a6-2894-ef57-6f7024b410cc" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.BadGateway">
+      <topicdata group="api" notopic="" />
+      <apidata name="BadGateway" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>502</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="9c592049-cc54-e0b3-cd50-1686c5d1fd16" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.BadRequest">
+      <topicdata group="api" notopic="" />
+      <apidata name="BadRequest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>400</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="2b6053dd-21ae-8bf8-43eb-8a9f1cc08157" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CannotConnect">
+      <topicdata group="api" notopic="" />
+      <apidata name="CannotConnect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="9fc830fe-d69f-83eb-dcd6-4cafa92c0164" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CertificateCommonNameIsIncorrect">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateCommonNameIsIncorrect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="0351d15a-47d1-bb44-f7da-687ba6254f34" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CertificateContainsErrors">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateContainsErrors" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="7612fba6-f273-337b-c33f-c8535a368ea1" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CertificateExpired">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateExpired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="6a25e583-44bc-ce60-9d1e-6dd8ad4a6908" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CertificateIsInvalid">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateIsInvalid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="035125b9-1c24-70f5-ea98-b9f79c3340ca" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.CertificateRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="c56dceeb-7577-01e8-f026-5c4014fd32f7" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Conflict">
+      <topicdata group="api" notopic="" />
+      <apidata name="Conflict" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>409</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="ad00940b-c3e6-51d7-6001-399fdf270ced" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ConnectionAborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionAborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="b35c053a-7e35-5729-d49b-5d349c47ce8c" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ConnectionReset">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionReset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="cb5bebc5-1143-a1ce-fcf0-b6d66a2626e1" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="31f59917-0d3c-19f1-5339-3440cc480a2d" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ErrorHttpInvalidServerResponse">
+      <topicdata group="api" notopic="" />
+      <apidata name="ErrorHttpInvalidServerResponse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="31cc5fb4-e8af-12e8-c989-90bfcd2efed7" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ExpectationFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ExpectationFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>417</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="db45a2ba-0c9c-a320-068f-4bf39eec16a4" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Forbidden">
+      <topicdata group="api" notopic="" />
+      <apidata name="Forbidden" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>403</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="45b9e7da-83e4-6697-3ebd-3ff6eb4b9b2d" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Found">
+      <topicdata group="api" notopic="" />
+      <apidata name="Found" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>302</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="355e5224-5524-f73b-7f37-99c95cd324f4" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.GatewayTimeout">
+      <topicdata group="api" notopic="" />
+      <apidata name="GatewayTimeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>504</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="408fc387-bb5a-d33c-f19b-7ae7b5fbe4a8" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Gone">
+      <topicdata group="api" notopic="" />
+      <apidata name="Gone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>410</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="9bcceb92-c8fe-3bd3-1865-d48f861aa513" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.HostNameNotResolved">
+      <topicdata group="api" notopic="" />
+      <apidata name="HostNameNotResolved" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="d34cf419-fff3-dde2-e5d9-e943ddac9fd9" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.HttpsToHttpOnRedirection">
+      <topicdata group="api" notopic="" />
+      <apidata name="HttpsToHttpOnRedirection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="36b10fa7-2f9f-1fb3-a5a8-4de8a1082628" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.HttpToHttpsOnRedirection">
+      <topicdata group="api" notopic="" />
+      <apidata name="HttpToHttpsOnRedirection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="e943a1bf-53d9-5186-956a-e0eaada058bb" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.HttpVersionNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="HttpVersionNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>505</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="e0ee0562-1437-a658-aa50-2cdf860ad4b6" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.InternalServerError">
+      <topicdata group="api" notopic="" />
+      <apidata name="InternalServerError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>500</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="7e6bb5b7-1ea0-d472-250c-557d26d56bf8" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.LengthRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="LengthRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>411</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="3d026ea2-fd78-d44d-b8b1-35ab486e2f0d" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.MethodNotAllowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="MethodNotAllowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>405</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="9e8318ac-6b88-a8f4-beb1-644fabae5b31" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.MovedPermanently">
+      <topicdata group="api" notopic="" />
+      <apidata name="MovedPermanently" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>301</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="c2985c14-2b56-7e65-f012-5d726c1c2667" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.MultipleChoices">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultipleChoices" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>300</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="db202f52-44d8-4957-c9d4-985e7fdced11" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.NotAcceptable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAcceptable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>406</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="7f59c7e7-cd68-2a15-20cf-b8152234c861" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.NotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>404</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="ac9218a4-4c2d-1111-522d-ffee20b0c4e7" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.NotImplemented">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotImplemented" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>501</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="a4c0a1f8-5cad-ea24-b426-7b8fe3e18535" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.NotModified">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotModified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>304</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="1f83d2eb-b9c8-caca-2be4-0a14d4b22fd7" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.OperationCanceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="OperationCanceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="3281961b-2fa6-5414-7c78-1dbb5877b235" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.PaymentRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="PaymentRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>402</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="73b03f63-79f8-0f11-f35f-d78b40f60de0" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.PreconditionFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="PreconditionFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>412</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="419b40aa-4a23-5632-f91c-3c89ff6698f1" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ProxyAuthenticationRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProxyAuthenticationRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>407</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="6197b315-9f21-7bcd-68b1-80f2598482f2" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.RedirectFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="RedirectFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="80e49400-c986-f2b1-d6cd-accce51a03ba" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.RequestedRangeNotSatisfiable">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedRangeNotSatisfiable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>416</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="182ede8d-7aa1-fd09-7e5b-6941d70e5762" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.RequestEntityTooLarge">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestEntityTooLarge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>413</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="627b81f8-baff-b991-cbd5-a723bff1b84f" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.RequestTimeout">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestTimeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>408</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="f1dc81bf-ac0a-145d-eae7-f407a5a29bf9" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.RequestUriTooLong">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestUriTooLong" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>414</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="1c4b75ec-58af-658c-032e-0439243c6da6" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.SeeOther">
+      <topicdata group="api" notopic="" />
+      <apidata name="SeeOther" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>303</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="ba6512b9-3488-0bc0-8bef-ea4ab74db34b" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ServerUnreachable">
+      <topicdata group="api" notopic="" />
+      <apidata name="ServerUnreachable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="ceb57cbd-b3c6-a967-6cff-fae835b0f99a" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.ServiceUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="ServiceUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>503</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="1be08742-33e1-033d-149a-e228b1083fed" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.TemporaryRedirect">
+      <topicdata group="api" notopic="" />
+      <apidata name="TemporaryRedirect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>307</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="47f4b6b9-d101-0700-875b-d0036e9a3b7e" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Timeout">
+      <topicdata group="api" notopic="" />
+      <apidata name="Timeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="a32971d3-dfab-19f5-8da5-15974c9b7198" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Unauthorized">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unauthorized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>401</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="bb48bf8e-bf37-020e-69a2-3e201aa12913" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UnexpectedClientError">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnexpectedClientError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="d0f840c1-ca99-6e38-23f1-a34e9cf6cff3" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UnexpectedRedirection">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnexpectedRedirection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="f44aad3f-64c9-0569-e9ce-931b7b035f7c" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UnexpectedServerError">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnexpectedServerError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="7c3de34b-cad0-ef3d-ff44-6d4e2f8c738d" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UnexpectedStatusCode">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnexpectedStatusCode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="89cbfa43-6ed8-0e31-3036-729365481860" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="f724a34d-250c-ace4-2639-5ad63449a6f4" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UnsupportedMediaType">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedMediaType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>415</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="8642ef16-a3ba-7e23-ba5e-0444884e367e" />
+    </api>
+    <api id="F:Windows.Web.WebErrorStatus.UseProxy">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseProxy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </returns>
+      <value>305</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web" />
+        <type api="T:Windows.Web.WebErrorStatus" ref="false" />
+      </containers>
+      <file name="1a9d4134-14f5-36f6-ffcf-666a2b487631" />
+    </api>
+  </apis>
+</reflection>

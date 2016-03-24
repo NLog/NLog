@@ -1,0 +1,2462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Controls.DataVisualization.Toolkit">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Silverlight Toolkit Data Visualization Controls</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.60818.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight™ Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5d0880cb-44d8-4a5c-a839-e7bd88ce022d</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.DataVisualization.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Controls.DataVisualization.Charting.Primitives">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Controls.DataVisualization.Charting.Primitives" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" />
+        <element api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+        <element api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      </elements>
+      <file name="464736f7-fdb6-7259-1906-8cf0c49c1a83" />
+    </api>
+    <api id="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      <apidata name="DelegatingListBox" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Controls.ListBox" ref="true" />
+          <type api="T:System.Windows.Controls.Primitives.Selector" ref="true" />
+          <type api="T:System.Windows.Controls.ItemsControl" ref="true" contentProperty="P:System.Windows.Controls.ItemsControl.Items" />
+          <type api="T:System.Windows.Controls.Control" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+      </containers>
+      <file name="0f5c6966-21e1-c14d-44fa-641c6596d4f1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox">
+      <topicdata name="DelegatingListBox" group="list" subgroup="members" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      <apidata name="DelegatingListBox" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="E:System.Windows.FrameworkElement.DataContextChanged" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.DragEnter" />
+        <element api="E:System.Windows.UIElement.DragLeave" />
+        <element api="E:System.Windows.UIElement.DragOver" />
+        <element api="E:System.Windows.UIElement.Drop" />
+        <element api="P:System.Windows.UIElement.Effect" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MediaCommand" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Controls.Control.ApplyTemplate" />
+        <element api="P:System.Windows.Controls.Control.Background" />
+        <element api="P:System.Windows.Controls.Control.BorderBrush" />
+        <element api="P:System.Windows.Controls.Control.BorderThickness" />
+        <element api="P:System.Windows.Controls.Control.CharacterSpacing" />
+        <element api="P:System.Windows.Controls.Control.DefaultStyleKey" />
+        <element api="M:System.Windows.Controls.Control.Focus" />
+        <element api="P:System.Windows.Controls.Control.FontFamily" />
+        <element api="P:System.Windows.Controls.Control.FontSize" />
+        <element api="P:System.Windows.Controls.Control.FontStretch" />
+        <element api="P:System.Windows.Controls.Control.FontStyle" />
+        <element api="P:System.Windows.Controls.Control.FontWeight" />
+        <element api="P:System.Windows.Controls.Control.Foreground" />
+        <element api="M:System.Windows.Controls.Control.GetTemplateChild(System.String)" />
+        <element api="P:System.Windows.Controls.Control.HorizontalContentAlignment" />
+        <element api="P:System.Windows.Controls.Control.IsEnabled" />
+        <element api="E:System.Windows.Controls.Control.IsEnabledChanged" />
+        <element api="P:System.Windows.Controls.Control.IsTabStop" />
+        <element api="M:System.Windows.Controls.Control.OnDoubleTap(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragEnter(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragLeave(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragOver(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDrop(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnHold(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnKeyUp(System.Windows.Input.KeyEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnLostMouseCapture(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationStarted(System.Windows.Input.ManipulationStartedEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseEnter(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeave(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseMove(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseRightButtonDown(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseRightButtonUp(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTap(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTextInputStart(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTextInputUpdate(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="P:System.Windows.Controls.Control.Padding" />
+        <element api="P:System.Windows.Controls.Control.TabIndex" />
+        <element api="P:System.Windows.Controls.Control.TabNavigation" />
+        <element api="P:System.Windows.Controls.Control.Template" />
+        <element api="P:System.Windows.Controls.Control.VerticalContentAlignment" />
+        <element api="P:System.Windows.Controls.ItemsControl.DisplayMemberPath" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemContainerGenerator" />
+        <element api="P:System.Windows.Controls.ItemsControl.Items" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemsPanel" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemsSource" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemTemplate" />
+        <element api="M:System.Windows.Controls.ItemsControl.OnTextInput(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="P:System.Windows.Controls.ListBox.ItemContainerStyle" />
+        <element api="M:System.Windows.Controls.ListBox.OnApplyTemplate" />
+        <element api="M:System.Windows.Controls.ListBox.OnCreateAutomationPeer" />
+        <element api="M:System.Windows.Controls.ListBox.OnGotFocus(System.Windows.RoutedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnKeyDown(System.Windows.Input.KeyEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnLostFocus(System.Windows.RoutedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.ScrollIntoView(System.Object)" />
+        <element api="M:System.Windows.Controls.ListBox.SelectAll" />
+        <element api="P:System.Windows.Controls.ListBox.SelectedItems" />
+        <element api="P:System.Windows.Controls.ListBox.SelectionMode" />
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsHost(System.Windows.Controls.ItemsControl)" source="extension">
+          <apidata name="GetItemsHost" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Windows.Controls.Panel" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetScrollHost(System.Windows.Controls.ItemsControl)" source="extension">
+          <apidata name="GetScrollHost" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Windows.Controls.ScrollViewer" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers``1(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TContainer">
+              <constrained>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </constrained>
+            </template>
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TContainer" index="0" api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers``1(System.Windows.Controls.ItemsControl)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetItemsAndContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Collections.Generic.KeyValuePair`2" ref="false">
+                  <specialization>
+                    <type api="T:System.Object" ref="true" />
+                    <type api="T:System.Windows.DependencyObject" ref="true" />
+                  </specialization>
+                </type>
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers``1(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetItemsAndContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TContainer">
+              <constrained>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </constrained>
+            </template>
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Collections.Generic.KeyValuePair`2" ref="false">
+                  <specialization>
+                    <type api="T:System.Object" ref="true" />
+                    <template name="TContainer" index="0" api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers``1(System.Windows.Controls.ItemsControl)" />
+                  </specialization>
+                </type>
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetBoundsRelativeTo(System.Windows.FrameworkElement,System.Windows.UIElement)" source="extension">
+          <apidata name="GetBoundsRelativeTo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="otherElement">
+              <type api="T:System.Windows.UIElement" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Nullable`1" ref="false">
+              <specialization>
+                <type api="T:System.Windows.Rect" ref="false" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.InvokeOnLayoutUpdated(System.Windows.FrameworkElement,System.Action)" source="extension">
+          <apidata name="InvokeOnLayoutUpdated" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="action">
+              <type api="T:System.Action" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.AddHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate,System.Boolean)" source="extension">
+          <apidata name="AddHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+            <parameter name="handledEventsToo">
+              <type api="T:System.Boolean" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.RemoveHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate)" source="extension">
+          <apidata name="RemoveHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItem" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItemOverride(System.Windows.DependencyObject,System.Object)" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItem" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItemOverride" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainer" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainerOverride(System.Object)" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItem" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.HasItems" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.IsSynchronizedWithCurrentItem" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedIndex" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedItem" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedValue" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedValuePath" />
+        <element api="E:System.Windows.Controls.Primitives.Selector.SelectionChanged" />
+        <element api="M:System.Windows.Controls.Primitives.Selector.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Controls.Primitives.Selector.System#ComponentModel#ISupportInitialize#EndInit" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      </containers>
+      <file name="d792908b-4213-68e1-b566-c39402c3ed8f" />
+    </api>
+    <api id="Methods.T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox">
+      <topicdata name="DelegatingListBox" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      <apidata name="DelegatingListBox" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="M:System.Windows.Controls.Control.ApplyTemplate" />
+        <element api="M:System.Windows.Controls.Control.Focus" />
+        <element api="M:System.Windows.Controls.Control.GetTemplateChild(System.String)" />
+        <element api="M:System.Windows.Controls.Control.OnDoubleTap(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragEnter(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragLeave(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDragOver(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnDrop(System.Windows.DragEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnHold(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnKeyUp(System.Windows.Input.KeyEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnLostMouseCapture(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnManipulationStarted(System.Windows.Input.ManipulationStartedEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseEnter(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeave(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseMove(System.Windows.Input.MouseEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseRightButtonDown(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseRightButtonUp(System.Windows.Input.MouseButtonEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTap(System.Windows.Input.GestureEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTextInputStart(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="M:System.Windows.Controls.Control.OnTextInputUpdate(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="M:System.Windows.Controls.ItemsControl.OnTextInput(System.Windows.Input.TextCompositionEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnApplyTemplate" />
+        <element api="M:System.Windows.Controls.ListBox.OnCreateAutomationPeer" />
+        <element api="M:System.Windows.Controls.ListBox.OnGotFocus(System.Windows.RoutedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnKeyDown(System.Windows.Input.KeyEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.OnLostFocus(System.Windows.RoutedEventArgs)" />
+        <element api="M:System.Windows.Controls.ListBox.ScrollIntoView(System.Object)" />
+        <element api="M:System.Windows.Controls.ListBox.SelectAll" />
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsHost(System.Windows.Controls.ItemsControl)" source="extension">
+          <apidata name="GetItemsHost" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Windows.Controls.Panel" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetScrollHost(System.Windows.Controls.ItemsControl)" source="extension">
+          <apidata name="GetScrollHost" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Windows.Controls.ScrollViewer" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers``1(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TContainer">
+              <constrained>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </constrained>
+            </template>
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TContainer" index="0" api="M:System.Windows.Controls.ItemsControlExtensions.GetContainers``1(System.Windows.Controls.ItemsControl)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetItemsAndContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Collections.Generic.KeyValuePair`2" ref="false">
+                  <specialization>
+                    <type api="T:System.Object" ref="true" />
+                    <type api="T:System.Windows.DependencyObject" ref="true" />
+                  </specialization>
+                </type>
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers``1(System.Windows.Controls.ItemsControl)" source="extension" overload="true">
+          <apidata name="GetItemsAndContainers" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TContainer">
+              <constrained>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </constrained>
+            </template>
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Collections.Generic.KeyValuePair`2" ref="false">
+                  <specialization>
+                    <type api="T:System.Object" ref="true" />
+                    <template name="TContainer" index="0" api="M:System.Windows.Controls.ItemsControlExtensions.GetItemsAndContainers``1(System.Windows.Controls.ItemsControl)" />
+                  </specialization>
+                </type>
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls" />
+            <type api="T:System.Windows.Controls.ItemsControlExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetBoundsRelativeTo(System.Windows.FrameworkElement,System.Windows.UIElement)" source="extension">
+          <apidata name="GetBoundsRelativeTo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="otherElement">
+              <type api="T:System.Windows.UIElement" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Nullable`1" ref="false">
+              <specialization>
+                <type api="T:System.Windows.Rect" ref="false" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.InvokeOnLayoutUpdated(System.Windows.FrameworkElement,System.Action)" source="extension">
+          <apidata name="InvokeOnLayoutUpdated" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="action">
+              <type api="T:System.Action" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.AddHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate,System.Boolean)" source="extension">
+          <apidata name="AddHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+            <parameter name="handledEventsToo">
+              <type api="T:System.Boolean" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.RemoveHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate)" source="extension">
+          <apidata name="RemoveHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItemOverride(System.Windows.DependencyObject,System.Object)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItemOverride" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainerOverride(System.Object)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.Selector.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Controls.Primitives.Selector.System#ComponentModel#ISupportInitialize#EndInit" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      </containers>
+      <file name="5867c299-47c6-c1b5-41ca-e64ff6effd3f" />
+    </api>
+    <api id="Properties.T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox">
+      <topicdata name="DelegatingListBox" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      <apidata name="DelegatingListBox" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.Effect" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Controls.Control.Background" />
+        <element api="P:System.Windows.Controls.Control.BorderBrush" />
+        <element api="P:System.Windows.Controls.Control.BorderThickness" />
+        <element api="P:System.Windows.Controls.Control.CharacterSpacing" />
+        <element api="P:System.Windows.Controls.Control.DefaultStyleKey" />
+        <element api="P:System.Windows.Controls.Control.FontFamily" />
+        <element api="P:System.Windows.Controls.Control.FontSize" />
+        <element api="P:System.Windows.Controls.Control.FontStretch" />
+        <element api="P:System.Windows.Controls.Control.FontStyle" />
+        <element api="P:System.Windows.Controls.Control.FontWeight" />
+        <element api="P:System.Windows.Controls.Control.Foreground" />
+        <element api="P:System.Windows.Controls.Control.HorizontalContentAlignment" />
+        <element api="P:System.Windows.Controls.Control.IsEnabled" />
+        <element api="P:System.Windows.Controls.Control.IsTabStop" />
+        <element api="P:System.Windows.Controls.Control.Padding" />
+        <element api="P:System.Windows.Controls.Control.TabIndex" />
+        <element api="P:System.Windows.Controls.Control.TabNavigation" />
+        <element api="P:System.Windows.Controls.Control.Template" />
+        <element api="P:System.Windows.Controls.Control.VerticalContentAlignment" />
+        <element api="P:System.Windows.Controls.ItemsControl.DisplayMemberPath" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemContainerGenerator" />
+        <element api="P:System.Windows.Controls.ItemsControl.Items" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemsPanel" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemsSource" />
+        <element api="P:System.Windows.Controls.ItemsControl.ItemTemplate" />
+        <element api="P:System.Windows.Controls.ListBox.ItemContainerStyle" />
+        <element api="P:System.Windows.Controls.ListBox.SelectedItems" />
+        <element api="P:System.Windows.Controls.ListBox.SelectionMode" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItem" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItem" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainer" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItem" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.HasItems" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.IsSynchronizedWithCurrentItem" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedIndex" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedItem" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedValue" />
+        <element api="P:System.Windows.Controls.Primitives.Selector.SelectedValuePath" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      </containers>
+      <file name="eaf502a9-5560-c995-f660-4ca87698ed57" />
+    </api>
+    <api id="Events.T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox">
+      <topicdata name="DelegatingListBox" group="list" subgroup="Events" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      <apidata name="DelegatingListBox" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.DataContextChanged" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.DragEnter" />
+        <element api="E:System.Windows.UIElement.DragLeave" />
+        <element api="E:System.Windows.UIElement.DragOver" />
+        <element api="E:System.Windows.UIElement.Drop" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MediaCommand" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="E:System.Windows.Controls.Control.IsEnabledChanged" />
+        <element api="E:System.Windows.Controls.Primitives.Selector.SelectionChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" />
+      </containers>
+      <file name="d7c882a8-3b80-5915-d1e2-d4183e0e8431" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="68448c53-6da9-012f-608b-56e6548fac5a" />
+    </api>
+    <api id="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItem">
+      <topicdata group="api" />
+      <apidata name="ClearContainerForItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ClearContainerForItem" />
+      <setter name="set_ClearContainerForItem" />
+      <returns>
+        <type api="T:System.Action`2" ref="true">
+          <specialization>
+            <type api="T:System.Windows.DependencyObject" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="68b42c0e-2f88-ef78-5701-c3c7d9ce8106" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.ClearContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ClearContainerForItemOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Controls.Primitives.Selector.ClearContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+          <type api="T:System.Windows.Controls.Primitives.Selector" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="item">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="955a05bd-6077-6496-63ad-107577d7fb18" />
+    </api>
+    <api id="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItem">
+      <topicdata group="api" />
+      <apidata name="GetContainerForItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_GetContainerForItem" />
+      <setter name="set_GetContainerForItem" />
+      <returns>
+        <type api="T:System.Func`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.DependencyObject" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="d00fbe31-24c0-27e3-b94e-061612c53d4e" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.GetContainerForItemOverride">
+      <topicdata group="api" />
+      <apidata name="GetContainerForItemOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Controls.ListBox.GetContainerForItemOverride">
+          <type api="T:System.Windows.Controls.ListBox" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Windows.DependencyObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="334a0236-ba56-ba6b-942f-3e7c605b6f6b" />
+    </api>
+    <api id="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainer">
+      <topicdata group="api" />
+      <apidata name="IsItemItsOwnContainer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsItemItsOwnContainer" />
+      <setter name="set_IsItemItsOwnContainer" />
+      <returns>
+        <type api="T:System.Func`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="3823d8ed-7e29-4d33-af71-bd23a696a65f" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.IsItemItsOwnContainerOverride(System.Object)">
+      <topicdata group="api" />
+      <apidata name="IsItemItsOwnContainerOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Controls.ListBox.IsItemItsOwnContainerOverride(System.Object)">
+          <type api="T:System.Windows.Controls.ListBox" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="item">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="7c5286ab-bcca-c553-71a3-498c73b0328b" />
+    </api>
+    <api id="P:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItem">
+      <topicdata group="api" />
+      <apidata name="PrepareContainerForItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PrepareContainerForItem" />
+      <setter name="set_PrepareContainerForItem" />
+      <returns>
+        <type api="T:System.Action`2" ref="true">
+          <specialization>
+            <type api="T:System.Windows.DependencyObject" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="82225b38-a65c-dc67-8510-2602d4dff8a8" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+      <topicdata group="api" />
+      <apidata name="PrepareContainerForItemOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Controls.Primitives.Selector.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+          <type api="T:System.Windows.Controls.Primitives.Selector" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="item">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.DelegatingListBox" ref="true" />
+      </containers>
+      <file name="fe837c37-98b1-a424-53d9-311660bd9f20" />
+    </api>
+    <api id="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge">
+      <topicdata group="api" />
+      <apidata name="Edge" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Center" />
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Left" />
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Top" />
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Right" />
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Bottom" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+      </containers>
+      <file name="5882e3cd-6bab-8c91-08a7-b40c97cd8986" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Bottom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bottom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </containers>
+      <file name="c4ee345e-b284-5678-e0ea-569282faa789" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Center">
+      <topicdata group="api" notopic="" />
+      <apidata name="Center" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </containers>
+      <file name="73c1fc8a-ad84-5a74-867e-327ce7428d3e" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </containers>
+      <file name="90b48f7b-5e98-f885-771b-f87a958ab11c" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </containers>
+      <file name="c163f63d-c524-a9e1-848b-2d0d57d983aa" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge.Top">
+      <topicdata group="api" notopic="" />
+      <apidata name="Top" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </containers>
+      <file name="f9aec923-9ed1-7ee1-065b-a70222089bfa" />
+    </api>
+    <api id="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Controls.Panel" ref="true" contentProperty="P:System.Windows.Controls.Panel.Children" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+      </containers>
+      <file name="05cdc830-a2b9-0f40-1e5d-93534ac705c1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="members" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="E:System.Windows.FrameworkElement.DataContextChanged" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.DragEnter" />
+        <element api="E:System.Windows.UIElement.DragLeave" />
+        <element api="E:System.Windows.UIElement.DragOver" />
+        <element api="E:System.Windows.UIElement.Drop" />
+        <element api="P:System.Windows.UIElement.Effect" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MediaCommand" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Controls.Panel.Background" />
+        <element api="P:System.Windows.Controls.Panel.Children" />
+        <element api="P:System.Windows.Controls.Panel.IsItemsHost" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetBoundsRelativeTo(System.Windows.FrameworkElement,System.Windows.UIElement)" source="extension">
+          <apidata name="GetBoundsRelativeTo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="otherElement">
+              <type api="T:System.Windows.UIElement" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Nullable`1" ref="false">
+              <specialization>
+                <type api="T:System.Windows.Rect" ref="false" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.InvokeOnLayoutUpdated(System.Windows.FrameworkElement,System.Action)" source="extension">
+          <apidata name="InvokeOnLayoutUpdated" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="action">
+              <type api="T:System.Action" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.AddHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate,System.Boolean)" source="extension">
+          <apidata name="AddHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+            <parameter name="handledEventsToo">
+              <type api="T:System.Boolean" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.RemoveHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate)" source="extension">
+          <apidata name="RemoveHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.ArrangeOverride(System.Windows.Size)" />
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.Edge" />
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.EdgeProperty" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.GetEdge(System.Windows.UIElement)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.MeasureOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.SetEdge(System.Windows.UIElement,System.Windows.Controls.DataVisualization.Charting.Primitives.Edge)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="f36cc2bf-00b4-b833-6a25-a8f572b137db" />
+    </api>
+    <api id="Methods.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetBoundsRelativeTo(System.Windows.FrameworkElement,System.Windows.UIElement)" source="extension">
+          <apidata name="GetBoundsRelativeTo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="otherElement">
+              <type api="T:System.Windows.UIElement" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Nullable`1" ref="false">
+              <specialization>
+                <type api="T:System.Windows.Rect" ref="false" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.InvokeOnLayoutUpdated(System.Windows.FrameworkElement,System.Action)" source="extension">
+          <apidata name="InvokeOnLayoutUpdated" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="action">
+              <type api="T:System.Action" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.AddHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate,System.Boolean)" source="extension">
+          <apidata name="AddHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+            <parameter name="handledEventsToo">
+              <type api="T:System.Boolean" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.UIElementExtendedRoutedEventExtensions.RemoveHandler(System.Windows.UIElement,Microsoft.Windows.ExtendedRoutedEvent,System.Delegate)" source="extension">
+          <apidata name="RemoveHandler" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="routedEvent">
+              <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+            </parameter>
+            <parameter name="handler">
+              <type api="T:System.Delegate" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows" />
+            <type api="T:System.Windows.UIElementExtendedRoutedEventExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.ArrangeOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.GetEdge(System.Windows.UIElement)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.MeasureOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.SetEdge(System.Windows.UIElement,System.Windows.Controls.DataVisualization.Charting.Primitives.Edge)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="7c8f953a-2423-cb31-0fcf-579e18eb8f41" />
+    </api>
+    <api id="Properties.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.Effect" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Controls.Panel.Background" />
+        <element api="P:System.Windows.Controls.Panel.Children" />
+        <element api="P:System.Windows.Controls.Panel.IsItemsHost" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="7542eaf0-8f14-657d-94b8-89c2d731d3fb" />
+    </api>
+    <api id="Events.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="Events" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.DataContextChanged" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.DragEnter" />
+        <element api="E:System.Windows.UIElement.DragLeave" />
+        <element api="E:System.Windows.UIElement.DragOver" />
+        <element api="E:System.Windows.UIElement.Drop" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MediaCommand" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseRightButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="20cc1667-2a58-6963-db1f-014863ebfc57" />
+    </api>
+    <api id="Fields.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.EdgeProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="d4edc7cc-adb8-f85a-790f-cf517686f882" />
+    </api>
+    <api id="AttachedProperties.T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel">
+      <topicdata name="EdgePanel" group="list" subgroup="AttachedProperties" subsubgroup="AttachedProperties" typeTopicId="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      <apidata name="EdgePanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.Edge" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" />
+      </containers>
+      <file name="9c9c8275-4ecd-35d2-184c-f38af049f3f0" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="edf9798e-6b55-0d7c-c784-5229d9acc9f6" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.ArrangeOverride(System.Windows.Size)">
+      <topicdata group="api" />
+      <apidata name="ArrangeOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)">
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="arrangeSize">
+          <type api="T:System.Windows.Size" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="00de8225-48f6-f474-1d9c-85348f795730" />
+    </api>
+    <api id="P:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.Edge">
+      <topicdata group="api" />
+      <apidata name="Edge" group="member" subgroup="property" subsubgroup="attachedProperty" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Edge" />
+      <setter name="set_Edge" />
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <attachedpropertydata>
+        <field>
+          <member api="F:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.EdgeProperty">
+            <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+          </member>
+        </field>
+        <getter>
+          <member api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.GetEdge(System.Windows.UIElement)">
+            <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+          </member>
+        </getter>
+        <setter>
+          <member api="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.SetEdge(System.Windows.UIElement,System.Windows.Controls.DataVisualization.Charting.Primitives.Edge)">
+            <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+          </member>
+        </setter>
+      </attachedpropertydata>
+      <file name="a228d01d-b532-4957-5517-a302e6bd117c" />
+    </api>
+    <api id="F:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.EdgeProperty">
+      <topicdata group="api" />
+      <apidata name="EdgeProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="36973157-4167-a675-027a-18d149a75951" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.GetEdge(System.Windows.UIElement)">
+      <topicdata group="api" />
+      <apidata name="GetEdge" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="e08bb698-a010-1fa0-8257-2a61c469d789" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.MeasureOverride(System.Windows.Size)">
+      <topicdata group="api" />
+      <apidata name="MeasureOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)">
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="constraint">
+          <type api="T:System.Windows.Size" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="098e7980-c5a3-edcc-f7b6-eaed1aad1c77" />
+    </api>
+    <api id="M:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel.SetEdge(System.Windows.UIElement,System.Windows.Controls.DataVisualization.Charting.Primitives.Edge)">
+      <topicdata group="api" />
+      <apidata name="SetEdge" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+        <parameter name="edge">
+          <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.Edge" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.DataVisualization.Toolkit" module="System.Windows.Controls.DataVisualization.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.DataVisualization.Charting.Primitives" />
+        <type api="T:System.Windows.Controls.DataVisualization.Charting.Primitives.EdgePanel" ref="true" />
+      </containers>
+      <file name="1614090a-a4c1-c2e4-8581-ea3cc5264820" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Devices.DevicesLowLevelContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Pwm">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Pwm" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Pwm.PwmPulsePolarity" />
+        <element api="T:Windows.Devices.Pwm.PwmPin" />
+        <element api="T:Windows.Devices.Pwm.PwmController" />
+      </elements>
+      <file name="c15016fd-8e6a-720e-d3fb-c18bbad0970e" />
+    </api>
+    <api id="T:Windows.Devices.Pwm.PwmController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Pwm.PwmController" />
+      <apidata name="PwmController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b184c5c8-e2b8-d02e-7688-3eb2cbc9ff26" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Pwm.PwmController">
+      <topicdata name="PwmController" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Pwm.PwmController" />
+      <apidata name="PwmController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Pwm.PwmController.ActualFrequency" />
+        <element api="M:Windows.Devices.Pwm.PwmController.GetControllersAsync(Windows.Devices.Pwm.Provider.IPwmProvider)" />
+        <element api="P:Windows.Devices.Pwm.PwmController.MaxFrequency" />
+        <element api="P:Windows.Devices.Pwm.PwmController.MinFrequency" />
+        <element api="M:Windows.Devices.Pwm.PwmController.OpenPin(System.Int32)" />
+        <element api="P:Windows.Devices.Pwm.PwmController.PinCount" />
+        <element api="M:Windows.Devices.Pwm.PwmController.SetDesiredFrequency(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" />
+      </containers>
+      <file name="3b32f21c-6099-5742-2fd7-c0c86771a6f3" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Pwm.PwmController">
+      <topicdata name="PwmController" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Pwm.PwmController" />
+      <apidata name="PwmController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Pwm.PwmController.GetControllersAsync(Windows.Devices.Pwm.Provider.IPwmProvider)" />
+        <element api="M:Windows.Devices.Pwm.PwmController.OpenPin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.PwmController.SetDesiredFrequency(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" />
+      </containers>
+      <file name="31ffce12-3d6a-f552-7015-79b184c6da5f" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Pwm.PwmController">
+      <topicdata name="PwmController" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Pwm.PwmController" />
+      <apidata name="PwmController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Pwm.PwmController.ActualFrequency" />
+        <element api="P:Windows.Devices.Pwm.PwmController.MaxFrequency" />
+        <element api="P:Windows.Devices.Pwm.PwmController.MinFrequency" />
+        <element api="P:Windows.Devices.Pwm.PwmController.PinCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" />
+      </containers>
+      <file name="2177704c-e5b5-1d17-c673-28863998622e" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmController.ActualFrequency">
+      <topicdata group="api" />
+      <apidata name="ActualFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActualFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="c0cfb5ce-4b6a-5e48-9c3b-c915f8d02679" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmController.GetControllersAsync(Windows.Devices.Pwm.Provider.IPwmProvider)">
+      <topicdata group="api" />
+      <apidata name="GetControllersAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Devices.Pwm.Provider.IPwmProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7811b132-e1b7-ed4a-4fa3-c63cb4a21f45" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmController.MaxFrequency">
+      <topicdata group="api" />
+      <apidata name="MaxFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="d636c2b8-92b9-b400-bd31-ccf53ab67c4e" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmController.MinFrequency">
+      <topicdata group="api" />
+      <apidata name="MinFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MinFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="b9471f55-282c-60b7-a9a0-438b63913360" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmController.OpenPin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="OpenPin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pinNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="72545899-be9a-141b-68ce-e68e578ada4b" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmController.PinCount">
+      <topicdata group="api" />
+      <apidata name="PinCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PinCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="40a34ad1-ad28-b717-9f62-ed5e830dc615" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmController.SetDesiredFrequency(System.Double)">
+      <topicdata group="api" />
+      <apidata name="SetDesiredFrequency" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="desiredFrequency" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </containers>
+      <file name="5a1c6cff-74d9-82a6-522b-d5ab89a6758d" />
+    </api>
+    <api id="T:Windows.Devices.Pwm.PwmPin">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Pwm.PwmPin" />
+      <apidata name="PwmPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="803d8167-c7b6-00f6-2782-919b8552a1bd" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Pwm.PwmPin">
+      <topicdata name="PwmPin" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Pwm.PwmPin" />
+      <apidata name="PwmPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Pwm.PwmPin.Close" />
+        <element api="P:Windows.Devices.Pwm.PwmPin.Controller" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.GetActiveDutyCyclePercentage" />
+        <element api="P:Windows.Devices.Pwm.PwmPin.IsStarted" />
+        <element api="P:Windows.Devices.Pwm.PwmPin.Polarity" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.SetActiveDutyCyclePercentage(System.Double)" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.Start" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" />
+      </containers>
+      <file name="9a9813b6-538e-c5a6-6141-963509fde976" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Pwm.PwmPin">
+      <topicdata name="PwmPin" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Pwm.PwmPin" />
+      <apidata name="PwmPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Pwm.PwmPin.Close" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.GetActiveDutyCyclePercentage" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.SetActiveDutyCyclePercentage(System.Double)" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.Start" />
+        <element api="M:Windows.Devices.Pwm.PwmPin.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" />
+      </containers>
+      <file name="042eb693-e1f3-185e-4972-650f1a1b9fdb" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Pwm.PwmPin">
+      <topicdata name="PwmPin" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Pwm.PwmPin" />
+      <apidata name="PwmPin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Pwm.PwmPin.Controller" />
+        <element api="P:Windows.Devices.Pwm.PwmPin.IsStarted" />
+        <element api="P:Windows.Devices.Pwm.PwmPin.Polarity" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" />
+      </containers>
+      <file name="292fc672-57e9-e7b0-2899-29bb3ca50376" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmPin.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="f62f36a3-1568-ce10-157e-0d6a93b93867" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmPin.Controller">
+      <topicdata group="api" />
+      <apidata name="Controller" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Controller" />
+      <returns>
+        <type api="T:Windows.Devices.Pwm.PwmController" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="6ef5975b-66b7-6af9-52a1-1e51fc7f0dc1" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmPin.GetActiveDutyCyclePercentage">
+      <topicdata group="api" />
+      <apidata name="GetActiveDutyCyclePercentage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="0013505f-ad11-7e93-2bf6-391abcc2c85a" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmPin.IsStarted">
+      <topicdata group="api" />
+      <apidata name="IsStarted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsStarted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="2c7c2e22-9cbe-a32f-5c1b-c130d8dfdde0" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.PwmPin.Polarity">
+      <topicdata group="api" />
+      <apidata name="Polarity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Polarity" />
+      <setter name="set_Polarity" />
+      <returns>
+        <type api="T:Windows.Devices.Pwm.PwmPulsePolarity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="7a7be82b-8bcd-815c-cd1b-fc4a6da26e75" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmPin.SetActiveDutyCyclePercentage(System.Double)">
+      <topicdata group="api" />
+      <apidata name="SetActiveDutyCyclePercentage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="dutyCyclePercentage" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="2e729ae5-9532-4950-f22d-89616ac3ece1" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmPin.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="e5a0257c-4665-d232-2784-5a7da2f2b3e4" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.PwmPin.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPin" ref="true" />
+      </containers>
+      <file name="6ce4ee95-2f5e-ea99-9b56-67e62de0abcf" />
+    </api>
+    <api id="T:Windows.Devices.Pwm.PwmPulsePolarity">
+      <topicdata group="api" />
+      <apidata name="PwmPulsePolarity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Pwm.PwmPulsePolarity.ActiveHigh" />
+        <element api="F:Windows.Devices.Pwm.PwmPulsePolarity.ActiveLow" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2d9faeda-2fbd-5cbe-1cd9-da20262fe5b1" />
+    </api>
+    <api id="F:Windows.Devices.Pwm.PwmPulsePolarity.ActiveHigh">
+      <topicdata group="api" notopic="" />
+      <apidata name="ActiveHigh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Pwm.PwmPulsePolarity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPulsePolarity" ref="false" />
+      </containers>
+      <file name="6b40b611-5577-9065-7e67-9d2e2de0a765" />
+    </api>
+    <api id="F:Windows.Devices.Pwm.PwmPulsePolarity.ActiveLow">
+      <topicdata group="api" notopic="" />
+      <apidata name="ActiveLow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Pwm.PwmPulsePolarity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm" />
+        <type api="T:Windows.Devices.Pwm.PwmPulsePolarity" ref="false" />
+      </containers>
+      <file name="8bb380e5-006f-f34b-38e5-2a0db6f88d0b" />
+    </api>
+  </apis>
+</reflection>

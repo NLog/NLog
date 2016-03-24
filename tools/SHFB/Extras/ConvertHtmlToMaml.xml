@@ -1,0 +1,1132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ConvertHtmlToMaml</name>
+    </assembly>
+    <members>
+        <member name="T:HtmlToMamlConversion.ConversionProgressEventArgs">
+            <summary>
+            This is a custom event arguments class for the
+            <see cref="E:HtmlToMamlConversion.HtmlToMaml.ConversionProgress"/> event.
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.ConversionProgressEventArgs.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="progressMessage">The progress message</param>
+        </member>
+        <member name="P:HtmlToMamlConversion.ConversionProgressEventArgs.Message">
+            <summary>
+            Get the message associated with the progress report
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.FileParser">
+            <summary>
+            This is used to parse an HTML file to extract the various parts for conversion to MAML
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.FileParser.ParseFile(System.String)">
+            <summary>
+            Parse the specified HTML file
+            </summary>
+            <param name="filename">The file to parse</param>
+            <remarks>After parsing, the properties can be used to retrieve the information parsed from
+            the file.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.FileParser.ReadWithEncoding(System.String,System.Text.Encoding@)">
+            <summary>
+            This is used to read in a file using an appropriate encoding method
+            </summary>
+            <param name="filename">The file to load</param>
+            <param name="encoding">Pass the default encoding to use.  On return, it contains the actual
+            encoding for the file.</param>
+            <returns>The contents of the file.</returns>
+            <remarks>When reading the file, use the default encoding specified but detect the encoding if
+            byte order marks are present.  In addition, if the template is an XML file and it contains an
+            encoding identifier in the XML tag, the file is read using that encoding.</remarks>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.BodyExtractExpression">
+            <summary>
+            This is used to get or set the body extract regular expression
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This is thrown if the regular expression is null
+            or empty.</exception>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.TopicId">
+            <summary>
+            This returns the topic ID parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.RevisionNumber">
+            <summary>
+            This returns the revision number parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.Title">
+            <summary>
+            This returns the title parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.TopicAbstract">
+            <summary>
+            This returns the abstract parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.TocExclude">
+            <summary>
+            This returns the TOC exclude flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.IsDefaultTopic">
+            <summary>
+            This returns the default topic flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.SplitToc">
+            <summary>
+            This returns the split TOC flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.SortOrder">
+            <summary>
+            This returns the sort order value if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.Body">
+            <summary>
+            This returns the HTML body parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.HelpAttributes">
+            <summary>
+            This returns the help attributes parsed from the file
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.FileParser.HelpKeywords">
+            <summary>
+            This returns the help keywords parsed from the file
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.FilePath">
+            <summary>
+            This class is used to represent a file path.  Support is included for treating the path as fixed or
+            relative and for expanding environment variables in the path name.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.OnPersistablePathChanging(System.EventArgs)">
+            <summary>
+            This raises the <see cref="E:SandcastleBuilder.Utils.FilePath.PersistablePathChanging"/> event
+            </summary>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.OnPersistablePathChanged(System.EventArgs)">
+            <summary>
+            This raises the <see cref="E:SandcastleBuilder.Utils.FilePath.PersistablePathChanged"/> event
+            </summary>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.op_Implicit(SandcastleBuilder.Utils.FilePath)~System.String">
+             <summary>
+             This is used to handle an implicit conversion from a <see cref="T:SandcastleBuilder.Utils.FilePath"/> object to a string
+             </summary>
+             <param name="filePath">The <see cref="T:SandcastleBuilder.Utils.FilePath"/> to convert.</param>
+             <returns>The file path as a relative or absolute path string based on its current settings</returns>
+             <example>
+             <code lang="cs">
+             FilePath filePath = new FilePath(@"%APPDATA%\TestApp\App.config");
+             
+             // The FilePath object is automatically converted to a string
+             // representing the expanded, fully qualified path.
+             string pathString = filePath;
+             </code>
+             <code lang="vbnet">
+             Dim filePath As New FilePath("%APPDATA%\TestApp\App.config")
+            
+             ' The FilePath object is automatically converted to a string
+             ' representing the expanded, fully qualified path.
+             Dim pathString As String = filePath
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.op_Equality(SandcastleBuilder.Utils.FilePath,SandcastleBuilder.Utils.FilePath)">
+            <summary>
+            Overload for equal operator.
+            </summary>
+            <param name="firstPath">The first object to compare</param>
+            <param name="secondPath">The second object to compare</param>
+            <returns>True if equal, false if not.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.op_Inequality(SandcastleBuilder.Utils.FilePath,SandcastleBuilder.Utils.FilePath)">
+            <summary>
+            Overload for not equal operator.
+            </summary>
+            <param name="firstPath">The first object to compare</param>
+            <param name="secondPath">The second object to compare</param>
+            <returns>True if not equal, false if they are.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.GetFullPath(System.String)">
+            <summary>
+            This returns the fully qualified path for the specified path.  This version allows wildcards in the
+            filename part if present.
+            </summary>
+            <param name="path">The path to expand</param>
+            <returns>The fully qualified path name</returns>
+            <remarks>The <b>System.IO.Path</b> version of <see cref="M:System.IO.Path.GetFullPath(System.String)"/> will throw an
+            exception if the path contains wildcard characters.  This version does not.
+            </remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.AbsoluteToRelativePath(System.String,System.String)">
+            <summary>
+            This helper method can be used to convert an absolute path to one that is relative to the given base
+            path.
+            </summary>
+            <param name="basePath">The base path</param>
+            <param name="absolutePath">An absolute path</param>
+            <returns>A path to the given absolute path that is relative to the given base path</returns>
+            <remarks>If the base path is null or empty, the current working folder is used.</remarks>
+            <example>
+            <code lang="cs">
+            string basePath = @"E:\DotNet\CS\TestProject\Source";
+            string absolutePath = @"E:\DotNet\CS\TestProject\Doc\Help.html";
+            
+            string relativePath = FilePath.AbsoluteToRelativePath(basePath,
+                absolutePath);
+            
+            Console.WriteLine(relativePath);
+            
+            // Results in: ..\Doc\Help.html
+            </code>
+            <code lang="vbnet">
+            Dim basePath As String = "E:\DotNet\CS\TestProject\Source"
+            Dim absolutePath As String = "E:\DotNet\CS\TestProject\Doc\Help.html"
+            
+            Dim relativePath As String = _
+                FilePath.AbsoluteToRelativePath(basePath, absolutePath);
+            
+            Console.WriteLine(relativePath)
+            
+            ' Results in: ..\Doc\Help.html
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.RelativeToAbsolutePath(System.String,System.String)">
+            <summary>
+            This helper method can be used to convert a relative path to an absolute path based on the given base
+            path.
+            </summary>
+            <param name="basePath">The base path</param>
+            <param name="relativePath">A relative path</param>
+            <returns>An absolute path</returns>
+            <remarks>If the base path is null or empty, the current working folder is used.</remarks>
+            <example>
+            <code lang="cs">
+            string basePath = @"E:\DotNet\CS\TestProject\Source";
+            string relativePath = @"..\Doc\Help.html";
+            
+            string absolutePath = FilePath.RelativeToAbsolutePath(basePath,
+                relativePath);
+            
+            Console.WriteLine(absolutePath);
+            
+            // Results in: E:\DotNet\CS\TestProject\Doc\Help.html
+            </code>
+            <code lang="vbnet">
+            Dim basePath As String = "E:\DotNet\CS\TestProject\Source"
+            Dim relativePath As String = "..\Doc\Help.html"
+            
+            Dim absolutePath As String = _
+                FilePath.RelativeToAbsolutePath(basePath, relativePath);
+            
+            Console.WriteLine(absolutePath)
+            
+            ' Results in: E:\DotNet\CS\TestProject\Doc\Help.html
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.ShouldSerializePath">
+            <summary>
+            This is used to prevent the Path property from showing as modified in the designer
+            </summary>
+            <returns>Always returns false</returns>
+            <remarks>The <see cref="P:SandcastleBuilder.Utils.FilePath.Path"/> property is mainly for display purposes in the designer but can be
+            used for making changes to the expanded path if needed.  The <see cref="P:SandcastleBuilder.Utils.FilePath.PersistablePath"/> property
+            is used as the display value in the designer.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.#ctor(SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Default constructor.  The file path is undefined.
+            </summary>
+            <param name="provider">The base path provider</param>
+            <overloads>There are three overloads for the constructor.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.#ctor(System.String,SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Constructor.  Assign the specified path.
+            </summary>
+            <param name="path">A relative or absolute path.</param>
+            <param name="provider">The base path provider</param>
+            <remarks>Unless <see cref="P:SandcastleBuilder.Utils.FilePath.IsFixedPath"/> is set to true, the path is always treated as a relative
+            path.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.#ctor(System.String,System.Boolean,SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Constructor.  Assign the specified path and fixed setting.
+            </summary>
+            <param name="path">A relative or absolute path.</param>
+            <param name="isFixed">True to treat the path as fixed, false to treat it as a relative path.</param>
+            <param name="provider">The base path provider</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.ToString">
+            <summary>
+            Convert the file path to a string
+            </summary>
+            <returns>A fixed or relative path based on the current settings</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.GetHashCode">
+            <summary>
+            Get a hash code for the file path object
+            </summary>
+            <returns>Returns the hash code of the <see cref="M:SandcastleBuilder.Utils.FilePath.ToString"/> value converted to lowercase</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.Equals(System.Object)">
+            <summary>
+            This is overridden to allow proper comparison of file path objects.
+            </summary>
+            <param name="obj">The object to which this instance is compared</param>
+            <returns>Returns true if the object equals this instance, false if it does not</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FilePath.Clone">
+            <summary>
+            This returns a clone of the object
+            </summary>
+            <returns>A clone of the object</returns>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.BasePathProvider">
+            <summary>
+            This is used to get the base path provider for the object.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.BasePath">
+            <summary>
+            This returns the base path for the object
+            </summary>
+            <value>If no <see cref="T:SandcastleBuilder.Utils.IBasePathProvider"/> has been specified, this returns the current directory</value>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.Path">
+             <summary>
+             This is used to get or set the path to use.
+             </summary>
+             <value>When set, if the path is not rooted (a relative path), <see cref="P:SandcastleBuilder.Utils.FilePath.IsFixedPath"/> is set to
+             false.  If rooted (an absolute path), it is not changed.  This property always returns a fully
+             qualified path but without any environment variable expansions.
+             
+             <p/>If set to a null or empty string, the file path is cleared and is considered to be undefined.</value>
+             <note type="note">MSBuild environment variable references are also supported (i.e. $(SHFBROOT),
+             $(OutputPath), etc.).</note>
+             <example>
+             <code lang="cs">
+             FilePath path = new FilePath();
+            
+             // Set it to a relative path
+             path.Path = @"..\..\Test.txt";
+            
+             // Set it to an absolute path
+             path.Path = @"C:\My Documents\Info.doc";
+            
+             // Set it to a path based on an environment variable
+             path.Path = @"%HOMEDRIVE%%HOMEPATH%\Favorites\*.*";
+             </code>
+             <code lang="vbnet">
+             Dim path As New FilePath()
+            
+             ' Set it to a relative path
+             path.Path = "..\..\Test.txt"
+            
+             ' Set it to an absolute path
+             path.Path = "C:\My Documents\Info.doc"
+            
+             ' Set it to a path based on an environment variable
+             path.Path = "%HOMEDRIVE%%HOMEPATH%\Favorites\*.*"
+             </code>
+             </example>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.PersistablePath">
+            <summary>
+            This is used to retrieve the file path in a format suitable for persisting to storage based on the
+            current settings.
+            </summary>
+            <remarks>If <see cref="P:SandcastleBuilder.Utils.FilePath.IsFixedPath"/> is true, an absolute path is always returned.  If false, the
+            path is returned in a form that is relative to the path stored in the <see cref="P:SandcastleBuilder.Utils.FilePath.BasePath"/>
+            property.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.Exists">
+            <summary>
+            This read-only property can be used to determine whether or not the file path exists
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.ExpandedPath">
+            <summary>
+            This read-only property is used to display the fully qualified path with environment variable
+            expansions in the designer.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FilePath.IsFixedPath">
+            <summary>
+            This is used to indicate whether or not the path will be treated as a relative or fixed path when
+            converted retrieved via the <see cref="P:SandcastleBuilder.Utils.FilePath.PersistablePath"/> property.
+            </summary>
+            <value>If true, the path is returned as a fixed path when retrieved.  If false, it is returned as a
+            path relative to the current value of the <see cref="P:SandcastleBuilder.Utils.FilePath.BasePath"/> property.</value>
+        </member>
+        <member name="E:SandcastleBuilder.Utils.FilePath.PersistablePathChanging">
+            <summary>
+            This event is raised when the persistable path is about to be changed
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.Utils.FilePath.PersistablePathChanged">
+            <summary>
+            This event is raised when the persistable path changes
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.FolderPath">
+            <summary>
+            This class is used to represent a folder path.  Support is included for
+            treating the path as fixed or relative and for expanding environment
+            variables in the path name.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.IsPathTerminated(System.String)">
+            <summary>
+            This can be used to find out if a path is terminated with a
+            trailing backslash.
+            </summary>
+            <param name="path">The path to check</param>
+            <returns>Returns true if it is, false if it is not.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.TerminatePath(System.String)">
+            <summary>
+            This can be used to ensure that a path is terminated with a
+            trailing backslash.
+            </summary>
+            <param name="path">The path to check</param>
+            <returns>The path with a trailing backslash added if necessary.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.ShouldSerializePath">
+            <summary>
+            This is used to prevent the Path property from showing as modified
+            in the designer.
+            </summary>
+            <returns>Always returns false</returns>
+            <remarks>The <see cref="P:SandcastleBuilder.Utils.FolderPath.Path"/> property is mainly for display
+            purposes in the designer but can be used for making changes to
+            the expanded path if needed.  The <see cref="P:SandcastleBuilder.Utils.FilePath.PersistablePath"/>
+            property is used as the display value in the designer.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.#ctor(SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Default constructor.  The folder path is undefined.
+            </summary>
+            <param name="provider">The base path provider</param>
+            <overloads>There are three overloads for the constructor.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.#ctor(System.String,SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Constructor.  Assign the specified path.
+            </summary>
+            <param name="path">A relative or absolute path.</param>
+            <param name="provider">The base path provider</param>
+            <remarks>Unless <see cref="P:SandcastleBuilder.Utils.FilePath.IsFixedPath"/> is set to true,
+            the path is always treated as a relative path.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.FolderPath.#ctor(System.String,System.Boolean,SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Constructor.  Assign the specified path and fixed setting.
+            </summary>
+            <param name="path">A relative or absolute path.</param>
+            <param name="isFixed">True to treat the path as fixed, false
+            to treat it as a relative path.</param>
+            <param name="provider">The base path provider</param>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FolderPath.Path">
+             <summary>
+             This is used to get or set the path.
+             </summary>
+             <value>When set, if the path is not rooted (a relative path),
+             <see cref="P:SandcastleBuilder.Utils.FilePath.IsFixedPath"/> is set to false.  If rooted (an
+             absolute path), it is not changed.  This property always returns a
+             fully qualified path but without any environment variable
+             expansions and terminated with a trailing backslash if needed.
+             <p/>If set to a null or empty string, the folder path is cleared
+             and is considered to be undefined.</value>
+             <example>
+             <code lang="cs">
+             FolderPath path = new FolderPath();
+             
+             // Set it to a relative path
+             path.Path = @"..\..\ProjectFolder";
+             
+             // Set it to an absolute path
+             path.Path = @"C:\My Documents\ProjectDocs\";
+             
+             // Set it to a path based on an environment variable
+             path.Path = @"%HOMEDRIVE%%HOMEPATH%\Favorites\";
+             </code>
+             <code lang="vbnet">
+             Dim path As New FolderPath()
+            
+             ' Set it to a relative path
+             path.Path = "..\..\ProjectFolder"
+             
+             ' Set it to an absolute path
+             path.Path = "C:\My Documents\ProjectDocs\"
+             
+             ' Set it to a path based on an environment variable
+             path.Path = "%HOMEDRIVE%%HOMEPATH%\Favorites\"
+             </code>
+             </example>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.FolderPath.Exists">
+            <summary>
+            This read-only property can be used to determine whether or not
+            the folder path exists.
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.HtmlToMaml">
+            <summary>
+            This class is used to convert a set of HTML file to their close
+            equivalent as conceptual MAML topic files.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.IBasePathProvider">
+            <summary>
+            This interface defines the properties used to obtain a base path for
+            a <see cref="T:SandcastleBuilder.Utils.FilePath"/> object.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.IBasePathProvider.BasePath">
+            <summary>
+            This read-only property returns the base path
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnConversionProgress(HtmlToMamlConversion.ConversionProgressEventArgs)">
+            <summary>
+            This raises the <see cref="E:HtmlToMamlConversion.HtmlToMaml.ConversionProgress"/> event.
+            </summary>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="source">The source path containing the HTML files</param>
+            <param name="dest">The destination path for the MAML topics and
+            supporting files</param>
+            <param name="createCompanion">True to create companion files for
+            all topic files or false to not create them.</param>
+            <param name="moveIntroText">If true, move text before the first section into an introduction element.
+            If false, insert a place holder introduction element.</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.ConvertTopics">
+            <summary>
+            This is called to perform the actual conversion
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.ConvertTopic(HtmlToMamlConversion.Topic)">
+            <summary>
+            This is called to convert a single topic and its children
+            </summary>
+            <param name="topic">The topic to convert</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.CreateCompanionFile(System.String,HtmlToMamlConversion.Topic)">
+            <summary>
+            Create a companion file for a topic
+            </summary>
+            <param name="filename">The companion filename.</param>
+            <param name="topic">The topic</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.ReportProgress(System.String,System.Object[])">
+            <summary>
+            This is used to report progress during the conversion
+            </summary>
+            <param name="message">The message to report</param>
+            <param name="args">A list of arguments to format into the
+            message text</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchEntity(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces named entities with their numeric equivalents
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>The .NET XML parser only recognizes the common ASCII named
+            entities.  As such, we need to replace all others with their
+            numeric equivalents.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchToken(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces tokens with a MAML token element
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchMarkupWrapper(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces markup sections with a placeholder
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>This is done so that the content of the markup is not
+            affected by other changes made when processing the other
+            rules.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchMarker(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces the markup placeholders with their markup
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchReplace(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces tags with their closes MAML equivalent
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The equivalent MAML tag</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchCode(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces <c>code</c> tags with their equivalent MAML tag
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchSee(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces <c>see</c> tags with a roughly equivalent
+            <c>codeEntityReference</c> tag.
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks><c>see</c> tags in HTML may not be fully qualified so
+            these may require review to fix up the references with fully
+            qualified names.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchAnchor(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces <c>a</c> tags with their equivalent MAML link tag
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>Named anchors are a bit of a problem since in MAML, they
+            equate to an address attribute on an element so they are just
+            marked for review.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchImage(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces <c>img</c> tags with their equivalent MAML media
+            link tag.
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>Since we can't really tell whether to use <c>mediaLink</c>
+            or <c>mediaLinkInline</c>, we'll always use <c>mediaLink</c>.
+            Inline links will need to be updated during the review process.
+            If the link is in the form of a URL, it will be converted to an
+            <c>externalLink</c> element.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchHeading(System.Text.RegularExpressions.Match)">
+            <summary>
+            This replaces <c>h1</c>-<c>h6</c> tags with a MAML <c>section</c>
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>If a "named anchor" comment is found, the named anchor is
+            added as the section's <c>address</c> attribute.  Closing
+            <c>section</c> tags are added on subsequent matches.  The final
+            one is added after all of the matches are done.  The heading tag
+            is noted in a comment to aid in deciding how or if section nesting
+            is needed during the review.</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.HtmlToMaml.OnMatchIntroduction(System.Text.RegularExpressions.Match)">
+            <summary>
+            This puts everything before the first <c>section</c> into an <c>introduction</c>
+            </summary>
+            <param name="match">The match to replace</param>
+            <returns>The replacement text</returns>
+            <remarks>If text is found before the first <c>section</c> tag or when none is available,
+            it will be put between <c>introduction</c> tags.  If no text is found before the first
+            <c>section</c> tag, a TODO <c>introduction</c> is returned.</remarks>
+        </member>
+        <member name="P:HtmlToMamlConversion.HtmlToMaml.BasePath">
+            <summary>
+            This returns the source path for use as the base path
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.HtmlToMaml.PathProvider">
+            <summary>
+            This returns the base path provider for the other classes involved
+            in the conversion that need relative paths.
+            </summary>
+            <returns>The <see cref="T:HtmlToMamlConversion.HtmlToMaml"/> object performing the
+            conversion.</returns>
+        </member>
+        <member name="E:HtmlToMamlConversion.HtmlToMaml.ConversionProgress">
+            <summary>
+            This event is raised to report progress information throughout
+            the conversion process.
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.ConvertHtmlToMaml">
+            <summary>
+            This utility is used to convert HTML files to MAML topics and create
+            some supporting files.
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.ConvertHtmlToMaml.Main(System.String[])">
+            <summary>
+            Main program entry point
+            </summary>
+            <param name="args">The command line arguments (the source folder,
+            the destination folder, and the optional "/companion" option to
+            create companion files for each topic file).</param>
+            <returns>Zero on success, non-zero on failure</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.ConvertHtmlToMaml.htmlToMaml_ConversionProgress(System.Object,HtmlToMamlConversion.ConversionProgressEventArgs)">
+            <summary>
+            Report progress from the conversion process
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="T:HtmlToMamlConversion.ImageReference">
+            <summary>
+            This represents an image reference
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.ImageReference.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="source">The source image file</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.ImageReference.ToString">
+            <summary>
+            Convert to string for debugging purposes
+            </summary>
+            <returns>The string representation of the topic</returns>
+        </member>
+        <member name="P:HtmlToMamlConversion.ImageReference.SourceFile">
+            <summary>
+            This is used to get the source image filename
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.ImageReference.Id">
+            <summary>
+            This returns the image's unique ID
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.ImageReference.AlternateText">
+            <summary>
+            Get or set the image's alternate text
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.ImageReferenceCollection">
+            <summary>
+            This is a collection of image references
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.ImageReferenceCollection.Save(System.String)">
+            <summary>
+            Write the image reference collection to a media content file.
+            </summary>
+            <param name="filename">The file to which the image reference
+            collection is saved.</param>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.MSHelpAttr">
+            <summary>
+            This represents an HTML Help 2.x attribute that can be added to the
+            XML data island in each help topic generated by BuildAssembler.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttr.#ctor(System.String,System.String)">
+            <summary>
+            Internal constructor
+            </summary>
+            <param name="name">The attribute name</param>
+            <param name="value">The attribute value</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttr.CompareTo(SandcastleBuilder.Utils.MSHelpAttr)">
+            <summary>
+            Compares this instance to another instance and returns an
+            indication of their relative values.
+            </summary>
+            <param name="other">A MSHelpAttr object to compare</param>
+            <returns>Returns -1 if this instance is less than the
+            value, 0 if they are equal, or 1 if this instance is
+            greater than the value or the value is null.</returns>
+            <remarks>Entries are sorted by name and then value</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttr.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttr.GetHashCode">
+            <summary>
+            Get a hash code for this item
+            </summary>
+            <returns>Returns the hash code for the attribute name and value.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttr.ToString">
+            <summary>
+            Return a string representation of the item
+            </summary>
+            <returns>Returns the item in its XML format</returns>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpAttr.AttributeName">
+            <summary>
+            This is used to get or set the attribute name
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpAttr.AttributeValue">
+            <summary>
+            This is used to get or set the attribute value
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpAttr.IsDirty">
+            <summary>
+            This is used to get or set the dirty state of the item
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.MSHelpAttrCollection">
+            <summary>
+            This collection class is used to hold the help attribute items for a
+            project.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.Sort">
+            <summary>
+            This is used to sort the collection
+            </summary>
+            <remarks>Values are sorted by attribute name and value</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.WriteXml(System.Xml.XmlWriter,System.Boolean)">
+            <summary>
+            Write the collection to the given XML text writer
+            </summary>
+            <param name="xw">The XML text writer to which the information
+            is written.</param>
+            <param name="includeContainer">True to write out the containing
+            <b>HelpAttributes</b> element, false to exclude it.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.Add(System.String,System.String)">
+            <summary>
+            Add a new item to the collection
+            </summary>
+            <param name="name">The attribute name</param>
+            <param name="value">The attribute value</param>
+            <returns>The <see cref="T:SandcastleBuilder.Utils.MSHelpAttr"/> added to the project.  If
+            If the item already exists in the collection, the existing item is
+            returned.</returns>
+            <remarks>The <see cref="T:SandcastleBuilder.Utils.MSHelpAttr"/> constructor is internal so
+            that we control creation of the items and can associate them with
+            the project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.ToConfigurationString">
+            <summary>
+            Convert the collection to its string form for use in the
+            <b>sandcastle.config</b> file.
+            </summary>
+            <returns>The help attribute collection in string form ready for
+            use in the Sandcastle BuildAssembler configuration file.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.MarkAsDirty">
+            <summary>
+            This is used to mark the collection as changed when there is no
+            associated project.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpAttrCollection.OnListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This is overridden to mark the collection as dirty when it changes
+            </summary>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpAttrCollection.IsDirty">
+            <summary>
+            This is used to get or set the dirty state of the collection
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.MSHelpKeyword">
+            <summary>
+            This represents an HTML Help 2.x index keyword that can be added to the
+            XML data island in each help topic generated by BuildAssembler.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <remarks>The index name defaults to "K"</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="indexName">The index name</param>
+            <param name="keywordTerm">The index term</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.CompareTo(SandcastleBuilder.Utils.MSHelpKeyword)">
+            <summary>
+            Compares this instance to another instance and returns an
+            indication of their relative values.
+            </summary>
+            <param name="other">A MSHelpKeyword object to compare</param>
+            <returns>Returns -1 if this instance is less than the
+            value, 0 if they are equal, or 1 if this instance is
+            greater than the value or the value is null.</returns>
+            <remarks>Entries are sorted by name and then value</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.GetHashCode">
+            <summary>
+            Get a hash code for this item
+            </summary>
+            <returns>Returns the hash code for the index name and term.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeyword.ToString">
+            <summary>
+            Return a string representation of the item
+            </summary>
+            <returns>Returns the item in its XML format</returns>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpKeyword.Index">
+            <summary>
+            This is used to get or set the index name
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Utils.MSHelpKeyword.Term">
+            <summary>
+            This is used to get or set the index term
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Utils.MSHelpKeywordCollection">
+            <summary>
+            This collection class is used to hold the help index keyword items for
+            a project.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeywordCollection.Sort">
+            <summary>
+            This is used to sort the collection
+            </summary>
+            <remarks>Values are sorted by index name and term</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeywordCollection.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            This is used to save the keyword collection to the project
+            file.
+            </summary>
+            <param name="xw">The XML text writer to which the information
+            is written.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Utils.MSHelpKeywordCollection.MarkAsDirty">
+            <summary>
+            This is used to mark the collection as changed when there is no
+            associated project.
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.TagOptions">
+            <summary>
+            This is used to contain the options and state for a <c>Tag</c> entry
+            from the conversion rules file.
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.TagOptions.#ctor(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="tag">The tag node</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.TagOptions.Evaluate(System.Text.RegularExpressions.Match)">
+            <summary>
+            Evaluate the match and determine the properties to use for the
+            replacement.
+            </summary>
+            <param name="match">The regular expression match to evaluate</param>
+        </member>
+        <member name="P:HtmlToMamlConversion.TagOptions.Tag">
+            <summary>
+            This returns the replacement tag to use based on the last
+            evaluation.
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.TagOptions.Attributes">
+            <summary>
+            This returns the attributes to use based on the last evaluation
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.TagOptions.Closing">
+            <summary>
+            This returns the closing "/" if the element is an end tag
+            </summary>
+        </member>
+        <member name="T:HtmlToMamlConversion.Topic">
+            <summary>
+            This represents a topic file
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.Topic.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="source">The source file or null to create an empty container node with no
+            associated topic</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.Topic.ToString">
+            <summary>
+            Convert to string for debugging purposes
+            </summary>
+            <returns>The string representation of the topic</returns>
+        </member>
+        <member name="M:HtmlToMamlConversion.Topic.ParseFile(HtmlToMamlConversion.FileParser,System.Collections.Generic.Dictionary{SandcastleBuilder.Utils.FilePath,HtmlToMamlConversion.ImageReference})">
+            <summary>
+            Parse the topic and its sub-topic files to extract the information for conversion
+            </summary>
+            <param name="fileParser">The file parser</param>
+            <param name="imageDictionary">The image dictionary</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.Topic.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            This is used to save the topic information to the project file
+            </summary>
+            <param name="xw">The XML text writer to which the information is written</param>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.SourceFile">
+            <summary>
+            This is used to get the source HTML filename
+            </summary>
+            <value>If set to null, the item will represent a container node with no associated topic.</value>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.Subtopics">
+            <summary>
+            This is used to get the collection of sub-topics, if any
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.Id">
+            <summary>
+            This returns the topic's unique ID
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.RevisionNumber">
+            <summary>
+            Get or set the topic's revision number
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.Title">
+            <summary>
+            Get or set the topic's title
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.TopicAbstract">
+            <summary>
+            Get or set the topic's abstract
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.Body">
+            <summary>
+            Get or set the topic's body
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.TocExclude">
+            <summary>
+            This returns the TOC exclude flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.IsDefaultTopic">
+            <summary>
+            This returns the default topic flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.SplitToc">
+            <summary>
+            This returns the split TOC flag if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.SortOrder">
+            <summary>
+            This returns the sort order value if found in the topic
+            </summary>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.HelpAttributes">
+            <summary>
+            Get the help attributes collection
+            </summary>
+            <value>If null or empty, there are no attributes</value>
+        </member>
+        <member name="P:HtmlToMamlConversion.Topic.HelpKeywords">
+            <summary>
+            Get the help keywords collection
+            </summary>
+            <value>If null or empty, there are no keywords </value>
+        </member>
+        <member name="T:HtmlToMamlConversion.TopicCollection">
+            <summary>
+            This is a collection of topic items
+            </summary>
+        </member>
+        <member name="M:HtmlToMamlConversion.TopicCollection.AddTopicsFromFolder(System.String,System.Collections.Generic.Dictionary{SandcastleBuilder.Utils.FilePath,HtmlToMamlConversion.Topic})">
+            <summary>
+            Add all topics from the specified folder recursively to the
+            topic collection.
+            </summary>
+            <param name="folder">The folder from which to get the files</param>
+            <param name="topicDictionary">A dictionary used to contain the list
+            of files index by name.</param>
+            <remarks>Only files with a .htm? or .topic extension are added</remarks>
+        </member>
+        <member name="M:HtmlToMamlConversion.TopicCollection.ParseFiles(HtmlToMamlConversion.FileParser,System.Collections.Generic.Dictionary{SandcastleBuilder.Utils.FilePath,HtmlToMamlConversion.ImageReference})">
+            <summary>
+            Parse all files in the collection to extract the information for
+            conversion.
+            </summary>
+            <param name="fileParser">The file parser</param>
+            <param name="imageDictionary">The image dictionary</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.TopicCollection.Save(System.String)">
+            <summary>
+            Save the topic collection to the named content layout file
+            </summary>
+            <param name="filename">The filename to which the content layout
+            is saved.</param>
+        </member>
+        <member name="M:HtmlToMamlConversion.TopicCollection.Sort">
+            <summary>
+            This is used to sort the collection
+            </summary>
+            <remarks>Values are sorted by display title.  Comparisons are
+            case-sensitive.</remarks>
+        </member>
+        <member name="P:HtmlToMamlConversion.TopicCollection.DefaultTopic">
+            <summary>
+            This is used to get the default topic
+            </summary>
+            <value>It returns the default topic or null if one is not set</value>
+        </member>
+        <member name="P:HtmlToMamlConversion.TopicCollection.SplitTocAtTopic">
+            <summary>
+            This is used to get the topic at which the table of content is
+            split by the API content.
+            </summary>
+            <value>This will only be valid if it refers to a root level
+            topic.  It will return null if a split location has not been
+            set at the root level.</value>
+        </member>
+    </members>
+</doc>

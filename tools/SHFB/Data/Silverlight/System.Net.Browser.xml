@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.Browser">
+      <topicdata group="api" />
+      <apidata name="System.Net.Browser" group="namespace" />
+      <elements>
+        <element api="T:System.Net.Browser.WebRequestCreator" />
+      </elements>
+      <file name="195d7325-1b56-dd32-9d8c-50da8ec1afca" />
+    </api>
+    <api id="T:System.Net.Browser.WebRequestCreator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Browser.WebRequestCreator" />
+      <apidata name="WebRequestCreator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Net.Browser" />
+      </containers>
+      <file name="6a104f00-6591-0f4c-932c-65efd9c05949" />
+    </api>
+    <api id="AllMembers.T:System.Net.Browser.WebRequestCreator">
+      <topicdata name="WebRequestCreator" group="list" subgroup="members" typeTopicId="T:System.Net.Browser.WebRequestCreator" />
+      <apidata name="WebRequestCreator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Browser.WebRequestCreator.BrowserHttp" />
+        <element api="P:System.Net.Browser.WebRequestCreator.ClientHttp" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Net.Browser" />
+        <type api="T:System.Net.Browser.WebRequestCreator" />
+      </containers>
+      <file name="91946d67-257c-3c60-0cec-e8effdb8f7b4" />
+    </api>
+    <api id="Properties.T:System.Net.Browser.WebRequestCreator">
+      <topicdata name="WebRequestCreator" group="list" subgroup="Properties" typeTopicId="T:System.Net.Browser.WebRequestCreator" />
+      <apidata name="WebRequestCreator" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Browser.WebRequestCreator.BrowserHttp" />
+        <element api="P:System.Net.Browser.WebRequestCreator.ClientHttp" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Net.Browser" />
+        <type api="T:System.Net.Browser.WebRequestCreator" />
+      </containers>
+      <file name="cd8dd318-7759-a62f-c006-17aaf57d27cd" />
+    </api>
+    <api id="P:System.Net.Browser.WebRequestCreator.BrowserHttp">
+      <topicdata group="api" />
+      <apidata name="BrowserHttp" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BrowserHttp" />
+      <returns>
+        <type api="T:System.Net.IWebRequestCreate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Net.Browser" />
+        <type api="T:System.Net.Browser.WebRequestCreator" ref="true" />
+      </containers>
+      <file name="659fe355-8b40-5a71-9c1c-6944c865d4fc" />
+    </api>
+    <api id="P:System.Net.Browser.WebRequestCreator.ClientHttp">
+      <topicdata group="api" />
+      <apidata name="ClientHttp" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientHttp" />
+      <returns>
+        <type api="T:System.Net.IWebRequestCreate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Net.Browser" />
+        <type api="T:System.Net.Browser.WebRequestCreator" ref="true" />
+      </containers>
+      <file name="183b4783-d177-173b-f7f0-a82303889a1d" />
+    </api>
+  </apis>
+</reflection>

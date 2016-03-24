@@ -1,0 +1,2767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="ExternalAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Markup.Localizer">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Markup.Localizer" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+        <element api="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventHandler" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizerError" />
+        <element api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      </elements>
+      <file name="a4c3aa0d-2be7-db17-0ce7-0e8c27f96efb" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+      <apidata name="BamlLocalizabilityResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="8cdf00ee-0ac1-4ea5-6769-bc24094abba9" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver">
+      <topicdata name="BamlLocalizabilityResolver" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+      <apidata name="BamlLocalizabilityResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.#ctor" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetElementLocalizability(System.String,System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetPropertyLocalizability(System.String,System.String,System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveAssemblyFromClass(System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveFormattingTagToClass(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+      </containers>
+      <file name="e9073461-a185-c7b1-e133-ced7c1ce27dd" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver">
+      <topicdata name="BamlLocalizabilityResolver" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+      <apidata name="BamlLocalizabilityResolver" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetElementLocalizability(System.String,System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetPropertyLocalizability(System.String,System.String,System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveAssemblyFromClass(System.String)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveFormattingTagToClass(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" />
+      </containers>
+      <file name="41f250a9-f169-9059-76fe-16bfe69cc8ac" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+      </containers>
+      <file name="06cffabc-8be2-b598-3edb-a29a476e885a" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetElementLocalizability(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetElementLocalizability" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="className">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+      </containers>
+      <file name="a2636dc8-5d4c-9320-a574-f8a0f9f0a14a" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.GetPropertyLocalizability(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetPropertyLocalizability" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="className">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="property">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.LocalizabilityAttribute" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+      </containers>
+      <file name="c13b9bac-0278-6446-cc30-c3bc78b73310" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveAssemblyFromClass(System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveAssemblyFromClass" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="className">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+      </containers>
+      <file name="d3ebaa37-1be9-0fb8-888c-1503dd3df734" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizabilityResolver.ResolveFormattingTagToClass(System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveFormattingTagToClass" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="formattingTag">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+      </containers>
+      <file name="a5868a3d-e542-f749-d14a-143da3936eb1" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizableResource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      <apidata name="BamlLocalizableResource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="8497f536-90e7-dd3d-ded9-3d65e410b7d7" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResource">
+      <topicdata name="BamlLocalizableResource" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      <apidata name="BamlLocalizableResource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor">
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor(System.String,System.String,System.Windows.LocalizationCategory,System.Boolean,System.Boolean)" />
+        </element>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Category" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Comments" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Content" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.Equals(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.GetHashCode" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Modifiable" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Readable" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      </containers>
+      <file name="e007bb50-bd0e-423d-2ebb-09b662c89364" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizableResource">
+      <topicdata name="BamlLocalizableResource" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      <apidata name="BamlLocalizableResource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.Equals(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      </containers>
+      <file name="a40b56f4-3144-8a25-8302-b44be6741d1b" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.BamlLocalizableResource">
+      <topicdata name="BamlLocalizableResource" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      <apidata name="BamlLocalizableResource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Category" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Comments" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Content" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Modifiable" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Readable" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      </containers>
+      <file name="8d733a72-7c7d-d14c-d960-230f876fd140" />
+    </api>
+    <api id="Overload:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResource" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor(System.String,System.String,System.Windows.LocalizationCategory,System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="c93f32d4-f9b8-ea68-1548-fa2926fd32fe" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="8ed728fd-f410-5804-c633-cfebff42be1d" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor(System.String,System.String,System.Windows.LocalizationCategory,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizableResource.#ctor" />
+      <parameters>
+        <parameter name="content">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="comments">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category">
+          <type api="T:System.Windows.LocalizationCategory" ref="false" />
+        </parameter>
+        <parameter name="modifiable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="readable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="e662840f-1dc9-a4fc-e26d-4d5eb2fa6e6f" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Category" />
+      <setter name="set_Category" />
+      <returns>
+        <type api="T:System.Windows.LocalizationCategory" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="17b73490-d91d-cf84-10dc-e5a3b86085cb" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Comments">
+      <topicdata group="api" />
+      <apidata name="Comments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Comments" />
+      <setter name="set_Comments" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="dd144f6e-a639-8e78-6567-0120400220ac" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Content" />
+      <setter name="set_Content" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="5fddc1a6-bfa1-a469-f85b-5f4a77dc7f76" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResource.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="ddfd7f90-9ae5-cfb6-9652-2ef7ad1a4c3c" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResource.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="9e8f1481-cd0a-d349-fefb-f85d634b0a2a" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Modifiable">
+      <topicdata group="api" />
+      <apidata name="Modifiable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Modifiable" />
+      <setter name="set_Modifiable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="5403b389-15bc-513d-f6c1-9bf1b822e976" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResource.Readable">
+      <topicdata group="api" />
+      <apidata name="Readable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Readable" />
+      <setter name="set_Readable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </containers>
+      <file name="d150130c-1d45-c750-46f9-d88256cf176e" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      <apidata name="BamlLocalizableResourceKey" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="4c0792a1-f784-0e4b-924c-1d9322e1ea09" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey">
+      <topicdata name="BamlLocalizableResourceKey" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      <apidata name="BamlLocalizableResourceKey" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.#ctor(System.String,System.String,System.String)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.AssemblyName" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.ClassName" />
+        <element api="Overload:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals">
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.GetHashCode" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.PropertyName" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Uid" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      </containers>
+      <file name="a6f117ac-6211-097c-f5b0-ca5088583612" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey">
+      <topicdata name="BamlLocalizableResourceKey" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      <apidata name="BamlLocalizableResourceKey" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals">
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      </containers>
+      <file name="3f235c02-0384-e5e6-10be-28c6e5dfbbfa" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey">
+      <topicdata name="BamlLocalizableResourceKey" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      <apidata name="BamlLocalizableResourceKey" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.AssemblyName" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.ClassName" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.PropertyName" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Uid" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      </containers>
+      <file name="e7b19947-12ef-a6ba-c5f4-39ef8a636e47" />
+    </api>
+    <api id="Overload:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="25edd0fb-cf52-7e54-d110-2c89147ade0c" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="uid">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="className">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="c0676249-fa41-e867-d89d-63eebda3507a" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.AssemblyName">
+      <topicdata group="api" />
+      <apidata name="AssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AssemblyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="049be409-5abe-1904-55ab-e38c6cee9b42" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.ClassName">
+      <topicdata group="api" />
+      <apidata name="ClassName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClassName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="57d0e3fd-286b-468d-d808-865b5e58e1e9" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="95af2681-d5d9-414d-dcd9-576a5c14596b" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Equals" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="c1bad4f7-ddc3-193b-12db-7ab728e450aa" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="701e0f8a-88cc-ba6d-950c-f59b5afd1d65" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="80c5ecf6-a1df-ea57-fe21-9746d0327464" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizableResourceKey.Uid">
+      <topicdata group="api" />
+      <apidata name="Uid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Uid" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </containers>
+      <file name="3be813f3-b0b9-39ad-f7fd-c1713087733b" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      <apidata name="BamlLocalizationDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="f0e1a2d3-7bfc-e9ab-b18e-2f0c04a1a4e1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizationDictionary">
+      <topicdata name="BamlLocalizationDictionary" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      <apidata name="BamlLocalizationDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Add(System.Windows.Markup.Localizer.BamlLocalizableResourceKey,System.Windows.Markup.Localizer.BamlLocalizableResource)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Clear" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Contains(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.CopyTo(System.Collections.DictionaryEntry[],System.Int32)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Count" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.GetEnumerator" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsFixedSize" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsReadOnly" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Item(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Keys" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Remove(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.RootElementKey" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#Count" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#SyncRoot" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Add(System.Object,System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Contains(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#GetEnumerator" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Item(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Remove(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      </containers>
+      <file name="9bc445a1-54c0-f5b0-350d-fe2ed10dcfee" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizationDictionary">
+      <topicdata name="BamlLocalizationDictionary" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      <apidata name="BamlLocalizationDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Add(System.Windows.Markup.Localizer.BamlLocalizableResourceKey,System.Windows.Markup.Localizer.BamlLocalizableResource)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Clear" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Contains(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.CopyTo(System.Collections.DictionaryEntry[],System.Int32)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.GetEnumerator" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Remove(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Add(System.Object,System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Contains(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#GetEnumerator" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Remove(System.Object)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IEnumerable#GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      </containers>
+      <file name="d282852e-5912-d539-101c-c0e20ba5f0c1" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.BamlLocalizationDictionary">
+      <topicdata name="BamlLocalizationDictionary" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      <apidata name="BamlLocalizationDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Count" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsFixedSize" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsReadOnly" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Item(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Keys" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.RootElementKey" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#Count" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#SyncRoot" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Item(System.Object)" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" />
+      </containers>
+      <file name="1f8380be-6377-2520-fa4b-e532ed23e6d3" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="783c60ab-3a41-7622-3d74-54db2979a05a" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Add(System.Windows.Markup.Localizer.BamlLocalizableResourceKey,System.Windows.Markup.Localizer.BamlLocalizableResource)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="dc75e5d8-b4e3-0e89-09d3-f87ffdecd7fc" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.Collections.IDictionary.Clear">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="456cd3d0-d7a4-6657-2ce1-12f05a340053" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Contains(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="2665b19d-53f2-bb24-ba7a-3176e1153caf" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.CopyTo(System.Collections.DictionaryEntry[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Collections.DictionaryEntry" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="arrayIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="029da008-4cc1-51ed-91b7-f90c29dd9d9c" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="876098ad-feef-ef50-9d2b-0fb573e1ffa7" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="418b686f-0907-fe55-f9ae-bac299bfa777" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsFixedSize">
+      <topicdata group="api" />
+      <apidata name="IsFixedSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsFixedSize" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.IsFixedSize">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="0a07850d-8b11-c44a-a035-5b0b78771c44" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.IsReadOnly">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="89e61608-abe2-f0e8-cc62-1cce0f4d2cc9" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Item(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="93968afd-0ff3-726e-8c97-e4aa1b7039b5" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Keys">
+      <topicdata group="api" />
+      <apidata name="Keys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Keys" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Keys">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="1ee02f72-6cc7-b94a-51e9-748d1bf4026a" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Remove(System.Windows.Markup.Localizer.BamlLocalizableResourceKey)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="fc6ec630-a168-4532-112f-2298246c33e8" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.RootElementKey">
+      <topicdata group="api" />
+      <apidata name="RootElementKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RootElementKey" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="a6ee0baf-a301-3db4-cafa-8d7794b0b25f" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" eiiName="ICollection.CopyTo" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="a2688d78-3e5a-614f-795e-86e52aa6d660" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#Count">
+      <topicdata group="api" eiiName="ICollection.Count" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.Count">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="24e88197-4abc-dd9f-e74a-79c6ec1b6e19" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#IsSynchronized">
+      <topicdata group="api" eiiName="ICollection.IsSynchronized" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.IsSynchronized">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="d247574f-45c3-6bee-3991-a08214e52a80" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#ICollection#SyncRoot">
+      <topicdata group="api" eiiName="ICollection.SyncRoot" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.SyncRoot">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="04f25809-9bc4-d48b-d780-efbdb4afabbe" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Add(System.Object,System.Object)">
+      <topicdata group="api" eiiName="IDictionary.Add" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.IDictionary.Add(System.Object,System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="0baa3d20-c2aa-36ab-2450-ad15443c504a" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Contains(System.Object)">
+      <topicdata group="api" eiiName="IDictionary.Contains" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IDictionary.Contains(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="5a441af0-82aa-de2e-2a41-528f83129e13" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#GetEnumerator">
+      <topicdata group="api" eiiName="IDictionary.GetEnumerator" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <returns>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IDictionary.GetEnumerator">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="3375986e-7d4c-760e-125c-748ec5a5b33f" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Item(System.Object)">
+      <topicdata group="api" eiiName="IDictionary.Item" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_System.Collections.IDictionary.Item" />
+      <setter name="set_System.Collections.IDictionary.Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Item(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="3fd58275-8c2f-725f-9cce-f251dcf25370" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IDictionary#Remove(System.Object)">
+      <topicdata group="api" eiiName="IDictionary.Remove" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.IDictionary.Remove(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="d73b3d3a-cdf3-dab9-fb44-73d3da692d25" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionary.System#Collections#IEnumerable#GetEnumerator">
+      <topicdata group="api" eiiName="IEnumerable.GetEnumerator" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="b41e8606-96fd-345f-6153-af98ea0b98a5" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionary.Values">
+      <topicdata group="api" />
+      <apidata name="Values" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Values" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Values">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </containers>
+      <file name="7b166d71-59b1-a701-dd5d-1adf2b3f5a7a" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      <apidata name="BamlLocalizationDictionaryEnumerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="75d58c17-481d-936d-d66e-99c3abc1b6a8" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator">
+      <topicdata name="BamlLocalizationDictionaryEnumerator" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      <apidata name="BamlLocalizationDictionaryEnumerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Current" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Entry" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Key" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.MoveNext" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Reset" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IEnumerator#Current" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Value" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      </containers>
+      <file name="c5068297-ee39-6c7d-ccbd-c14cc68a23b7" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator">
+      <topicdata name="BamlLocalizationDictionaryEnumerator" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      <apidata name="BamlLocalizationDictionaryEnumerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.MoveNext" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Reset" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      </containers>
+      <file name="e2936f52-970f-a251-bbfb-adaa75fac003" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator">
+      <topicdata name="BamlLocalizationDictionaryEnumerator" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      <apidata name="BamlLocalizationDictionaryEnumerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Current" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Entry" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Key" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IEnumerator#Current" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Value" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" />
+      </containers>
+      <file name="79c28157-07c0-0caa-cef9-2a7278d75a6e" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="1d5356f4-a8d1-491c-73c9-b32bb82ec6a4" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Entry">
+      <topicdata group="api" />
+      <apidata name="Entry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Entry" />
+      <returns>
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionaryEnumerator.Entry">
+          <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="c8739435-1a22-6711-e19a-dd2e887b80e4" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="df6f4d06-d5bc-f56e-8de1-05901d3104bc" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.MoveNext">
+      <topicdata group="api" />
+      <apidata name="MoveNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerator.MoveNext">
+          <type api="T:System.Collections.IEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="d0800103-098f-0084-f28b-7f29edfc5bf6" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.Collections.IEnumerator.Reset">
+          <type api="T:System.Collections.IEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="37d2340f-1cdc-9cfa-d130-fb1702b93834" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Key">
+      <topicdata group="api" eiiName="IDictionaryEnumerator.Key" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.IDictionaryEnumerator.Key" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionaryEnumerator.Key">
+          <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="184134ea-b52e-782c-3b26-6d5a599abc0b" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IDictionaryEnumerator#Value">
+      <topicdata group="api" eiiName="IDictionaryEnumerator.Value" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.IDictionaryEnumerator.Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionaryEnumerator.Value">
+          <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="0117837f-9868-b4eb-5a6e-0130a59ea532" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.System#Collections#IEnumerator#Current">
+      <topicdata group="api" eiiName="IEnumerator.Current" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.IEnumerator.Current" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IEnumerator.Current">
+          <type api="T:System.Collections.IEnumerator" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="5cfe8ed1-de2b-faab-20c9-1389a51ad48d" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="2ecbd201-1823-09dd-eb90-d1c8e43e4206" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      <apidata name="BamlLocalizer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="35916cb7-e233-c64b-ce6d-985520716c90" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizer">
+      <topicdata name="BamlLocalizer" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      <apidata name="BamlLocalizer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Markup.Localizer.BamlLocalizer.#ctor">
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream)" />
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver)" />
+          <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver,System.IO.TextReader)" />
+        </element>
+        <element api="E:System.Windows.Markup.Localizer.BamlLocalizer.ErrorNotify" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.ExtractResources" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.OnErrorNotify(System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.UpdateBaml(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizationDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      </containers>
+      <file name="b7bf65f8-bc53-8ad2-5353-32a378f89041" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizer">
+      <topicdata name="BamlLocalizer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      <apidata name="BamlLocalizer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.ExtractResources" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.OnErrorNotify(System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.UpdateBaml(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizationDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      </containers>
+      <file name="536ec38a-6bce-d2e3-cdec-24474976e1d4" />
+    </api>
+    <api id="Events.T:System.Windows.Markup.Localizer.BamlLocalizer">
+      <topicdata name="BamlLocalizer" group="list" subgroup="Events" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      <apidata name="BamlLocalizer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Markup.Localizer.BamlLocalizer.ErrorNotify" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      </containers>
+      <file name="f47f82a0-0e40-43a8-776c-77d2a127d668" />
+    </api>
+    <api id="Overload:System.Windows.Markup.Localizer.BamlLocalizer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver)" />
+        <element api="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver,System.IO.TextReader)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="4c688dc2-28c1-a43e-41aa-ba21c3dda636" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizer.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="58226714-c006-d0ba-00c5-360c83502575" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizer.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="84870b29-5b06-b46d-8d04-df68a2f7effe" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.#ctor(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizabilityResolver,System.IO.TextReader)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.BamlLocalizer.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="resolver">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizabilityResolver" ref="true" />
+        </parameter>
+        <parameter name="comments">
+          <type api="T:System.IO.TextReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="ef0577c2-3a61-6651-da7d-83862d42ad46" />
+    </api>
+    <api id="E:System.Windows.Markup.Localizer.BamlLocalizer.ErrorNotify">
+      <topicdata group="api" />
+      <apidata name="ErrorNotify" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorNotify" />
+      <remover name="remove_ErrorNotify" />
+      <eventhandler>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="372ac2fc-993f-bfb9-c5d9-bcbaa89305c8" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.ExtractResources">
+      <topicdata group="api" />
+      <apidata name="ExtractResources" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="82ac4b28-88f5-3a79-c2f2-8824fa4e9c34" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.OnErrorNotify(System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnErrorNotify" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="7f5dce40-6fb6-576a-456f-9fc2a5809a26" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.BamlLocalizer.UpdateBaml(System.IO.Stream,System.Windows.Markup.Localizer.BamlLocalizationDictionary)">
+      <topicdata group="api" />
+      <apidata name="UpdateBaml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="updates">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizationDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizer" ref="true" />
+      </containers>
+      <file name="f6a6d9c0-8b4d-5fde-e12a-6cc9f2dbcc48" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizerError">
+      <topicdata group="api" />
+      <apidata name="BamlLocalizerError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.DuplicateUid" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.DuplicateElement" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.IncompleteElementPlaceholder" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidCommentingXml" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidLocalizationAttributes" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidLocalizationComments" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidUid" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.MismatchedElements" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.SubstitutionAsPlaintext" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.UidMissingOnChildElement" />
+        <element api="F:System.Windows.Markup.Localizer.BamlLocalizerError.UnknownFormattingTag" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="3e9ce4e1-5e5c-69bd-e236-378fe40079bf" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.DuplicateElement">
+      <topicdata group="api" notopic="" />
+      <apidata name="DuplicateElement" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="181da0f7-0710-052d-2004-d6119ae11b3d" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.DuplicateUid">
+      <topicdata group="api" notopic="" />
+      <apidata name="DuplicateUid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="e48adca5-52fa-208f-d1ea-db81c47e0487" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.IncompleteElementPlaceholder">
+      <topicdata group="api" notopic="" />
+      <apidata name="IncompleteElementPlaceholder" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="b8e1b480-d2b4-383b-aca1-a718ec1314c5" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidCommentingXml">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidCommentingXml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="bcf0936c-c002-b429-2fc9-543fe28286aa" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidLocalizationAttributes">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidLocalizationAttributes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="398f7445-77c6-4569-3ca5-fbe302cd0d1a" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidLocalizationComments">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidLocalizationComments" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="469015ae-06eb-61fc-ee14-dbec30628764" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.InvalidUid">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidUid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="e094deac-89b5-5ff5-d145-33057c96263c" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.MismatchedElements">
+      <topicdata group="api" notopic="" />
+      <apidata name="MismatchedElements" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="b1238d93-c487-079c-b14b-13969aec248c" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.SubstitutionAsPlaintext">
+      <topicdata group="api" notopic="" />
+      <apidata name="SubstitutionAsPlaintext" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="e5f5be3e-c7d4-4a87-d542-307589d3e911" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.UidMissingOnChildElement">
+      <topicdata group="api" notopic="" />
+      <apidata name="UidMissingOnChildElement" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="9e472beb-381a-24a8-3bc6-2e8d4336b0e0" />
+    </api>
+    <api id="F:System.Windows.Markup.Localizer.BamlLocalizerError.UnknownFormattingTag">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownFormattingTag" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </containers>
+      <file name="bf3243f6-b1e5-7720-5f97-e9693c99ad6c" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      <apidata name="BamlLocalizerErrorNotifyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="443b3b69-d0e3-7ecc-32f5-bb27dc965811" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs">
+      <topicdata name="BamlLocalizerErrorNotifyEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      <apidata name="BamlLocalizerErrorNotifyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Error" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Key" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      </containers>
+      <file name="622844b6-1aea-f2a0-dc2f-9e9c18240e4f" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs">
+      <topicdata name="BamlLocalizerErrorNotifyEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      <apidata name="BamlLocalizerErrorNotifyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      </containers>
+      <file name="404921a8-b780-7bd0-3c64-ab7e3af76ccf" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs">
+      <topicdata name="BamlLocalizerErrorNotifyEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      <apidata name="BamlLocalizerErrorNotifyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Error" />
+        <element api="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Key" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" />
+      </containers>
+      <file name="74bcf51c-8f91-15d4-f968-82e7df56403b" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" ref="true" />
+      </containers>
+      <file name="7b2bcd1e-9f2d-7c99-50f4-65265e24f6e7" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizableResourceKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" ref="true" />
+      </containers>
+      <file name="af2e7a0b-e9b4-76c8-3ab4-6a7fc64dacb0" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventHandler">
+      <topicdata group="api" />
+      <apidata name="BamlLocalizerErrorNotifyEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Markup.Localizer.BamlLocalizerErrorNotifyEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="631884f8-92c0-66d6-0d87-938d0b405989" />
+    </api>
+    <api id="T:System.Windows.Markup.Localizer.ElementLocalizability">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      <apidata name="ElementLocalizability" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+      </containers>
+      <file name="c1b29ca2-bbe4-65f4-d3ca-6b8db5726e23" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Localizer.ElementLocalizability">
+      <topicdata name="ElementLocalizability" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      <apidata name="ElementLocalizability" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Markup.Localizer.ElementLocalizability.#ctor">
+          <element api="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+          <element api="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor(System.String,System.Windows.LocalizabilityAttribute)" />
+        </element>
+        <element api="P:System.Windows.Markup.Localizer.ElementLocalizability.Attribute" />
+        <element api="P:System.Windows.Markup.Localizer.ElementLocalizability.FormattingTag" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      </containers>
+      <file name="8714c22c-e72c-49cb-f4d8-fc421daeeb52" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Localizer.ElementLocalizability">
+      <topicdata name="ElementLocalizability" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      <apidata name="ElementLocalizability" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      </containers>
+      <file name="9e3bae4c-132a-8a1e-9fac-4bf9c4d6e31a" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Localizer.ElementLocalizability">
+      <topicdata name="ElementLocalizability" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      <apidata name="ElementLocalizability" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Markup.Localizer.ElementLocalizability.Attribute" />
+        <element api="P:System.Windows.Markup.Localizer.ElementLocalizability.FormattingTag" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      </containers>
+      <file name="d03cd372-f9aa-87a3-bb30-774349b07702" />
+    </api>
+    <api id="Overload:System.Windows.Markup.Localizer.ElementLocalizability.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.Localizer.ElementLocalizability" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+        <element api="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor(System.String,System.Windows.LocalizabilityAttribute)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </containers>
+      <file name="a70de1c3-1172-8186-d935-b7d51d70eb13" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </containers>
+      <file name="a9198244-9457-4720-5c42-247a4828798f" />
+    </api>
+    <api id="M:System.Windows.Markup.Localizer.ElementLocalizability.#ctor(System.String,System.Windows.LocalizabilityAttribute)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.Localizer.ElementLocalizability.#ctor" />
+      <parameters>
+        <parameter name="formattingTag">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="attribute">
+          <type api="T:System.Windows.LocalizabilityAttribute" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </containers>
+      <file name="5b240df5-1c1f-4351-96ff-3437b21507d4" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.ElementLocalizability.Attribute">
+      <topicdata group="api" />
+      <apidata name="Attribute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Attribute" />
+      <setter name="set_Attribute" />
+      <returns>
+        <type api="T:System.Windows.LocalizabilityAttribute" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </containers>
+      <file name="436d4a24-2372-3ba9-89a2-ea93dfc6927c" />
+    </api>
+    <api id="P:System.Windows.Markup.Localizer.ElementLocalizability.FormattingTag">
+      <topicdata group="api" />
+      <apidata name="FormattingTag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FormattingTag" />
+      <setter name="set_FormattingTag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Localizer" />
+        <type api="T:System.Windows.Markup.Localizer.ElementLocalizability" ref="true" />
+      </containers>
+      <file name="8a4821c6-ebd3-a559-cfd7-b883845a305f" />
+    </api>
+  </apis>
+</reflection>

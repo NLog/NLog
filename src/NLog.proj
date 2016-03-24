@@ -297,6 +297,10 @@
   <Target Name="BuildIndividualDocumentation">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
+  
+    <Target Name="BuildDocumentationNetFX45">
+    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="BuildNetFX45" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' />
+  </Target>
 
   <Target Name="PostProcessDocumentation">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />

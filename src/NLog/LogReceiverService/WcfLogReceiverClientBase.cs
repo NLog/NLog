@@ -47,6 +47,7 @@ namespace NLog.LogReceiverService
     /// used internally (see internal constructor).  It passes off any Channel usage
     /// to the inheriting class.
     /// </summary>
+    /// <typeparam name="TService">Type of the WCF service.</typeparam>
     public abstract class WcfLogReceiverClientBase<TService> : ClientBase<TService>, IWcfLogReceiverClient
         where TService : class
     {

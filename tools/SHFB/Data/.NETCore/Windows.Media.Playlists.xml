@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Playlists">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Playlists" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Playlists.PlaylistFormat" />
+        <element api="T:Windows.Media.Playlists.Playlist" />
+      </elements>
+      <file name="f42cc369-aa9b-375e-cd0d-fa0f176f6c62" />
+    </api>
+    <api id="T:Windows.Media.Playlists.Playlist">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Playlists.Playlist" />
+      <apidata name="Playlist" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Playlists.Playlist.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Playlists.IPlaylist" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6f8f191f-fa99-f151-81de-2d986f231ecd" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Playlists.Playlist">
+      <topicdata name="Playlist" group="list" subgroup="members" typeTopicId="T:Windows.Media.Playlists.Playlist" />
+      <apidata name="Playlist" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Playlists.Playlist.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Playlists.Playlist.#ctor" />
+        <element api="P:Windows.Media.Playlists.Playlist.Files" />
+        <element api="M:Windows.Media.Playlists.Playlist.LoadAsync(Windows.Storage.IStorageFile)" />
+        <element api="Overload:Windows.Media.Playlists.Playlist.SaveAsAsync">
+          <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption)" />
+          <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption,Windows.Media.Playlists.PlaylistFormat)" />
+        </element>
+        <element api="M:Windows.Media.Playlists.Playlist.SaveAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" />
+      </containers>
+      <file name="152c272f-8ac7-11d3-4f3d-7c194cb8227d" />
+    </api>
+    <api id="Methods.T:Windows.Media.Playlists.Playlist">
+      <topicdata name="Playlist" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Playlists.Playlist" />
+      <apidata name="Playlist" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Playlists.Playlist.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Playlists.Playlist.LoadAsync(Windows.Storage.IStorageFile)" />
+        <element api="Overload:Windows.Media.Playlists.Playlist.SaveAsAsync">
+          <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption)" />
+          <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption,Windows.Media.Playlists.PlaylistFormat)" />
+        </element>
+        <element api="M:Windows.Media.Playlists.Playlist.SaveAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" />
+      </containers>
+      <file name="47957b68-fa02-445a-4714-dd4abf2f1d52" />
+    </api>
+    <api id="Properties.T:Windows.Media.Playlists.Playlist">
+      <topicdata name="Playlist" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Playlists.Playlist" />
+      <apidata name="Playlist" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Playlists.Playlist.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Playlists.Playlist.Files" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" />
+      </containers>
+      <file name="1f379ccd-c22c-5c9e-9c89-459bec9f35fb" />
+    </api>
+    <api id="Overload:Windows.Media.Playlists.Playlist.SaveAsAsync">
+      <topicdata name="SaveAsAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Playlists.Playlist" />
+      <apidata name="SaveAsAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption)" />
+        <element api="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption,Windows.Media.Playlists.PlaylistFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <file name="f9e59d9c-a4d7-7584-221e-d9bbe93955ea" />
+    </api>
+    <api id="M:Windows.Media.Playlists.Playlist.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <file name="86143f96-90dc-96b0-e1e7-8536de764fd5" />
+    </api>
+    <api id="P:Windows.Media.Playlists.Playlist.Files">
+      <topicdata group="api" />
+      <apidata name="Files" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Files" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <file name="1ca8da8d-88ed-035b-a3d1-dbeda36f2976" />
+    </api>
+    <api id="M:Windows.Media.Playlists.Playlist.LoadAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <file name="c1a6acbd-f36a-ed86-7ec0-a12e932463e3" />
+    </api>
+    <api id="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption)">
+      <topicdata group="api" />
+      <apidata name="SaveAsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Playlists.Playlist.SaveAsAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="saveLocation" in="true">
+          <type api="T:Windows.Storage.IStorageFolder" ref="true" />
+        </parameter>
+        <parameter name="desiredName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="option" in="true">
+          <type api="T:Windows.Storage.NameCollisionOption" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SaveAsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="778c0d50-78ec-f492-2aea-dba21222cf9d" />
+    </api>
+    <api id="M:Windows.Media.Playlists.Playlist.SaveAsAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.NameCollisionOption,Windows.Media.Playlists.PlaylistFormat)">
+      <topicdata group="api" />
+      <apidata name="SaveAsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Playlists.Playlist.SaveAsAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="saveLocation" in="true">
+          <type api="T:Windows.Storage.IStorageFolder" ref="true" />
+        </parameter>
+        <parameter name="desiredName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="option" in="true">
+          <type api="T:Windows.Storage.NameCollisionOption" ref="false" />
+        </parameter>
+        <parameter name="playlistFormat" in="true">
+          <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SaveAsWithFormatAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ea10276-9751-ba6d-1e0b-786c2cba9d4f" />
+    </api>
+    <api id="M:Windows.Media.Playlists.Playlist.SaveAsync">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.Playlist" ref="true" />
+      </containers>
+      <file name="b8336711-0c3a-974e-3d25-af065383f729" />
+    </api>
+    <api id="T:Windows.Media.Playlists.PlaylistFormat">
+      <topicdata group="api" />
+      <apidata name="PlaylistFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Playlists.PlaylistFormat.WindowsMedia" />
+        <element api="F:Windows.Media.Playlists.PlaylistFormat.Zune" />
+        <element api="F:Windows.Media.Playlists.PlaylistFormat.M3u" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d72269a3-c62b-cca1-7e36-b886d0d17830" />
+    </api>
+    <api id="F:Windows.Media.Playlists.PlaylistFormat.M3u">
+      <topicdata group="api" notopic="" />
+      <apidata name="M3u" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </containers>
+      <file name="dbe06836-7344-b432-3704-6c135bd3946a" />
+    </api>
+    <api id="F:Windows.Media.Playlists.PlaylistFormat.WindowsMedia">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowsMedia" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </containers>
+      <file name="740bf3ed-ec9d-5515-f375-add37010f6c1" />
+    </api>
+    <api id="F:Windows.Media.Playlists.PlaylistFormat.Zune">
+      <topicdata group="api" notopic="" />
+      <apidata name="Zune" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Playlists" />
+        <type api="T:Windows.Media.Playlists.PlaylistFormat" ref="false" />
+      </containers>
+      <file name="81876458-b554-dfaa-51e0-0116685abe12" />
+    </api>
+  </apis>
+</reflection>

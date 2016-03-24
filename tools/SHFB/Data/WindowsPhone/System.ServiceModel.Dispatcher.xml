@@ -1,0 +1,1280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="2.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.50116.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Dispatcher">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Dispatcher" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+        <element api="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+        <element api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+        <element api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+        <element api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+        <element api="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+        <element api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </elements>
+      <file name="c35c3ba1-74eb-663a-d32f-f12dc767fa0b" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="5ef87f6b-a19b-4f9e-caf8-c23ded52c9cc" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor">
+          <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)" />
+          <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)" />
+        </element>
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.BeginMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.EndMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsInitiating" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsTerminating" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SyncMethod" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="a2579d77-d687-54c2-d70f-b26622b85bac" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="cf959663-514e-b5cd-cc30-7f65eef51930" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.BeginMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.EndMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsInitiating" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsTerminating" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SyncMethod" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="b49ab183-b189-f957-9488-17792703f5b6" />
+    </api>
+    <api id="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)" />
+        <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="bc2dfc86-1b5b-4653-6e77-b5c4f561b9c3" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="4706245d-def6-0ea5-ec7d-5491b8a7e793" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="replyAction">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="2422c805-bfda-59d8-4840-b490773bf614" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="1681bb96-5b5f-af4e-20d2-fc54e94760d7" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.BeginMethod">
+      <topicdata group="api" />
+      <apidata name="BeginMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BeginMethod" />
+      <setter name="set_BeginMethod" />
+      <returns>
+        <type api="T:System.Reflection.MethodInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="d528dc3a-48e1-56de-1427-a9b458724a58" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply">
+      <topicdata group="api" />
+      <apidata name="DeserializeReply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DeserializeReply" />
+      <setter name="set_DeserializeReply" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="75ce11cb-673b-0378-7b32-49ce73dd24d4" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.EndMethod">
+      <topicdata group="api" />
+      <apidata name="EndMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EndMethod" />
+      <setter name="set_EndMethod" />
+      <returns>
+        <type api="T:System.Reflection.MethodInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="14570814-fc92-2689-2063-72a00bf6a1d2" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter">
+      <topicdata group="api" />
+      <apidata name="Formatter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Formatter" />
+      <setter name="set_Formatter" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="934af5df-aa2f-5671-f2bb-46c8f856ea43" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.IsInitiating">
+      <topicdata group="api" />
+      <apidata name="IsInitiating" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsInitiating" />
+      <setter name="set_IsInitiating" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="102fe273-d888-a17d-381a-ac823bfd8804" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay">
+      <topicdata group="api" />
+      <apidata name="IsOneWay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsOneWay" />
+      <setter name="set_IsOneWay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="22633972-04e9-ff13-a737-8913496b3dd7" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.IsTerminating">
+      <topicdata group="api" />
+      <apidata name="IsTerminating" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsTerminating" />
+      <setter name="set_IsTerminating" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="107c86c4-471b-726e-b5c5-f3737e847ae3" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="49efcf60-483e-eb7e-4571-287538fba262" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="c7572cfa-e4c4-8ea9-37d5-20e344e8a14d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction">
+      <topicdata group="api" />
+      <apidata name="ReplyAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReplyAction" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="ce27caa8-9342-152a-c367-3fd8d744dcd6" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest">
+      <topicdata group="api" />
+      <apidata name="SerializeRequest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SerializeRequest" />
+      <setter name="set_SerializeRequest" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="2ee93296-045c-9b60-bd80-2a99c166592f" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.SyncMethod">
+      <topicdata group="api" />
+      <apidata name="SyncMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SyncMethod" />
+      <setter name="set_SyncMethod" />
+      <returns>
+        <type api="T:System.Reflection.MethodInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="4ec7b3d0-ee67-8025-5e45-5e0e796a6494" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="12d5e6e4-5f51-1ed5-7c80-ce2cd5414a66" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.Via" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="2f0235a2-342f-0348-0e94-0223232d8fdf" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="415bd4ff-7521-b884-bd45-bad5563b9dbe" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.Via" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="93486724-04cd-b753-10fc-a63723ae213d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType">
+      <topicdata group="api" />
+      <apidata name="ContractClientType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContractClientType" />
+      <setter name="set_ContractClientType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="e2028983-cec5-342d-16be-25f2e0ef6dff" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName">
+      <topicdata group="api" />
+      <apidata name="ContractName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContractName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="687daa9b-a82e-3a83-c950-dd22ab9fa9fb" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace">
+      <topicdata group="api" />
+      <apidata name="ContractNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContractNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="1637f4be-93ef-9114-4fd3-205fa31134e1" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing">
+      <topicdata group="api" />
+      <apidata name="ManualAddressing" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ManualAddressing" />
+      <setter name="set_ManualAddressing" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="1c835f41-86c4-3748-6a07-e18612e223e8" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize">
+      <topicdata group="api" />
+      <apidata name="MaxFaultSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxFaultSize" />
+      <setter name="set_MaxFaultSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="d5a5e7fe-fa87-5f74-0368-bfee57a11432" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector">
+      <topicdata group="api" />
+      <apidata name="OperationSelector" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OperationSelector" />
+      <setter name="set_OperationSelector" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="e42208c0-5867-891d-5a2c-29b7a3fbc61d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation">
+      <topicdata group="api" />
+      <apidata name="UnhandledClientOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UnhandledClientOperation" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="ce69e4c4-0e77-3f26-acd0-2044b38c7dcf" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.Via">
+      <topicdata group="api" />
+      <apidata name="Via" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Via" />
+      <setter name="set_Via" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="cc30c03f-b632-69e1-3447-c160dd8fc351" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="f93d93aa-faf7-85bb-8749-1f6476d69e20" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata name="EndpointDispatcher" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      </containers>
+      <file name="5cc56a02-648d-ce12-599d-442fc66c0739" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata name="EndpointDispatcher" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      </containers>
+      <file name="217cca52-50f2-1895-3cc4-0ddd230fa8ea" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.FaultContractInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      <apidata name="FaultContractInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="d7adad7d-a1cb-47d6-c00e-1d62ffa6fa56" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.FaultContractInfo">
+      <topicdata name="FaultContractInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      <apidata name="FaultContractInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Dispatcher.FaultContractInfo.#ctor(System.String,System.Type)" />
+        <element api="P:System.ServiceModel.Dispatcher.FaultContractInfo.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.FaultContractInfo.Detail" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      </containers>
+      <file name="7c9a96a8-1d0c-1bd1-7c1e-2d17e59a2aad" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.FaultContractInfo">
+      <topicdata name="FaultContractInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      <apidata name="FaultContractInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      </containers>
+      <file name="ad980c00-267b-cb65-756a-48264683a113" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.FaultContractInfo">
+      <topicdata name="FaultContractInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      <apidata name="FaultContractInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.FaultContractInfo.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.FaultContractInfo.Detail" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" />
+      </containers>
+      <file name="bc0c3f60-0f9b-ef2a-aeb7-2cb6b31e5abf" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.FaultContractInfo.#ctor(System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="detail">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" ref="true" />
+      </containers>
+      <file name="b2b99cd5-95d0-5f25-1846-393df7856489" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.FaultContractInfo.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" ref="true" />
+      </containers>
+      <file name="11877f17-ab46-4188-94bf-bf5abbacac97" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.FaultContractInfo.Detail">
+      <topicdata group="api" />
+      <apidata name="Detail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Detail" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.FaultContractInfo" ref="true" />
+      </containers>
+      <file name="4a65ce41-fac3-7a89-b83d-cdb4bfb89425" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="15295579-ad18-9f3d-1c64-85f38375016f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata name="IClientMessageFormatter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      </containers>
+      <file name="7714f83a-7395-7b2d-024e-abf4c3376770" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata name="IClientMessageFormatter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      </containers>
+      <file name="12893f44-5e30-0844-7866-466ebfdbc2ee" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="DeserializeReply" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </containers>
+      <file name="74c6a835-c680-1c8e-409f-362c1537cc50" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="SerializeRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="messageVersion">
+          <type api="T:System.ServiceModel.Channels.MessageVersion" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </containers>
+      <file name="3d97455d-daf0-815f-651a-fa7757bce4fc" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="45ee05a2-1903-6517-3184-46f69e48df78" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="eab0ccc9-7b05-f67b-c567-63d35851d148" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="3681cc22-4355-3811-6363-bee7ddd68cd0" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="fe6cd040-20a8-64f3-773b-b44796f95a0a" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection">
+      <topicdata group="api" />
+      <apidata name="AreParametersRequiredForSelection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AreParametersRequiredForSelection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </containers>
+      <file name="fc678441-8478-cbf6-4750-43c3a2f362b3" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="SelectOperation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="method">
+          <type api="T:System.Reflection.MethodBase" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </containers>
+      <file name="815528bc-356e-a672-c21a-2e87650254ab" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+      <apidata name="IDispatchMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="ee4c41f6-d855-bd55-e69d-9b47ad2c7d0a" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter">
+      <topicdata name="IDispatchMessageFormatter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+      <apidata name="IDispatchMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.DeserializeRequest(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.SerializeReply(System.ServiceModel.Channels.MessageVersion,System.Object[],System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+      </containers>
+      <file name="2d7e95fa-fb9e-33c5-60f3-2f0a50f3c0ef" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter">
+      <topicdata name="IDispatchMessageFormatter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+      <apidata name="IDispatchMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.DeserializeRequest(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.SerializeReply(System.ServiceModel.Channels.MessageVersion,System.Object[],System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" />
+      </containers>
+      <file name="7cdaa53b-3308-e394-690d-7774f42ee469" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.DeserializeRequest(System.ServiceModel.Channels.Message,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="DeserializeRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" ref="true" />
+      </containers>
+      <file name="87f46564-abab-2fab-47a4-28b8cfe1cc35" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.SerializeReply(System.ServiceModel.Channels.MessageVersion,System.Object[],System.Object)">
+      <topicdata group="api" />
+      <apidata name="SerializeReply" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="messageVersion">
+          <type api="T:System.ServiceModel.Channels.MessageVersion" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="result">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.5.0 (5.0.50116.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IDispatchMessageFormatter" ref="true" />
+      </containers>
+      <file name="0f35d962-f5cd-6dad-65dd-ab6ad265b467" />
+    </api>
+  </apis>
+</reflection>

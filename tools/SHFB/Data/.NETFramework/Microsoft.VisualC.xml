@@ -1,0 +1,1042 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.VisualC">
+      <assemblydata version="10.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualC">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualC" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualC.IsCXXReferenceModifier" />
+        <element api="T:Microsoft.VisualC.IsConstModifier" />
+        <element api="T:Microsoft.VisualC.IsLongModifier" />
+        <element api="T:Microsoft.VisualC.IsVolatileModifier" />
+        <element api="T:Microsoft.VisualC.IsSignedModifier" />
+        <element api="T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+        <element api="T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+        <element api="T:Microsoft.VisualC.DecoratedNameAttribute" />
+        <element api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+        <element api="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      </elements>
+      <file name="5b8fe5a5-95c3-5fee-a986-fd4b613c44e2" />
+    </api>
+    <api id="T:Microsoft.VisualC.DebugInfoInPDBAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      <apidata name="DebugInfoInPDBAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="50964b56-4b73-3808-427c-599c09d0cf7b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.DebugInfoInPDBAttribute">
+      <topicdata name="DebugInfoInPDBAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      <apidata name="DebugInfoInPDBAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      </containers>
+      <file name="8f02989d-6983-ad8e-d8dc-07b1d43b5f4d" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.DebugInfoInPDBAttribute">
+      <topicdata name="DebugInfoInPDBAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      <apidata name="DebugInfoInPDBAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      </containers>
+      <file name="f6368f72-c370-f638-01e2-07d288a45576" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualC.DebugInfoInPDBAttribute">
+      <topicdata name="DebugInfoInPDBAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      <apidata name="DebugInfoInPDBAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DebugInfoInPDBAttribute" />
+      </containers>
+      <file name="4161221f-72f5-a80d-a78c-21d6d10e5fce" />
+    </api>
+    <api id="M:Microsoft.VisualC.DebugInfoInPDBAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DebugInfoInPDBAttribute" ref="true" />
+      </containers>
+      <file name="14a21497-e647-48c9-3f6b-19e4bbde62b3" />
+    </api>
+    <api id="T:Microsoft.VisualC.DecoratedNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.DecoratedNameAttribute" />
+      <apidata name="DecoratedNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a0ee52d1-0598-a11b-ca8f-495a5b634482" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.DecoratedNameAttribute">
+      <topicdata name="DecoratedNameAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      <apidata name="DecoratedNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualC.DecoratedNameAttribute.#ctor">
+          <element api="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+          <element api="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor(System.String)" />
+        </element>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      </containers>
+      <file name="9146b247-c8d2-bfca-bb1c-c9b9db250d8a" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.DecoratedNameAttribute">
+      <topicdata name="DecoratedNameAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      <apidata name="DecoratedNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      </containers>
+      <file name="b89d1143-abd6-c4b4-1e3d-417e9a4bee9d" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualC.DecoratedNameAttribute">
+      <topicdata name="DecoratedNameAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      <apidata name="DecoratedNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" />
+      </containers>
+      <file name="c07911f1-ae69-8f26-7e93-4ff8ea5fdf6a" />
+    </api>
+    <api id="Overload:Microsoft.VisualC.DecoratedNameAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualC.DecoratedNameAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+        <element api="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" ref="true" />
+      </containers>
+      <file name="69bfe1d5-48ae-0a88-93d3-1537fe212568" />
+    </api>
+    <api id="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" ref="true" />
+      </containers>
+      <file name="20cf3102-5cbb-c90d-6bf1-0542d9ab2da1" />
+    </api>
+    <api id="M:Microsoft.VisualC.DecoratedNameAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualC.DecoratedNameAttribute.#ctor" />
+      <parameters>
+        <parameter name="decoratedName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.DecoratedNameAttribute" ref="true" />
+      </containers>
+      <file name="e56a2182-6b14-1514-70f6-2673ff200f87" />
+    </api>
+    <api id="T:Microsoft.VisualC.IsConstModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.IsConstModifier" />
+      <apidata name="IsConstModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsConstModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a33f98e9-0130-b785-464e-ab18e26ddb7c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.IsConstModifier">
+      <topicdata name="IsConstModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.IsConstModifier" />
+      <apidata name="IsConstModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsConstModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.IsConstModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsConstModifier" />
+      </containers>
+      <file name="66a81ebb-7516-4bd8-0e00-e0f713de2b42" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.IsConstModifier">
+      <topicdata name="IsConstModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.IsConstModifier" />
+      <apidata name="IsConstModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsConstModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsConstModifier" />
+      </containers>
+      <file name="ccc8ee13-76f6-3cbe-f4a5-63d844f66541" />
+    </api>
+    <api id="M:Microsoft.VisualC.IsConstModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsConstModifier" ref="true" />
+      </containers>
+      <file name="03f52778-a6e0-77e1-8ac2-864a1af4c4df" />
+    </api>
+    <api id="T:Microsoft.VisualC.IsCXXReferenceModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.IsCXXReferenceModifier" />
+      <apidata name="IsCXXReferenceModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsCXXReferenceModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="98db3032-a999-4ccb-6b7c-94dad255f054" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.IsCXXReferenceModifier">
+      <topicdata name="IsCXXReferenceModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.IsCXXReferenceModifier" />
+      <apidata name="IsCXXReferenceModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsCXXReferenceModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.IsCXXReferenceModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsCXXReferenceModifier" />
+      </containers>
+      <file name="1fa96a8b-c47f-828c-8f54-b07a7dd2d341" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.IsCXXReferenceModifier">
+      <topicdata name="IsCXXReferenceModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.IsCXXReferenceModifier" />
+      <apidata name="IsCXXReferenceModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsCXXReferenceModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsCXXReferenceModifier" />
+      </containers>
+      <file name="1f2d2ad3-0820-4e9f-037e-731d878ea468" />
+    </api>
+    <api id="M:Microsoft.VisualC.IsCXXReferenceModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsCXXReferenceModifier" ref="true" />
+      </containers>
+      <file name="2452e5b8-5528-a19c-2022-aa66e06e8c66" />
+    </api>
+    <api id="T:Microsoft.VisualC.IsLongModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.IsLongModifier" />
+      <apidata name="IsLongModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsLongModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6e03c15b-ba3f-1662-650c-e7594f71a8a7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.IsLongModifier">
+      <topicdata name="IsLongModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.IsLongModifier" />
+      <apidata name="IsLongModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsLongModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.IsLongModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsLongModifier" />
+      </containers>
+      <file name="7a4503cd-0c63-a36c-ac67-aafcaf083c57" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.IsLongModifier">
+      <topicdata name="IsLongModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.IsLongModifier" />
+      <apidata name="IsLongModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsLongModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsLongModifier" />
+      </containers>
+      <file name="54d7dedc-75cd-3f9d-ceee-90bcad646461" />
+    </api>
+    <api id="M:Microsoft.VisualC.IsLongModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsLongModifier" ref="true" />
+      </containers>
+      <file name="956fbea2-2b31-8d39-383f-54193816a1e2" />
+    </api>
+    <api id="T:Microsoft.VisualC.IsSignedModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.IsSignedModifier" />
+      <apidata name="IsSignedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsSignedModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="06b35a92-8f62-c5f9-86d2-4c4f074b37c0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.IsSignedModifier">
+      <topicdata name="IsSignedModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.IsSignedModifier" />
+      <apidata name="IsSignedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsSignedModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.IsSignedModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsSignedModifier" />
+      </containers>
+      <file name="938251cf-fba0-6569-701d-05629bbf4e35" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.IsSignedModifier">
+      <topicdata name="IsSignedModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.IsSignedModifier" />
+      <apidata name="IsSignedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsSignedModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsSignedModifier" />
+      </containers>
+      <file name="e8bb7885-4576-2483-4028-de6a7ae5c563" />
+    </api>
+    <api id="M:Microsoft.VisualC.IsSignedModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsSignedModifier" ref="true" />
+      </containers>
+      <file name="04e9b941-f6b6-626f-0615-c4b11d32643c" />
+    </api>
+    <api id="T:Microsoft.VisualC.IsVolatileModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.IsVolatileModifier" />
+      <apidata name="IsVolatileModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsVolatileModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="196751fb-e916-b6e9-29ff-856013d6fc59" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.IsVolatileModifier">
+      <topicdata name="IsVolatileModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.IsVolatileModifier" />
+      <apidata name="IsVolatileModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsVolatileModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.IsVolatileModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsVolatileModifier" />
+      </containers>
+      <file name="08d073af-0d83-c56c-1491-9a8e2402b411" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.IsVolatileModifier">
+      <topicdata name="IsVolatileModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.IsVolatileModifier" />
+      <apidata name="IsVolatileModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.IsVolatileModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsVolatileModifier" />
+      </containers>
+      <file name="d27f27ff-2e29-12f3-3f89-b0b5584f6d44" />
+    </api>
+    <api id="M:Microsoft.VisualC.IsVolatileModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.IsVolatileModifier" ref="true" />
+      </containers>
+      <file name="22ea28f8-6698-fd86-a9eb-657678e68199" />
+    </api>
+    <api id="T:Microsoft.VisualC.MiscellaneousBitsAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      <apidata name="MiscellaneousBitsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a014e266-6fea-6b9b-4513-8ac595ca1f7b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.MiscellaneousBitsAttribute">
+      <topicdata name="MiscellaneousBitsAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      <apidata name="MiscellaneousBitsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualC.MiscellaneousBitsAttribute.#ctor(System.Int32)" />
+        <element api="F:Microsoft.VisualC.MiscellaneousBitsAttribute.m_dwAttrs" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      </containers>
+      <file name="534e2d1c-4319-68b4-2449-9d4809433bbe" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.MiscellaneousBitsAttribute">
+      <topicdata name="MiscellaneousBitsAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      <apidata name="MiscellaneousBitsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      </containers>
+      <file name="e8ea2721-2c28-fb4f-314d-148f2df85b3a" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualC.MiscellaneousBitsAttribute">
+      <topicdata name="MiscellaneousBitsAttribute" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      <apidata name="MiscellaneousBitsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      </containers>
+      <file name="ca55c52d-bbcf-5d38-7fc4-d616f0fe9b22" />
+    </api>
+    <api id="Fields.T:Microsoft.VisualC.MiscellaneousBitsAttribute">
+      <topicdata name="MiscellaneousBitsAttribute" group="list" subgroup="Fields" typeTopicId="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      <apidata name="MiscellaneousBitsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualC.MiscellaneousBitsAttribute.m_dwAttrs" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" />
+      </containers>
+      <file name="199eda8b-7ef9-6549-2b24-4d7abfc0c58b" />
+    </api>
+    <api id="M:Microsoft.VisualC.MiscellaneousBitsAttribute.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="miscellaneousBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" ref="true" />
+      </containers>
+      <file name="e30e6eb6-3157-6365-15d0-3baf980d11bb" />
+    </api>
+    <api id="F:Microsoft.VisualC.MiscellaneousBitsAttribute.m_dwAttrs">
+      <topicdata group="api" />
+      <apidata name="m_dwAttrs" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.MiscellaneousBitsAttribute" ref="true" />
+      </containers>
+      <file name="046b8c29-7305-8f7c-b035-81f1d793e450" />
+    </api>
+    <api id="T:Microsoft.VisualC.NeedsCopyConstructorModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+      <apidata name="NeedsCopyConstructorModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NeedsCopyConstructorModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="71f35d63-c546-e3fd-3522-8e9cd3ca981f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.NeedsCopyConstructorModifier">
+      <topicdata name="NeedsCopyConstructorModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+      <apidata name="NeedsCopyConstructorModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NeedsCopyConstructorModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.NeedsCopyConstructorModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+      </containers>
+      <file name="1e7a34da-a554-de1f-0959-3f80f347b2c7" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.NeedsCopyConstructorModifier">
+      <topicdata name="NeedsCopyConstructorModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+      <apidata name="NeedsCopyConstructorModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NeedsCopyConstructorModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NeedsCopyConstructorModifier" />
+      </containers>
+      <file name="a1b7d259-0c89-1915-bbe1-9e6a4a4c7918" />
+    </api>
+    <api id="M:Microsoft.VisualC.NeedsCopyConstructorModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NeedsCopyConstructorModifier" ref="true" />
+      </containers>
+      <file name="41cffc6a-43e2-781c-6b9c-28cee41fb74a" />
+    </api>
+    <api id="T:Microsoft.VisualC.NoSignSpecifiedModifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+      <apidata name="NoSignSpecifiedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NoSignSpecifiedModifier.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualC.dll is an obsolete assembly and exists only for backwards compatibility.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="df1b0b11-4b54-75be-65bd-31bdf5b90060" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualC.NoSignSpecifiedModifier">
+      <topicdata name="NoSignSpecifiedModifier" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+      <apidata name="NoSignSpecifiedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NoSignSpecifiedModifier.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualC.NoSignSpecifiedModifier.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+      </containers>
+      <file name="4b45d20b-395b-33bb-c40c-39a0c9b596a4" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualC.NoSignSpecifiedModifier">
+      <topicdata name="NoSignSpecifiedModifier" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+      <apidata name="NoSignSpecifiedModifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualC.NoSignSpecifiedModifier.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NoSignSpecifiedModifier" />
+      </containers>
+      <file name="a454a6f5-3c51-518e-ce54-dbcce10097ad" />
+    </api>
+    <api id="M:Microsoft.VisualC.NoSignSpecifiedModifier.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualC" module="Microsoft.VisualC" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.VisualC" />
+        <type api="T:Microsoft.VisualC.NoSignSpecifiedModifier" ref="true" />
+      </containers>
+      <file name="f06f6598-fa5c-79a6-6788-da702933c74e" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="ExternalAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Annotations.Storage">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Annotations.Storage" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Annotations.Storage.AnnotationStore" />
+        <element api="T:System.Windows.Annotations.Storage.StoreContentChangedEventHandler" />
+        <element api="T:System.Windows.Annotations.Storage.StoreContentAction" />
+        <element api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+        <element api="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      </elements>
+      <file name="b249b954-8361-9408-3aab-a5ccaebb53d9" />
+    </api>
+    <api id="T:System.Windows.Annotations.Storage.AnnotationStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="AnnotationStore" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+      </containers>
+      <file name="46d71913-be5f-8677-6b78-645cfc8867d8" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Annotations.Storage.AnnotationStore">
+      <topicdata name="AnnotationStore" group="list" subgroup="members" typeTopicId="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="AnnotationStore" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.#ctor" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.AddAnnotation(System.Windows.Annotations.Annotation)" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AnchorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AuthorChanged" />
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.AutoFlush" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.CargoChanged" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.DeleteAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.AnnotationStore.Dispose">
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Finalize" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Flush" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations">
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations" />
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+        </element>
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.IsDisposed" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnAnchorChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnAuthorChanged(System.Windows.Annotations.AnnotationAuthorChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnCargoChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnStoreContentChanged(System.Windows.Annotations.Storage.StoreContentChangedEventArgs)" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.StoreContentChanged" />
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      </containers>
+      <file name="da7c0ac6-1a88-93b4-cbfc-cd9ecbdb870b" />
+    </api>
+    <api id="Methods.T:System.Windows.Annotations.Storage.AnnotationStore">
+      <topicdata name="AnnotationStore" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="AnnotationStore" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.AddAnnotation(System.Windows.Annotations.Annotation)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.DeleteAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.AnnotationStore.Dispose">
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Finalize" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Flush" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations">
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations" />
+          <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnAnchorChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnAuthorChanged(System.Windows.Annotations.AnnotationAuthorChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnCargoChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.OnStoreContentChanged(System.Windows.Annotations.Storage.StoreContentChangedEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      </containers>
+      <file name="22ccd71c-a3b7-7368-c26e-72e1007e0cb0" />
+    </api>
+    <api id="Properties.T:System.Windows.Annotations.Storage.AnnotationStore">
+      <topicdata name="AnnotationStore" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="AnnotationStore" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.AutoFlush" />
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.IsDisposed" />
+        <element api="P:System.Windows.Annotations.Storage.AnnotationStore.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      </containers>
+      <file name="f571dbb5-a727-bcf8-1639-be34d2b8fc11" />
+    </api>
+    <api id="Events.T:System.Windows.Annotations.Storage.AnnotationStore">
+      <topicdata name="AnnotationStore" group="list" subgroup="Events" typeTopicId="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="AnnotationStore" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AnchorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AuthorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.CargoChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.StoreContentChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" />
+      </containers>
+      <file name="5f79ff9c-86f8-a56e-c010-3a8ce9948893" />
+    </api>
+    <api id="Overload:System.Windows.Annotations.Storage.AnnotationStore.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="cfe42b34-ef66-649b-9482-69387dd845c0" />
+    </api>
+    <api id="Overload:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations">
+      <topicdata name="GetAnnotations" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.AnnotationStore" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="05c9c8de-e3e0-7017-67bc-6d01f83f9ddf" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="b524faee-b7c2-2dd9-20f9-736d86c99e75" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.AddAnnotation(System.Windows.Annotations.Annotation)">
+      <topicdata group="api" />
+      <apidata name="AddAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="newAnnotation">
+          <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="23d9b466-4ea7-4b92-001b-dc0b8dfe8d90" />
+    </api>
+    <api id="E:System.Windows.Annotations.Storage.AnnotationStore.AnchorChanged">
+      <topicdata group="api" />
+      <apidata name="AnchorChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AnchorChanged" />
+      <remover name="remove_AnchorChanged" />
+      <eventhandler>
+        <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="7e04b6e6-2d11-ca23-b260-762e9f86f555" />
+    </api>
+    <api id="E:System.Windows.Annotations.Storage.AnnotationStore.AuthorChanged">
+      <topicdata group="api" />
+      <apidata name="AuthorChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AuthorChanged" />
+      <remover name="remove_AuthorChanged" />
+      <eventhandler>
+        <type api="T:System.Windows.Annotations.AnnotationAuthorChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Annotations.AnnotationAuthorChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="379c0580-c984-c227-6ed6-710c482fc7cc" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.AnnotationStore.AutoFlush">
+      <topicdata group="api" />
+      <apidata name="AutoFlush" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoFlush" />
+      <setter name="set_AutoFlush" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="7c67ec68-da95-586e-2560-b14a6f154298" />
+    </api>
+    <api id="E:System.Windows.Annotations.Storage.AnnotationStore.CargoChanged">
+      <topicdata group="api" />
+      <apidata name="CargoChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CargoChanged" />
+      <remover name="remove_CargoChanged" />
+      <eventhandler>
+        <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="82b501b5-38b7-af21-2362-94561407c5f5" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.DeleteAnnotation(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="DeleteAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="annotationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="13b0edc3-f65d-07a3-5eca-14ffeaf3f2f3" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="9f48a330-1dd8-4d69-3373-95fe6d04af0a" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="7c7b61c7-d53d-c31f-60d0-f5c23d2400d0" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="dbf948eb-808c-ca05-6201-ec7801c34956" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="71af2177-833d-3acf-41d8-3c3eef7b1183" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotation(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="annotationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="fe5fd9a6-5396-3558-3868-37098a0d74b1" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations">
+      <topicdata group="api" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="78e6c225-ba01-1f4e-441a-a9522d544142" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations(System.Windows.Annotations.ContentLocator)">
+      <topicdata group="api" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="anchorLocator">
+          <type api="T:System.Windows.Annotations.ContentLocator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="7d16c97c-ad11-cf46-dd99-aecaeff9eee7" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.AnnotationStore.IsDisposed">
+      <topicdata group="api" />
+      <apidata name="IsDisposed" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDisposed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="bc590377-7107-cf6f-485f-a512d0e0346d" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.OnAnchorChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnAnchorChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="ac2459c3-2c27-46ba-15c5-1ab27b2454e5" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.OnAuthorChanged(System.Windows.Annotations.AnnotationAuthorChangedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnAuthorChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:System.Windows.Annotations.AnnotationAuthorChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="1564a6e1-72a3-7a9d-27c4-a6cfaaeaa4f6" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.OnCargoChanged(System.Windows.Annotations.AnnotationResourceChangedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnCargoChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:System.Windows.Annotations.AnnotationResourceChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="baa35cde-dcdc-7d82-9200-d3794fa91351" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.AnnotationStore.OnStoreContentChanged(System.Windows.Annotations.Storage.StoreContentChangedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnStoreContentChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="27dc7818-9991-5e6c-b120-2b8cf2cc29f2" />
+    </api>
+    <api id="E:System.Windows.Annotations.Storage.AnnotationStore.StoreContentChanged">
+      <topicdata group="api" />
+      <apidata name="StoreContentChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StoreContentChanged" />
+      <remover name="remove_StoreContentChanged" />
+      <eventhandler>
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="f9d071c9-ebaf-03f0-930d-7ab264793103" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.AnnotationStore.SyncRoot">
+      <topicdata group="api" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+      </containers>
+      <file name="88486088-4bb2-adb6-9205-9225dad9c8da" />
+    </api>
+    <api id="T:System.Windows.Annotations.Storage.StoreContentAction">
+      <topicdata group="api" />
+      <apidata name="StoreContentAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Annotations.Storage.StoreContentAction.Added" />
+        <element api="F:System.Windows.Annotations.Storage.StoreContentAction.Deleted" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+      </containers>
+      <file name="1e65b650-fb99-ce97-f93a-26dbce72f315" />
+    </api>
+    <api id="F:System.Windows.Annotations.Storage.StoreContentAction.Added">
+      <topicdata group="api" notopic="" />
+      <apidata name="Added" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+      </containers>
+      <file name="8473ed31-144a-a79c-2af1-516e4253c2a2" />
+    </api>
+    <api id="F:System.Windows.Annotations.Storage.StoreContentAction.Deleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+      </containers>
+      <file name="570296a7-0181-7edd-d1a4-18a17f151398" />
+    </api>
+    <api id="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      <apidata name="StoreContentChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+      </containers>
+      <file name="7b43f831-6ff8-3826-5a79-a7cf6c3577a4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs">
+      <topicdata name="StoreContentChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      <apidata name="StoreContentChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.#ctor(System.Windows.Annotations.Storage.StoreContentAction,System.Windows.Annotations.Annotation)" />
+        <element api="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Action" />
+        <element api="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Annotation" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      </containers>
+      <file name="5d1dcac5-7886-0632-8d9d-ccb346aa8302" />
+    </api>
+    <api id="Methods.T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs">
+      <topicdata name="StoreContentChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      <apidata name="StoreContentChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      </containers>
+      <file name="ee02a3ef-c0e2-3821-a644-a5513cb35ed5" />
+    </api>
+    <api id="Properties.T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs">
+      <topicdata name="StoreContentChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      <apidata name="StoreContentChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Action" />
+        <element api="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Annotation" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" />
+      </containers>
+      <file name="f5950869-f2d6-c632-9df8-c409596b2004" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.#ctor(System.Windows.Annotations.Storage.StoreContentAction,System.Windows.Annotations.Annotation)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+        </parameter>
+        <parameter name="annotation">
+          <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a0eb8d40-c01a-165b-24bf-f8146de96f94" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.Windows.Annotations.Storage.StoreContentAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+      </containers>
+      <file name="5ff428bb-019c-a7de-36e7-48fce66da5c9" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.StoreContentChangedEventArgs.Annotation">
+      <topicdata group="api" />
+      <apidata name="Annotation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Annotation" />
+      <returns>
+        <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+      </containers>
+      <file name="da3a7bf8-5da7-2781-48bc-5524aa531be2" />
+    </api>
+    <api id="T:System.Windows.Annotations.Storage.StoreContentChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="StoreContentChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Annotations.Storage.StoreContentChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+      </containers>
+      <file name="5cf32703-ec22-bf57-5e9a-770fb2505baf" />
+    </api>
+    <api id="T:System.Windows.Annotations.Storage.XmlStreamStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="XmlStreamStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+      </containers>
+      <file name="a67a2898-0ae3-54ca-64f2-fef417864450" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Annotations.Storage.XmlStreamStore">
+      <topicdata name="XmlStreamStore" group="list" subgroup="members" typeTopicId="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="XmlStreamStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AnchorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AuthorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.CargoChanged" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.StoreContentChanged" />
+        <element api="Overload:System.Windows.Annotations.Storage.XmlStreamStore.#ctor">
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream)" />
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream,System.Collections.Generic.IDictionary{System.Uri,System.Collections.Generic.IList{System.Uri}})" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.AddAnnotation(System.Windows.Annotations.Annotation)" />
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.AutoFlush" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.DeleteAnnotation(System.Guid)" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.Flush" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations">
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations" />
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetWellKnownCompatibleNamespaces(System.Uri)" />
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.IgnoredNamespaces" />
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.WellKnownNamespaces" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      </containers>
+      <file name="e9c24c14-c240-fb36-5906-c50ec02bc523" />
+    </api>
+    <api id="Methods.T:System.Windows.Annotations.Storage.XmlStreamStore">
+      <topicdata name="XmlStreamStore" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="XmlStreamStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Annotations.Storage.AnnotationStore.Dispose" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.AddAnnotation(System.Windows.Annotations.Annotation)" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.DeleteAnnotation(System.Guid)" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.Flush" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotation(System.Guid)" />
+        <element api="Overload:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations">
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations" />
+          <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+        </element>
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetWellKnownCompatibleNamespaces(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      </containers>
+      <file name="db664f43-3879-8fbc-1b63-4182bb45a0d1" />
+    </api>
+    <api id="Properties.T:System.Windows.Annotations.Storage.XmlStreamStore">
+      <topicdata name="XmlStreamStore" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="XmlStreamStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.AutoFlush" />
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.IgnoredNamespaces" />
+        <element api="P:System.Windows.Annotations.Storage.XmlStreamStore.WellKnownNamespaces" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      </containers>
+      <file name="710c522b-6d1f-8320-880e-55994fc4705a" />
+    </api>
+    <api id="Events.T:System.Windows.Annotations.Storage.XmlStreamStore">
+      <topicdata name="XmlStreamStore" group="list" subgroup="Events" typeTopicId="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="XmlStreamStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AnchorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.AuthorChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.CargoChanged" />
+        <element api="E:System.Windows.Annotations.Storage.AnnotationStore.StoreContentChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      </containers>
+      <file name="fcbaa140-1cdb-2057-bfb8-49683a0a17b7" />
+    </api>
+    <api id="Overload:System.Windows.Annotations.Storage.XmlStreamStore.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream)" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream,System.Collections.Generic.IDictionary{System.Uri,System.Collections.Generic.IList{System.Uri}})" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="7e11ebb5-ac07-dec5-92d1-dff7c0a3c3d8" />
+    </api>
+    <api id="Overload:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations">
+      <topicdata name="GetAnnotations" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Annotations.Storage.XmlStreamStore" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations" />
+        <element api="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations(System.Windows.Annotations.ContentLocator)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="232a6ea8-f59f-e4b4-9119-bf812dcaefa9" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Annotations.Storage.XmlStreamStore.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="acdc38ee-1404-9a3e-2373-d95b76b1f7df" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.#ctor(System.IO.Stream,System.Collections.Generic.IDictionary{System.Uri,System.Collections.Generic.IList{System.Uri}})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Annotations.Storage.XmlStreamStore.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="knownNamespaces">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Uri" ref="true" />
+              <type api="T:System.Collections.Generic.IList`1" ref="true">
+                <specialization>
+                  <type api="T:System.Uri" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="b0f4e831-2882-cd08-8593-da261fadf27a" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.AddAnnotation(System.Windows.Annotations.Annotation)">
+      <topicdata group="api" />
+      <apidata name="AddAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.AddAnnotation(System.Windows.Annotations.Annotation)">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="newAnnotation">
+          <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="5cdad0f8-9fd9-067c-47db-e759c71e1a8d" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.XmlStreamStore.AutoFlush">
+      <topicdata group="api" />
+      <apidata name="AutoFlush" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Windows.Annotations.Storage.AnnotationStore.AutoFlush">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoFlush" />
+      <setter name="set_AutoFlush" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="c86dd2e5-5979-b3a5-66e3-454e22952f83" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.DeleteAnnotation(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="DeleteAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.DeleteAnnotation(System.Guid)">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="annotationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="49ff3487-3e13-9d9c-78ad-d42b482e7f82" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.Flush">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="476e6f4f-4e6e-bb9d-1597-abee1d96577d" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotation(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetAnnotation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotation(System.Guid)">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="annotationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="ee6d82ba-b602-1866-fa52-a9a3f592450d" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations">
+      <topicdata group="api" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="90afee50-223f-a750-2640-953993b5afb1" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations(System.Windows.Annotations.ContentLocator)">
+      <topicdata group="api" />
+      <apidata name="GetAnnotations" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Annotations.Storage.XmlStreamStore.GetAnnotations" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Annotations.Storage.AnnotationStore.GetAnnotations(System.Windows.Annotations.ContentLocator)">
+          <type api="T:System.Windows.Annotations.Storage.AnnotationStore" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="anchorLocator">
+          <type api="T:System.Windows.Annotations.ContentLocator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Annotations.Annotation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="e89f51d4-5c38-ca10-3795-f96ef7b54aed" />
+    </api>
+    <api id="M:System.Windows.Annotations.Storage.XmlStreamStore.GetWellKnownCompatibleNamespaces(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="GetWellKnownCompatibleNamespaces" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Uri" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="433a09e2-bb32-7261-3723-72c34e5f1327" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.XmlStreamStore.IgnoredNamespaces">
+      <topicdata group="api" />
+      <apidata name="IgnoredNamespaces" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IgnoredNamespaces" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Uri" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="4656a2be-0391-5f1b-e134-98e479d443ee" />
+    </api>
+    <api id="P:System.Windows.Annotations.Storage.XmlStreamStore.WellKnownNamespaces">
+      <topicdata group="api" />
+      <apidata name="WellKnownNamespaces" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WellKnownNamespaces" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Uri" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Annotations.Storage" />
+        <type api="T:System.Windows.Annotations.Storage.XmlStreamStore" ref="true" />
+      </containers>
+      <file name="ef2998c9-117b-a042-704c-a11f217b95c1" />
+    </api>
+  </apis>
+</reflection>

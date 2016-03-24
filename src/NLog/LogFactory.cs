@@ -377,7 +377,8 @@ namespace NLog
         /// <summary>
         /// Gets the logger with the name of the current class. 
         /// </summary>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger with type <typeparamref name="T"/>.</returns>
+        /// <typeparam name="T">Type of the logger</typeparam>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -395,8 +396,7 @@ namespace NLog
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from 
-        /// NLog.Logger.</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
         /// loop.</remarks>
@@ -427,7 +427,8 @@ namespace NLog
         /// Gets the specified named logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// <typeparam name="T">Type of the logger</typeparam>
+        /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger
         {

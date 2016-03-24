@@ -1,0 +1,1284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.UserDataAccounts">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.UserDataAccounts" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" />
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" />
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" />
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+        <element api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      </elements>
+      <file name="2fe846dc-efbf-fe08-e8cb-6533120c0778" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      <apidata name="UserDataAccount" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0e90304c-61c2-0788-6d49-abfd91d23b18" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount">
+      <topicdata name="UserDataAccount" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      <apidata name="UserDataAccount" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeleteAsync" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeviceAccountTypeId" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindAppointmentCalendarsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactAnnotationListsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactListsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindEmailMailboxesAsync" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Icon" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Id" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.OtherAppReadAccess" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.PackageFamilyName" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.SaveAsync" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.UserDisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      </containers>
+      <file name="561ecfbf-c46d-29d1-112c-17558748ebf3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount">
+      <topicdata name="UserDataAccount" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      <apidata name="UserDataAccount" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeleteAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindAppointmentCalendarsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactAnnotationListsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactListsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindEmailMailboxesAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.SaveAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      </containers>
+      <file name="a93c1467-3dc9-35de-6c19-349a64aea786" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount">
+      <topicdata name="UserDataAccount" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      <apidata name="UserDataAccount" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeviceAccountTypeId" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Icon" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Id" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.OtherAppReadAccess" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.PackageFamilyName" />
+        <element api="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.UserDisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" />
+      </containers>
+      <file name="175a402e-b233-c15e-e41b-b5e738085f32" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeleteAsync">
+      <topicdata group="api" />
+      <apidata name="DeleteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2a6ecd3f-12f0-3f4e-2cff-c7ca5c011e64" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.DeviceAccountTypeId">
+      <topicdata group="api" />
+      <apidata name="DeviceAccountTypeId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceAccountTypeId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="c7637b70-9276-4526-2753-e73ad4758a0d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindAppointmentCalendarsAsync">
+      <topicdata group="api" />
+      <apidata name="FindAppointmentCalendarsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Appointments.AppointmentCalendar" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="45f1da4a-ae56-a425-9ad3-478c9f67a5ce" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactAnnotationListsAsync">
+      <topicdata group="api" />
+      <apidata name="FindContactAnnotationListsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Contacts.ContactAnnotationList" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0c5e6269-f822-cf99-4f79-63ba3a196e6d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindContactListsAsync">
+      <topicdata group="api" />
+      <apidata name="FindContactListsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Contacts.ContactList" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4c12ab4e-7b86-99b2-b954-97995fc24567" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.FindEmailMailboxesAsync">
+      <topicdata group="api" />
+      <apidata name="FindEmailMailboxesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Email.EmailMailbox" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3d3e23ef-1e2a-5bd6-b346-c4f4af738330" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Icon">
+      <topicdata group="api" />
+      <apidata name="Icon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Icon" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="544cd5c1-965a-b410-da44-b7808dd745c8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="9c6cebb0-1916-5cc7-2e75-c8dc09f65961" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.OtherAppReadAccess">
+      <topicdata group="api" />
+      <apidata name="OtherAppReadAccess" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OtherAppReadAccess" />
+      <setter name="set_OtherAppReadAccess" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="82b2ad94-5438-0dcd-da4b-402cc36f2af9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.PackageFamilyName">
+      <topicdata group="api" />
+      <apidata name="PackageFamilyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PackageFamilyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="23c2f2f0-f721-cf65-fb20-b064900a36ac" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.SaveAsync">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c0314eea-1899-73a8-68bc-ff610a406a7a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.UserDataAccounts.UserDataAccount.UserDisplayName">
+      <topicdata group="api" />
+      <apidata name="UserDisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UserDisplayName" />
+      <setter name="set_UserDisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+      </containers>
+      <file name="ecf3a2c7-7fdb-8829-0151-3d3fc72a5b5d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds">
+      <topicdata group="api" />
+      <apidata name="UserDataAccountContentKinds" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Email" />
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Contact" />
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Appointment" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ddc372f6-13ea-61d4-ae93-d81f34fa537e" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Appointment">
+      <topicdata group="api" notopic="" />
+      <apidata name="Appointment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </containers>
+      <file name="0ce0c2bc-c28e-8642-644e-eb7046ff5a47" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Contact">
+      <topicdata group="api" notopic="" />
+      <apidata name="Contact" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </containers>
+      <file name="dc64cf5c-522e-3c7e-f859-aa61ba673876" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds.Email">
+      <topicdata group="api" notopic="" />
+      <apidata name="Email" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+      </containers>
+      <file name="70717e09-8d9a-3252-8fd9-e1999f637f44" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      <apidata name="UserDataAccountManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b5ac10c0-5d8a-58f5-e9f7-ff505187162b" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager">
+      <topicdata name="UserDataAccountManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      <apidata name="UserDataAccountManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.RequestStoreAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountErrorResolverAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountSettingsAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAddAccountAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      </containers>
+      <file name="d54b34d7-71fa-02f4-8703-3106752c927c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager">
+      <topicdata name="UserDataAccountManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      <apidata name="UserDataAccountManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.RequestStoreAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountErrorResolverAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountSettingsAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAddAccountAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" />
+      </containers>
+      <file name="265cdb23-26d0-7280-3f53-1d3491d648bd" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.RequestStoreAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType)">
+      <topicdata group="api" />
+      <apidata name="RequestStoreAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="storeAccessType" in="true">
+          <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7a5aa33d-de80-f8c7-0941-14419311b484" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountErrorResolverAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="ShowAccountErrorResolverAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4d64dff0-f368-16e6-d17a-6d4ce0bcb864" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAccountSettingsAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="ShowAccountSettingsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6e226196-a4bf-c7fa-90e0-7270f648bb40" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager.ShowAddAccountAsync(Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds)">
+      <topicdata group="api" />
+      <apidata name="ShowAddAccountAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contentKinds" in="true">
+          <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e9724eb5-7633-8990-7336-2033c9c0e7cb" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess">
+      <topicdata group="api" />
+      <apidata name="UserDataAccountOtherAppReadAccess" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess.SystemOnly" />
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess.Full" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="857f5bed-053f-4a25-4d1e-fda813965acc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess.Full">
+      <topicdata group="api" notopic="" />
+      <apidata name="Full" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" ref="false" />
+      </containers>
+      <file name="dd18fa0f-361a-ded1-fd75-a540d5f5f6bf" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess.SystemOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="SystemOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess" ref="false" />
+      </containers>
+      <file name="9d9245aa-6961-45a2-b0cd-11078a72e34c" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+      <apidata name="UserDataAccountStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a16836ef-3aaa-602e-9efb-08e71ddbc1a7" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore">
+      <topicdata name="UserDataAccountStore" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+      <apidata name="UserDataAccountStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.CreateAccountAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.FindAccountsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.GetAccountAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+      </containers>
+      <file name="64b44195-2911-d833-7120-2309e62a891c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore">
+      <topicdata name="UserDataAccountStore" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+      <apidata name="UserDataAccountStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.CreateAccountAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.FindAccountsAsync" />
+        <element api="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.GetAccountAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" />
+      </containers>
+      <file name="b9bf7f5d-6017-8582-1a29-34ed162b8b8c" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.CreateAccountAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateAccountAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="userDisplayName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c1979f3c-0a17-f24d-c75a-c1ab9c77c919" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.FindAccountsAsync">
+      <topicdata group="api" />
+      <apidata name="FindAccountsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1e6fd5ce-f35b-f690-bd58-673f59855c9a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore.GetAccountAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetAccountAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccount" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d6b227ce-e74f-4bc3-9b9d-f0fcfd06905f" />
+    </api>
+    <api id="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType">
+      <topicdata group="api" />
+      <apidata name="UserDataAccountStoreAccessType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType.AllAccountsReadOnly" />
+        <element api="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType.AppAccountsReadWrite" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d4cc2987-d962-7010-ec03-3c552e04065b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType.AllAccountsReadOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllAccountsReadOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" ref="false" />
+      </containers>
+      <file name="71c1cedc-3413-58ac-c6e1-6f011c877f63" />
+    </api>
+    <api id="F:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType.AppAccountsReadWrite">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppAccountsReadWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.UserDataAccounts" />
+        <type api="T:Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType" ref="false" />
+      </containers>
+      <file name="08ba5a74-113d-61fa-c810-78ba49d5c4df" />
+    </api>
+  </apis>
+</reflection>

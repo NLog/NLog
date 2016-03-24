@@ -1,0 +1,3419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Perception.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Perception.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+        <element api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+        <element api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+        <element api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+        <element api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      </elements>
+      <file name="7cc98cb9-b05a-ba97-ef60-83e4e92f5e37" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      <apidata name="IPerceptionFrameProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2035251897</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>45949</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>15155</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>161</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>13</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>48</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>98</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>100</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>25</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>206</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>101</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9cd37775-8824-2869-ded5-0ce470956b27" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider">
+      <topicdata name="IPerceptionFrameProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      <apidata name="IPerceptionFrameProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Available" />
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.FrameProviderInfo" />
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Properties" />
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.SetProperty(Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest)" />
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Start" />
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Stop" />
+        <element api="M:Windows.Foundation.IClosable.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      </containers>
+      <file name="aec14f72-86a9-43d7-9633-d87e0dc7494e" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider">
+      <topicdata name="IPerceptionFrameProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      <apidata name="IPerceptionFrameProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.SetProperty(Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest)" />
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Start" />
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Stop" />
+        <element api="M:Windows.Foundation.IClosable.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      </containers>
+      <file name="59ec4529-b109-91a1-8228-1e7a61d28faf" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider">
+      <topicdata name="IPerceptionFrameProvider" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      <apidata name="IPerceptionFrameProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Available" />
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.FrameProviderInfo" />
+        <element api="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" />
+      </containers>
+      <file name="36175fd9-5ef2-5de7-8f89-599a1c4c6a15" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Available">
+      <topicdata group="api" />
+      <apidata name="Available" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Available" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="310655cd-d1cc-fb46-854b-8e139d664467" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.FrameProviderInfo">
+      <topicdata group="api" />
+      <apidata name="FrameProviderInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_FrameProviderInfo" />
+      <returns>
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="5fd9d572-9e3e-0149-430f-c5bce16e2b6c" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="94097b2a-deea-918d-1f6d-fe0d3f7733de" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.SetProperty(Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest)">
+      <topicdata group="api" />
+      <apidata name="SetProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="9c26a4c5-3347-a4e0-00c1-68294f653009" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="4768f24b-d69c-9c59-be23-a3c889297439" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.IPerceptionFrameProvider.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </containers>
+      <file name="2bdfeb8b-cf27-66aa-5514-23772de7feca" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+      <apidata name="IPerceptionFrameProviderManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2841234951</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>60115</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>13279</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>193</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>36</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>171</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>224</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>25</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>196</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f82148ea-c2a8-4ab4-6f67-56a4f828fa12" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager">
+      <topicdata name="IPerceptionFrameProviderManager" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+      <apidata name="IPerceptionFrameProviderManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager.GetFrameProvider(Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Foundation.IClosable.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+      </containers>
+      <file name="b0c49c36-81f1-d86a-d0df-a0af6fc74aa9" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager">
+      <topicdata name="IPerceptionFrameProviderManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+      <apidata name="IPerceptionFrameProviderManager" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager.GetFrameProvider(Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Foundation.IClosable.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" />
+      </containers>
+      <file name="4d4cedf5-4cac-dfe7-f098-d3f9eaf89de7" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager.GetFrameProvider(Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)">
+      <topicdata group="api" />
+      <apidata name="GetFrameProvider" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="frameProviderInfo" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+      </containers>
+      <file name="f63cb82b-16f7-7df5-3826-54c87c7d0cbd" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+      <apidata name="KnownPerceptionFrameKind" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b8e4320d-6516-4482-d646-12a591e8be6b" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind">
+      <topicdata name="KnownPerceptionFrameKind" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+      <apidata name="KnownPerceptionFrameKind" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Color" />
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Depth" />
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Infrared" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+      </containers>
+      <file name="1ef7773e-f525-4dc2-1222-b7e478b22b35" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind">
+      <topicdata name="KnownPerceptionFrameKind" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+      <apidata name="KnownPerceptionFrameKind" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Color" />
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Depth" />
+        <element api="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Infrared" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" />
+      </containers>
+      <file name="3d7e9311-1a01-a71c-372a-034ae846220f" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Color" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" ref="true" />
+      </containers>
+      <file name="0d8679a2-ae3b-f510-ca15-5df6affcf2b9" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Depth">
+      <topicdata group="api" />
+      <apidata name="Depth" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Depth" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" ref="true" />
+      </containers>
+      <file name="cebbe253-6c43-3217-d4ea-f1b34d130bf9" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind.Infrared">
+      <topicdata group="api" />
+      <apidata name="Infrared" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Infrared" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.KnownPerceptionFrameKind" ref="true" />
+      </containers>
+      <file name="e6660181-88d7-963e-85cd-8a77f9c82e74" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionControlGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      <apidata name="PerceptionControlGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1d6c5ee9-f5b5-0aa7-b0d6-d8eb1a921270" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionControlGroup">
+      <topicdata name="PerceptionControlGroup" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      <apidata name="PerceptionControlGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionControlGroup.#ctor(Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionControlGroup.FrameProviderIds" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      </containers>
+      <file name="7bde3209-4f6f-6fc1-d83f-3468656a5f65" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionControlGroup">
+      <topicdata name="PerceptionControlGroup" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      <apidata name="PerceptionControlGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      </containers>
+      <file name="858d4ae8-cbb2-d85c-11a0-231ac07e5f26" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionControlGroup">
+      <topicdata name="PerceptionControlGroup" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      <apidata name="PerceptionControlGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionControlGroup.FrameProviderIds" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" />
+      </containers>
+      <file name="a80fe801-8d1c-cb59-e370-8043e0dbca0e" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionControlGroup.#ctor(Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="ids" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" ref="true" />
+      </containers>
+      <file name="d315c030-a7d1-35f0-5820-4c4a1f93be97" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionControlGroup.FrameProviderIds">
+      <topicdata group="api" />
+      <apidata name="FrameProviderIds" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FrameProviderIds" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" ref="true" />
+      </containers>
+      <file name="0c50f341-cbfa-8efe-1a55-522d651ba031" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionCorrelation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      <apidata name="PerceptionCorrelation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e6b0b278-b9cc-3b60-8877-5d23f393b98a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionCorrelation">
+      <topicdata name="PerceptionCorrelation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      <apidata name="PerceptionCorrelation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionCorrelation.#ctor(System.String,Windows.Foundation.Numerics.Vector3,Windows.Foundation.Numerics.Quaternion)" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Orientation" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Position" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.TargetId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      </containers>
+      <file name="629e5fbb-9d80-1c23-cc09-acfb8b22cd61" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionCorrelation">
+      <topicdata name="PerceptionCorrelation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      <apidata name="PerceptionCorrelation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      </containers>
+      <file name="ea1122b4-f3c9-e053-ce92-c41c0a3a69d9" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionCorrelation">
+      <topicdata name="PerceptionCorrelation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      <apidata name="PerceptionCorrelation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Orientation" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Position" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.TargetId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" />
+      </containers>
+      <file name="9783d119-a829-5523-07ac-87a6a3715d04" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionCorrelation.#ctor(System.String,Windows.Foundation.Numerics.Vector3,Windows.Foundation.Numerics.Quaternion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="targetId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="position" in="true">
+          <type api="T:Windows.Foundation.Numerics.Vector3" ref="false" />
+        </parameter>
+        <parameter name="orientation" in="true">
+          <type api="T:Windows.Foundation.Numerics.Quaternion" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+      </containers>
+      <file name="9e0eded5-6e4c-b41a-a88a-43a7ecb31aea" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Orientation">
+      <topicdata group="api" />
+      <apidata name="Orientation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Orientation" />
+      <returns>
+        <type api="T:Windows.Foundation.Numerics.Quaternion" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+      </containers>
+      <file name="7a6d46a4-9cb0-9220-540d-1c5b391e5214" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:Windows.Foundation.Numerics.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+      </containers>
+      <file name="3f6ba76d-a988-40b3-605c-e17578358fab" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionCorrelation.TargetId">
+      <topicdata group="api" />
+      <apidata name="TargetId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TargetId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+      </containers>
+      <file name="c4d2e63b-8301-bff3-7978-8f425de3e83d" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      <apidata name="PerceptionCorrelationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d0b32fc5-48cb-d058-153a-31293a7509d1" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup">
+      <topicdata name="PerceptionCorrelationGroup" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      <apidata name="PerceptionCorrelationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup.#ctor(Windows.Foundation.Collections.IIterable{Windows.Devices.Perception.Provider.PerceptionCorrelation})" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup.RelativeLocations" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      </containers>
+      <file name="fe84395e-c8b8-09e9-8c00-9d207c1db96d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup">
+      <topicdata name="PerceptionCorrelationGroup" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      <apidata name="PerceptionCorrelationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      </containers>
+      <file name="04e0fe47-ee7d-b01f-3af3-4a462fce4a69" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup">
+      <topicdata name="PerceptionCorrelationGroup" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      <apidata name="PerceptionCorrelationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup.RelativeLocations" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" />
+      </containers>
+      <file name="1e90d081-b938-a86e-a224-3eb6cd09ee8c" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup.#ctor(Windows.Foundation.Collections.IIterable{Windows.Devices.Perception.Provider.PerceptionCorrelation})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="relativeLocations" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" ref="true" />
+      </containers>
+      <file name="9c7e6abb-e9b4-fa3d-272e-cbac21362637" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup.RelativeLocations">
+      <topicdata group="api" />
+      <apidata name="RelativeLocations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RelativeLocations" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" ref="true" />
+      </containers>
+      <file name="c1c3f400-29e4-721e-231f-03a332b41ab8" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      <apidata name="PerceptionFaceAuthenticationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ff633efe-b249-0193-f8c6-dbcbe8a52c2c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup">
+      <topicdata name="PerceptionFaceAuthenticationGroup" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      <apidata name="PerceptionFaceAuthenticationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup.#ctor(Windows.Foundation.Collections.IIterable{System.String},Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler,Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler)" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup.FrameProviderIds" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      </containers>
+      <file name="798d4946-1fc8-7aa4-c496-e0fb80c29a84" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup">
+      <topicdata name="PerceptionFaceAuthenticationGroup" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      <apidata name="PerceptionFaceAuthenticationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      </containers>
+      <file name="c95f381b-0da5-df65-4b8a-a0734ecaa678" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup">
+      <topicdata name="PerceptionFaceAuthenticationGroup" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      <apidata name="PerceptionFaceAuthenticationGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup.FrameProviderIds" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" />
+      </containers>
+      <file name="32ca536a-d093-573f-48ac-e4f9977c7e64" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup.#ctor(Windows.Foundation.Collections.IIterable{System.String},Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler,Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="ids" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="startHandler" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler" ref="true" />
+        </parameter>
+        <parameter name="stopHandler" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+      </containers>
+      <file name="dcb69477-235e-1ba2-156b-d404f09cc165" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup.FrameProviderIds">
+      <topicdata group="api" />
+      <apidata name="FrameProviderIds" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FrameProviderIds" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+      </containers>
+      <file name="cf29165f-d9f5-5961-b503-2dba7b1455e6" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionFrame">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      <apidata name="PerceptionFrame" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ebc98439-8b71-c4a9-55e6-82e1148df647" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrame">
+      <topicdata name="PerceptionFrame" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      <apidata name="PerceptionFrame" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.FrameData" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.Properties" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.RelativeTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      </containers>
+      <file name="4adafaf2-5eaf-c9f4-b97e-cbcfac53ab65" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionFrame">
+      <topicdata name="PerceptionFrame" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      <apidata name="PerceptionFrame" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      </containers>
+      <file name="dd4da5d9-c513-ab51-2e68-0eef79cb5ddf" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionFrame">
+      <topicdata name="PerceptionFrame" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      <apidata name="PerceptionFrame" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.FrameData" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.Properties" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrame.RelativeTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" />
+      </containers>
+      <file name="c7420b41-381b-20fe-4e36-f1763ea62f61" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrame.FrameData">
+      <topicdata group="api" />
+      <apidata name="FrameData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FrameData" />
+      <returns>
+        <type api="T:Windows.Foundation.IMemoryBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+      </containers>
+      <file name="2771df8c-b11f-217c-6303-d04cc07993ad" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrame.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+      </containers>
+      <file name="8ba40a8c-3206-9fd2-1498-63339e2bebbf" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrame.RelativeTime">
+      <topicdata group="api" />
+      <apidata name="RelativeTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RelativeTime" />
+      <setter name="set_RelativeTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+      </containers>
+      <file name="7c925a0a-0404-fcc8-f268-dc89e17f59de" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      <apidata name="PerceptionFrameProviderInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb1ddb9b-fac1-e814-5af2-5316b7963291" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo">
+      <topicdata name="PerceptionFrameProviderInfo" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      <apidata name="PerceptionFrameProviderInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DeviceKind" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DisplayName" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.FrameKind" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Hidden" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      </containers>
+      <file name="33d7e023-2ff1-b24d-0626-37414a86a7f4" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo">
+      <topicdata name="PerceptionFrameProviderInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      <apidata name="PerceptionFrameProviderInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      </containers>
+      <file name="a9699b01-785b-431d-94ef-8e2531fbc947" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo">
+      <topicdata name="PerceptionFrameProviderInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      <apidata name="PerceptionFrameProviderInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DeviceKind" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DisplayName" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.FrameKind" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Hidden" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" />
+      </containers>
+      <file name="1f27f4f4-b8ab-ba7a-1324-033dd5471b93" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="4c933b1e-b902-7022-9a1a-f206c9a22851" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DeviceKind">
+      <topicdata group="api" />
+      <apidata name="DeviceKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DeviceKind" />
+      <setter name="set_DeviceKind" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="2050f899-703a-2515-40ec-f7d5e2460b99" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="6b9958ff-90e2-2447-2919-943ecade38fa" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.FrameKind">
+      <topicdata group="api" />
+      <apidata name="FrameKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FrameKind" />
+      <setter name="set_FrameKind" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="148651cc-31e5-0cc5-177b-bb1daaf5357e" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Hidden">
+      <topicdata group="api" />
+      <apidata name="Hidden" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Hidden" />
+      <setter name="set_Hidden" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="44f52b3a-34ab-2225-40a4-b1153d63ce97" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+      </containers>
+      <file name="cf91a5ff-a4f6-4b13-7447-b489343478ca" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+      <apidata name="PerceptionFrameProviderManagerService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="35932c53-23d2-25d8-f05f-836182e13541" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService">
+      <topicdata name="PerceptionFrameProviderManagerService" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+      <apidata name="PerceptionFrameProviderManagerService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.PublishFrameForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,Windows.Devices.Perception.Provider.PerceptionFrame)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UpdateAvailabilityForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+      </containers>
+      <file name="aabfbefd-9645-5cc9-4d49-2ef96765e835" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService">
+      <topicdata name="PerceptionFrameProviderManagerService" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+      <apidata name="PerceptionFrameProviderManagerService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.PublishFrameForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,Windows.Devices.Perception.Provider.PerceptionFrame)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UpdateAvailabilityForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" />
+      </containers>
+      <file name="549ab59c-1627-89d1-6af6-7a14b4b1a921" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.PublishFrameForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,Windows.Devices.Perception.Provider.PerceptionFrame)">
+      <topicdata group="api" />
+      <apidata name="PublishFrameForProvider" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+        </parameter>
+        <parameter name="frame" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="25d99c34-a575-b214-7d6e-604672825396" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)">
+      <topicdata group="api" />
+      <apidata name="RegisterControlGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="controlGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="df3103b3-65cc-57bf-b3e2-f0bb7c7a13a6" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)">
+      <topicdata group="api" />
+      <apidata name="RegisterCorrelationGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="correlationGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="912d791a-6018-041f-6a57-e129965c915a" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)">
+      <topicdata group="api" />
+      <apidata name="RegisterFaceAuthenticationGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="faceAuthenticationGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="db76f065-7ccf-5864-7007-5a4947b9c86e" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.RegisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)">
+      <topicdata group="api" />
+      <apidata name="RegisterFrameProviderInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="frameProviderInfo" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="2a702706-559d-b9a7-d678-5565dfb40660" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterControlGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionControlGroup)">
+      <topicdata group="api" />
+      <apidata name="UnregisterControlGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="controlGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionControlGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="39f2bbb8-5c7b-f83f-4e0e-469c081b00c3" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterCorrelationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionCorrelationGroup)">
+      <topicdata group="api" />
+      <apidata name="UnregisterCorrelationGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="correlationGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionCorrelationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="e8f3107e-e15f-bf15-9df2-68d8a28d966b" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFaceAuthenticationGroup(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup)">
+      <topicdata group="api" />
+      <apidata name="UnregisterFaceAuthenticationGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="faceAuthenticationGroup" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="bd752d73-caeb-f427-46a3-ae7c71d17d81" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UnregisterFrameProviderInfo(Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager,Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo)">
+      <topicdata group="api" />
+      <apidata name="UnregisterFrameProviderInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manager" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager" ref="true" />
+        </parameter>
+        <parameter name="frameProviderInfo" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="55bd3096-793d-1b50-dfa8-3c5883e9c4cc" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService.UpdateAvailabilityForProvider(Windows.Devices.Perception.Provider.IPerceptionFrameProvider,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="UpdateAvailabilityForProvider" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.IPerceptionFrameProvider" ref="true" />
+        </parameter>
+        <parameter name="available" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrameProviderManagerService" ref="true" />
+      </containers>
+      <file name="6b1796e3-156e-faba-1b91-af903df4432a" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      <apidata name="PerceptionPropertyChangeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="01d4e97b-e4a3-0b8e-3756-99f3c6047b3a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest">
+      <topicdata name="PerceptionPropertyChangeRequest" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      <apidata name="PerceptionPropertyChangeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.GetDeferral" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Name" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Status" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      </containers>
+      <file name="5e63a716-8253-b2c2-c2ec-6a13678fdf06" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest">
+      <topicdata name="PerceptionPropertyChangeRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      <apidata name="PerceptionPropertyChangeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      </containers>
+      <file name="b03ba0da-e568-703e-9d46-084193018df3" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest">
+      <topicdata name="PerceptionPropertyChangeRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      <apidata name="PerceptionPropertyChangeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Name" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Status" />
+        <element api="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" />
+      </containers>
+      <file name="de2dc3f3-949f-7f30-ea0a-a0bee3dbee88" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Deferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" ref="true" />
+      </containers>
+      <file name="620501b2-9d60-a884-0edd-49b5e79b7fda" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" ref="true" />
+      </containers>
+      <file name="3eaa57e2-760f-4b31-a0b8-6609de90e057" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Status" />
+      <setter name="set_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" ref="true" />
+      </containers>
+      <file name="214758ec-063b-b65d-af39-e2eabb5a4e26" />
+    </api>
+    <api id="P:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionPropertyChangeRequest" ref="true" />
+      </containers>
+      <file name="b6f431a3-fe45-ed26-0031-94434a80731d" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler">
+      <topicdata group="api" />
+      <apidata name="PerceptionStartFaceAuthenticationHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1954639146</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>8336</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18032</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>140</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>72</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>239</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>57</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>231</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>255</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>124</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>38</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2c18355c-fe2e-677b-4021-a2697788cc9a" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler">
+      <topicdata group="api" />
+      <apidata name="PerceptionStopFaceAuthenticationHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>947840682</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>35277</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18462</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>222</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>221</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>146</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>247</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>11</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>42</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>215</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a975ce20-e08e-6ff6-9403-4c6867cfcd1a" />
+    </api>
+    <api id="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+      <apidata name="PerceptionVideoFrameAllocator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="abdc82a4-2346-7329-e8ae-282fa8927ec7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator">
+      <topicdata name="PerceptionVideoFrameAllocator" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+      <apidata name="PerceptionVideoFrameAllocator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.#ctor(System.UInt32,Windows.Graphics.Imaging.BitmapPixelFormat,Windows.Foundation.Size,Windows.Graphics.Imaging.BitmapAlphaMode)" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.AllocateFrame" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.Close" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.CopyFromVideoFrame(Windows.Media.VideoFrame)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+      </containers>
+      <file name="2dd94b20-2b8d-2ed1-58f3-1cabc64094f5" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator">
+      <topicdata name="PerceptionVideoFrameAllocator" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+      <apidata name="PerceptionVideoFrameAllocator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.AllocateFrame" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.Close" />
+        <element api="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.CopyFromVideoFrame(Windows.Media.VideoFrame)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" />
+      </containers>
+      <file name="828685c7-4c83-9f51-3c45-4313ef1feb8a" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.#ctor(System.UInt32,Windows.Graphics.Imaging.BitmapPixelFormat,Windows.Foundation.Size,Windows.Graphics.Imaging.BitmapAlphaMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="maxOutstandingFrameCountForWrite" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="format" in="true">
+          <type api="T:Windows.Graphics.Imaging.BitmapPixelFormat" ref="false" />
+        </parameter>
+        <parameter name="resolution" in="true">
+          <type api="T:Windows.Foundation.Size" ref="false" />
+        </parameter>
+        <parameter name="alpha" in="true">
+          <type api="T:Windows.Graphics.Imaging.BitmapAlphaMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" ref="true" />
+      </containers>
+      <file name="b246bf7b-3a3a-5a44-eecd-c07824b53c35" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.AllocateFrame">
+      <topicdata group="api" />
+      <apidata name="AllocateFrame" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" ref="true" />
+      </containers>
+      <file name="a1e44cc5-ac31-e8ea-4a1e-202f3a6fdd7b" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" ref="true" />
+      </containers>
+      <file name="bd5944dd-c9ec-10fb-9a37-0f03bebcb8d0" />
+    </api>
+    <api id="M:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator.CopyFromVideoFrame(Windows.Media.VideoFrame)">
+      <topicdata group="api" />
+      <apidata name="CopyFromVideoFrame" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="frame" in="true">
+          <type api="T:Windows.Media.VideoFrame" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionFrame" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Perception.Provider" />
+        <type api="T:Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator" ref="true" />
+      </containers>
+      <file name="3e3d8d82-a3d0-58cc-97aa-dbd76920d38d" />
+    </api>
+  </apis>
+</reflection>

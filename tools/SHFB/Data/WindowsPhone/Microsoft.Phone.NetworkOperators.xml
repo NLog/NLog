@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.NetworkOperators">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.NetworkOperators" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      </elements>
+      <file name="36c6bbac-38c4-3fb3-885f-c774dc298eb1" />
+    </api>
+    <api id="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      <apidata name="IncomingMobileNetworkMessageTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+      </containers>
+      <file name="d51eb72e-469f-4f39-e006-81a2dcf310fd" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask">
+      <topicdata name="IncomingMobileNetworkMessageTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      <apidata name="IncomingMobileNetworkMessageTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Body" />
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Digest" />
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Header" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      </containers>
+      <file name="387e7a8f-8fcc-2b72-f08d-9c20a5feb64d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask">
+      <topicdata name="IncomingMobileNetworkMessageTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      <apidata name="IncomingMobileNetworkMessageTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      </containers>
+      <file name="36809154-df18-7c8c-772d-00f2e6f28aba" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask">
+      <topicdata name="IncomingMobileNetworkMessageTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      <apidata name="IncomingMobileNetworkMessageTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Body" />
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Digest" />
+        <element api="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Header" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" />
+      </containers>
+      <file name="0c740526-e06c-ab92-d6f2-1f3c842bf75e" />
+    </api>
+    <api id="M:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" ref="true" />
+      </containers>
+      <file name="30bdea2a-7880-a700-c7fe-a27b8deeb511" />
+    </api>
+    <api id="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Body" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" ref="true" />
+      </containers>
+      <file name="ced66c92-b760-3700-b886-e448825321f5" />
+    </api>
+    <api id="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Digest">
+      <topicdata group="api" />
+      <apidata name="Digest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Digest" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" ref="true" />
+      </containers>
+      <file name="edaedc97-797a-0840-b232-50408463f29b" />
+    </api>
+    <api id="P:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask.Header">
+      <topicdata group="api" />
+      <apidata name="Header" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Header" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.NetworkOperators" />
+        <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" ref="true" />
+      </containers>
+      <file name="16bfab92-a4b9-bdcf-d1ee-e4d18f1b84f0" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Services.Maps.LocalSearchContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Services.Maps.LocalSearch">
+      <topicdata group="api" />
+      <apidata name="Windows.Services.Maps.LocalSearch" group="namespace" />
+      <elements>
+        <element api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" />
+        <element api="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+        <element api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+        <element api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+        <element api="T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      </elements>
+      <file name="40efcbc8-1bc0-b85c-5097-189cc500c83a" />
+    </api>
+    <api id="T:Windows.Services.Maps.LocalSearch.LocalCategories">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      <apidata name="LocalCategories" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Services.Maps.LocalSearchContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="444bd915-c0a3-fd75-47d0-727f2f51210c" />
+    </api>
+    <api id="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalCategories">
+      <topicdata name="LocalCategories" group="list" subgroup="members" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      <apidata name="LocalCategories" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.All" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.BankAndCreditUnions" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.EatDrink" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Hospitals" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.HotelsAndMotels" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Parking" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.SeeDo" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Shop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      </containers>
+      <file name="2c0bdaf9-b4d6-ddf7-34ab-4f55fa986a68" />
+    </api>
+    <api id="Properties.T:Windows.Services.Maps.LocalSearch.LocalCategories">
+      <topicdata name="LocalCategories" group="list" subgroup="Properties" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      <apidata name="LocalCategories" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.All" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.BankAndCreditUnions" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.EatDrink" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Hospitals" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.HotelsAndMotels" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Parking" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.SeeDo" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalCategories.Shop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" />
+      </containers>
+      <file name="08a0f318-9353-b420-78ff-7fd235fd65da" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.All">
+      <topicdata group="api" />
+      <apidata name="All" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_All" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="16559f24-9889-b4e7-9534-ebc0d52dda2c" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.BankAndCreditUnions">
+      <topicdata group="api" />
+      <apidata name="BankAndCreditUnions" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BankAndCreditUnions" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="8ed98618-98b3-e3d8-3dd3-e7290afb9b05" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.EatDrink">
+      <topicdata group="api" />
+      <apidata name="EatDrink" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EatDrink" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="cee0e35f-c2d0-bada-855a-425ec925ab9a" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.Hospitals">
+      <topicdata group="api" />
+      <apidata name="Hospitals" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Hospitals" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="ef1d7b60-3952-1321-5e7e-cdaeef22f06e" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.HotelsAndMotels">
+      <topicdata group="api" />
+      <apidata name="HotelsAndMotels" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HotelsAndMotels" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="64c91613-7f78-2659-7cb3-6d68c9e1b6ac" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.Parking">
+      <topicdata group="api" />
+      <apidata name="Parking" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parking" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="1ab90910-8127-4e4f-af91-03d136b339d2" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.SeeDo">
+      <topicdata group="api" />
+      <apidata name="SeeDo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SeeDo" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="f74e6a30-81d8-7da1-e3f5-c5d0f9971248" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalCategories.Shop">
+      <topicdata group="api" />
+      <apidata name="Shop" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Shop" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalCategories" ref="true" />
+      </containers>
+      <file name="749a1979-236d-0c35-22b3-d163fdd7e438" />
+    </api>
+    <api id="T:Windows.Services.Maps.LocalSearch.LocalLocation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      <apidata name="LocalLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Services.Maps.LocalSearchContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2698219f-e752-03a1-242a-fe93fc116fb0" />
+    </api>
+    <api id="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocation">
+      <topicdata name="LocalLocation" group="list" subgroup="members" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      <apidata name="LocalLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Address" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.DataAttribution" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Description" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.DisplayName" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Identifier" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.PhoneNumber" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Point" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      </containers>
+      <file name="a4c23cfa-b505-94cc-ebda-4d9481e7ae19" />
+    </api>
+    <api id="Methods.T:Windows.Services.Maps.LocalSearch.LocalLocation">
+      <topicdata name="LocalLocation" group="list" subgroup="Methods" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      <apidata name="LocalLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      </containers>
+      <file name="fe3ca83b-7202-4bb1-ba37-96a135307027" />
+    </api>
+    <api id="Properties.T:Windows.Services.Maps.LocalSearch.LocalLocation">
+      <topicdata name="LocalLocation" group="list" subgroup="Properties" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      <apidata name="LocalLocation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Address" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.DataAttribution" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Description" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.DisplayName" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Identifier" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.PhoneNumber" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocation.Point" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" />
+      </containers>
+      <file name="86741bbe-22d6-5a15-e167-632e39198ca2" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Address" />
+      <returns>
+        <type api="T:Windows.Services.Maps.MapAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="c02eb4a2-1ff6-39ab-0d28-2135f63aa393" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.DataAttribution">
+      <topicdata group="api" />
+      <apidata name="DataAttribution" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DataAttribution" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="e06d9410-cb1b-38c0-dfe8-814676c7bfa1" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="5a341681-3c3f-1f3c-c008-09debe6d36a0" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="9387721d-8a65-8e57-6e24-53cfcc5d36af" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.Identifier">
+      <topicdata group="api" />
+      <apidata name="Identifier" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Identifier" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="5afb2c0c-6afa-c788-a3ad-353cb785e170" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.PhoneNumber">
+      <topicdata group="api" />
+      <apidata name="PhoneNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhoneNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="e9b47cef-25c8-8350-64e2-7db3a85c00af" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocation.Point">
+      <topicdata group="api" />
+      <apidata name="Point" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Point" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geopoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+      </containers>
+      <file name="a7c2d5ac-0eba-f871-39bc-10eb76f27414" />
+    </api>
+    <api id="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+      <apidata name="LocalLocationFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Services.Maps.LocalSearchContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ea9b6b2a-1449-a24c-3f0b-0e3b9fdf96f4" />
+    </api>
+    <api id="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocationFinder">
+      <topicdata name="LocalLocationFinder" group="list" subgroup="members" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+      <apidata name="LocalLocationFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Services.Maps.LocalSearch.LocalLocationFinder.FindLocalLocationsAsync(System.String,Windows.Devices.Geolocation.Geocircle,System.String,System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+      </containers>
+      <file name="eb19cecc-5570-6813-b7ab-b5b19a2a6fb2" />
+    </api>
+    <api id="Methods.T:Windows.Services.Maps.LocalSearch.LocalLocationFinder">
+      <topicdata name="LocalLocationFinder" group="list" subgroup="Methods" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+      <apidata name="LocalLocationFinder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Services.Maps.LocalSearch.LocalLocationFinder.FindLocalLocationsAsync(System.String,Windows.Devices.Geolocation.Geocircle,System.String,System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" />
+      </containers>
+      <file name="f06c4c13-75fd-d96d-ff77-d733ab9f1ed1" />
+    </api>
+    <api id="M:Windows.Services.Maps.LocalSearch.LocalLocationFinder.FindLocalLocationsAsync(System.String,Windows.Devices.Geolocation.Geocircle,System.String,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="FindLocalLocationsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="searchTerm" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="searchArea" in="true">
+          <type api="T:Windows.Devices.Geolocation.Geocircle" ref="true" />
+        </parameter>
+        <parameter name="localCategory" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="maxResults" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8eb0ef7e-06ef-0003-fe15-36268f693500" />
+    </api>
+    <api id="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      <apidata name="LocalLocationFinderResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Services.Maps.LocalSearchContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2f220825-64da-e8b7-cc83-4d9d5a83c319" />
+    </api>
+    <api id="AllMembers.T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult">
+      <topicdata name="LocalLocationFinderResult" group="list" subgroup="members" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      <apidata name="LocalLocationFinderResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.LocalLocations" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      </containers>
+      <file name="fd04f1ec-367c-5b6b-4d7e-cb28d3fc368d" />
+    </api>
+    <api id="Methods.T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult">
+      <topicdata name="LocalLocationFinderResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      <apidata name="LocalLocationFinderResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      </containers>
+      <file name="c3868e9f-5668-3c3b-4e00-ba4327b36d70" />
+    </api>
+    <api id="Properties.T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult">
+      <topicdata name="LocalLocationFinderResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      <apidata name="LocalLocationFinderResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.LocalLocations" />
+        <element api="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" />
+      </containers>
+      <file name="d0c7fc4f-1b8d-524e-f707-a39735b69c02" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.LocalLocations">
+      <topicdata group="api" />
+      <apidata name="LocalLocations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LocalLocations" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Services.Maps.LocalSearch.LocalLocation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" ref="true" />
+      </containers>
+      <file name="5522a3d7-af27-db33-2b9c-be517a173a6d" />
+    </api>
+    <api id="P:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderResult" ref="true" />
+      </containers>
+      <file name="7b32a8c4-851c-0a60-39dd-4fa827a1d8f9" />
+    </api>
+    <api id="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus">
+      <topicdata group="api" />
+      <apidata name="LocalLocationFinderStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.Success" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.UnknownError" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidCredentials" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidCategory" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidSearchTerm" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidSearchArea" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.NetworkFailure" />
+        <element api="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.NotSupported" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Services.Maps.LocalSearchContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d8c23421-2ac4-96d1-050a-082bbd89efaa" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidCategory">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidCategory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="59af8859-5054-a09f-f54a-71d670552391" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidCredentials">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidCredentials" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="b817e911-d5ed-9d39-0f37-fd41fd401613" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidSearchArea">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidSearchArea" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="5b2fd2f7-599b-8e4d-7934-78fd44c5888c" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.InvalidSearchTerm">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidSearchTerm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="b41fff61-d86c-f508-3057-94bae300905a" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.NetworkFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="988e3593-add1-fef9-ad4b-5098babc3dba" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.NotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="f11c2bba-4b32-0442-2747-8cdce31d0d73" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="1decc01b-b417-f858-f1a0-1a1e060cf594" />
+    </api>
+    <api id="F:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus.UnknownError">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Services.Maps.LocalSearchContract" module="Windows.Services.Maps.LocalSearchContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Services.Maps.LocalSearch" />
+        <type api="T:Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus" ref="false" />
+      </containers>
+      <file name="1ab12fe4-4b91-b5fd-15b0-14c0f3cdbac6" />
+    </api>
+  </apis>
+</reflection>

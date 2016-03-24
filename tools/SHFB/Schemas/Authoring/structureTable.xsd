@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5" 
+		xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal"
+		targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5" 
+		elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        >
+
+	<!-- Schema documentation -->
+	<annotation>
+		<documentation>
+			This schema definition defines common hierarchy types for the CS Schema.
+			This schema is part of the base layer.			
+		</documentation>
+	</annotation>
+
+	<!-- include and import declarations -->
+	<include schemaLocation="block.xsd"/>
+	
+	<!-- element declarations -->
+	<element name="table">
+		<annotation>
+			<documentation>
+				The table element describes a table model that is conformant to the CALS
+				table model.
+			</documentation>
+			<appinfo>
+			    <doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="maml:title" minOccurs="0"/>
+				<element ref="maml:tableHeader" minOccurs="0"/>
+				<element ref="maml:row" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="tableHeader" type="maml:tableHeaderType">
+		<annotation>
+			<documentation>
+				The tableHeader element describes a table header.
+			</documentation>
+			<appinfo>
+			    <doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<element name="row">
+		<annotation>
+			<documentation>
+				The row element describes a row within a table.
+			</documentation>
+			<appinfo>
+			    <doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="maml:entry" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="entry" type="maml:sectionContentType">
+		<annotation>
+			<documentation>
+				The entry element describes an entry within a table.
+			</documentation>
+			<appinfo>
+			    <doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	
+	<!-- complexType declarations -->
+	<complexType name="tableHeaderType">
+		<annotation>
+			<documentation>
+				This type is intended for use as the children of table elements.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element ref="maml:row" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	
+	
+</schema>

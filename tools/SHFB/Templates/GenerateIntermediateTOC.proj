@@ -1,46 +1,38 @@
-﻿<Project DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.XslTransform"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+﻿<Project ToolsVersion="12.0" DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Tools MSBuild Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.XslTransform"
+    AssemblyFile="{@SHFBFolder}\XslTransform.exe" />
 
-  <!-- Task properties -->
-  <PropertyGroup>
-    <PresentationStyle>{@PresentationParam}</PresentationStyle>
-    <SandcastlePath>{@SandcastlePath}</SandcastlePath>
-    <WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
-  </PropertyGroup>
+	<!-- Task properties -->
+	<PropertyGroup>
+		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+		<TocTransformation>{@TocTransformation}</TocTransformation>
+		<TocTransformParameters>{@TocTransformParameters}</TocTransformParameters>
+	</PropertyGroup>
 
-  <!-- This defines the dependencies for the Generate target -->
-  <PropertyGroup>
-    <GenerateDependsOn>
-      BeforeGenerateIntermediateTOC;
-      GenerateIntermediateTOC;
-      AfterGenerateIntermediateTOC
-    </GenerateDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Generate target -->
+	<PropertyGroup>
+		<GenerateDependsOn>
+			BeforeGenerateIntermediateTOC;
+			GenerateIntermediateTOC;
+			AfterGenerateIntermediateTOC
+		</GenerateDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Generate" DependsOnTargets="$(GenerateDependsOn)" />
+	<Target Name="Generate" DependsOnTargets="$(GenerateDependsOn)" />
 
-  <!-- The Generate Intermediate TOC target -->
-  <Target Name="GenerateIntermediateTOC">
-    <!-- Transform the reflection output based on the presentation style -->
-    <XslTransform Condition="'$(PresentationStyle)' == 'prototype'"
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\CreatePrototypeToc.xsl"
-      InputFile="reflection.xml"
-      OutputFile="toc.xml" />
+	<!-- The Generate Intermediate TOC target -->
+	<Target Name="GenerateIntermediateTOC">
+		<!-- Transform the reflection output based on the presentation style -->
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
+			WorkingFolder="$(WorkingFolder)"
+			Transformations="$(TocTransformation)"
+			Arguments="$(TocTransformParameters)"
+			InputFile="reflection.xml"
+			OutputFile="toc.xml" />
+	</Target>
 
-    <XslTransform Condition="'$(PresentationStyle)' != 'prototype'"
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\CreateVSToc.xsl"
-      InputFile="reflection.xml"
-      OutputFile="toc.xml" />
-  </Target>
-
-  <!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
-  <Target Name="BeforeGenerateIntermediateTOC" />
-  <Target Name="AfterGenerateIntermediateTOC" />
+	<!-- The following targets may be overridden or replaced to perform additional processing. -->
+	<Target Name="BeforeGenerateIntermediateTOC" />
+	<Target Name="AfterGenerateIntermediateTOC" />
 </Project>

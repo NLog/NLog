@@ -1,0 +1,2207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.Authentication.Web.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.Authentication.Web.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+        <element api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      </elements>
+      <file name="ee04eb53-b530-3658-766c-f8b15615916c" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="WebAuthenticationCoreManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="69714058-3f41-775b-31cb-28d7d017431c" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager">
+      <topicdata name="WebAuthenticationCoreManager" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="WebAuthenticationCoreManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountAsync(Windows.Security.Credentials.WebAccountProvider,System.String)" />
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String,Windows.System.User)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      </containers>
+      <file name="b5f9b640-5e86-6013-e105-bd6cb2471d03" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager">
+      <topicdata name="WebAuthenticationCoreManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="WebAuthenticationCoreManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountAsync(Windows.Security.Credentials.WebAccountProvider,System.String)" />
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String,Windows.System.User)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      </containers>
+      <file name="7a52b818-d967-7aec-5e87-380087c4b16f" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync">
+      <topicdata name="FindAccountProviderAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="FindAccountProviderAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String,Windows.System.User)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <file name="2a019cc6-ed66-d835-d12c-ba5cf37550b0" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync">
+      <topicdata name="GetTokenSilentlyAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="GetTokenSilentlyAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <file name="bc45c571-2bdf-95fe-1de1-419065c70d11" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync">
+      <topicdata name="RequestTokenAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" />
+      <apidata name="RequestTokenAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <file name="f088615b-3f22-7c73-34ae-6046279132b7" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountAsync(Windows.Security.Credentials.WebAccountProvider,System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAccountAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+        </parameter>
+        <parameter name="webAccountId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ab3adfb3-b9f7-2bc6-0478-45775c472d3a" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAccountProviderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="webAccountProviderId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAccountProviderAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b40d188b-cd21-629f-77f9-574955b4d0a9" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAccountProviderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="webAccountProviderId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="authority" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAccountProviderWithAuthorityAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a067c9fe-fc74-6758-cbc3-73a3c02d0dae" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync(System.String,System.String,Windows.System.User)">
+      <topicdata group="api" />
+      <apidata name="FindAccountProviderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.FindAccountProviderAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="webAccountProviderId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="authority" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="user" in="true">
+          <type api="T:Windows.System.User" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAccountProviderWithAuthorityForUserAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a63953e9-dd60-97c8-aede-0c4541be942f" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)">
+      <topicdata group="api" />
+      <apidata name="GetTokenSilentlyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetTokenSilentlyAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e7751e4f-2658-b002-c3d7-11b6a738a7f9" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)">
+      <topicdata group="api" />
+      <apidata name="GetTokenSilentlyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.GetTokenSilentlyAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+        </parameter>
+        <parameter name="webAccount" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetTokenSilentlyWithWebAccountAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9d5b3c7b-7956-9c62-705c-08009f32cf21" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest)">
+      <topicdata group="api" />
+      <apidata name="RequestTokenAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestTokenAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6e453388-1ddf-90bf-e967-3278c7db1a40" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync(Windows.Security.Authentication.Web.Core.WebTokenRequest,Windows.Security.Credentials.WebAccount)">
+      <topicdata group="api" />
+      <apidata name="RequestTokenAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager.RequestTokenAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+        </parameter>
+        <parameter name="webAccount" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestTokenWithWebAccountAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9ad8bf7f-2289-2071-d30d-6c58170547ad" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebProviderError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      <apidata name="WebProviderError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0ad99cf0-b403-c3ce-7b8a-3afa0de67780" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.Core.WebProviderError">
+      <topicdata name="WebProviderError" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      <apidata name="WebProviderError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebProviderError.#ctor(System.UInt32,System.String)" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorMessage" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      </containers>
+      <file name="86528932-3dbe-f812-c315-40db5862738c" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.Core.WebProviderError">
+      <topicdata name="WebProviderError" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      <apidata name="WebProviderError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      </containers>
+      <file name="7f632166-ba25-aece-50dd-8aaf82734c05" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.Web.Core.WebProviderError">
+      <topicdata name="WebProviderError" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      <apidata name="WebProviderError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorCode" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorMessage" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebProviderError.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" />
+      </containers>
+      <file name="81bd0a64-647b-44a0-fb6b-471ab03be585" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebProviderError.#ctor(System.UInt32,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="errorCode" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="errorMessage" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </containers>
+      <file name="3b3d4cd1-1c13-cb43-7c33-ca0447302118" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </containers>
+      <file name="19712ca3-589c-07ca-bfd9-9072d541c440" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebProviderError.ErrorMessage">
+      <topicdata group="api" />
+      <apidata name="ErrorMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorMessage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </containers>
+      <file name="9a5dcc47-7c7a-045d-1524-c12edaf30244" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebProviderError.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </containers>
+      <file name="99c77604-1451-6fdc-325f-38f7056e5221" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebTokenRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      <apidata name="WebTokenRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c093dbd5-6293-327c-2234-672b081d0cdd" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenRequest">
+      <topicdata name="WebTokenRequest" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      <apidata name="WebTokenRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String,Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType)" />
+        </element>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.ClientId" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.PromptType" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Properties" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Scope" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.WebAccountProvider" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      </containers>
+      <file name="2787102f-cf6f-3520-cce0-f11502af5dbc" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.Core.WebTokenRequest">
+      <topicdata name="WebTokenRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      <apidata name="WebTokenRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      </containers>
+      <file name="b0d4665b-7728-e646-41fc-c952580d3aac" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.Web.Core.WebTokenRequest">
+      <topicdata name="WebTokenRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      <apidata name="WebTokenRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.ClientId" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.PromptType" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Properties" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Scope" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.WebAccountProvider" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      </containers>
+      <file name="be0f836f-b0fe-d2df-f194-663095e3935f" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenRequest" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String,Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="d248fa99-c707-e030-92e8-4170ed176664" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="bb68ca66-71cf-f587-2153-ede5a16a5259" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+        </parameter>
+        <parameter name="scope" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="2a8ba3ba-09a5-ebb9-6a38-bf1c5c7bb1b4" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+        </parameter>
+        <parameter name="scope" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clientId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="2b0ecbba-9dfd-2ad6-0d6d-41206945f49c" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor(Windows.Security.Credentials.WebAccountProvider,System.String,System.String,Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenRequest.#ctor" />
+      <parameters>
+        <parameter name="provider" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+        </parameter>
+        <parameter name="scope" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clientId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="promptType" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="5b6b7bf1-a923-7e85-3d1c-2782332bab91" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.ClientId">
+      <topicdata group="api" />
+      <apidata name="ClientId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ClientId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="63b01d30-acad-ad49-c020-c0fa664ae16a" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.PromptType">
+      <topicdata group="api" />
+      <apidata name="PromptType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PromptType" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="394dd321-98a0-5b4a-c5e9-e04f0411daf5" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="f4c58c64-d433-1ec9-39cb-c5df1d685e8a" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.Scope">
+      <topicdata group="api" />
+      <apidata name="Scope" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Scope" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="c31817ff-ee37-67ee-ba0a-11b032cf4d8c" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequest.WebAccountProvider">
+      <topicdata group="api" />
+      <apidata name="WebAccountProvider" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WebAccountProvider" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.WebAccountProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequest" ref="true" />
+      </containers>
+      <file name="59cdb7e0-32f8-36de-bbbd-bd791c9ef75f" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType">
+      <topicdata group="api" />
+      <apidata name="WebTokenRequestPromptType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType.Default" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType.ForceAuthentication" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ddaf35fb-62f7-47da-cef6-c9920e40b359" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+      </containers>
+      <file name="fe56b01c-4280-e5cb-287c-782fcb07fe55" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType.ForceAuthentication">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForceAuthentication" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType" ref="false" />
+      </containers>
+      <file name="caa5eeca-d89d-794f-a60e-fbda4acc816a" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      <apidata name="WebTokenRequestResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1ff80003-6cda-1449-7773-bd8f280a2e62" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult">
+      <topicdata name="WebTokenRequestResult" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      <apidata name="WebTokenRequestResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.InvalidateCacheAsync" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseData" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseError" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      </containers>
+      <file name="fa9ff7ad-095c-e6fc-525c-395ed2613208" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult">
+      <topicdata name="WebTokenRequestResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      <apidata name="WebTokenRequestResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.InvalidateCacheAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      </containers>
+      <file name="45b2d0bb-a8eb-3a0c-1e7f-4eb28d0fd8c8" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult">
+      <topicdata name="WebTokenRequestResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      <apidata name="WebTokenRequestResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseData" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseError" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" />
+      </containers>
+      <file name="d13e251e-6980-f163-feec-74b9b2cc49b9" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.InvalidateCacheAsync">
+      <topicdata group="api" />
+      <apidata name="InvalidateCacheAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="86d5b61a-141c-12d4-32a4-f0c7e59be404" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseData">
+      <topicdata group="api" />
+      <apidata name="ResponseData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseData" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+      </containers>
+      <file name="c1d201a6-5fd0-9c5b-b6b5-a6cc3df129a8" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseError">
+      <topicdata group="api" />
+      <apidata name="ResponseError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseError" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+      </containers>
+      <file name="82c35586-cdd5-77a0-2abb-7e05f03e7237" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenRequestResult.ResponseStatus">
+      <topicdata group="api" />
+      <apidata name="ResponseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseStatus" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestResult" ref="true" />
+      </containers>
+      <file name="ad34b8a7-d6b3-0fc2-d58f-311613d5eb5f" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus">
+      <topicdata group="api" />
+      <apidata name="WebTokenRequestStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.Success" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.UserCancel" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.AccountSwitch" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.UserInteractionRequired" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.AccountProviderNotAvailable" />
+        <element api="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.ProviderError" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c20a8392-13b7-a609-5938-48260d573410" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.AccountProviderNotAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="AccountProviderNotAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="a9d9c0af-d5ba-113a-8475-7be7ac7c89f0" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.AccountSwitch">
+      <topicdata group="api" notopic="" />
+      <apidata name="AccountSwitch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="6bbac665-abf3-8f5e-f6eb-098432303ecf" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.ProviderError">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProviderError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="573cefaf-0afa-d6b2-1030-604a010ae3fc" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="dd0daae0-8359-56cb-8c32-9cec10d36466" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.UserCancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="4e675762-6d13-b5f7-2b94-fb88318f7363" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus.UserInteractionRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserInteractionRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenRequestStatus" ref="false" />
+      </containers>
+      <file name="89719571-3fa4-e4f4-5c84-445d0c7a4a55" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.Core.WebTokenResponse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      <apidata name="WebTokenResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c075b663-69c4-2223-a763-116388c28df4" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenResponse">
+      <topicdata name="WebTokenResponse" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      <apidata name="WebTokenResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor">
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount)" />
+          <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount,Windows.Security.Authentication.Web.Core.WebProviderError)" />
+        </element>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Properties" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.ProviderError" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Token" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.WebAccount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      </containers>
+      <file name="bc032147-c56d-2566-c3f8-fd7bf2a103a0" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.Core.WebTokenResponse">
+      <topicdata name="WebTokenResponse" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      <apidata name="WebTokenResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      </containers>
+      <file name="94453b80-21be-1be0-79e2-78812963efe2" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.Web.Core.WebTokenResponse">
+      <topicdata name="WebTokenResponse" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      <apidata name="WebTokenResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Properties" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.ProviderError" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Token" />
+        <element api="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.WebAccount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      </containers>
+      <file name="757f2663-4f18-348c-c20f-685bd661791f" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.Core.WebTokenResponse" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount)" />
+        <element api="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount,Windows.Security.Authentication.Web.Core.WebProviderError)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="afab0647-abab-c0de-3562-148ccf4f33a8" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="291e0133-9c8b-ce0c-47f1-034304eaa1b4" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="fd33f145-8cdb-7336-93f2-edba26f8a627" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="webAccount" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="83ba21b3-c694-427b-f427-1cb0005bf6d2" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor(System.String,Windows.Security.Credentials.WebAccount,Windows.Security.Authentication.Web.Core.WebProviderError)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Authentication.Web.Core.WebTokenResponse.#ctor" />
+      <parameters>
+        <parameter name="token" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="webAccount" in="true">
+          <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+        </parameter>
+        <parameter name="error" in="true">
+          <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="65d4a25d-c13a-50fb-9240-5946aa4074be" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="9cb876d1-3d89-97df-64cb-b45cff84d968" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.ProviderError">
+      <topicdata group="api" />
+      <apidata name="ProviderError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProviderError" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.Core.WebProviderError" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="fea3e1f9-82e3-9212-8d60-74f0048aae2a" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.Token">
+      <topicdata group="api" />
+      <apidata name="Token" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Token" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="5dd46f8e-6526-bcec-3ff6-c03cb9fb62b8" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.Core.WebTokenResponse.WebAccount">
+      <topicdata group="api" />
+      <apidata name="WebAccount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WebAccount" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.WebAccount" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web.Core" />
+        <type api="T:Windows.Security.Authentication.Web.Core.WebTokenResponse" ref="true" />
+      </containers>
+      <file name="78df51c5-2491-9a70-9757-0a998f6bd892" />
+    </api>
+  </apis>
+</reflection>

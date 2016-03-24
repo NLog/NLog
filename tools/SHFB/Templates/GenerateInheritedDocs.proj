@@ -1,7 +1,7 @@
-﻿<Project DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Generate inherited documentation.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="InheritedDocumentation.GenerateInheritedDocs"
-    AssemblyFile="$(SHFBROOT)\GenerateInheritedDocs.exe" />
+﻿<Project ToolsVersion="12.0" DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Generate inherited documentation.  https://GitHub.com/EWSoftware/SHFB -->
+  <UsingTask TaskName="SandcastleBuilder.InheritedDocumentation.GenerateInheritedDocs"
+    AssemblyFile="{@SHFBFolder}\GenerateInheritedDocs.exe" />
 
     <!-- Task properties -->
   <PropertyGroup>
@@ -21,7 +21,8 @@
 
   <!-- The Generate Inherited Docs target -->
   <Target Name="GenerateInheritedDocs">
-    <GenerateInheritedDocs ConfigurationFile="$(ConfigurationFile)" />
+    <SandcastleBuilder.InheritedDocumentation.GenerateInheritedDocs
+        ConfigurationFile="$(ConfigurationFile)" />
   </Target>
 
   <!-- The following targets may be overridden or replaced to perform

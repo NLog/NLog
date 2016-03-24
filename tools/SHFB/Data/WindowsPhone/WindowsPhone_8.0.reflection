@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform="WindowsPhone" Version="8.0" Title=".NET for Windows Phone">
+  <AssemblyLocations>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\WindowsPhone\v8.0">
+      <AssemblyDetails Filename="Microsoft.CSharp.dll" Name="Microsoft.CSharp" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Devices.Sensors.dll" Name="Microsoft.Devices.Sensors" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="Microsoft.Phone.dll" Name="Microsoft.Phone" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="Microsoft.Phone.Interop.dll" Name="Microsoft.Phone.Interop" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="Microsoft.Phone.Maps.dll" Name="Microsoft.Phone.Maps" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="Microsoft.Phone.Reactive.dll" Name="Microsoft.Phone.Reactive" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="Microsoft.Xna.Framework.dll" Name="Microsoft.Xna.Framework" Version="4.0.0.0" PublicKeyToken="842cf8be1de50553" />
+      <AssemblyDetails Filename="Microsoft.Xna.Framework.GamerServices.dll" Name="Microsoft.Xna.Framework.GamerServices" Version="4.0.0.0" PublicKeyToken="842cf8be1de50553" />
+      <AssemblyDetails Filename="Microsoft.Xna.Framework.GamerServicesExtensions.dll" Name="Microsoft.Xna.Framework.GamerServicesExtensions" Version="4.0.0.0" PublicKeyToken="842cf8be1de50553" />
+      <AssemblyDetails Filename="Microsoft.Xna.Framework.Input.Touch.dll" Name="Microsoft.Xna.Framework.Input.Touch" Version="4.0.0.0" PublicKeyToken="842cf8be1de50553" />
+      <AssemblyDetails Filename="Microsoft.Xna.Framework.MediaLibraryExtensions.dll" Name="Microsoft.Xna.Framework.MediaLibraryExtensions" Version="4.0.0.0" PublicKeyToken="842cf8be1de50553" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="mscorlib.extensions.dll" Name="mscorlib.Extensions" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.dll" Name="System" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Collections.dll" Name="System.Collections" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ComponentModel.dll" Name="System.ComponentModel" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ComponentModel.EventBasedAsync.dll" Name="System.ComponentModel.EventBasedAsync" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Core.dll" Name="System.Core" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Data.Linq.dll" Name="System.Data.Linq" Version="8.0.0.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="System.Device.dll" Name="System.Device" Version="2.0.5.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="System.Diagnostics.Contracts.dll" Name="System.Diagnostics.Contracts" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Diagnostics.Debug.dll" Name="System.Diagnostics.Debug" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Diagnostics.Tools.dll" Name="System.Diagnostics.Tools" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Dynamic.Runtime.dll" Name="System.Dynamic.Runtime" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Globalization.dll" Name="System.Globalization" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.IO.dll" Name="System.IO" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Linq.dll" Name="System.Linq" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Linq.Expressions.dll" Name="System.Linq.Expressions" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Linq.Queryable.dll" Name="System.Linq.Queryable" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Net.dll" Name="System.Net" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Net.NetworkInformation.dll" Name="System.Net.NetworkInformation" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Net.Primitives.dll" Name="System.Net.Primitives" Version="3.9.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Net.Requests.dll" Name="System.Net.Requests" Version="3.9.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ObjectModel.dll" Name="System.ObjectModel" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Observable.dll" Name="System.Observable" Version="2.0.5.0" PublicKeyToken="24eec0d8c86cda1e" />
+      <AssemblyDetails Filename="System.Reflection.dll" Name="System.Reflection" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Reflection.Emit.IlGeneration.dll" Name="System.Reflection.Emit.ILGeneration" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Reflection.Emit.Lightweight.dll" Name="System.Reflection.Emit.Lightweight" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Reflection.Extensions.dll" Name="System.Reflection.Extensions" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Reflection.Primitives.dll" Name="System.Reflection.Primitives" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Resources.ResourceManager.dll" Name="System.Resources.ResourceManager" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.dll" Name="System.Runtime" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.Extensions.dll" Name="System.Runtime.Extensions" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.InteropServices.WindowsRuntime.dll" Name="System.Runtime.InteropServices.WindowsRuntime" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.dll" Name="System.Runtime.Serialization" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Json.dll" Name="System.Runtime.Serialization.Json" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Primitives.dll" Name="System.Runtime.Serialization.Primitives" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Xml.dll" Name="System.Runtime.Serialization.Xml" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.WindowsRuntime.dll" Name="System.Runtime.WindowsRuntime" Version="4.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Security.Principal.dll" Name="System.Security.Principal" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ServiceModel.dll" Name="System.ServiceModel" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Http.dll" Name="System.ServiceModel.Http" Version="3.9.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ServiceModel.Primitives.dll" Name="System.ServiceModel.Primitives" Version="3.9.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ServiceModel.Security.dll" Name="System.ServiceModel.Security" Version="3.9.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ServiceModel.Web.dll" Name="System.ServiceModel.Web" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Text.Encoding.dll" Name="System.Text.Encoding" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Text.Encoding.Extensions.dll" Name="System.Text.Encoding.Extensions" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Text.RegularExpressions.dll" Name="System.Text.RegularExpressions" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Threading.dll" Name="System.Threading" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Threading.Tasks.dll" Name="System.Threading.Tasks" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Windows.dll" Name="System.Windows" Version="2.0.6.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.dll" Name="System.Xml" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.Linq.dll" Name="System.Xml.Linq" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.ReaderWriter.dll" Name="System.Xml.ReaderWriter" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Xml.Serialization.dll" Name="System.Xml.Serialization" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.XDocument.dll" Name="System.Xml.XDocument" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Xml.XmlSerializer.dll" Name="System.Xml.XmlSerializer" Version="4.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Windows Phone Kits\8.0\\Windows Metadata">
+      <AssemblyDetails Filename="Windows.winmd" Name="Windows" Version="255.255.255.255" />
+    </Location>
+  </AssemblyLocations>
+</ReflectionDataSet>

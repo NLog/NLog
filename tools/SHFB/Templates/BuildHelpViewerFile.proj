@@ -1,19 +1,18 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
   <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildHelpViewerFile"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="{@SHFBFolder}\SandcastleBuilder.Utils.dll" />
 
   <!-- Task properties -->
   <PropertyGroup>
-    <WorkingFolder>{@HtmlEncWorkingFolder}Output</WorkingFolder>
+    <WorkingFolder>{@HtmlEncWorkingFolder}Output\MSHelpViewer</WorkingFolder>
     <OutputFolder>{@HtmlEncOutputFolder}</OutputFolder>
     <HtmlHelpName>{@HTMLEncHelpName}</HtmlHelpName>
-    <StopWordList>{@StopWordListFilename}</StopWordList>
   </PropertyGroup>
 
   <!-- File groups -->
   <ItemGroup>
-    <OldHelpFiles Include="$(OutputFolder)\$(HtmlHelpName).MSHC" />
+    <OldHelpFiles Include="$(OutputFolder)\$(HtmlHelpName).msh?" />
   </ItemGroup>
 
   <!-- This defines the dependencies for the Build target -->
@@ -32,25 +31,31 @@
     <!-- Delete the old files if they are there -->
     <Delete Files="@(OldHelpFiles)" />
 
-    <!-- Copy the stop word list if specified -->
-    <Copy Condition="'$(StopWordList)' != ''"
-      SourceFiles="$(StopWordList)"
-      DestinationFiles="$(WorkingFolder)\$(StopWordList)" />
+    <!-- Copy the stop word list -->
+    <Copy SourceFiles="$(WorkingFolder)\..\..\StopWordList.txt"
+			DestinationFiles="$(WorkingFolder)\StopWordList.txt" />
 
     <!-- Build the help file -->
-    <BuildHelpViewerFile
+    <SandcastleBuilder.Utils.MSBuild.BuildHelpViewerFile
       WorkingFolder="$(WorkingFolder)"
       OutputFolder="$(OutputFolder)"
       HtmlHelpName="$(HtmlHelpName)" />
 
-    <!-- We must remove these in case we are building a 1x file or a website
-         as well -->
-    <Delete Files="$(WorkingFolder)\$(StopWordList)" />
+    <!-- Copy the content setup file to the output folder -->
+    <Copy SourceFiles=
+        "$(WorkingFolder)\..\..\$(HtmlHelpName).msha;
+         $(WorkingFolder)\..\..\Install_$(HtmlHelpName).bat;
+         $(WorkingFolder)\..\..\Remove_$(HtmlHelpName).bat;
+         $(WorkingFolder)\..\..\HelpLibraryManagerLauncher.exe"
+      DestinationFiles=
+        "$(OutputFolder)$(HtmlHelpName).msha;
+         $(OutputFolder)Install_$(HtmlHelpName).bat;
+         $(OutputFolder)Remove_$(HtmlHelpName).bat;
+         $(OutputFolder)HelpLibraryManagerLauncher.exe" />
 
   </Target>
 
-  <!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
+  <!-- The following targets may be overridden or replaced to perform additional processing. -->
   <Target Name="BeforeBuildHelpViewerFile" />
   <Target Name="AfterBuildHelpViewerFile" />
 </Project>

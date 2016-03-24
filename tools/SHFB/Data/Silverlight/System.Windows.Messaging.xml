@@ -1,0 +1,1331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Messaging">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Messaging" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Messaging.ReceiverNameScope" />
+        <element api="T:System.Windows.Messaging.LocalMessageReceiver" />
+        <element api="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+        <element api="T:System.Windows.Messaging.ListenFailedException" />
+        <element api="T:System.Windows.Messaging.LocalMessageSender" />
+        <element api="T:System.Windows.Messaging.SendCompletedEventArgs" />
+        <element api="T:System.Windows.Messaging.SendFailedException" />
+      </elements>
+      <file name="67f1b86c-3e53-a180-16b0-0b6deebe9ce9" />
+    </api>
+    <api id="T:System.Windows.Messaging.ListenFailedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.ListenFailedException" />
+      <apidata name="ListenFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="c34ef628-74d2-327d-b471-b9679b0aee26" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.ListenFailedException">
+      <topicdata name="ListenFailedException" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.ListenFailedException" />
+      <apidata name="ListenFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.ListenFailedException" />
+      </containers>
+      <file name="b39af8df-e825-6ae0-5190-4747d163eb29" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.ListenFailedException">
+      <topicdata name="ListenFailedException" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.ListenFailedException" />
+      <apidata name="ListenFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.ListenFailedException" />
+      </containers>
+      <file name="8bdede50-916c-0e29-40af-83397d64d391" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.ListenFailedException">
+      <topicdata name="ListenFailedException" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.ListenFailedException" />
+      <apidata name="ListenFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.ListenFailedException" />
+      </containers>
+      <file name="d3e14bf5-6a42-e03e-4d03-c3eda398fa60" />
+    </api>
+    <api id="T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="3c5675cc-9180-2383-000a-e6e75b304e15" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata name="LocalMessageReceiver" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Messaging.LocalMessageReceiver.#ctor">
+          <element api="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String)" />
+          <element api="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String,System.Windows.Messaging.ReceiverNameScope,System.Collections.Generic.IEnumerable{System.String})" />
+        </element>
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.AllowedSenderDomains" />
+        <element api="F:System.Windows.Messaging.LocalMessageReceiver.AnyDomain" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.DisableSenderTrustCheck" />
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.Dispose" />
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.Listen" />
+        <element api="E:System.Windows.Messaging.LocalMessageReceiver.MessageReceived" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.NameScope" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.ReceiverName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" />
+      </containers>
+      <file name="c234739f-1c8c-ee0d-03cc-485f77044e44" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata name="LocalMessageReceiver" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.Dispose" />
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.Listen" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" />
+      </containers>
+      <file name="abc2e039-c3a5-93cc-205a-a25616264537" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata name="LocalMessageReceiver" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.AllowedSenderDomains" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.DisableSenderTrustCheck" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.NameScope" />
+        <element api="P:System.Windows.Messaging.LocalMessageReceiver.ReceiverName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" />
+      </containers>
+      <file name="b06efa1b-abda-5858-a068-92c1b38259ef" />
+    </api>
+    <api id="Events.T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata name="LocalMessageReceiver" group="list" subgroup="Events" typeTopicId="T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Messaging.LocalMessageReceiver.MessageReceived" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" />
+      </containers>
+      <file name="5e315bcf-f6e8-596e-c131-21060969d6e0" />
+    </api>
+    <api id="Fields.T:System.Windows.Messaging.LocalMessageReceiver">
+      <topicdata name="LocalMessageReceiver" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name="LocalMessageReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Messaging.LocalMessageReceiver.AnyDomain" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" />
+      </containers>
+      <file name="50fb0d36-44ad-0150-5076-c5561b7ff330" />
+    </api>
+    <api id="Overload:System.Windows.Messaging.LocalMessageReceiver.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Messaging.LocalMessageReceiver" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String)" />
+        <element api="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String,System.Windows.Messaging.ReceiverNameScope,System.Collections.Generic.IEnumerable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="84b84c3c-1c24-fc8e-4466-005ad797a9bb" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Messaging.LocalMessageReceiver.#ctor" />
+      <parameters>
+        <parameter name="receiverName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="1957e5e0-6a6c-de12-996f-81e3690468d5" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageReceiver.#ctor(System.String,System.Windows.Messaging.ReceiverNameScope,System.Collections.Generic.IEnumerable{System.String})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Messaging.LocalMessageReceiver.#ctor" />
+      <parameters>
+        <parameter name="receiverName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="nameScope">
+          <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+        </parameter>
+        <parameter name="allowedSenderDomains">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="593c4cbb-0d60-cc6e-6b5d-505d37685a68" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageReceiver.AllowedSenderDomains">
+      <topicdata group="api" />
+      <apidata name="AllowedSenderDomains" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllowedSenderDomains" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="99fad0ef-971c-811a-c1bd-0658d15cbc62" />
+    </api>
+    <api id="F:System.Windows.Messaging.LocalMessageReceiver.AnyDomain">
+      <topicdata group="api" />
+      <apidata name="AnyDomain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="c1f95298-4285-24af-ec7d-a934457e3b05" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageReceiver.DisableSenderTrustCheck">
+      <topicdata group="api" />
+      <apidata name="DisableSenderTrustCheck" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisableSenderTrustCheck" />
+      <setter name="set_DisableSenderTrustCheck" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="de4f33c3-50e2-e746-a0fc-a6dd277553b5" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageReceiver.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="c1633155-7c91-d9ba-9ac0-ba0be59ca34d" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageReceiver.Listen">
+      <topicdata group="api" />
+      <apidata name="Listen" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="ccf23ad2-7352-d18f-c210-f14b036c90c4" />
+    </api>
+    <api id="E:System.Windows.Messaging.LocalMessageReceiver.MessageReceived">
+      <topicdata group="api" />
+      <apidata name="MessageReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MessageReceived" />
+      <remover name="remove_MessageReceived" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="1e5f72f3-ea24-e9d4-de1a-a7e3b8ced5ce" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageReceiver.NameScope">
+      <topicdata group="api" />
+      <apidata name="NameScope" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NameScope" />
+      <returns>
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="8fdec167-16f2-d842-6ebf-c1c5d8fdf9a9" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageReceiver.ReceiverName">
+      <topicdata group="api" />
+      <apidata name="ReceiverName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageReceiver" ref="true" />
+      </containers>
+      <file name="b0f9ca71-9b49-bc9d-04f1-f074839b6b0b" />
+    </api>
+    <api id="T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="73c4d256-56bd-6e10-1c78-5ba537bfdbe3" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata name="LocalMessageSender" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Messaging.LocalMessageSender.#ctor">
+          <element api="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String)" />
+          <element api="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String,System.String)" />
+        </element>
+        <element api="F:System.Windows.Messaging.LocalMessageSender.Global" />
+        <element api="P:System.Windows.Messaging.LocalMessageSender.ReceiverDomain" />
+        <element api="P:System.Windows.Messaging.LocalMessageSender.ReceiverName" />
+        <element api="Overload:System.Windows.Messaging.LocalMessageSender.SendAsync">
+          <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String)" />
+          <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String,System.Object)" />
+        </element>
+        <element api="E:System.Windows.Messaging.LocalMessageSender.SendCompleted" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" />
+      </containers>
+      <file name="3530b283-7222-775b-b91c-b990b4f44c2c" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata name="LocalMessageSender" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Messaging.LocalMessageSender.SendAsync">
+          <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String)" />
+          <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" />
+      </containers>
+      <file name="367ffbd0-f8ee-af62-f9d4-b57951bdc202" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata name="LocalMessageSender" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Messaging.LocalMessageSender.ReceiverDomain" />
+        <element api="P:System.Windows.Messaging.LocalMessageSender.ReceiverName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" />
+      </containers>
+      <file name="5d320a14-ecea-d5bf-d35c-78665c03dccc" />
+    </api>
+    <api id="Events.T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata name="LocalMessageSender" group="list" subgroup="Events" typeTopicId="T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Messaging.LocalMessageSender.SendCompleted" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" />
+      </containers>
+      <file name="8b708216-21de-6282-38da-d0ab613c401b" />
+    </api>
+    <api id="Fields.T:System.Windows.Messaging.LocalMessageSender">
+      <topicdata name="LocalMessageSender" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="LocalMessageSender" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Messaging.LocalMessageSender.Global" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" />
+      </containers>
+      <file name="d05dd93d-33e2-471d-53f7-18e346ebc749" />
+    </api>
+    <api id="Overload:System.Windows.Messaging.LocalMessageSender.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String)" />
+        <element api="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="9479b303-de0d-eaff-af14-fe61504a0f69" />
+    </api>
+    <api id="Overload:System.Windows.Messaging.LocalMessageSender.SendAsync">
+      <topicdata name="SendAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Messaging.LocalMessageSender" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String)" />
+        <element api="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="35879d82-cdf6-a670-345e-1762f9109d9a" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Messaging.LocalMessageSender.#ctor" />
+      <parameters>
+        <parameter name="receiverName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="7d81ef22-dc4f-7620-d961-1c061e12a8b1" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageSender.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Messaging.LocalMessageSender.#ctor" />
+      <parameters>
+        <parameter name="receiverName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="receiverDomain">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="e133d9ec-da78-d909-91d7-98528601151a" />
+    </api>
+    <api id="F:System.Windows.Messaging.LocalMessageSender.Global">
+      <topicdata group="api" />
+      <apidata name="Global" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>*</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="e00057b4-664e-cd53-28e3-e8b8013f6983" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageSender.ReceiverDomain">
+      <topicdata group="api" />
+      <apidata name="ReceiverDomain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverDomain" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="08de8274-e7e0-0f11-2953-6b696b8ecc41" />
+    </api>
+    <api id="P:System.Windows.Messaging.LocalMessageSender.ReceiverName">
+      <topicdata group="api" />
+      <apidata name="ReceiverName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="8318de24-4022-abdc-3250-fd9f2b03c3c7" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Messaging.LocalMessageSender.SendAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="562ca757-b0dc-5272-69ec-aaebf1d2e397" />
+    </api>
+    <api id="M:System.Windows.Messaging.LocalMessageSender.SendAsync(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Messaging.LocalMessageSender.SendAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="8645b110-310e-3ac1-e035-e4be1f73fecd" />
+    </api>
+    <api id="E:System.Windows.Messaging.LocalMessageSender.SendCompleted">
+      <topicdata group="api" />
+      <apidata name="SendCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SendCompleted" />
+      <remover name="remove_SendCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.LocalMessageSender" ref="true" />
+      </containers>
+      <file name="9728232c-aa9a-a828-241a-b1fae75bf8aa" />
+    </api>
+    <api id="T:System.Windows.Messaging.MessageReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      <apidata name="MessageReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="f00ff7a4-357e-1e0f-0cb2-4f1802dffe28" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.MessageReceivedEventArgs">
+      <topicdata name="MessageReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      <apidata name="MessageReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.Message" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.NameScope" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.ReceiverName" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.Response" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.SenderDomain" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      </containers>
+      <file name="0a51171c-cdc6-8f6e-84fc-1e7dfe256af0" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.MessageReceivedEventArgs">
+      <topicdata name="MessageReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      <apidata name="MessageReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      </containers>
+      <file name="a11e26c4-3f25-ec35-e11a-7e8b224cdc99" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.MessageReceivedEventArgs">
+      <topicdata name="MessageReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      <apidata name="MessageReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.Message" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.NameScope" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.ReceiverName" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.Response" />
+        <element api="P:System.Windows.Messaging.MessageReceivedEventArgs.SenderDomain" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" />
+      </containers>
+      <file name="a461e348-5574-08ef-d3c5-78620c76cca8" />
+    </api>
+    <api id="P:System.Windows.Messaging.MessageReceivedEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="896127c7-e801-1b47-f2d6-2d48c58d92c8" />
+    </api>
+    <api id="P:System.Windows.Messaging.MessageReceivedEventArgs.NameScope">
+      <topicdata group="api" />
+      <apidata name="NameScope" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NameScope" />
+      <returns>
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="c2c94c59-80c0-3cdb-839d-a2f2af25a115" />
+    </api>
+    <api id="P:System.Windows.Messaging.MessageReceivedEventArgs.ReceiverName">
+      <topicdata group="api" />
+      <apidata name="ReceiverName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="a0301722-d2a2-834c-947c-f8d8f0ecb570" />
+    </api>
+    <api id="P:System.Windows.Messaging.MessageReceivedEventArgs.Response">
+      <topicdata group="api" />
+      <apidata name="Response" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Response" />
+      <setter name="set_Response" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="cb438da4-2b72-26a9-06ce-92c2f94d2dfb" />
+    </api>
+    <api id="P:System.Windows.Messaging.MessageReceivedEventArgs.SenderDomain">
+      <topicdata group="api" />
+      <apidata name="SenderDomain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SenderDomain" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.MessageReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="d964368b-6f38-d796-d511-516c3ed08a12" />
+    </api>
+    <api id="T:System.Windows.Messaging.ReceiverNameScope">
+      <topicdata group="api" />
+      <apidata name="ReceiverNameScope" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Messaging.ReceiverNameScope.Domain" />
+        <element api="F:System.Windows.Messaging.ReceiverNameScope.Global" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="74b16695-bfc7-0da6-015e-426f061a18b1" />
+    </api>
+    <api id="F:System.Windows.Messaging.ReceiverNameScope.Domain">
+      <topicdata group="api" notopic="" />
+      <apidata name="Domain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </containers>
+      <file name="83b17a31-452b-0aed-eeab-1597194d4e70" />
+    </api>
+    <api id="F:System.Windows.Messaging.ReceiverNameScope.Global">
+      <topicdata group="api" notopic="" />
+      <apidata name="Global" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.ReceiverNameScope" ref="false" />
+      </containers>
+      <file name="94e6162f-5686-fe4f-a90c-66d6c63abc33" />
+    </api>
+    <api id="T:System.Windows.Messaging.SendCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.SendCompletedEventArgs" />
+      <apidata name="SendCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="29e5c50b-57a6-ce0f-5c4b-17bf8186be48" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.SendCompletedEventArgs">
+      <topicdata name="SendCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      <apidata name="SendCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.Message" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverDomain" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverName" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.Response" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      </containers>
+      <file name="8a2edcee-95ac-e374-e845-ffed09b45cff" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.SendCompletedEventArgs">
+      <topicdata name="SendCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      <apidata name="SendCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      </containers>
+      <file name="06bed2ca-ddd0-999a-b8a6-d56673701a6e" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.SendCompletedEventArgs">
+      <topicdata name="SendCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      <apidata name="SendCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.Message" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverDomain" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverName" />
+        <element api="P:System.Windows.Messaging.SendCompletedEventArgs.Response" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" />
+      </containers>
+      <file name="5446b254-6d83-3799-caa9-a6246e404cdc" />
+    </api>
+    <api id="P:System.Windows.Messaging.SendCompletedEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="0240f5a3-dba5-56e6-7728-c46f6bbb5175" />
+    </api>
+    <api id="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverDomain">
+      <topicdata group="api" />
+      <apidata name="ReceiverDomain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverDomain" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="5834782f-edb7-b003-1686-b6e2042f69e6" />
+    </api>
+    <api id="P:System.Windows.Messaging.SendCompletedEventArgs.ReceiverName">
+      <topicdata group="api" />
+      <apidata name="ReceiverName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReceiverName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="c043a269-6ddd-051c-dc69-87710590cef7" />
+    </api>
+    <api id="P:System.Windows.Messaging.SendCompletedEventArgs.Response">
+      <topicdata group="api" />
+      <apidata name="Response" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Response" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="b8a38821-46f5-02ac-a643-956dca367b12" />
+    </api>
+    <api id="T:System.Windows.Messaging.SendFailedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Messaging.SendFailedException" />
+      <apidata name="SendFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+      </containers>
+      <file name="4633ce7f-3366-fbf6-5360-661ef4a0e07b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Messaging.SendFailedException">
+      <topicdata name="SendFailedException" group="list" subgroup="members" typeTopicId="T:System.Windows.Messaging.SendFailedException" />
+      <apidata name="SendFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendFailedException" />
+      </containers>
+      <file name="a720fdee-73c7-c31c-e5db-dc35c11b3d89" />
+    </api>
+    <api id="Methods.T:System.Windows.Messaging.SendFailedException">
+      <topicdata name="SendFailedException" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Messaging.SendFailedException" />
+      <apidata name="SendFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendFailedException" />
+      </containers>
+      <file name="28dcdfd7-40fc-36c5-0f11-1c06b0ebc77b" />
+    </api>
+    <api id="Properties.T:System.Windows.Messaging.SendFailedException">
+      <topicdata name="SendFailedException" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Messaging.SendFailedException" />
+      <apidata name="SendFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Messaging" />
+        <type api="T:System.Windows.Messaging.SendFailedException" />
+      </containers>
+      <file name="2b375340-b5e9-b85a-ce26-03b2cb00223b" />
+    </api>
+  </apis>
+</reflection>

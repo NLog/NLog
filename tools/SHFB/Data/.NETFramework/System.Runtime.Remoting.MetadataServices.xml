@@ -1,0 +1,1631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Remoting">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.MetadataServices">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.MetadataServices" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.MetadataServices.MetaData" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+        <element api="T:System.Runtime.Remoting.MetadataServices.SdlType" />
+      </elements>
+      <file name="24ec24e7-5b10-564d-1335-ae1fe0a0e5fa" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.MetaData">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="MetaData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.MetaData.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="74c2c915-5db6-8229-6283-132fd8434fb0" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.MetaData">
+      <topicdata name="MetaData" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="MetaData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.MetaData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.#ctor" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceFileToAssemblyFile(System.String,System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceStreamToAssemblyFile(System.Collections.ArrayList,System.String,System.String)" />
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToFile(System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToStream(System.String,System.IO.Stream)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(System.IO.Stream,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      </containers>
+      <file name="ab08d368-8489-cfb3-4e8d-6795ff850d17" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.MetaData">
+      <topicdata name="MetaData" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="MetaData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.MetaData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceFileToAssemblyFile(System.String,System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceStreamToAssemblyFile(System.Collections.ArrayList,System.String,System.String)" />
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream">
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToFile(System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToStream(System.String,System.IO.Stream)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(System.IO.Stream,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      </containers>
+      <file name="2d0e77ae-44b2-27f5-1f6f-502ed1bf0339" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream">
+      <topicdata name="ConvertSchemaStreamToCodeSourceStream" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="ConvertSchemaStreamToCodeSourceStream" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="61d8733e-b986-ac31-1903-0844a9a0c3f4" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile">
+      <topicdata name="ConvertTypesToSchemaToFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="ConvertTypesToSchemaToFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="f1257789-e4cb-4267-0bf2-e8a862c09c7c" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream">
+      <topicdata name="ConvertTypesToSchemaToStream" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.MetaData" />
+      <apidata name="ConvertTypesToSchemaToStream" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="a603005a-781a-218c-d991-595052dbb17e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="4cbed2a4-ddd8-a308-9f65-f730ba7bfadf" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceFileToAssemblyFile(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertCodeSourceFileToAssemblyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="assemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="strongNameFilename">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="36fe9445-2e91-725c-d49b-9683fc607ac0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertCodeSourceStreamToAssemblyFile(System.Collections.ArrayList,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertCodeSourceStreamToAssemblyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="outCodeStreamList">
+          <type api="T:System.Collections.ArrayList" ref="true" />
+        </parameter>
+        <parameter name="assemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="strongNameFilename">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="e01c9f03-d2d9-fd4d-f8ce-233c9491fbc1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList)">
+      <topicdata group="api" />
+      <apidata name="ConvertSchemaStreamToCodeSourceStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="clientProxy">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="outputDirectory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="outCodeStreamList">
+          <type api="T:System.Collections.ArrayList" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="006b5b0e-7271-8bee-f2db-ad15ab509a9c" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertSchemaStreamToCodeSourceStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="clientProxy">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="outputDirectory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="outCodeStreamList">
+          <type api="T:System.Collections.ArrayList" ref="true" />
+        </parameter>
+        <parameter name="proxyUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="38bf29a7-c72b-691c-6a9e-9d78f6abe0d9" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream(System.Boolean,System.String,System.IO.Stream,System.Collections.ArrayList,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertSchemaStreamToCodeSourceStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertSchemaStreamToCodeSourceStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="clientProxy">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="outputDirectory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="outCodeStreamList">
+          <type api="T:System.Collections.ArrayList" ref="true" />
+        </parameter>
+        <parameter name="proxyUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="proxyNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="d9197af6-0abf-b638-7cc2-132abd1b9fbc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertTypesToSchemaToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="types">
+          <arrayOf rank="1">
+            <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sdlType">
+          <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+        </parameter>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="babb738a-e59d-411b-8fca-88b74d293271" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertTypesToSchemaToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="types">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sdlType">
+          <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+        </parameter>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="e17d72b6-ae55-236a-8bc8-d91ce4c23936" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Runtime.Remoting.MetadataServices.ServiceType[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="ConvertTypesToSchemaToStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sdlType">
+          <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+        </parameter>
+        <parameter name="outputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="7576c9a3-8747-117e-2c33-83271d1f76d5" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream(System.Type[],System.Runtime.Remoting.MetadataServices.SdlType,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="ConvertTypesToSchemaToStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.Remoting.MetadataServices.MetaData.ConvertTypesToSchemaToStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="types">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sdlType">
+          <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+        </parameter>
+        <parameter name="outputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="709251ca-fbf8-bf5e-3270-79338da6e637" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RetrieveSchemaFromUrlToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="0c92eee7-b580-2b3e-bf63-ccaabed89602" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.RetrieveSchemaFromUrlToStream(System.String,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="RetrieveSchemaFromUrlToStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="outputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="857575e5-03b5-f894-3f61-f00e55284e0d" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(System.IO.Stream,System.String)">
+      <topicdata group="api" />
+      <apidata name="SaveStreamToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.MetaData" ref="true" />
+      </containers>
+      <file name="01bbdbce-cb4a-17ff-bb44-4d15dfe96cf4" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      <apidata name="SdlChannelSink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannelSinkBase" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="09a59852-b213-3047-b6bd-4910ba9c9e75" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.SdlChannelSink">
+      <topicdata name="SdlChannelSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      <apidata name="SdlChannelSink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.#ctor(System.Runtime.Remoting.Channels.IChannelReceiver,System.Runtime.Remoting.Channels.IServerChannelSink)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.AsyncProcessResponse(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.GetResponseStream(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders)" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.NextChannelSink" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.ProcessMessage(System.Runtime.Remoting.Channels.IServerChannelSinkStack,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream,System.Runtime.Remoting.Messaging.IMessage@,System.Runtime.Remoting.Channels.ITransportHeaders@,System.IO.Stream@)" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      </containers>
+      <file name="dd91f985-9e88-fc82-96d5-7cb9e6482980" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.SdlChannelSink">
+      <topicdata name="SdlChannelSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      <apidata name="SdlChannelSink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.AsyncProcessResponse(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.GetResponseStream(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.ProcessMessage(System.Runtime.Remoting.Channels.IServerChannelSinkStack,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream,System.Runtime.Remoting.Messaging.IMessage@,System.Runtime.Remoting.Channels.ITransportHeaders@,System.IO.Stream@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      </containers>
+      <file name="a2981932-84c5-7fbf-3b08-63c25e053d3e" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.MetadataServices.SdlChannelSink">
+      <topicdata name="SdlChannelSink" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      <apidata name="SdlChannelSink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.NextChannelSink" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" />
+      </containers>
+      <file name="b95d492c-9938-28b1-9fe8-92ede605d612" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.#ctor(System.Runtime.Remoting.Channels.IChannelReceiver,System.Runtime.Remoting.Channels.IServerChannelSink)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="receiver">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </parameter>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="7c23560b-c6d5-085c-4051-eb7b34bbc87c" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.AsyncProcessResponse(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="AsyncProcessResponse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sinkStack">
+          <type api="T:System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+        </parameter>
+        <parameter name="headers">
+          <type api="T:System.Runtime.Remoting.Channels.ITransportHeaders" ref="true" />
+        </parameter>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IServerChannelSink.AsyncProcessResponse(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream)">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="17592388-63d5-7607-5d7b-b47c0e1c1949" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.GetResponseStream(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders)">
+      <topicdata group="api" />
+      <apidata name="GetResponseStream" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sinkStack">
+          <type api="T:System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+        </parameter>
+        <parameter name="headers">
+          <type api="T:System.Runtime.Remoting.Channels.ITransportHeaders" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IServerChannelSink.GetResponseStream(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders)">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="a8544282-e616-0443-f775-76bcc3ad453e" />
+    </api>
+    <api id="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.NextChannelSink">
+      <topicdata group="api" />
+      <apidata name="NextChannelSink" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NextChannelSink" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IServerChannelSink.NextChannelSink">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="07df015f-aebf-95e8-da98-4d8839ea2c6f" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSink.ProcessMessage(System.Runtime.Remoting.Channels.IServerChannelSinkStack,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream,System.Runtime.Remoting.Messaging.IMessage@,System.Runtime.Remoting.Channels.ITransportHeaders@,System.IO.Stream@)">
+      <topicdata group="api" />
+      <apidata name="ProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sinkStack">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkStack" ref="true" />
+        </parameter>
+        <parameter name="requestMsg">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+        </parameter>
+        <parameter name="requestHeaders">
+          <type api="T:System.Runtime.Remoting.Channels.ITransportHeaders" ref="true" />
+        </parameter>
+        <parameter name="requestStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="responseMsg" out="true">
+          <referenceTo>
+            <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="responseHeaders" out="true">
+          <referenceTo>
+            <type api="T:System.Runtime.Remoting.Channels.ITransportHeaders" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="responseStream" out="true">
+          <referenceTo>
+            <type api="T:System.IO.Stream" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.ServerProcessing" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IServerChannelSink.ProcessMessage(System.Runtime.Remoting.Channels.IServerChannelSinkStack,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream,System.Runtime.Remoting.Messaging.IMessage@,System.Runtime.Remoting.Channels.ITransportHeaders@,System.IO.Stream@)">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="a661f0d9-60ea-0db8-4ccf-c40f9d50893b" />
+    </api>
+    <api id="P:System.Runtime.Remoting.MetadataServices.SdlChannelSink.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelSinkBase.Properties">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelSinkBase" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSink" ref="true" />
+      </containers>
+      <file name="08bd934b-3f7f-96fc-a40a-8614b3d39da2" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      <apidata name="SdlChannelSinkProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="910f7934-b17a-3b9e-d741-6171cb32b068" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider">
+      <topicdata name="SdlChannelSinkProvider" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      <apidata name="SdlChannelSinkProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor">
+          <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor(System.Collections.IDictionary,System.Collections.ICollection)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.CreateSink(System.Runtime.Remoting.Channels.IChannelReceiver)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.GetChannelData(System.Runtime.Remoting.Channels.IChannelDataStore)" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.Next" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      </containers>
+      <file name="70990c4c-2103-40dd-204e-1f5d7284da11" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider">
+      <topicdata name="SdlChannelSinkProvider" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      <apidata name="SdlChannelSinkProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.CreateSink(System.Runtime.Remoting.Channels.IChannelReceiver)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.GetChannelData(System.Runtime.Remoting.Channels.IChannelDataStore)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      </containers>
+      <file name="eaa02f1f-9f06-7362-9dd0-4debba5aa015" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider">
+      <topicdata name="SdlChannelSinkProvider" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      <apidata name="SdlChannelSinkProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.Next" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      </containers>
+      <file name="64f172ef-8946-9e5f-2cb2-4e7515849a2e" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor(System.Collections.IDictionary,System.Collections.ICollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="036cc30a-325f-b12e-b967-a9b96a97bc7b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="87d0f9ef-d3d4-8fcc-a773-00ae885577a0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor(System.Collections.IDictionary,System.Collections.ICollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="providerData">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="e0e9c339-eb3e-0d9c-0d2d-48a17a6eb0cc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.CreateSink(System.Runtime.Remoting.Channels.IChannelReceiver)">
+      <topicdata group="api" />
+      <apidata name="CreateSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="channel">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IServerChannelSinkProvider.CreateSink(System.Runtime.Remoting.Channels.IChannelReceiver)">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="0b168aa3-abd1-a7b9-810a-9fdceab179f1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.GetChannelData(System.Runtime.Remoting.Channels.IChannelDataStore)">
+      <topicdata group="api" />
+      <apidata name="GetChannelData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localChannelData">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelDataStore" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IServerChannelSinkProvider.GetChannelData(System.Runtime.Remoting.Channels.IChannelDataStore)">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="d4ca275a-c43d-d569-1730-5e5b85b782a8" />
+    </api>
+    <api id="P:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider.Next">
+      <topicdata group="api" />
+      <apidata name="Next" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Next" />
+      <setter name="set_Next" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IServerChannelSinkProvider.Next">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlChannelSinkProvider" ref="true" />
+      </containers>
+      <file name="684b7069-8a7c-b587-a2a1-4de7bc6d208a" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.SdlType">
+      <topicdata group="api" />
+      <apidata name="SdlType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.MetadataServices.SdlType.Sdl" />
+        <element api="F:System.Runtime.Remoting.MetadataServices.SdlType.Wsdl" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="a70b7d04-a422-3ddc-9fef-00000ff6b9e0" />
+    </api>
+    <api id="F:System.Runtime.Remoting.MetadataServices.SdlType.Sdl">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sdl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+      </containers>
+      <file name="4fb86039-1193-ca25-efd6-50fd34cd693b" />
+    </api>
+    <api id="F:System.Runtime.Remoting.MetadataServices.SdlType.Wsdl">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wsdl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SdlType" ref="false" />
+      </containers>
+      <file name="2dd97956-530e-91b2-cd32-83c9a6d6753d" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.ServiceType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="46e36e58-32cf-69d2-eda8-18d059b8e928" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor">
+          <element api="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type)" />
+          <element api="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type,System.String)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.MetadataServices.ServiceType.ObjectType" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.ServiceType.Url" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      </containers>
+      <file name="df9a409a-0293-1599-8c0f-36dd923ecc24" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      </containers>
+      <file name="a3cdc2d0-b805-2de0-bd9b-d8095b55a458" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.MetadataServices.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.MetadataServices.ServiceType.ObjectType" />
+        <element api="P:System.Runtime.Remoting.MetadataServices.ServiceType.Url" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      </containers>
+      <file name="566a5847-d73d-9238-52b2-eb0af9280cb9" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.ServiceType" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type)" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+      </containers>
+      <file name="d3c320fc-8991-95e6-4a1e-f7a1803c4f87" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+      </containers>
+      <file name="2ae9b32c-d309-51d6-ed68-19f7a6f415d2" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor(System.Type,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.MetadataServices.ServiceType.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+      </containers>
+      <file name="67417c89-b9b5-e8fb-4601-ef3ee8870081" />
+    </api>
+    <api id="P:System.Runtime.Remoting.MetadataServices.ServiceType.ObjectType">
+      <topicdata group="api" />
+      <apidata name="ObjectType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ObjectType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+      </containers>
+      <file name="873e0a7b-496c-b5cf-73d2-151812b16001" />
+    </api>
+    <api id="P:System.Runtime.Remoting.MetadataServices.ServiceType.Url">
+      <topicdata group="api" />
+      <apidata name="Url" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Url" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.ServiceType" ref="true" />
+      </containers>
+      <file name="f0bb5b6f-37fd-7c8d-2974-beccad6b75c3" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      <apidata name="SUDSGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="26697765-17bd-f079-7d39-b000a2b9603b" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException">
+      <topicdata name="SUDSGeneratorException" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      <apidata name="SUDSGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      </containers>
+      <file name="95155804-fa20-45ba-3b90-2f58fb4da015" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException">
+      <topicdata name="SUDSGeneratorException" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      <apidata name="SUDSGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      </containers>
+      <file name="e053e133-0315-2211-3d07-494436e80149" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException">
+      <topicdata name="SUDSGeneratorException" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      <apidata name="SUDSGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      </containers>
+      <file name="a240e534-805c-6029-0b57-65a801eabc55" />
+    </api>
+    <api id="Events.T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException">
+      <topicdata name="SUDSGeneratorException" group="list" subgroup="Events" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      <apidata name="SUDSGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" />
+      </containers>
+      <file name="10c04f2a-a5b2-4b86-2ec0-7971db6bad39" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSGeneratorException" ref="true" />
+      </containers>
+      <file name="e099631e-1f3f-36d8-a1f3-c9f11c550e00" />
+    </api>
+    <api id="T:System.Runtime.Remoting.MetadataServices.SUDSParserException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      <apidata name="SUDSParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+      </containers>
+      <file name="150bd415-d4ba-a268-b68a-277281387b59" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.MetadataServices.SUDSParserException">
+      <topicdata name="SUDSParserException" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      <apidata name="SUDSParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Runtime.Remoting.MetadataServices.SUDSParserException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      </containers>
+      <file name="aa2a4149-c553-a0d0-50cd-b88b0a84e07c" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.MetadataServices.SUDSParserException">
+      <topicdata name="SUDSParserException" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      <apidata name="SUDSParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      </containers>
+      <file name="f324e458-e208-1eaf-11c5-de19a5fe84c6" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.MetadataServices.SUDSParserException">
+      <topicdata name="SUDSParserException" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      <apidata name="SUDSParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      </containers>
+      <file name="11aac06a-2783-a97d-75fa-58546ffa0410" />
+    </api>
+    <api id="Events.T:System.Runtime.Remoting.MetadataServices.SUDSParserException">
+      <topicdata name="SUDSParserException" group="list" subgroup="Events" typeTopicId="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      <apidata name="SUDSParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" />
+      </containers>
+      <file name="d146124a-f274-9f7a-cc8c-eb71f6e32a29" />
+    </api>
+    <api id="M:System.Runtime.Remoting.MetadataServices.SUDSParserException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.MetadataServices" />
+        <type api="T:System.Runtime.Remoting.MetadataServices.SUDSParserException" ref="true" />
+      </containers>
+      <file name="25f06558-5cc4-f603-1ec4-1cc54a76cf35" />
+    </api>
+  </apis>
+</reflection>

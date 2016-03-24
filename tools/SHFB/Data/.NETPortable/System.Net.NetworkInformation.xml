@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Net.NetworkInformation">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.NetworkInformation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.NetworkInformation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.NetworkInformation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.NetworkInformation">
+      <topicdata group="api" />
+      <apidata name="System.Net.NetworkInformation" group="namespace" />
+      <elements>
+        <element api="T:System.Net.NetworkInformation.NetworkAddressChangedEventHandler" />
+        <element api="T:System.Net.NetworkInformation.NetworkChange" />
+        <element api="T:System.Net.NetworkInformation.NetworkInterface" />
+      </elements>
+      <file name="a11c6419-693f-195b-b5bd-694416047530" />
+    </api>
+    <api id="T:System.Net.NetworkInformation.NetworkAddressChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NetworkAddressChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+      </containers>
+      <file name="f7ed1b2d-ecb2-4b28-db06-c4a8b5e3eb77" />
+    </api>
+    <api id="T:System.Net.NetworkInformation.NetworkChange">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+      </containers>
+      <file name="be35b18a-d929-e2db-af6e-a3a3555b70e1" />
+    </api>
+    <api id="AllMembers.T:System.Net.NetworkInformation.NetworkChange">
+      <topicdata name="NetworkChange" group="list" subgroup="members" typeTopicId="T:System.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Net.NetworkInformation.NetworkChange.NetworkAddressChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkChange" />
+      </containers>
+      <file name="0e4179e8-a6b4-df5c-bf8f-636ff9b9c228" />
+    </api>
+    <api id="Events.T:System.Net.NetworkInformation.NetworkChange">
+      <topicdata name="NetworkChange" group="list" subgroup="Events" typeTopicId="T:System.Net.NetworkInformation.NetworkChange" />
+      <apidata name="NetworkChange" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Net.NetworkInformation.NetworkChange.NetworkAddressChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkChange" />
+      </containers>
+      <file name="9ca96668-ec1f-dd07-7c48-8081372dddc5" />
+    </api>
+    <api id="E:System.Net.NetworkInformation.NetworkChange.NetworkAddressChanged">
+      <topicdata group="api" />
+      <apidata name="NetworkAddressChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NetworkAddressChanged" />
+      <remover name="remove_NetworkAddressChanged" />
+      <eventhandler>
+        <type api="T:System.Net.NetworkInformation.NetworkAddressChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkChange" ref="true" />
+      </containers>
+      <file name="0907fd3c-f75c-fe1f-1334-32b070f79ee5" />
+    </api>
+    <api id="T:System.Net.NetworkInformation.NetworkInterface">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+      </containers>
+      <file name="4efeec32-efc3-6071-54aa-5c12a634858c" />
+    </api>
+    <api id="AllMembers.T:System.Net.NetworkInformation.NetworkInterface">
+      <topicdata name="NetworkInterface" group="list" subgroup="members" typeTopicId="T:System.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkInterface" />
+      </containers>
+      <file name="34b2e660-ee69-6303-30ae-4cdeabdb32dd" />
+    </api>
+    <api id="Methods.T:System.Net.NetworkInformation.NetworkInterface">
+      <topicdata name="NetworkInterface" group="list" subgroup="Methods" typeTopicId="T:System.Net.NetworkInformation.NetworkInterface" />
+      <apidata name="NetworkInterface" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkInterface" />
+      </containers>
+      <file name="feea38f2-db3a-852c-3fb0-4e5953aba2de" />
+    </api>
+    <api id="M:System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable">
+      <topicdata group="api" />
+      <apidata name="GetIsNetworkAvailable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.NetworkInformation" module="System.Net.NetworkInformation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Net.NetworkInformation" />
+        <type api="T:System.Net.NetworkInformation.NetworkInterface" ref="true" />
+      </containers>
+      <file name="090d13ed-5617-c9b4-c60e-894e48ce1d22" />
+    </api>
+  </apis>
+</reflection>

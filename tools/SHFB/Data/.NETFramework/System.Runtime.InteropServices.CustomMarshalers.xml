@@ -1,0 +1,1036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="CustomMarshalers">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CustomMarshalers.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CustomMarshalers.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CustomMarshalers.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices.CustomMarshalers">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices.CustomMarshalers" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+        <element api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+        <element api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+        <element api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      </elements>
+      <file name="6d1942ee-0097-8c71-6e5a-68749fa53dea" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      <apidata name="EnumerableToDispatchMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+      </containers>
+      <file name="634c29a7-3842-64e4-771b-591bb352ba4a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler">
+      <topicdata name="EnumerableToDispatchMarshaler" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      <apidata name="EnumerableToDispatchMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      </containers>
+      <file name="79e28fff-559e-119c-ef66-5467bd833c59" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler">
+      <topicdata name="EnumerableToDispatchMarshaler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      <apidata name="EnumerableToDispatchMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" />
+      </containers>
+      <file name="ee54affd-43f4-c347-6f39-8ab3d4213461" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpManagedData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CleanUpManagedData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="bda9cb40-b5ec-0cea-2873-82670aea10d0" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.CleanUpNativeData(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="CleanUpNativeData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="7d37bec2-e9b8-9608-f0fd-68548506b863" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetInstance(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pstrCookie">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="119d408c-da0d-68da-5f5b-23246200e3a0" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.GetNativeDataSize">
+      <topicdata group="api" />
+      <apidata name="GetNativeDataSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="e3ecdff4-4eee-4bdb-3dbd-ffdb19357295" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalManagedToNative(System.Object)">
+      <topicdata group="api" />
+      <apidata name="MarshalManagedToNative" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="cf116c5f-0129-cd43-1006-e873e6e4d892" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler.MarshalNativeToManaged(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="MarshalNativeToManaged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumerableToDispatchMarshaler" ref="true" />
+      </containers>
+      <file name="fd70108b-fbcb-6847-ef31-e6b90f24e575" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+      <apidata name="EnumeratorToEnumVariantMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+      </containers>
+      <file name="ad8394a9-8e60-59d8-c5e8-3dbf8e6c23be" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler">
+      <topicdata name="EnumeratorToEnumVariantMarshaler" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+      <apidata name="EnumeratorToEnumVariantMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+      </containers>
+      <file name="45124a43-ebf6-facf-e802-075076f4fa6a" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler">
+      <topicdata name="EnumeratorToEnumVariantMarshaler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+      <apidata name="EnumeratorToEnumVariantMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" />
+      </containers>
+      <file name="7d589f04-d432-6e42-b514-a2cb43cfaa45" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpManagedData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CleanUpManagedData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="24fbfd20-b412-4f29-dda0-6e38fcd464e4" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.CleanUpNativeData(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="CleanUpNativeData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="aa62ae6e-a030-d238-25bc-8035e1ea7ea2" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetInstance(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pstrCookie">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="5ac9d3fd-5b3f-7aa3-0e4f-7deed8a772ab" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.GetNativeDataSize">
+      <topicdata group="api" />
+      <apidata name="GetNativeDataSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="47d9088d-e5d7-726f-d652-66e2712fa0b3" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalManagedToNative(System.Object)">
+      <topicdata group="api" />
+      <apidata name="MarshalManagedToNative" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="c6d64ccf-2fa6-531a-187c-b136473e7461" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler.MarshalNativeToManaged(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="MarshalNativeToManaged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler" ref="true" />
+      </containers>
+      <file name="c39fff81-8de2-2ae3-ba8e-c2e040d7ee27" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+      <apidata name="ExpandoToDispatchExMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+      </containers>
+      <file name="c7346709-f65d-05c2-464e-c9348e511d24" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler">
+      <topicdata name="ExpandoToDispatchExMarshaler" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+      <apidata name="ExpandoToDispatchExMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+      </containers>
+      <file name="39443b86-5bc7-eb83-2289-827d81ba6d20" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler">
+      <topicdata name="ExpandoToDispatchExMarshaler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+      <apidata name="ExpandoToDispatchExMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" />
+      </containers>
+      <file name="01c6c52a-d8ca-52e2-221d-f83d5416268f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpManagedData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CleanUpManagedData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="cabf43db-ae19-2672-c2e3-e68d08040ab1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.CleanUpNativeData(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="CleanUpNativeData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="3122639d-41da-fa50-61dc-066349943a92" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetInstance(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pstrCookie">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="6753184b-bbb0-3d88-a3ac-dd2c52fc75ee" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.GetNativeDataSize">
+      <topicdata group="api" />
+      <apidata name="GetNativeDataSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="4f7b147d-f794-9ec4-6ef9-053cafa2b1da" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalManagedToNative(System.Object)">
+      <topicdata group="api" />
+      <apidata name="MarshalManagedToNative" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="9bd46619-37a0-e6af-2d00-f35f437660c6" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler.MarshalNativeToManaged(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="MarshalNativeToManaged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.ExpandoToDispatchExMarshaler" ref="true" />
+      </containers>
+      <file name="af1bf5e6-f6f4-bf7b-3105-1304954e41da" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+      <apidata name="TypeToTypeInfoMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+      </containers>
+      <file name="7c4176fc-cfc7-52d9-ea6f-6fc79b7f2314" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler">
+      <topicdata name="TypeToTypeInfoMarshaler" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+      <apidata name="TypeToTypeInfoMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+      </containers>
+      <file name="f863cbf5-4a2c-37b4-e322-7442dc19306d" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler">
+      <topicdata name="TypeToTypeInfoMarshaler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+      <apidata name="TypeToTypeInfoMarshaler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpManagedData(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpNativeData(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetInstance(System.String)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetNativeDataSize" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalManagedToNative(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalNativeToManaged(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" />
+      </containers>
+      <file name="c9ca9a07-eb7e-376d-47c7-7ebd75eb4f2b" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpManagedData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CleanUpManagedData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="a009fe0f-e73d-0945-b36c-6e6757cc320e" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.CleanUpNativeData(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="CleanUpNativeData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="530e7713-057e-d99f-a90b-161be5d75fe7" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetInstance(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pstrCookie">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="3e7a8cea-481c-300d-ee74-7d43b275789f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.GetNativeDataSize">
+      <topicdata group="api" />
+      <apidata name="GetNativeDataSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="ef03a74e-3581-7ce9-c2da-95674ee8eb5f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalManagedToNative(System.Object)">
+      <topicdata group="api" />
+      <apidata name="MarshalManagedToNative" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pManagedObj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative(System.Object)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="1a8c6a71-2875-fb4c-b39d-277108dc27cc" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler.MarshalNativeToManaged(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="MarshalNativeToManaged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pNativeData">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged(System.IntPtr)">
+          <type api="T:System.Runtime.InteropServices.ICustomMarshaler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="CustomMarshalers" module="CustomMarshalers" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.CustomMarshalers" />
+        <type api="T:System.Runtime.InteropServices.CustomMarshalers.TypeToTypeInfoMarshaler" ref="true" />
+      </containers>
+      <file name="03487b8a-2e33-21d7-e799-f902d17d4fa8" />
+    </api>
+  </apis>
+</reflection>

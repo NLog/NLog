@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- NOTE: This file must appear LAST in the list of content files so that these items override the matching
+						 items in the stock content files! -->
+
+	<item id="topicTitle_root">{@RootNamespaceTitle}</item>
+	<!-- This is used when a title is not specified in the project -->
+	<item id="rootTopicTitleLocalized">Пространства имен</item>
+
+	<item id="header">{@HeaderText} {@Preliminary}</item>
+	<item id="preliminary">_**\[Это предварительная версия документации. API может измениться в будущем.\]**_</item>
+</content>

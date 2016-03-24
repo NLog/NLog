@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime">
+      <assemblydata version="4.0.20.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.ExceptionServices">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.ExceptionServices" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </elements>
+      <file name="74fa3480-1856-f130-a9ab-0afcd62e67d1" />
+    </api>
+    <api id="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+      </containers>
+      <file name="70444314-7525-4698-d21e-f4efdc9be835" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="members" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)" />
+        <element api="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="646fd013-8a3f-6b6c-0698-2993e659d03e" />
+    </api>
+    <api id="Methods.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="6bcefecf-ce98-616d-de19-db4163d85861" />
+    </api>
+    <api id="Properties.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="bed330de-a215-5d92-b440-45d02cb456b0" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)">
+      <topicdata group="api" />
+      <apidata name="Capture" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="89239913-419a-5a7d-a572-a2033165231f" />
+    </api>
+    <api id="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException">
+      <topicdata group="api" />
+      <apidata name="SourceException" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourceException" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="a321e719-0bc1-c2aa-6ee2-c805fd84efb1" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw">
+      <topicdata group="api" />
+      <apidata name="Throw" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="2e313bfc-0a2d-7ab8-2fc8-3f47c2fd87b4" />
+    </api>
+  </apis>
+</reflection>

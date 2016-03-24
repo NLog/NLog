@@ -1,0 +1,785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ObjectModel">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Collections.Specialized">
+      <topicdata group="api" />
+      <apidata name="System.Collections.Specialized" group="namespace" />
+      <elements>
+        <element api="T:System.Collections.Specialized.INotifyCollectionChanged" />
+        <element api="T:System.Collections.Specialized.NotifyCollectionChangedAction" />
+        <element api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+        <element api="T:System.Collections.Specialized.NotifyCollectionChangedEventHandler" />
+      </elements>
+      <file name="9520d5ff-2886-6ae7-707c-810764ccdb01" />
+    </api>
+    <api id="T:System.Collections.Specialized.INotifyCollectionChanged">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.Specialized.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Collections.ObjectModel.ObservableCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+      </containers>
+      <file name="5d62afc0-98ba-68c9-4971-d5519342bb98" />
+    </api>
+    <api id="AllMembers.T:System.Collections.Specialized.INotifyCollectionChanged">
+      <topicdata name="INotifyCollectionChanged" group="list" subgroup="members" typeTopicId="T:System.Collections.Specialized.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.INotifyCollectionChanged" />
+      </containers>
+      <file name="8a1203dd-1199-30ab-dd6b-43a936ecfee4" />
+    </api>
+    <api id="Events.T:System.Collections.Specialized.INotifyCollectionChanged">
+      <topicdata name="INotifyCollectionChanged" group="list" subgroup="Events" typeTopicId="T:System.Collections.Specialized.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.INotifyCollectionChanged" />
+      </containers>
+      <file name="0645a5ac-b449-f74e-36e6-bb2e3f16dfd4" />
+    </api>
+    <api id="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged">
+      <topicdata group="api" />
+      <apidata name="CollectionChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CollectionChanged" />
+      <remover name="remove_CollectionChanged" />
+      <eventhandler>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.INotifyCollectionChanged" ref="true" />
+      </containers>
+      <file name="770c3026-8573-7cef-915d-2a4228d98988" />
+    </api>
+    <api id="T:System.Collections.Specialized.NotifyCollectionChangedAction">
+      <topicdata group="api" />
+      <apidata name="NotifyCollectionChangedAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" />
+        <element api="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />
+        <element api="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />
+        <element api="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />
+        <element api="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+      </containers>
+      <file name="4343ce5c-53d1-c76a-1f07-2afafb606b3e" />
+    </api>
+    <api id="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add">
+      <topicdata group="api" notopic="" />
+      <apidata name="Add" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="4bb7eb88-8e8f-c4fb-7a74-f48547340056" />
+    </api>
+    <api id="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move">
+      <topicdata group="api" notopic="" />
+      <apidata name="Move" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="9bc494c3-a1e4-e951-3289-b57a10b8ef49" />
+    </api>
+    <api id="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remove" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="621cd023-ee9b-d37a-d8b2-f057e7d547c8" />
+    </api>
+    <api id="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace">
+      <topicdata group="api" notopic="" />
+      <apidata name="Replace" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="264350cd-cb1e-82a9-34c7-28eaecb33a38" />
+    </api>
+    <api id="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="ca5b769f-9cf8-be2c-f80d-095ac53110bc" />
+    </api>
+    <api id="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+      </containers>
+      <file name="1303d7f5-ca13-abb4-1bcc-392d441e810a" />
+    </api>
+    <api id="AllMembers.T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor">
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList,System.Int32)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32,System.Int32)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32,System.Int32)" />
+          <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object,System.Int32)" />
+        </element>
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.Action" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewItems" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewStartingIndex" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldItems" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldStartingIndex" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="b28fb818-6e25-b896-29d9-dbba0d9b325a" />
+    </api>
+    <api id="Methods.T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="4acbf2b9-a5f0-77ca-48fc-421dd7923f66" />
+    </api>
+    <api id="Properties.T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.Action" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewItems" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewStartingIndex" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldItems" />
+        <element api="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldStartingIndex" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="64516985-2107-b5af-1cff-3b6a021ed792" />
+    </api>
+    <api id="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList,System.Int32)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32,System.Int32)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32,System.Int32)" />
+        <element api="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="f5054a93-dee1-8d0c-5bb3-4b47d4d58dd5" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="dbdf769d-b741-a84e-0367-5228a0ce303c" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="82d3f74e-1508-39f3-aa03-dc1dfc792ed1" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="newItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+        <parameter name="oldItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="8e200fb7-6e2b-a689-b2aa-aeddff72afc8" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="newItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+        <parameter name="oldItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+        <parameter name="startingIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="6a54d1f2-bdd1-e405-4144-01125b938356" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+        <parameter name="startingIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="d7348585-7937-e5d3-23e7-c4bf01fcd37e" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItems">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="oldIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="498b3be4-303c-e421-8f75-e3db23695972" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="e867bf94-94f7-0355-5d43-9d000a71c9c3" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="7a824112-8790-5fb7-d381-ba87313b1eb6" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="changedItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="oldIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="572fba70-223a-a0d5-6695-f0239cffb96c" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="newItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="oldItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="b63d9e28-b7eb-3f2c-e009-6d37df37dcdf" />
+    </api>
+    <api id="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="newItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="oldItem">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="7ff87e9d-fe4d-5469-ff41-029af4a5adec" />
+    </api>
+    <api id="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="6ddcd915-e20c-ef11-aacd-6999d4c589b2" />
+    </api>
+    <api id="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewItems">
+      <topicdata group="api" />
+      <apidata name="NewItems" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NewItems" />
+      <returns>
+        <type api="T:System.Collections.IList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="5c7e2a72-80c5-6650-b29f-a89c9f826c14" />
+    </api>
+    <api id="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewStartingIndex">
+      <topicdata group="api" />
+      <apidata name="NewStartingIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NewStartingIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a799f3d8-e080-ce6c-7682-23728b39e92e" />
+    </api>
+    <api id="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldItems">
+      <topicdata group="api" />
+      <apidata name="OldItems" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OldItems" />
+      <returns>
+        <type api="T:System.Collections.IList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="e5683460-ae07-14aa-e531-e0ea48b6894a" />
+    </api>
+    <api id="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldStartingIndex">
+      <topicdata group="api" />
+      <apidata name="OldStartingIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OldStartingIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+        <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="e1273c62-bac4-a9b0-75ce-2b8482bf2ee6" />
+    </api>
+    <api id="T:System.Collections.Specialized.NotifyCollectionChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NotifyCollectionChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Collections.Specialized" />
+      </containers>
+      <file name="731c0b9e-67fe-e1af-42e0-aceccec7b685" />
+    </api>
+  </apis>
+</reflection>

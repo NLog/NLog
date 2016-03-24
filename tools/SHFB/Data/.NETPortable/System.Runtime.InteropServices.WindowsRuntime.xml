@@ -1,0 +1,2808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.WindowsRuntime">
+      <assemblydata version="4.0.10.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.40013.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.40013.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BuildLabel</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>130703.2</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BuildBranch</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release\ReferenceAssemblies\1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime.InteropServices.WindowsRuntime">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.InteropServices.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.InteropServices.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.InteropServices.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices.WindowsRuntime">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices.WindowsRuntime" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      </elements>
+      <file name="2a0b315a-acb3-4c27-25ea-a9ab26e7f9cf" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      <apidata name="AsyncInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7345cbff-ae09-9bfd-bf92-17d10c8b52cc" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo">
+      <topicdata name="AsyncInfo" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      <apidata name="AsyncInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      </containers>
+      <file name="e8c96d4f-6466-92b6-e710-5ec6f7a21a85" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo">
+      <topicdata name="AsyncInfo" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      <apidata name="AsyncInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      </containers>
+      <file name="64644581-6a57-c253-aab0-2e5ec7b258b6" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run">
+      <topicdata name="Run" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" ref="true" />
+      </containers>
+      <file name="1a27d0a1-3ddd-96c2-c1d4-4a4b750dcc5c" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <parameters>
+        <parameter name="taskProvider">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Threading.CancellationToken" ref="false" />
+              <type api="T:System.Threading.Tasks.Task`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <template name="TResult" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" ref="true" />
+      </containers>
+      <file name="628fbc8c-3c85-fa19-afa3-9832b7ae096c" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="taskProvider">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Threading.CancellationToken" ref="false" />
+              <type api="T:System.Threading.Tasks.Task" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" ref="true" />
+      </containers>
+      <file name="9957fbfa-2bcd-3757-fd13-ba8a8f0cb266" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TResult" />
+        <template name="TProgress" />
+      </templates>
+      <parameters>
+        <parameter name="taskProvider">
+          <type api="T:System.Func`3" ref="true">
+            <specialization>
+              <type api="T:System.Threading.CancellationToken" ref="false" />
+              <type api="T:System.IProgress`1" ref="true">
+                <specialization>
+                  <template name="TProgress" index="1" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+                </specialization>
+              </type>
+              <type api="T:System.Threading.Tasks.Task`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <template name="TResult" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+            <template name="TProgress" index="1" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``2(System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" ref="true" />
+      </containers>
+      <file name="424d0414-daa8-ce1e-90b7-7732dfea0e2d" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TProgress" />
+      </templates>
+      <parameters>
+        <parameter name="taskProvider">
+          <type api="T:System.Func`3" ref="true">
+            <specialization>
+              <type api="T:System.Threading.CancellationToken" ref="false" />
+              <type api="T:System.IProgress`1" ref="true">
+                <specialization>
+                  <template name="TProgress" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})" />
+                </specialization>
+              </type>
+              <type api="T:System.Threading.Tasks.Task" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <template name="TProgress" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo.Run``1(System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo" ref="true" />
+      </containers>
+      <file name="b24b564f-4605-a5f2-65d6-4570d8b755d4" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="84ba88dc-2c6a-6b87-887c-3bba91d05f91" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.#ctor(System.Type)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="06e4d40a-9a6a-f905-6a13-3ad431b8ff4a" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="8c34d870-7727-0533-a612-7e609eb3414e" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="3d7c1a27-dd02-c308-15bd-0bd2ab1600f9" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="defaultInterface">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" ref="true" />
+      </containers>
+      <file name="3f2f4874-ec53-109f-cd99-9047393ab2e8" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface">
+      <topicdata group="api" />
+      <apidata name="DefaultInterface" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultInterface" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" ref="true" />
+      </containers>
+      <file name="3efa2bba-2fc3-2c89-cf52-29f9c2a335d7" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="1f4e87c5-0847-8945-f3b8-1c71b4d70e5c" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="b45b304c-8e1f-c515-1751-28a44ddda7ca" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="9da04a08-ff4c-9fcb-ba92-cb4ffb02f6cd" />
+    </api>
+    <api id="Operators.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="8c5fc8a2-1457-9cd9-696f-8b0a2adb733a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="9d976b1a-4e00-9b5d-ee03-16843ce9813f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="0df128a6-76b6-78d4-399b-9e70bcf4aff8" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="73598a0a-23e9-52bb-0f95-6605b448cfe0" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="218060aa-8f0a-9189-209f-f84bb2f64f43" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="1d52a764-dc23-1fc8-6ece-87d969f86e57" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="ae6a648a-8fe5-c3b8-534c-19a76ccd34c9" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="63b87338-2d13-fee3-035e-541888aa307b" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="0c68fdc4-5ed3-7595-792a-0108f8da7b29" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+      <topicdata name="RemoveEventHandler" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="6bbb7101-a480-d4df-4dd1-133043e93e39" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="88442d9a-d97b-ef9d-28b0-d73fa26a38b8" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)">
+      <topicdata group="api" />
+      <apidata name="AddEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="9c8704fa-9236-5bdb-dc64-4af7c3df59b1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)">
+      <topicdata group="api" />
+      <apidata name="GetOrCreateEventRegistrationTokenTable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="refEventTable">
+          <referenceTo>
+            <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true">
+              <specialization>
+                <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="b5fca401-7ddb-1d20-3903-7ab1bb974be8" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList">
+      <topicdata group="api" />
+      <apidata name="InvocationList" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InvocationList" />
+      <setter name="set_InvocationList" />
+      <returns>
+        <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="ae1107dd-0f73-3c3a-e3a8-c698998d4c56" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="token">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="3a223e3f-4e02-b8f7-5a6f-9f3742e5dd26" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="7ab1ad42-6999-1e32-8d31-b34866d9bbbf" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="23c40a86-9aae-7101-4047-8112cc60e4c4" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata name="IActivationFactory" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      </containers>
+      <file name="c07d6ebb-f4a7-d2c4-d52b-b0f03a4c0f96" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata name="IActivationFactory" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      </containers>
+      <file name="7d560012-b5f0-dd90-67d7-1fa716b54e34" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance">
+      <topicdata group="api" />
+      <apidata name="ActivateInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" ref="true" />
+      </containers>
+      <file name="86086c58-3871-a679-c653-2319ace5da9b" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5b61113a-58a7-84a2-2c53-9c9be8559b0f" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.#ctor(System.Type,System.Byte,System.Byte,System.Byte,System.Byte)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="abb7791a-34d6-2381-6c56-dac6ba0609e6" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="35ec6c53-a567-285c-a774-4c1203c41de8" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="0b07af69-17ca-be79-540d-f2360fb5bc17" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.#ctor(System.Type,System.Byte,System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="interfaceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="majorVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="minorVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="buildVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="revisionVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="bf39360d-d65f-74be-3b25-ee4a454c44af" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion">
+      <topicdata group="api" />
+      <apidata name="BuildVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="4a13e92f-e2c1-c5fe-d882-6c5ca58a2e2a" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType">
+      <topicdata group="api" />
+      <apidata name="InterfaceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InterfaceType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="137822c0-cde4-21bf-24a3-dcd6ff9a007c" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion">
+      <topicdata group="api" />
+      <apidata name="MajorVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MajorVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="c93948e1-389f-e951-d2b2-9a72c28c6f99" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion">
+      <topicdata group="api" />
+      <apidata name="MinorVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MinorVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="e95ccb1b-c849-62ea-58a8-d38d50447b0a" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion">
+      <topicdata group="api" />
+      <apidata name="RevisionVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RevisionVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="3709dc42-1573-1139-570f-deecacf88f28" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="efc50e7f-5e31-f330-e6e0-47c2efb966bb" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata name="ReadOnlyArrayAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      </containers>
+      <file name="fd41abfd-18ea-08e8-bea8-93bdcf788df9" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata name="ReadOnlyArrayAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      </containers>
+      <file name="11124f27-9906-a9c7-dd34-68084a1b6c7f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" ref="true" />
+      </containers>
+      <file name="b575d0d8-9ba2-dbda-81b3-2262d4198fc1" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="ReturnValue" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="092895aa-ac66-42ea-2df6-d78a5723fbe4" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="e4627b95-67bc-bcdd-2d12-52f635d726e6" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="e8d42407-7205-00e8-43ed-21e13995980a" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="99aebfe3-d8a0-edc4-011b-e45202697f9b" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" ref="true" />
+      </containers>
+      <file name="3ac09483-9f93-c78f-ba15-b9a861ef76e4" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" ref="true" />
+      </containers>
+      <file name="41200cd1-591c-77ed-c038-db7b0af0972f" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      <apidata name="WindowsRuntimeBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ff7715ac-972c-3a57-85a7-047bed3e7aca" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer">
+      <topicdata name="WindowsRuntimeBuffer" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      <apidata name="WindowsRuntimeBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      </containers>
+      <file name="f9891294-8ae1-62f3-16c5-714bb02d93f4" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer">
+      <topicdata name="WindowsRuntimeBuffer" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      <apidata name="WindowsRuntimeBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      </containers>
+      <file name="241ef081-36ec-8707-3d30-98aed95dcf9a" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create">
+      <topicdata name="Create" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" ref="true" />
+      </containers>
+      <file name="db5895d1-60f3-5403-9f24-5c1912e47a4d" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Byte[],System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="27d10ca5-ff65-3163-ff92-8752725cbd8c" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer.Create" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fb641e31-0d32-4e3d-4e85-d0c63d4df93d" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="WindowsRuntimeBufferExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b0c5b6c6-bfd6-542f-54a4-85ffaf1c7a2d" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions">
+      <topicdata name="WindowsRuntimeBufferExtensions" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="WindowsRuntimeBufferExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[])" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsStream(Windows.Storage.Streams.IBuffer)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.Byte[])" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],System.Int32,Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.IBuffer,System.UInt32,System.UInt32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetByte(Windows.Storage.Streams.IBuffer,System.UInt32)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.IsSameData(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      </containers>
+      <file name="a4a42cc6-5186-11b8-c387-1143441a164d" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions">
+      <topicdata name="WindowsRuntimeBufferExtensions" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="WindowsRuntimeBufferExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[])" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsStream(Windows.Storage.Streams.IBuffer)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.Byte[])" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],System.Int32,Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.IBuffer,System.UInt32,System.UInt32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetByte(Windows.Storage.Streams.IBuffer,System.UInt32)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.IsSameData(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      </containers>
+      <file name="989d1b23-dbfd-0e8f-7368-9121d3ba1d75" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer">
+      <topicdata name="AsBuffer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="AsBuffer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[])" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <file name="a57bb0b1-2b50-e038-ac79-fddb640337a7" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo">
+      <topicdata name="CopyTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],Windows.Storage.Streams.IBuffer)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.Byte[])" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],System.Int32,Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.IBuffer,System.UInt32,System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <file name="61830ad4-6851-ceb1-ccfb-e62a8136b57e" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer">
+      <topicdata name="GetWindowsRuntimeBuffer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="GetWindowsRuntimeBuffer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <file name="abb089df-1ee7-e5bc-cce7-a9bf97cb25cb" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray">
+      <topicdata name="ToArray" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" />
+      <apidata name="ToArray" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <file name="ede58144-1f07-fefb-9157-c68124b752bf" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="AsBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c2c8bbe4-42a3-1da1-4c2a-0ac0cdbbc762" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AsBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fe994a59-4c01-3b25-5dff-651f7d82b04e" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer(System.Byte[],System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AsBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="db29550a-1172-5525-c21e-faa3c978692c" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.AsStream(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="AsStream" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="abdc7ae3-b739-d5cc-4319-fc930d752e31" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],System.Int32,Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="sourceIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="destination">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="destinationIndex">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="56f42eb8-ace0-5315-2fdd-8bfd99531b96" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(System.Byte[],Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="destination">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6a7ce569-0fcd-fc7b-6726-42a6a1a5b390" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="destination">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b6f21f3c-ce9a-ab06-54ba-268cd7274618" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="sourceIndex">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="destination">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="destinationIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8cbb5a7c-36de-11ef-489e-c991ac6a86ef" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.IBuffer,System.UInt32,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="sourceIndex">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="destination">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="destinationIndex">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="31de23ae-68bf-4d70-7b91-2a8796e1cef0" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.CopyTo" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="destination">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="94a71f55-6fb2-fc9d-7183-9225ad09ccc5" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetByte(Windows.Storage.Streams.IBuffer,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetByte" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="byteOffset">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e3df8e29-a787-f436-5292-3878ebcfa473" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream)">
+      <topicdata group="api" />
+      <apidata name="GetWindowsRuntimeBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="underlyingStream">
+          <type api="T:System.IO.MemoryStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f4d67e84-c7ee-4d50-411c-c11e0f46d0a6" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer(System.IO.MemoryStream,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetWindowsRuntimeBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.GetWindowsRuntimeBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="underlyingStream">
+          <type api="T:System.IO.MemoryStream" ref="true" />
+        </parameter>
+        <parameter name="positionInStream">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f9e19043-2d7f-4d45-52eb-c92016ddee88" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.IsSameData(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="IsSameData" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="otherBuffer">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="150b5392-7844-5f5e-5dfa-288f36efba31" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="ToArray" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="73f62c8b-9efe-8e2f-b62b-8647b1197c19" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(Windows.Storage.Streams.IBuffer,System.UInt32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ToArray" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="sourceIndex">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1bc022e0-0620-778a-b757-6a80bc4195bd" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="b91a77b2-fb18-76a3-98c1-7022909163d0" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata name="WindowsRuntimeMarshal" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      </containers>
+      <file name="76a4d09a-ec0a-cfdf-801f-c0ed013d856b" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata name="WindowsRuntimeMarshal" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      </containers>
+      <file name="8b4de0db-ce06-89f5-bf7b-54cfce4e0d25" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)">
+      <topicdata group="api" />
+      <apidata name="AddEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="addMethod">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="handler">
+          <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e371c6d7-266e-9b56-46a1-c697284c3f1a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="FreeHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ptr">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e1adbfe5-ddc2-bc23-5aba-a033b3adf3ee" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetActivationFactory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e2436df8-f395-c384-afa4-fd0c1d362148" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="PtrToStringHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ptr">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2bc17c70-589f-d493-5635-e8da9b07808a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})">
+      <topicdata group="api" />
+      <apidata name="RemoveAllEventHandlers" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="35095877-74f2-ba1b-6219-94083d2345d6" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="handler">
+          <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1caf5971-c038-b850-ff8e-1c4ef44bb597" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)">
+      <topicdata group="api" />
+      <apidata name="StringToHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4cd120e3-60b6-2194-8fb7-ee2a190e67a6" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a28583bb-d32c-e2d8-f0d9-fefece1fc2c2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata name="WriteOnlyArrayAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      </containers>
+      <file name="2c141e17-af0f-5651-7536-64056afbdd1d" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata name="WriteOnlyArrayAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      </containers>
+      <file name="4e276e22-3d76-2a72-7481-b4b230e158f7" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.InteropServices.WindowsRuntime" module="System.Runtime.InteropServices.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" ref="true" />
+      </containers>
+      <file name="d3793b10-270f-f2e3-bbba-6225c46b95bf" />
+    </api>
+  </apis>
+</reflection>

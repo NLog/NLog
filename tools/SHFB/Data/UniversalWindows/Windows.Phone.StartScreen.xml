@@ -1,0 +1,881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Phone.StartScreen.DualSimTileContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.StartScreen">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.StartScreen" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.StartScreen.DualSimTileContract" />
+        <element api="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+        <element api="T:Windows.Phone.StartScreen.DualSimTile" />
+      </elements>
+      <file name="3d972f1f-e7b0-8402-c5d9-2234d7720fc3" />
+    </api>
+    <api id="T:Windows.Phone.StartScreen.DualSimTile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.StartScreen.DualSimTile" />
+      <apidata name="DualSimTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Phone.StartScreen.DualSimTile.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.StartScreen.DualSimTileContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.StartScreen.DualSimTileContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0966e475-fba4-24c3-46ae-52531cac14ba" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.StartScreen.DualSimTile">
+      <topicdata name="DualSimTile" group="list" subgroup="members" typeTopicId="T:Windows.Phone.StartScreen.DualSimTile" />
+      <apidata name="DualSimTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Phone.StartScreen.DualSimTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.#ctor" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateAsync" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.DeleteAsync" />
+        <element api="P:Windows.Phone.StartScreen.DualSimTile.DisplayName" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.GetTileForSim2" />
+        <element api="P:Windows.Phone.StartScreen.DualSimTile.IsPinnedToStart" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.UpdateAsync" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.UpdateDisplayNameForSim1Async(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" />
+      </containers>
+      <file name="e45bbfb6-34bd-8072-7013-e73e6dcd1611" />
+    </api>
+    <api id="Methods.T:Windows.Phone.StartScreen.DualSimTile">
+      <topicdata name="DualSimTile" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.StartScreen.DualSimTile" />
+      <apidata name="DualSimTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Phone.StartScreen.DualSimTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateAsync" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim1" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.DeleteAsync" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.GetTileForSim2" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.UpdateAsync" />
+        <element api="M:Windows.Phone.StartScreen.DualSimTile.UpdateDisplayNameForSim1Async(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" />
+      </containers>
+      <file name="e30e788e-4ca4-e581-8647-c60ac7295988" />
+    </api>
+    <api id="Properties.T:Windows.Phone.StartScreen.DualSimTile">
+      <topicdata name="DualSimTile" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.StartScreen.DualSimTile" />
+      <apidata name="DualSimTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Phone.StartScreen.DualSimTile.#ctor" />
+      <elements>
+        <element api="P:Windows.Phone.StartScreen.DualSimTile.DisplayName" />
+        <element api="P:Windows.Phone.StartScreen.DualSimTile.IsPinnedToStart" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" />
+      </containers>
+      <file name="0b074b92-8717-083a-9b46-7237fda6aff4" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="0dfeebfe-bca2-8772-eda3-20ad0168537e" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateAsync">
+      <topicdata group="api" />
+      <apidata name="CreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4462ca00-c732-2a3d-4dd8-5df54d8c6743" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim1">
+      <topicdata group="api" />
+      <apidata name="CreateBadgeUpdaterForSim1" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.BadgeUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="69c3a60d-056a-d574-9cec-366e0b2bd333" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateBadgeUpdaterForSim2">
+      <topicdata group="api" />
+      <apidata name="CreateBadgeUpdaterForSim2" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.BadgeUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="ebef51a6-8373-d3ab-704f-ebb466c5b12a" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim1">
+      <topicdata group="api" />
+      <apidata name="CreateTileUpdaterForSim1" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.TileUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="35a473aa-6dc6-1399-60f6-da5e1808ed88" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateTileUpdaterForSim2">
+      <topicdata group="api" />
+      <apidata name="CreateTileUpdaterForSim2" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.TileUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="7c4d76f2-8328-a6e8-e3f1-c880551e2928" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim1">
+      <topicdata group="api" />
+      <apidata name="CreateToastNotifierForSim1" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.ToastNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="5c31af98-36ce-7f58-b3e8-4170a77f1c2f" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.CreateToastNotifierForSim2">
+      <topicdata group="api" />
+      <apidata name="CreateToastNotifierForSim2" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.Notifications.ToastNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="f1fd90c5-a9ad-f22e-bffb-69c20edcd201" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.DeleteAsync">
+      <topicdata group="api" />
+      <apidata name="DeleteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6970cb6e-4071-cc84-0871-77ff5e6df180" />
+    </api>
+    <api id="P:Windows.Phone.StartScreen.DualSimTile.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="16507f6b-2a66-038b-0f31-7a170ce5c37b" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.GetTileForSim2">
+      <topicdata group="api" />
+      <apidata name="GetTileForSim2" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="709e7e05-f7f8-505c-e083-891df1512c6b" />
+    </api>
+    <api id="P:Windows.Phone.StartScreen.DualSimTile.IsPinnedToStart">
+      <topicdata group="api" />
+      <apidata name="IsPinnedToStart" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsPinnedToStart" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <file name="cca86630-3cbd-459d-a7e3-140fc53443b3" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.UpdateAsync">
+      <topicdata group="api" />
+      <apidata name="UpdateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="63a2fbbc-1328-cf65-55c1-b1ea4c5d4197" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.DualSimTile.UpdateDisplayNameForSim1Async(System.String)">
+      <topicdata group="api" />
+      <apidata name="UpdateDisplayNameForSim1Async" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="614d64b8-431d-93b3-8065-cdb91602558f" />
+    </api>
+    <api id="T:Windows.Phone.StartScreen.DualSimTileContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.StartScreen.DualSimTileContract" />
+      <apidata name="DualSimTileContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="13960a23-6c3c-1ab3-5e43-771828d7379f" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.StartScreen.DualSimTileContract">
+      <topicdata name="DualSimTileContract" group="list" subgroup="members" typeTopicId="T:Windows.Phone.StartScreen.DualSimTileContract" />
+      <apidata name="DualSimTileContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTileContract" />
+      </containers>
+      <file name="3260147b-2c91-20e1-6cb4-f8831d6c275a" />
+    </api>
+    <api id="Methods.T:Windows.Phone.StartScreen.DualSimTileContract">
+      <topicdata name="DualSimTileContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.StartScreen.DualSimTileContract" />
+      <apidata name="DualSimTileContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.DualSimTileContract" />
+      </containers>
+      <file name="144e8e24-5947-096f-e527-4507718bf4b4" />
+    </api>
+    <api id="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+      <apidata name="IToastNotificationManagerStatics3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.StartScreen.DualSimTileContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>655881547</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20703</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17493</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>110</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>65</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>224</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>252</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>19</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>206</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="08c96122-fb86-2cd8-a736-9fda548a1805" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3">
+      <topicdata name="IToastNotificationManagerStatics3" group="list" subgroup="members" typeTopicId="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+      <apidata name="IToastNotificationManagerStatics3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.StartScreen.IToastNotificationManagerStatics3.CreateToastNotifierForSecondaryTile(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+      </containers>
+      <file name="55653831-7c7e-c2de-a434-fc080994b9e5" />
+    </api>
+    <api id="Methods.T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3">
+      <topicdata name="IToastNotificationManagerStatics3" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+      <apidata name="IToastNotificationManagerStatics3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.StartScreen.IToastNotificationManagerStatics3.CreateToastNotifierForSecondaryTile(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" />
+      </containers>
+      <file name="f04fbc18-4801-6620-a18d-0e8ed61b90dd" />
+    </api>
+    <api id="M:Windows.Phone.StartScreen.IToastNotificationManagerStatics3.CreateToastNotifierForSecondaryTile(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateToastNotifierForSecondaryTile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Notifications.ToastNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.StartScreen.DualSimTileContract" module="Windows.Phone.StartScreen.DualSimTileContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.StartScreen" />
+        <type api="T:Windows.Phone.StartScreen.IToastNotificationManagerStatics3" ref="true" />
+      </containers>
+      <file name="3b6746e3-6d5b-a04b-4fab-059cf872e8c9" />
+    </api>
+  </apis>
+</reflection>

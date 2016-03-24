@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Reflection.Context">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Reflection.Context.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Reflection.Context.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Reflection.Context.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Reflection.Context">
+      <topicdata group="api" />
+      <apidata name="System.Reflection.Context" group="namespace" />
+      <elements>
+        <element api="T:System.Reflection.Context.CustomReflectionContext" />
+      </elements>
+      <file name="cf76fc5d-c9d9-dce2-9649-de50869483f8" />
+    </api>
+    <api id="T:System.Reflection.Context.CustomReflectionContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name="CustomReflectionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Reflection.ReflectionContext" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ComponentModel.Composition.Registration.RegistrationBuilder" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+      </containers>
+      <file name="6e03478f-503b-d954-bb98-42321bd173bc" />
+    </api>
+    <api id="AllMembers.T:System.Reflection.Context.CustomReflectionContext">
+      <topicdata name="CustomReflectionContext" group="list" subgroup="members" typeTopicId="T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name="CustomReflectionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.ReflectionContext.GetTypeForObject(System.Object)" />
+        <element api="Overload:System.Reflection.Context.CustomReflectionContext.#ctor">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.#ctor" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.#ctor(System.Reflection.ReflectionContext)" />
+        </element>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" />
+        <element api="Overload:System.Reflection.Context.CustomReflectionContext.CreateProperty">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})" />
+        </element>
+        <element api="Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        </element>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapAssembly(System.Reflection.Assembly)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" />
+      </containers>
+      <file name="3e677b4a-93d9-bad6-cbba-c00c011725d1" />
+    </api>
+    <api id="Methods.T:System.Reflection.Context.CustomReflectionContext">
+      <topicdata name="CustomReflectionContext" group="list" subgroup="Methods" typeTopicId="T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name="CustomReflectionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.ReflectionContext.GetTypeForObject(System.Object)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" />
+        <element api="Overload:System.Reflection.Context.CustomReflectionContext.CreateProperty">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})" />
+        </element>
+        <element api="Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes">
+          <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+          <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        </element>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapAssembly(System.Reflection.Assembly)" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" />
+      </containers>
+      <file name="b0311be1-bbe4-e6e7-f6dc-8b922d8a17cc" />
+    </api>
+    <api id="Overload:System.Reflection.Context.CustomReflectionContext.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.#ctor" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.#ctor(System.Reflection.ReflectionContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="86feeeb2-5d5a-686a-431e-d8269cb131ab" />
+    </api>
+    <api id="Overload:System.Reflection.Context.CustomReflectionContext.CreateProperty">
+      <topicdata name="CreateProperty" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name="CreateProperty" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})" />
+      </elements>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="34d6d235-935f-d8fb-af25-64ed1a3a5c69" />
+    </api>
+    <api id="Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes">
+      <topicdata name="GetCustomAttributes" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Reflection.Context.CustomReflectionContext" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+        <element api="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="803f2092-b4f6-82c9-1fd5-6fb99cbad251" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Reflection.Context.CustomReflectionContext.#ctor" />
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="726363e4-63c0-6f46-d3ed-4f0aba334c16" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.#ctor(System.Reflection.ReflectionContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Reflection.Context.CustomReflectionContext.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Reflection.ReflectionContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="52a114f2-942f-1262-7de1-cff1dfe4a6a2" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)">
+      <topicdata group="api" />
+      <apidata name="AddProperties" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.PropertyInfo" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="aec8bdda-7018-d7e6-3b21-5600107761f8" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object})">
+      <topicdata group="api" />
+      <apidata name="CreateProperty" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Reflection.Context.CustomReflectionContext.CreateProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="getter">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="setter">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.PropertyInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="8cc6929a-1edb-7555-e5fa-0741d521844f" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})">
+      <topicdata group="api" />
+      <apidata name="CreateProperty" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Reflection.Context.CustomReflectionContext.CreateProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="propertyType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="getter">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="setter">
+          <type api="T:System.Action`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="propertyCustomAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Attribute" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="getterCustomAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Attribute" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="setterCustomAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Attribute" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.PropertyInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="b7c181ce-e820-f23b-c0d1-91f76deb9818" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="member">
+          <type api="T:System.Reflection.MemberInfo" ref="true" />
+        </parameter>
+        <parameter name="declaredAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="fdc64efd-b21f-fa19-6b51-24e1b83701a4" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="parameter">
+          <type api="T:System.Reflection.ParameterInfo" ref="true" />
+        </parameter>
+        <parameter name="declaredAttributes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="0dc485b4-13fe-b09b-584d-4f8e0d94e850" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.MapAssembly(System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name="MapAssembly" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Reflection.ReflectionContext.MapAssembly(System.Reflection.Assembly)">
+          <type api="T:System.Reflection.ReflectionContext" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="4e8d4039-c401-ce06-84d7-b1fed026bbfa" />
+    </api>
+    <api id="M:System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)">
+      <topicdata group="api" />
+      <apidata name="MapType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Reflection.ReflectionContext.MapType(System.Reflection.TypeInfo)">
+          <type api="T:System.Reflection.ReflectionContext" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Reflection.TypeInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.TypeInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Reflection.Context" module="System.Reflection.Context" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Reflection.Context" />
+        <type api="T:System.Reflection.Context.CustomReflectionContext" ref="true" />
+      </containers>
+      <file name="bc19093c-2b6f-f140-b203-8f634a3ed2b6" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.CommunicationBlocking">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.CommunicationBlocking" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+        <element api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+        <element api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      </elements>
+      <file name="9518ebd5-34ec-84f5-81ad-3b806db00ed2" />
+    </api>
+    <api id="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      <apidata name="CommunicationBlockingAccessManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="291fc9ca-2cb0-9f2e-0fd4-f3ef113b9141" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager">
+      <topicdata name="CommunicationBlockingAccessManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      <apidata name="CommunicationBlockingAccessManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockedNumberAsync(System.String)" />
+        <element api="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockingActive" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedCallsUI" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedMessagesUI" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowUnblockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      </containers>
+      <file name="290566dc-0ca7-4c1d-8023-1e0bec3836d5" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager">
+      <topicdata name="CommunicationBlockingAccessManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      <apidata name="CommunicationBlockingAccessManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockedNumberAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedCallsUI" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedMessagesUI" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowUnblockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      </containers>
+      <file name="fee5fbc8-ea82-6f42-26d3-a65bb39ea88c" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager">
+      <topicdata name="CommunicationBlockingAccessManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      <apidata name="CommunicationBlockingAccessManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockingActive" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" />
+      </containers>
+      <file name="fe376aaa-91ed-1e2e-899c-070299bb65b0" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockedNumberAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsBlockedNumberAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="number" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="951cc85b-4c1e-6f3f-4d56-a680e4b245cf" />
+    </api>
+    <api id="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.IsBlockingActive">
+      <topicdata group="api" />
+      <apidata name="IsBlockingActive" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsBlockingActive" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <file name="a7df74a7-6474-654b-5c2f-64e5f36ec16a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedCallsUI">
+      <topicdata group="api" />
+      <apidata name="ShowBlockedCallsUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <file name="9cf9b499-7ec8-46f2-ff51-c872d7e5e688" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockedMessagesUI">
+      <topicdata group="api" />
+      <apidata name="ShowBlockedMessagesUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <file name="05d4f8c5-f8a8-a487-f742-22c35305a631" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowBlockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="ShowBlockNumbersUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="phoneNumbers" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <file name="1e9af9a9-1810-70dc-b380-10c91d1c3bd9" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager.ShowUnblockNumbersUI(Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="ShowUnblockNumbersUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="phoneNumbers" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAccessManager" ref="true" />
+      </containers>
+      <file name="28fd4b64-26cd-cc6f-ce0b-b349ec37858b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      <apidata name="CommunicationBlockingAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3f5e5125-1ad3-428a-9f25-54fa5ded5c13" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager">
+      <topicdata name="CommunicationBlockingAppManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      <apidata name="CommunicationBlockingAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.IsCurrentAppActiveBlockingApp" />
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.ShowCommunicationBlockingSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      </containers>
+      <file name="59ee039e-b29f-3a69-e3bf-9da3383974ce" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager">
+      <topicdata name="CommunicationBlockingAppManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      <apidata name="CommunicationBlockingAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.ShowCommunicationBlockingSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      </containers>
+      <file name="a2d1caa9-bd62-737d-b83d-7de2752f04de" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager">
+      <topicdata name="CommunicationBlockingAppManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      <apidata name="CommunicationBlockingAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.IsCurrentAppActiveBlockingApp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" />
+      </containers>
+      <file name="045f7c4e-d50b-5fc0-e02d-eaaba273f4f5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.IsCurrentAppActiveBlockingApp">
+      <topicdata group="api" />
+      <apidata name="IsCurrentAppActiveBlockingApp" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsCurrentAppActiveBlockingApp" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" ref="true" />
+      </containers>
+      <file name="346474dd-580d-588e-aa63-5ce7793d064e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager.ShowCommunicationBlockingSettingsUI">
+      <topicdata group="api" />
+      <apidata name="ShowCommunicationBlockingSettingsUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingAppManager" ref="true" />
+      </containers>
+      <file name="74074d21-c0e9-f2ae-f3c9-77718404424f" />
+    </api>
+    <api id="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+      <apidata name="CommunicationBlockingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ee9175ba-82e4-fe18-eac4-e5ce28bfb977" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract">
+      <topicdata name="CommunicationBlockingContract" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+      <apidata name="CommunicationBlockingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+      </containers>
+      <file name="137ee2e4-c830-99ec-eee4-29b77f010dfb" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract">
+      <topicdata name="CommunicationBlockingContract" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+      <apidata name="CommunicationBlockingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" module="Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.CommunicationBlocking" />
+        <type api="T:Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract" />
+      </containers>
+      <file name="afcd55e4-0a9e-29fd-4001-bee99fa6365d" />
+    </api>
+  </apis>
+</reflection>

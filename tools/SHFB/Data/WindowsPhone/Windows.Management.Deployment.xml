@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Management.Deployment">
+      <topicdata group="api" />
+      <apidata name="Windows.Management.Deployment" group="namespace" />
+      <elements>
+        <element api="T:Windows.Management.Deployment.DeploymentProgressState" />
+        <element api="T:Windows.Management.Deployment.DeploymentProgress" />
+        <element api="T:Windows.Management.Deployment.DeploymentOptions" />
+        <element api="T:Windows.Management.Deployment.RemovalOptions" />
+        <element api="T:Windows.Management.Deployment.PackageInstallState" />
+      </elements>
+      <file name="a81ecb2c-bcff-6a70-77c7-03afa0b2068c" />
+    </api>
+    <api id="T:Windows.Management.Deployment.DeploymentOptions">
+      <topicdata group="api" />
+      <apidata name="DeploymentOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Management.Deployment.DeploymentOptions.None" />
+        <element api="F:Windows.Management.Deployment.DeploymentOptions.ForceApplicationShutdown" />
+        <element api="F:Windows.Management.Deployment.DeploymentOptions.DevelopmentMode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2cf1c25d-35c9-6e89-9c94-f2e050b952e1" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentOptions.DevelopmentMode">
+      <topicdata group="api" notopic="" />
+      <apidata name="DevelopmentMode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </containers>
+      <file name="4dfa3dd0-fdcd-6261-ef12-f4d1da7799aa" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentOptions.ForceApplicationShutdown">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForceApplicationShutdown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </containers>
+      <file name="471ff544-722e-a106-4dba-1024a5357740" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+      </containers>
+      <file name="fbb7f80d-a4a3-da9a-bb96-5348a5e0c4b9" />
+    </api>
+    <api id="T:Windows.Management.Deployment.DeploymentProgress">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Deployment.DeploymentProgress" />
+      <apidata name="DeploymentProgress" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="383595e2-2912-2fdd-ed75-b62a10d278a1" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Deployment.DeploymentProgress">
+      <topicdata name="DeploymentProgress" group="list" subgroup="members" typeTopicId="T:Windows.Management.Deployment.DeploymentProgress" />
+      <apidata name="DeploymentProgress" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Management.Deployment.DeploymentProgress.percentage" />
+        <element api="F:Windows.Management.Deployment.DeploymentProgress.state" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgress" />
+      </containers>
+      <file name="3b547292-8d8f-dc8f-a268-e4702c1da957" />
+    </api>
+    <api id="Methods.T:Windows.Management.Deployment.DeploymentProgress">
+      <topicdata name="DeploymentProgress" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Deployment.DeploymentProgress" />
+      <apidata name="DeploymentProgress" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgress" />
+      </containers>
+      <file name="18f75b35-4957-d628-3254-a7959db0b395" />
+    </api>
+    <api id="Fields.T:Windows.Management.Deployment.DeploymentProgress">
+      <topicdata name="DeploymentProgress" group="list" subgroup="Fields" typeTopicId="T:Windows.Management.Deployment.DeploymentProgress" />
+      <apidata name="DeploymentProgress" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Management.Deployment.DeploymentProgress.percentage" />
+        <element api="F:Windows.Management.Deployment.DeploymentProgress.state" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgress" />
+      </containers>
+      <file name="3fa5d748-e800-9a4f-c23c-ce2e36b3d6b0" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentProgress.percentage">
+      <topicdata group="api" />
+      <apidata name="percentage" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgress" ref="false" />
+      </containers>
+      <file name="26130ea9-e940-9f6f-dd2c-290c26315127" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentProgress.state">
+      <topicdata group="api" />
+      <apidata name="state" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentProgressState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgress" ref="false" />
+      </containers>
+      <file name="582974eb-ba12-bd06-1b6f-f35a22972f89" />
+    </api>
+    <api id="T:Windows.Management.Deployment.DeploymentProgressState">
+      <topicdata group="api" />
+      <apidata name="DeploymentProgressState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Management.Deployment.DeploymentProgressState.Queued" />
+        <element api="F:Windows.Management.Deployment.DeploymentProgressState.Processing" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c22fb263-0937-30ab-ee6d-a3901f57ca59" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentProgressState.Processing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Processing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentProgressState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgressState" ref="false" />
+      </containers>
+      <file name="bace3c65-1264-c8cd-09e7-15f6a57fb047" />
+    </api>
+    <api id="F:Windows.Management.Deployment.DeploymentProgressState.Queued">
+      <topicdata group="api" notopic="" />
+      <apidata name="Queued" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.DeploymentProgressState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.DeploymentProgressState" ref="false" />
+      </containers>
+      <file name="79239e7a-8103-bdd1-715b-764dba5a398f" />
+    </api>
+    <api id="T:Windows.Management.Deployment.PackageInstallState">
+      <topicdata group="api" />
+      <apidata name="PackageInstallState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Management.Deployment.PackageInstallState.NotInstalled" />
+        <element api="F:Windows.Management.Deployment.PackageInstallState.Staged" />
+        <element api="F:Windows.Management.Deployment.PackageInstallState.Installed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1886714b-44aa-3c04-ac9b-68dc8a0ed405" />
+    </api>
+    <api id="F:Windows.Management.Deployment.PackageInstallState.Installed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Installed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </containers>
+      <file name="b7f39fe7-d6ec-adfd-39cd-7c13718f0750" />
+    </api>
+    <api id="F:Windows.Management.Deployment.PackageInstallState.NotInstalled">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotInstalled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </containers>
+      <file name="095d1db2-1f0a-7386-2521-f43c9a3c20b9" />
+    </api>
+    <api id="F:Windows.Management.Deployment.PackageInstallState.Staged">
+      <topicdata group="api" notopic="" />
+      <apidata name="Staged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </containers>
+      <file name="6a624ef5-d86a-0e23-39bb-04cf1ad2be0f" />
+    </api>
+    <api id="T:Windows.Management.Deployment.RemovalOptions">
+      <topicdata group="api" />
+      <apidata name="RemovalOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Management.Deployment.RemovalOptions.None" />
+        <element api="F:Windows.Management.Deployment.RemovalOptions.PreserveApplicationData" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="88c2ed7b-8b47-3ae1-b8f4-fcaad1753651" />
+    </api>
+    <api id="F:Windows.Management.Deployment.RemovalOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.RemovalOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.RemovalOptions" ref="false" />
+      </containers>
+      <file name="9e610df9-88e0-076f-361e-41f0bcabfe57" />
+    </api>
+    <api id="F:Windows.Management.Deployment.RemovalOptions.PreserveApplicationData">
+      <topicdata group="api" notopic="" />
+      <apidata name="PreserveApplicationData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.RemovalOptions" ref="false" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment" />
+        <type api="T:Windows.Management.Deployment.RemovalOptions" ref="false" />
+      </containers>
+      <file name="5e119f0f-9ba4-b8ec-c525-582a1f5a62a2" />
+    </api>
+  </apis>
+</reflection>

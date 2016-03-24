@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Core.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Core.Presentation.Themes">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Core.Presentation.Themes" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      </elements>
+      <file name="2b7576ff-6fcb-9862-3470-50343fe05c78" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      <apidata name="DesignerStylesDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.ResourceDictionary" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Markup.IComponentConnector" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+      </containers>
+      <file name="369721d0-4080-3ebf-1ee3-794ca95eb77a" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary">
+      <topicdata name="DesignerStylesDictionary" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      <apidata name="DesignerStylesDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.InitializeComponent" />
+        <element api="P:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.SequenceStyle" />
+        <element api="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.System#Windows#Markup#IComponentConnector#Connect(System.Int32,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.BeginInit" />
+        <element api="M:System.Windows.ResourceDictionary.Clear" />
+        <element api="M:System.Windows.ResourceDictionary.Contains(System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.CopyTo(System.Collections.DictionaryEntry[],System.Int32)" />
+        <element api="P:System.Windows.ResourceDictionary.Count" />
+        <element api="P:System.Windows.ResourceDictionary.DeferrableContent" />
+        <element api="M:System.Windows.ResourceDictionary.EndInit" />
+        <element api="M:System.Windows.ResourceDictionary.FindName(System.String)" />
+        <element api="M:System.Windows.ResourceDictionary.GetEnumerator" />
+        <element api="P:System.Windows.ResourceDictionary.IsFixedSize" />
+        <element api="P:System.Windows.ResourceDictionary.IsReadOnly" />
+        <element api="P:System.Windows.ResourceDictionary.Item(System.Object)" />
+        <element api="P:System.Windows.ResourceDictionary.Keys" />
+        <element api="P:System.Windows.ResourceDictionary.MergedDictionaries" />
+        <element api="M:System.Windows.ResourceDictionary.RegisterName(System.String,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.Remove(System.Object)" />
+        <element api="P:System.Windows.ResourceDictionary.Source" />
+        <element api="M:System.Windows.ResourceDictionary.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Windows.ResourceDictionary.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.ResourceDictionary.System#Collections#ICollection#SyncRoot" />
+        <element api="M:System.Windows.ResourceDictionary.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Windows.ResourceDictionary.System#Windows#Markup#IUriContext#BaseUri" />
+        <element api="M:System.Windows.ResourceDictionary.UnregisterName(System.String)" />
+        <element api="P:System.Windows.ResourceDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      </containers>
+      <file name="58ea16f4-3647-0406-1d97-e806cc2aea12" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary">
+      <topicdata name="DesignerStylesDictionary" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      <apidata name="DesignerStylesDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.InitializeComponent" />
+        <element api="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.System#Windows#Markup#IComponentConnector#Connect(System.Int32,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.BeginInit" />
+        <element api="M:System.Windows.ResourceDictionary.Clear" />
+        <element api="M:System.Windows.ResourceDictionary.Contains(System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.CopyTo(System.Collections.DictionaryEntry[],System.Int32)" />
+        <element api="M:System.Windows.ResourceDictionary.EndInit" />
+        <element api="M:System.Windows.ResourceDictionary.FindName(System.String)" />
+        <element api="M:System.Windows.ResourceDictionary.GetEnumerator" />
+        <element api="M:System.Windows.ResourceDictionary.RegisterName(System.String,System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.Remove(System.Object)" />
+        <element api="M:System.Windows.ResourceDictionary.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Windows.ResourceDictionary.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Windows.ResourceDictionary.UnregisterName(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      </containers>
+      <file name="c8b3673e-0544-55ce-78ef-42c9e2470d1b" />
+    </api>
+    <api id="Properties.T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary">
+      <topicdata name="DesignerStylesDictionary" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      <apidata name="DesignerStylesDictionary" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.SequenceStyle" />
+        <element api="P:System.Windows.ResourceDictionary.Count" />
+        <element api="P:System.Windows.ResourceDictionary.DeferrableContent" />
+        <element api="P:System.Windows.ResourceDictionary.IsFixedSize" />
+        <element api="P:System.Windows.ResourceDictionary.IsReadOnly" />
+        <element api="P:System.Windows.ResourceDictionary.Item(System.Object)" />
+        <element api="P:System.Windows.ResourceDictionary.Keys" />
+        <element api="P:System.Windows.ResourceDictionary.MergedDictionaries" />
+        <element api="P:System.Windows.ResourceDictionary.Source" />
+        <element api="P:System.Windows.ResourceDictionary.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.ResourceDictionary.System#Collections#ICollection#SyncRoot" />
+        <element api="P:System.Windows.ResourceDictionary.System#Windows#Markup#IUriContext#BaseUri" />
+        <element api="P:System.Windows.ResourceDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" />
+      </containers>
+      <file name="e58a171a-ade8-3890-ebe7-b20e7b186b1e" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.InitializeComponent">
+      <topicdata group="api" />
+      <apidata name="InitializeComponent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.Windows.Markup.IComponentConnector.InitializeComponent">
+          <type api="T:System.Windows.Markup.IComponentConnector" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" ref="true" />
+      </containers>
+      <file name="e58b14b6-3ad3-d85c-708d-e67d2a9413f1" />
+    </api>
+    <api id="P:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.SequenceStyle">
+      <topicdata group="api" />
+      <apidata name="SequenceStyle" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SequenceStyle" />
+      <returns>
+        <type api="T:System.Windows.Style" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" ref="true" />
+      </containers>
+      <file name="1b90ad36-34c1-af40-62a8-6ddb4cb32699" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary.System#Windows#Markup#IComponentConnector#Connect(System.Int32,System.Object)">
+      <topicdata group="api" eiiName="IComponentConnector.Connect" />
+      <apidata name="Connect" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="connectionId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Windows.Markup.IComponentConnector.Connect(System.Int32,System.Object)">
+          <type api="T:System.Windows.Markup.IComponentConnector" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Themes" />
+        <type api="T:System.Activities.Core.Presentation.Themes.DesignerStylesDictionary" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6be147b3-1430-5096-8b7b-ee66755e1af4" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationCore">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Diagnostics.VisualDiagnostics" />
+        <element api="T:System.Windows.Diagnostics.VisualTreeChangeType" />
+        <element api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+        <element api="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      </elements>
+      <file name="1477437b-7b8e-dc79-f13f-56ffcd6336b2" />
+    </api>
+    <api id="T:System.Windows.Diagnostics.VisualDiagnostics">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Diagnostics.VisualDiagnostics" />
+      <apidata name="VisualDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+      </containers>
+      <file name="da8894b1-bd20-45da-7c91-752b6ac7e850" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Diagnostics.VisualDiagnostics">
+      <topicdata name="VisualDiagnostics" group="list" subgroup="members" typeTopicId="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      <apidata name="VisualDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Diagnostics.VisualDiagnostics.GetXamlSourceInfo(System.Object)" />
+        <element api="E:System.Windows.Diagnostics.VisualDiagnostics.VisualTreeChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      </containers>
+      <file name="e97a578c-457c-5cc3-513a-d7bd36e2d125" />
+    </api>
+    <api id="Methods.T:System.Windows.Diagnostics.VisualDiagnostics">
+      <topicdata name="VisualDiagnostics" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      <apidata name="VisualDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Diagnostics.VisualDiagnostics.GetXamlSourceInfo(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      </containers>
+      <file name="ff857269-579f-7000-a380-6c6b4e8ab77c" />
+    </api>
+    <api id="Events.T:System.Windows.Diagnostics.VisualDiagnostics">
+      <topicdata name="VisualDiagnostics" group="list" subgroup="Events" typeTopicId="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      <apidata name="VisualDiagnostics" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Diagnostics.VisualDiagnostics.VisualTreeChanged" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualDiagnostics" />
+      </containers>
+      <file name="5dad8e40-9cbe-ace0-7ad0-210288ecd73f" />
+    </api>
+    <api id="M:System.Windows.Diagnostics.VisualDiagnostics.GetXamlSourceInfo(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetXamlSourceInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualDiagnostics" ref="true" />
+      </containers>
+      <file name="b58c5ad4-3a79-81a9-a297-789bad32989c" />
+    </api>
+    <api id="E:System.Windows.Diagnostics.VisualDiagnostics.VisualTreeChanged">
+      <topicdata group="api" />
+      <apidata name="VisualTreeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VisualTreeChanged" />
+      <remover name="remove_VisualTreeChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualDiagnostics" ref="true" />
+      </containers>
+      <file name="9e56709e-0730-2081-622a-41c8d7218249" />
+    </api>
+    <api id="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      <apidata name="VisualTreeChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+      </containers>
+      <file name="55a259fc-0881-0066-6301-37b21acb8bac" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Diagnostics.VisualTreeChangeEventArgs">
+      <topicdata name="VisualTreeChangeEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      <apidata name="VisualTreeChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Diagnostics.VisualTreeChangeEventArgs.#ctor(System.Windows.DependencyObject,System.Windows.DependencyObject,System.Int32,System.Windows.Diagnostics.VisualTreeChangeType)" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChangeType" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Child" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChildIndex" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Parent" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      </containers>
+      <file name="4bc6123f-d3e0-e992-a5fd-6a4ea929d4a0" />
+    </api>
+    <api id="Methods.T:System.Windows.Diagnostics.VisualTreeChangeEventArgs">
+      <topicdata name="VisualTreeChangeEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      <apidata name="VisualTreeChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      </containers>
+      <file name="6f8cd7da-4f54-9267-7ea7-1a26626a626e" />
+    </api>
+    <api id="Properties.T:System.Windows.Diagnostics.VisualTreeChangeEventArgs">
+      <topicdata name="VisualTreeChangeEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      <apidata name="VisualTreeChangeEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChangeType" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Child" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChildIndex" />
+        <element api="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Parent" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" />
+      </containers>
+      <file name="48bf3301-4277-f921-b303-19c55f4b0439" />
+    </api>
+    <api id="M:System.Windows.Diagnostics.VisualTreeChangeEventArgs.#ctor(System.Windows.DependencyObject,System.Windows.DependencyObject,System.Int32,System.Windows.Diagnostics.VisualTreeChangeType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="child">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="childIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="changeType">
+          <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </containers>
+      <file name="751c90ae-d7d3-9e4c-8bad-66295f504e9e" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChangeType">
+      <topicdata group="api" />
+      <apidata name="ChangeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChangeType" />
+      <returns>
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </containers>
+      <file name="cd889a15-7a06-04b1-39b8-386d7230891b" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Child">
+      <topicdata group="api" />
+      <apidata name="Child" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Child" />
+      <returns>
+        <type api="T:System.Windows.DependencyObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </containers>
+      <file name="422dd977-1bc9-4b15-28cc-d829c9429257" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.ChildIndex">
+      <topicdata group="api" />
+      <apidata name="ChildIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChildIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </containers>
+      <file name="f3de636e-956e-2e6d-5967-dd069d588ba6" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.VisualTreeChangeEventArgs.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:System.Windows.DependencyObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeEventArgs" ref="true" />
+      </containers>
+      <file name="896f22e6-8ce6-faa1-a49d-05b5e4cb48c7" />
+    </api>
+    <api id="T:System.Windows.Diagnostics.VisualTreeChangeType">
+      <topicdata group="api" />
+      <apidata name="VisualTreeChangeType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Diagnostics.VisualTreeChangeType.Add" />
+        <element api="F:System.Windows.Diagnostics.VisualTreeChangeType.Remove" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+      </containers>
+      <file name="1be64e87-f654-e51a-1cdc-8bacb3d8d6f5" />
+    </api>
+    <api id="F:System.Windows.Diagnostics.VisualTreeChangeType.Add">
+      <topicdata group="api" notopic="" />
+      <apidata name="Add" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+      </containers>
+      <file name="72211659-175c-bd32-3a16-3cc26df5d5b9" />
+    </api>
+    <api id="F:System.Windows.Diagnostics.VisualTreeChangeType.Remove">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remove" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.VisualTreeChangeType" ref="false" />
+      </containers>
+      <file name="fab4cdfb-d314-dede-a272-a663810ae017" />
+    </api>
+    <api id="T:System.Windows.Diagnostics.XamlSourceInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Diagnostics.XamlSourceInfo" />
+      <apidata name="XamlSourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+      </containers>
+      <file name="fce12628-c364-0e6a-4e28-94698703ec1e" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Diagnostics.XamlSourceInfo">
+      <topicdata name="XamlSourceInfo" group="list" subgroup="members" typeTopicId="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      <apidata name="XamlSourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Diagnostics.XamlSourceInfo.#ctor(System.Uri,System.Int32,System.Int32)" />
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.LineNumber" />
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.LinePosition" />
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      </containers>
+      <file name="6a9c664a-f88d-7a4f-821b-d6f15a79c9c1" />
+    </api>
+    <api id="Methods.T:System.Windows.Diagnostics.XamlSourceInfo">
+      <topicdata name="XamlSourceInfo" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      <apidata name="XamlSourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      </containers>
+      <file name="d21e828f-e009-8758-249f-dd57d1131b1b" />
+    </api>
+    <api id="Properties.T:System.Windows.Diagnostics.XamlSourceInfo">
+      <topicdata name="XamlSourceInfo" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      <apidata name="XamlSourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.LineNumber" />
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.LinePosition" />
+        <element api="P:System.Windows.Diagnostics.XamlSourceInfo.SourceUri" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" />
+      </containers>
+      <file name="09e462b7-cd57-8fee-be29-7fc996ceda82" />
+    </api>
+    <api id="M:System.Windows.Diagnostics.XamlSourceInfo.#ctor(System.Uri,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="sourceUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="lineNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="linePosition">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" ref="true" />
+      </containers>
+      <file name="af96cd47-e00e-e92c-a9e2-cbb3530caf25" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.XamlSourceInfo.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" ref="true" />
+      </containers>
+      <file name="eae97b41-22f8-6626-0e73-b001bb1480cb" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.XamlSourceInfo.LinePosition">
+      <topicdata group="api" />
+      <apidata name="LinePosition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LinePosition" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" ref="true" />
+      </containers>
+      <file name="a42a584d-b04a-2118-66f2-a20650ca14d8" />
+    </api>
+    <api id="P:System.Windows.Diagnostics.XamlSourceInfo.SourceUri">
+      <topicdata group="api" />
+      <apidata name="SourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Diagnostics" />
+        <type api="T:System.Windows.Diagnostics.XamlSourceInfo" ref="true" />
+      </containers>
+      <file name="29c53cdd-946a-7e2e-c929-05bf24bd8d05" />
+    </api>
+  </apis>
+</reflection>

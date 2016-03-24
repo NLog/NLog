@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Michael Buchner -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+	<item id="devlang_C#">C#</item>
+	<item id="devlang_CSharp">C#</item>
+	<item id="devlang_cs">C#</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+	<item id="metaLang_C#">CSharp</item>
+	<item id="metaLang_CSharp">CSharp</item>
+	<item id="metaLang_cs">CSharp</item>
+
+	<!-- C# syntax section messages -->
+	<item id="UnsupportedOperator_CSharp">C# unterstützt diesen Operator nicht.</item>
+	<item id="UnsupportedVarargs_CSharp">C# unterstützt keine Methoden mit variabler Argumentanzahl
+(<span class="code">varargs</span>).  Der Compiler löst automatisch alle Aufrufe dieser Methode zur selben
+Methode mit Parameter-Array auf.</item>
+
+</content>

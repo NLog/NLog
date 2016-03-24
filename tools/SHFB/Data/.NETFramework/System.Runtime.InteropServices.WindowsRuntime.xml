@@ -1,0 +1,2243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices.WindowsRuntime">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices.WindowsRuntime" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+        <element api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      </elements>
+      <file name="2a0b315a-acb3-4c27-25ea-a9ab26e7f9cf" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="84ba88dc-2c6a-6b87-887c-3bba91d05f91" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.#ctor(System.Type)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="06e4d40a-9a6a-f905-6a13-3ad431b8ff4a" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="8c34d870-7727-0533-a612-7e609eb3414e" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute">
+      <topicdata name="DefaultInterfaceAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      <apidata name="DefaultInterfaceAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" />
+      </containers>
+      <file name="3d7c1a27-dd02-c308-15bd-0bd2ab1600f9" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="defaultInterface">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" ref="true" />
+      </containers>
+      <file name="3f2f4874-ec53-109f-cd99-9047393ab2e8" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute.DefaultInterface">
+      <topicdata group="api" />
+      <apidata name="DefaultInterface" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultInterface" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute" ref="true" />
+      </containers>
+      <file name="3efa2bba-2fc3-2c89-cf52-29f9c2a335d7" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      <apidata name="DesignerNamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ecb678f1-23fb-104a-e8a7-7e4d94d7a016" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs">
+      <topicdata name="DesignerNamespaceResolveEventArgs" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      <apidata name="DesignerNamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.#ctor(System.String)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.NamespaceName" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.ResolvedAssemblyFiles" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      </containers>
+      <file name="ab89f5b3-c458-8267-f97c-fb59c49333f5" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs">
+      <topicdata name="DesignerNamespaceResolveEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      <apidata name="DesignerNamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      </containers>
+      <file name="e01cc1cd-43a1-f233-ef10-4a2d89b6c6fc" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs">
+      <topicdata name="DesignerNamespaceResolveEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      <apidata name="DesignerNamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.NamespaceName" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.ResolvedAssemblyFiles" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" />
+      </containers>
+      <file name="b789bb64-256c-8ffd-2f91-1391f8676c3f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="namespaceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="d4e81a0e-481b-a391-c9d3-1915ec125383" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.NamespaceName">
+      <topicdata group="api" />
+      <apidata name="NamespaceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NamespaceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="d102ea96-fdc2-ad06-c947-75f011cf0ca1" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs.ResolvedAssemblyFiles">
+      <topicdata group="api" />
+      <apidata name="ResolvedAssemblyFiles" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ResolvedAssemblyFiles" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="665b326f-006e-edfc-b96f-951206eab3ed" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="1f4e87c5-0847-8945-f3b8-1c71b4d70e5c" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="b45b304c-8e1f-c515-1751-28a44ddda7ca" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="9da04a08-ff4c-9fcb-ba92-cb4ffb02f6cd" />
+    </api>
+    <api id="Operators.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken">
+      <topicdata name="EventRegistrationToken" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      <apidata name="EventRegistrationToken" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" />
+      </containers>
+      <file name="8c5fc8a2-1457-9cd9-696f-8b0a2adb733a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="9d976b1a-4e00-9b5d-ee03-16843ce9813f" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="0df128a6-76b6-78d4-399b-9e70bcf4aff8" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Equality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="73598a0a-23e9-52bb-0f95-6605b448cfe0" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken.op_Inequality(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </containers>
+      <file name="218060aa-8f0a-9189-209f-f84bb2f64f43" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="1d52a764-dc23-1fc8-6ece-87d969f86e57" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="ae6a648a-8fe5-c3b8-534c-19a76ccd34c9" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="63b87338-2d13-fee3-035e-541888aa307b" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1">
+      <topicdata name="EventRegistrationTokenTable" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="EventRegistrationTokenTable" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </containers>
+      <file name="0c68fdc4-5ed3-7595-792a-0108f8da7b29" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler">
+      <topicdata name="RemoveEventHandler" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="6bbb7101-a480-d4df-4dd1-133043e93e39" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="88442d9a-d97b-ef9d-28b0-d73fa26a38b8" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.AddEventHandler(`0)">
+      <topicdata group="api" />
+      <apidata name="AddEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="9c8704fa-9236-5bdb-dc64-4af7c3df59b1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.GetOrCreateEventRegistrationTokenTable(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable{`0}@)">
+      <topicdata group="api" />
+      <apidata name="GetOrCreateEventRegistrationTokenTable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="refEventTable">
+          <referenceTo>
+            <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true">
+              <specialization>
+                <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="b5fca401-7ddb-1d20-3903-7ab1bb974be8" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.InvocationList">
+      <topicdata group="api" />
+      <apidata name="InvocationList" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InvocationList" />
+      <setter name="set_InvocationList" />
+      <returns>
+        <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="ae1107dd-0f73-3c3a-e3a8-c698998d4c56" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="token">
+          <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="3a223e3f-4e02-b8f7-5a6f-9f3742e5dd26" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler(`0)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1.RemoveEventHandler" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <template name="T" index="0" api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable`1" ref="true" />
+      </containers>
+      <file name="7ab1ad42-6999-1e32-8d31-b34866d9bbbf" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>00000035-0000-0000-C000-000000000046</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="23c40a86-9aae-7101-4047-8112cc60e4c4" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata name="IActivationFactory" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      </containers>
+      <file name="c07d6ebb-f4a7-d2c4-d52b-b0f03a4c0f96" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory">
+      <topicdata name="IActivationFactory" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      <apidata name="IActivationFactory" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" />
+      </containers>
+      <file name="7d560012-b5f0-dd90-67d7-1fa716b54e34" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory.ActivateInstance">
+      <topicdata group="api" />
+      <apidata name="ActivateInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" ref="true" />
+      </containers>
+      <file name="86086c58-3871-a679-c653-2319ace5da9b" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5b61113a-58a7-84a2-2c53-9c9be8559b0f" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.#ctor(System.Type,System.Byte,System.Byte,System.Byte,System.Byte)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="abb7791a-34d6-2381-6c56-dac6ba0609e6" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="35ec6c53-a567-285c-a774-4c1203c41de8" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute">
+      <topicdata name="InterfaceImplementedInVersionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      <apidata name="InterfaceImplementedInVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" />
+      </containers>
+      <file name="0b07af69-17ca-be79-540d-f2360fb5bc17" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.#ctor(System.Type,System.Byte,System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="interfaceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="majorVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="minorVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="buildVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="revisionVersion">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="bf39360d-d65f-74be-3b25-ee4a454c44af" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.BuildVersion">
+      <topicdata group="api" />
+      <apidata name="BuildVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="4a13e92f-e2c1-c5fe-d882-6c5ca58a2e2a" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.InterfaceType">
+      <topicdata group="api" />
+      <apidata name="InterfaceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InterfaceType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="137822c0-cde4-21bf-24a3-dcd6ff9a007c" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MajorVersion">
+      <topicdata group="api" />
+      <apidata name="MajorVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MajorVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="c93948e1-389f-e951-d2b2-9a72c28c6f99" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.MinorVersion">
+      <topicdata group="api" />
+      <apidata name="MinorVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MinorVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="e95ccb1b-c849-62ea-58a8-d38d50447b0a" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute.RevisionVersion">
+      <topicdata group="api" />
+      <apidata name="RevisionVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RevisionVersion" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute" ref="true" />
+      </containers>
+      <file name="3709dc42-1573-1139-570f-deecacf88f28" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      <apidata name="NamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3d9ed0d6-40c2-8895-8b1f-26674fb33699" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs">
+      <topicdata name="NamespaceResolveEventArgs" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      <apidata name="NamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.#ctor(System.String,System.Reflection.Assembly)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.NamespaceName" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.RequestingAssembly" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.ResolvedAssemblies" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      </containers>
+      <file name="55ec8714-2594-7999-595f-5fc6360bf182" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs">
+      <topicdata name="NamespaceResolveEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      <apidata name="NamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      </containers>
+      <file name="4d4867b0-7b89-ab49-5f38-a0fda032c6ea" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs">
+      <topicdata name="NamespaceResolveEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      <apidata name="NamespaceResolveEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.NamespaceName" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.RequestingAssembly" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.ResolvedAssemblies" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" />
+      </containers>
+      <file name="d234574f-99ee-1864-30e0-31c16860eb1a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.#ctor(System.String,System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="namespaceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="requestingAssembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="ccf547bc-4ff0-319b-6ca0-3e6fd8d725c4" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.NamespaceName">
+      <topicdata group="api" />
+      <apidata name="NamespaceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NamespaceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="7317e26c-cf93-e622-47d4-42a41b7ba11b" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.RequestingAssembly">
+      <topicdata group="api" />
+      <apidata name="RequestingAssembly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RequestingAssembly" />
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="fde17014-daf9-37a4-9972-e318127760ed" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs.ResolvedAssemblies">
+      <topicdata group="api" />
+      <apidata name="ResolvedAssemblies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ResolvedAssemblies" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.Assembly" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+      </containers>
+      <file name="f2109682-b872-baa1-9a4c-f22687582a4d" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="efc50e7f-5e31-f330-e6e0-47c2efb966bb" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata name="ReadOnlyArrayAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      </containers>
+      <file name="fd41abfd-18ea-08e8-bea8-93bdcf788df9" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata name="ReadOnlyArrayAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      </containers>
+      <file name="11124f27-9906-a9c7-dd34-68084a1b6c7f" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
+      <topicdata name="ReadOnlyArrayAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      <apidata name="ReadOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
+      </containers>
+      <file name="a13428cb-9c50-f903-c10d-066b6fe6faa8" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" ref="true" />
+      </containers>
+      <file name="b575d0d8-9ba2-dbda-81b3-2262d4198fc1" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Delegate" />
+              <field name="ReturnValue" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="092895aa-ac66-42ea-2df6-d78a5723fbe4" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="e4627b95-67bc-bcdd-2d12-52f635d726e6" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="e8d42407-7205-00e8-43ed-21e13995980a" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute">
+      <topicdata name="ReturnValueNameAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      <apidata name="ReturnValueNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" />
+      </containers>
+      <file name="99aebfe3-d8a0-edc4-011b-e45202697f9b" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" ref="true" />
+      </containers>
+      <file name="3ac09483-9f93-c78f-ba15-b9a861ef76e4" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute" ref="true" />
+      </containers>
+      <file name="41200cd1-591c-77ed-c038-db7b0af0972f" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="b91a77b2-fb18-76a3-98c1-7022909163d0" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata name="WindowsRuntimeMarshal" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      </containers>
+      <file name="76a4d09a-ec0a-cfdf-801f-c0ed013d856b" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal">
+      <topicdata name="WindowsRuntimeMarshal" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      <apidata name="WindowsRuntimeMarshal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" />
+      </containers>
+      <file name="8b4de0db-ce06-89f5-bf7b-54cfce4e0d25" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)">
+      <topicdata group="api" />
+      <apidata name="AddEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="addMethod">
+          <type api="T:System.Func`2" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="handler">
+          <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.AddEventHandler``1(System.Func{``0,System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e371c6d7-266e-9b56-46a1-c697284c3f1a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="FreeHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ptr">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e1adbfe5-ddc2-bc23-5aba-a033b3adf3ee" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetActivationFactory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.IActivationFactory" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e2436df8-f395-c384-afa4-fd0c1d362148" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="PtrToStringHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ptr">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2bc17c70-589f-d493-5635-e8da9b07808a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})">
+      <topicdata group="api" />
+      <apidata name="RemoveAllEventHandlers" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="35095877-74f2-ba1b-6219-94083d2345d6" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="removeMethod">
+          <type api="T:System.Action`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="handler">
+          <template name="T" index="0" api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1caf5971-c038-b850-ff8e-1c4ef44bb597" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)">
+      <topicdata group="api" />
+      <apidata name="StringToHString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4cd120e3-60b6-2194-8fb7-ee2a190e67a6" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      <apidata name="WindowsRuntimeMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <file name="f4d2d3ea-618d-5a2a-9887-a5b13ea7b89f" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata">
+      <topicdata name="WindowsRuntimeMetadata" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      <apidata name="WindowsRuntimeMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.DesignerNamespaceResolve" />
+        <element api="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ReflectionOnlyNamespaceResolve" />
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.Collections.Generic.IEnumerable{System.String})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      </containers>
+      <file name="75ff2ba6-c561-b66d-53f3-c06ebbc8401d" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata">
+      <topicdata name="WindowsRuntimeMetadata" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      <apidata name="WindowsRuntimeMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace">
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.Collections.Generic.IEnumerable{System.String})" />
+          <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      </containers>
+      <file name="c8a22a28-cbb2-185c-265a-45d6bd04bed7" />
+    </api>
+    <api id="Events.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata">
+      <topicdata name="WindowsRuntimeMetadata" group="list" subgroup="Events" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      <apidata name="WindowsRuntimeMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.DesignerNamespaceResolve" />
+        <element api="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ReflectionOnlyNamespaceResolve" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      </containers>
+      <file name="fad35eb4-d0da-ff97-d71a-be49334ef009" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace">
+      <topicdata name="ResolveNamespace" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" />
+      <apidata name="ResolveNamespace" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.Collections.Generic.IEnumerable{System.String})" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" ref="true" />
+      </containers>
+      <file name="c08b6d81-8713-3779-6b6a-9d627bcc1a60" />
+    </api>
+    <api id="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.DesignerNamespaceResolve">
+      <topicdata group="api" />
+      <apidata name="DesignerNamespaceResolve" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DesignerNamespaceResolve">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_DesignerNamespaceResolve">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" ref="true" />
+      </containers>
+      <file name="06187e58-b19d-3f08-3317-37cc6deda333" />
+    </api>
+    <api id="E:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ReflectionOnlyNamespaceResolve">
+      <topicdata group="api" />
+      <apidata name="ReflectionOnlyNamespaceResolve" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ReflectionOnlyNamespaceResolve">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_ReflectionOnlyNamespaceResolve">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" ref="true" />
+      </containers>
+      <file name="cffa81bd-f1a9-61df-eb77-f64bcabd7a77" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <topicdata group="api" />
+      <apidata name="ResolveNamespace" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="packageGraphFilePaths">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f2c13bbe-0a29-e7c7-7b1e-efc0c581bfab" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <topicdata group="api" />
+      <apidata name="ResolveNamespace" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata.ResolveNamespace" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="namespaceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="windowsSdkFilePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="packageGraphFilePaths">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="41a3221b-4e7e-bce1-633e-eedf336ab8fb" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a28583bb-d32c-e2d8-f0d9-fefece1fc2c2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata name="WriteOnlyArrayAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      </containers>
+      <file name="2c141e17-af0f-5651-7536-64056afbdd1d" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata name="WriteOnlyArrayAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      </containers>
+      <file name="4e276e22-3d76-2a72-7481-b4b230e158f7" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
+      <topicdata name="WriteOnlyArrayAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      <apidata name="WriteOnlyArrayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
+      </containers>
+      <file name="acfae5dd-3073-e4b2-7809-ee4ba0cbe5f5" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.WindowsRuntime" />
+        <type api="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" ref="true" />
+      </containers>
+      <file name="d3793b10-270f-f2e3-bbba-6225c46b95bf" />
+    </api>
+  </apis>
+</reflection>

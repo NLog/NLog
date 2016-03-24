@@ -1,0 +1,2608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.SmartCards">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.SmartCards" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.SmartCards.SmartCardReaderKind" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardStatus" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardReader" />
+        <element api="T:Windows.Devices.SmartCards.SmartCard" />
+        <element api="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+        <element api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardPinResetHandler" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+        <element api="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      </elements>
+      <file name="1a96a3a1-2fea-c0a0-2f1b-90e74472c536" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.CardAddedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      <apidata name="CardAddedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ICardAddedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9748b0fb-857d-2c53-e87a-17370f06119f" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.CardAddedEventArgs">
+      <topicdata name="CardAddedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      <apidata name="CardAddedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.SmartCards.CardAddedEventArgs.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      </containers>
+      <file name="4ef48569-be42-c64c-c492-8352dfac3c48" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.CardAddedEventArgs">
+      <topicdata name="CardAddedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      <apidata name="CardAddedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      </containers>
+      <file name="dce05cbe-cb9d-5e67-d3e4-af29c1d1c24f" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.CardAddedEventArgs">
+      <topicdata name="CardAddedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      <apidata name="CardAddedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.CardAddedEventArgs.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardAddedEventArgs" />
+      </containers>
+      <file name="7f04b7ef-3ebb-9234-aa8a-9107b982bcfa" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.CardAddedEventArgs.SmartCard">
+      <topicdata group="api" />
+      <apidata name="SmartCard" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SmartCard" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardAddedEventArgs" ref="true" />
+      </containers>
+      <file name="303c969f-7a87-ad28-b8ee-8b7337e07e99" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.CardRemovedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      <apidata name="CardRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ICardRemovedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d9bd2e6-9c31-61c3-b2b7-d5aa11d336b7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.CardRemovedEventArgs">
+      <topicdata name="CardRemovedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      <apidata name="CardRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.SmartCards.CardRemovedEventArgs.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      </containers>
+      <file name="d5a8448d-f9cf-af62-3dd1-221eff5ef70a" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.CardRemovedEventArgs">
+      <topicdata name="CardRemovedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      <apidata name="CardRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      </containers>
+      <file name="72452a77-a9ef-eaa9-c81d-7f949c62ac9c" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.CardRemovedEventArgs">
+      <topicdata name="CardRemovedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      <apidata name="CardRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.CardRemovedEventArgs.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" />
+      </containers>
+      <file name="7dbca7e0-056d-5d67-b24a-7de95e3df747" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.CardRemovedEventArgs.SmartCard">
+      <topicdata group="api" />
+      <apidata name="SmartCard" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SmartCard" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" ref="true" />
+      </containers>
+      <file name="fb5033cd-d730-1f6a-e6be-ab6f33e591d8" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCard">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCard" />
+      <apidata name="SmartCard" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCard" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2be96503-d150-bf5f-7875-c0ef8f9fdece" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCard">
+      <topicdata name="SmartCard" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCard" />
+      <apidata name="SmartCard" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCard.GetAnswerToResetAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCard.GetStatusAsync" />
+        <element api="P:Windows.Devices.SmartCards.SmartCard.Reader" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" />
+      </containers>
+      <file name="0b6a78b0-8601-ee40-9a66-d0a2857e2b36" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCard">
+      <topicdata name="SmartCard" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCard" />
+      <apidata name="SmartCard" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCard.GetAnswerToResetAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCard.GetStatusAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" />
+      </containers>
+      <file name="4c5f14ad-9a6b-298a-86f7-f55e29be9b79" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCard">
+      <topicdata name="SmartCard" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCard" />
+      <apidata name="SmartCard" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCard.Reader" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" />
+      </containers>
+      <file name="31006816-bcf8-5d94-6f64-6a4b7a768154" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCard.GetAnswerToResetAsync">
+      <topicdata group="api" />
+      <apidata name="GetAnswerToResetAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </containers>
+      <file name="a4807a44-f9e8-1afd-a025-bfa78c62a593" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCard.GetStatusAsync">
+      <topicdata group="api" />
+      <apidata name="GetStatusAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </containers>
+      <file name="540759ca-1046-3544-5457-55bd2b80d61c" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCard.Reader">
+      <topicdata group="api" />
+      <apidata name="Reader" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Reader" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </containers>
+      <file name="fba43e44-48a7-df6f-8ff8-fce0918d99f9" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardChallengeContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      <apidata name="SmartCardChallengeContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardChallengeContext" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e6518e30-d78b-b590-c5cf-6b05ba8d41ed" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardChallengeContext">
+      <topicdata name="SmartCardChallengeContext" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      <apidata name="SmartCardChallengeContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardChallengeContext.Challenge" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ChangeAdministrativeKeyAsync(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.Close" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync">
+          <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean)" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean,System.Guid)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.VerifyResponseAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      </containers>
+      <file name="28a657e9-7e13-0202-d1f4-cb392dbb6f8d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardChallengeContext">
+      <topicdata name="SmartCardChallengeContext" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      <apidata name="SmartCardChallengeContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ChangeAdministrativeKeyAsync(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.Close" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync">
+          <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean)" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean,System.Guid)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.VerifyResponseAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      </containers>
+      <file name="ff3d33c0-7262-c4b1-dcf5-6aee7babefe3" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCardChallengeContext">
+      <topicdata name="SmartCardChallengeContext" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      <apidata name="SmartCardChallengeContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCardChallengeContext.Challenge" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      </containers>
+      <file name="e29105a8-9d78-321f-b46d-3f65d1ea9716" />
+    </api>
+    <api id="Overload:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync">
+      <topicdata name="ProvisionAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardChallengeContext" />
+      <apidata name="ProvisionAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <file name="545be44f-e540-ff01-0157-751baa1d13a0" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardChallengeContext.Challenge">
+      <topicdata group="api" />
+      <apidata name="Challenge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Challenge" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <file name="692420d9-56d8-9e93-c0ca-27c13eaf6bd6" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ChangeAdministrativeKeyAsync(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="ChangeAdministrativeKeyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="newAdministrativeKey" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <file name="2345fc9a-ac36-5541-f91b-ddda20f92c92" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardChallengeContext.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <file name="9ed84e06-d53e-15da-32d5-b6315addc984" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ProvisionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="formatCard" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ProvisionAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="20fa157a-ebf9-d1ef-de84-69afdd38a14b" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync(Windows.Storage.Streams.IBuffer,System.Boolean,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="ProvisionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.SmartCards.SmartCardChallengeContext.ProvisionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="formatCard" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="newCardId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ProvisionAsyncWithNewCardId</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bedd0f2e-025a-1263-5eb1-48088ee7ffe6" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardChallengeContext.VerifyResponseAsync(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="VerifyResponseAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+      </containers>
+      <file name="6347b137-1c84-fa38-bae0-e8f740df32b8" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption">
+      <topicdata group="api" />
+      <apidata name="SmartCardPinCharacterPolicyOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.Allow" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.RequireAtLeastOne" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.Disallow" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd3af6d7-7b61-c8e0-4f88-41aa7d8632ac" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.Allow">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </containers>
+      <file name="0bfa66d2-e5ce-c543-3d5c-154af9c1e75f" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.Disallow">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disallow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </containers>
+      <file name="60ee419e-3e0a-eca7-e793-2a1ebe9c92c0" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption.RequireAtLeastOne">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequireAtLeastOne" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </containers>
+      <file name="42b82033-d444-7a75-7e26-3c3ad9d0cdf4" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardPinPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      <apidata name="SmartCardPinPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardPinPolicy" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bc2b2a23-fdeb-adab-3f25-0b30fcf7aa6c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinPolicy">
+      <topicdata name="SmartCardPinPolicy" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      <apidata name="SmartCardPinPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.Digits" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.LowercaseLetters" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MaxLength" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MinLength" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.SpecialCharacters" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.UppercaseLetters" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      </containers>
+      <file name="73157128-a1cc-88c0-80a9-4451fc02560d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardPinPolicy">
+      <topicdata name="SmartCardPinPolicy" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      <apidata name="SmartCardPinPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      </containers>
+      <file name="0d34e8c1-20af-5f27-1c89-d391a677fb83" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCardPinPolicy">
+      <topicdata name="SmartCardPinPolicy" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      <apidata name="SmartCardPinPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.Digits" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.LowercaseLetters" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MaxLength" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MinLength" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.SpecialCharacters" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinPolicy.UppercaseLetters" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" />
+      </containers>
+      <file name="d8907589-9f80-afad-34af-d2def4c971ca" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardPinPolicy.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="d20265a5-54c1-2c8e-cd94-9ba0920da700" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.Digits">
+      <topicdata group="api" />
+      <apidata name="Digits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Digits" />
+      <setter name="set_Digits" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="26333a8b-2d03-521d-a585-ff8f35a4db69" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.LowercaseLetters">
+      <topicdata group="api" />
+      <apidata name="LowercaseLetters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LowercaseLetters" />
+      <setter name="set_LowercaseLetters" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="0b4554a1-4687-311c-fd14-99d2033bdc12" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MaxLength">
+      <topicdata group="api" />
+      <apidata name="MaxLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxLength" />
+      <setter name="set_MaxLength" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="b5eb3b75-21ee-5c34-6b1e-e1e9c58a9a09" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.MinLength">
+      <topicdata group="api" />
+      <apidata name="MinLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinLength" />
+      <setter name="set_MinLength" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="08c0e31b-f8d1-2159-bd23-80f540375409" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.SpecialCharacters">
+      <topicdata group="api" />
+      <apidata name="SpecialCharacters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SpecialCharacters" />
+      <setter name="set_SpecialCharacters" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="1008aee7-c1a4-a353-c2f9-e46aaf4b8986" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinPolicy.UppercaseLetters">
+      <topicdata group="api" />
+      <apidata name="UppercaseLetters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UppercaseLetters" />
+      <setter name="set_UppercaseLetters" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+      </containers>
+      <file name="a0dd004f-f50d-aa3b-5a66-2bbcc0765c26" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      <apidata name="SmartCardPinResetDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardPinResetDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f0f724a1-fa5f-5264-9591-3e2a11e49c4a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinResetDeferral">
+      <topicdata name="SmartCardPinResetDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      <apidata name="SmartCardPinResetDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      </containers>
+      <file name="2b54be38-8a53-6958-ae41-6f623d377cbf" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardPinResetDeferral">
+      <topicdata name="SmartCardPinResetDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      <apidata name="SmartCardPinResetDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" />
+      </containers>
+      <file name="76a70346-d48d-234f-0316-d37f40587e06" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardPinResetDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" ref="true" />
+      </containers>
+      <file name="39e28b87-c48c-c264-1b6b-f65afa8db3cc" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardPinResetHandler">
+      <topicdata group="api" />
+      <apidata name="SmartCardPinResetHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+        </parameter>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>328031808</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>62396</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19036</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>180</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>29</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>75</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>78</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>246</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>55</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="962b6c22-cd28-9ea9-9ab1-1ca683cae8a5" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardPinResetRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      <apidata name="SmartCardPinResetRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardPinResetRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="884eb591-3d96-3ec9-4452-9e090bdf03e9" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardPinResetRequest">
+      <topicdata name="SmartCardPinResetRequest" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      <apidata name="SmartCardPinResetRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Challenge" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Deadline" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.GetDeferral" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.SetResponse(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      </containers>
+      <file name="58072450-a90a-5db5-9b27-57715d2c28d2" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardPinResetRequest">
+      <topicdata name="SmartCardPinResetRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      <apidata name="SmartCardPinResetRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.GetDeferral" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.SetResponse(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      </containers>
+      <file name="5a94b715-23c4-5161-c32b-469aa428d720" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCardPinResetRequest">
+      <topicdata name="SmartCardPinResetRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      <apidata name="SmartCardPinResetRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Challenge" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" />
+      </containers>
+      <file name="2024a975-278e-afa6-a9d8-35b04f7d7bd8" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Challenge">
+      <topicdata group="api" />
+      <apidata name="Challenge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Challenge" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" ref="true" />
+      </containers>
+      <file name="667a5b88-2315-35cd-dfdc-444e42026b10" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardPinResetRequest.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" ref="true" />
+      </containers>
+      <file name="3283067c-13f9-1f91-67a7-24105b9935c2" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" ref="true" />
+      </containers>
+      <file name="fcea417c-3b67-1034-008f-4b395fa803ba" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardPinResetRequest.SetResponse(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="SetResponse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardPinResetRequest" ref="true" />
+      </containers>
+      <file name="de683362-f29d-62f8-afe2-0bd24b419d99" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardProvisioning">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      <apidata name="SmartCardProvisioning" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardProvisioning" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dbcdeee8-b0b3-9d40-c7e1-39484857191d" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardProvisioning">
+      <topicdata name="SmartCardProvisioning" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      <apidata name="SmartCardProvisioning" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.FromSmartCardAsync(Windows.Devices.SmartCards.SmartCard)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetChallengeContextAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetIdAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetNameAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinChangeAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinResetAsync(Windows.Devices.SmartCards.SmartCardPinResetHandler)" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync">
+          <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy)" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy,System.Guid)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardDeletionAsync(Windows.Devices.SmartCards.SmartCard)" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardProvisioning.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      </containers>
+      <file name="8b4ec9fc-3ce1-5769-f5cc-88e1e5385eda" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardProvisioning">
+      <topicdata name="SmartCardProvisioning" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      <apidata name="SmartCardProvisioning" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.FromSmartCardAsync(Windows.Devices.SmartCards.SmartCard)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetChallengeContextAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetIdAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetNameAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinChangeAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinResetAsync(Windows.Devices.SmartCards.SmartCardPinResetHandler)" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync">
+          <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy)" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy,System.Guid)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardDeletionAsync(Windows.Devices.SmartCards.SmartCard)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      </containers>
+      <file name="e40d5f0a-e418-35d4-88e8-e070efade0b9" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCardProvisioning">
+      <topicdata name="SmartCardProvisioning" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      <apidata name="SmartCardProvisioning" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCardProvisioning.SmartCard" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      </containers>
+      <file name="93d0a830-5cbf-2380-b731-2f8b9359e011" />
+    </api>
+    <api id="Overload:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync">
+      <topicdata name="RequestVirtualSmartCardCreationAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardProvisioning" />
+      <apidata name="RequestVirtualSmartCardCreationAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy)" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="f4b05ff1-9c14-00f8-4dae-36fe2a5bd352" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.FromSmartCardAsync(Windows.Devices.SmartCards.SmartCard)">
+      <topicdata group="api" />
+      <apidata name="FromSmartCardAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="card" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="99d2fbb0-b705-21b2-e974-64affb1b32c4" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetChallengeContextAsync">
+      <topicdata group="api" />
+      <apidata name="GetChallengeContextAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardChallengeContext" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="15e97531-ae28-5986-e340-620a0dc4f57e" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetIdAsync">
+      <topicdata group="api" />
+      <apidata name="GetIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="469431fd-9111-3f37-b958-206257090259" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.GetNameAsync">
+      <topicdata group="api" />
+      <apidata name="GetNameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="eb2c61e3-77e6-548e-1014-cf8dc791a328" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinChangeAsync">
+      <topicdata group="api" />
+      <apidata name="RequestPinChangeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="76741218-35f9-1f37-cd5e-6464186ad01e" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestPinResetAsync(Windows.Devices.SmartCards.SmartCardPinResetHandler)">
+      <topicdata group="api" />
+      <apidata name="RequestPinResetAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardPinResetHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="77aa4a74-df61-4163-f527-6cdaacc85892" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy)">
+      <topicdata group="api" />
+      <apidata name="RequestVirtualSmartCardCreationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="friendlyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="administrativeKey" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="pinPolicy" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestVirtualSmartCardCreationAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a4ada9d-15a3-ebfe-e888-461c2f3f0f3b" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync(System.String,Windows.Storage.Streams.IBuffer,Windows.Devices.SmartCards.SmartCardPinPolicy,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="RequestVirtualSmartCardCreationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardCreationAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="friendlyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="administrativeKey" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="pinPolicy" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardPinPolicy" ref="true" />
+        </parameter>
+        <parameter name="cardId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestVirtualSmartCardCreationAsyncWithCardId</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9c03dba4-b72b-65b4-e3d2-714d50a15dc6" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardProvisioning.RequestVirtualSmartCardDeletionAsync(Windows.Devices.SmartCards.SmartCard)">
+      <topicdata group="api" />
+      <apidata name="RequestVirtualSmartCardDeletionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="card" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="e9243935-de5f-db30-b093-e2eb270a46e1" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardProvisioning.SmartCard">
+      <topicdata group="api" />
+      <apidata name="SmartCard" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SmartCard" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardProvisioning" ref="true" />
+      </containers>
+      <file name="1f31eb3a-96c8-ee30-5518-0cddbe4324ec" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="SmartCardReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.SmartCards.ISmartCardReader" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="305d5319-9fdb-7fea-3181-157d25657977" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.SmartCards.SmartCardReader">
+      <topicdata name="SmartCardReader" group="list" subgroup="members" typeTopicId="T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="SmartCardReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Devices.SmartCards.SmartCardReader.CardAdded" />
+        <element api="E:Windows.Devices.SmartCards.SmartCardReader.CardRemoved" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.DeviceId" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.FindAllCardsAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.FromIdAsync(System.String)" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector">
+          <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector(Windows.Devices.SmartCards.SmartCardReaderKind)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetStatusAsync" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.Kind" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" />
+      </containers>
+      <file name="432640d0-ce8a-3804-0703-095a912ea199" />
+    </api>
+    <api id="Methods.T:Windows.Devices.SmartCards.SmartCardReader">
+      <topicdata name="SmartCardReader" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="SmartCardReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.FindAllCardsAsync" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.FromIdAsync(System.String)" />
+        <element api="Overload:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector">
+          <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector" />
+          <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector(Windows.Devices.SmartCards.SmartCardReaderKind)" />
+        </element>
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetStatusAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" />
+      </containers>
+      <file name="c63d2f25-ec79-d19d-300c-e04020ad9ff4" />
+    </api>
+    <api id="Properties.T:Windows.Devices.SmartCards.SmartCardReader">
+      <topicdata name="SmartCardReader" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="SmartCardReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.DeviceId" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.Kind" />
+        <element api="P:Windows.Devices.SmartCards.SmartCardReader.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" />
+      </containers>
+      <file name="3a83f85a-b1f9-ad0b-12ff-a8d6e047e3e5" />
+    </api>
+    <api id="Events.T:Windows.Devices.SmartCards.SmartCardReader">
+      <topicdata name="SmartCardReader" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="SmartCardReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.SmartCards.SmartCardReader.CardAdded" />
+        <element api="E:Windows.Devices.SmartCards.SmartCardReader.CardRemoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" />
+      </containers>
+      <file name="0672bb88-fae6-490b-fe95-a19f3e987285" />
+    </api>
+    <api id="Overload:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector">
+      <topicdata name="GetDeviceSelector" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.SmartCards.SmartCardReader" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector" />
+        <element api="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector(Windows.Devices.SmartCards.SmartCardReaderKind)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="18b7c181-7993-3c01-ca2a-c91bbb1fdacf" />
+    </api>
+    <api id="E:Windows.Devices.SmartCards.SmartCardReader.CardAdded">
+      <topicdata group="api" />
+      <apidata name="CardAdded" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CardAdded" />
+      <remover name="remove_CardAdded" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+            <type api="T:Windows.Devices.SmartCards.CardAddedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="adaecf65-b68e-9e67-16ff-a26fd906a757" />
+    </api>
+    <api id="E:Windows.Devices.SmartCards.SmartCardReader.CardRemoved">
+      <topicdata group="api" />
+      <apidata name="CardRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CardRemoved" />
+      <remover name="remove_CardRemoved" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+            <type api="T:Windows.Devices.SmartCards.CardRemovedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="05ff71ac-c77b-b1bc-6ca7-a11145f80fff" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardReader.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="7898f59f-f588-d25e-a968-3fa21164efcb" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardReader.FindAllCardsAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllCardsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Devices.SmartCards.SmartCard" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="748bd31e-cc9d-36b2-c670-aa549d07595b" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardReader.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="5038e57e-6a9c-03fe-6ecf-12ed727c970a" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelector</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8e860830-20e1-ed7e-af97-9dd46bace633" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector(Windows.Devices.SmartCards.SmartCardReaderKind)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.SmartCards.SmartCardReader.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="kind" in="true">
+          <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelectorWithKind</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aaeed510-4145-1741-b98b-b409a612ef88" />
+    </api>
+    <api id="M:Windows.Devices.SmartCards.SmartCardReader.GetStatusAsync">
+      <topicdata group="api" />
+      <apidata name="GetStatusAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="b2511062-00b0-6e91-f203-df59d79064e6" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardReader.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="177c5c06-29be-8cc8-2515-da571f042f79" />
+    </api>
+    <api id="P:Windows.Devices.SmartCards.SmartCardReader.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReader" ref="true" />
+      </containers>
+      <file name="2231a1ca-fc2b-8d0f-7753-42f7dcdd9f51" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardReaderKind">
+      <topicdata group="api" />
+      <apidata name="SmartCardReaderKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderKind.Any" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderKind.Generic" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderKind.Tpm" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderKind.Nfc" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderKind.Uicc" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f5acfcd2-a5f0-f25c-e407-c1281770700e" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderKind.Any">
+      <topicdata group="api" notopic="" />
+      <apidata name="Any" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </containers>
+      <file name="d1cbca12-3cbb-30d1-cfb1-8d707d56fca1" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderKind.Generic">
+      <topicdata group="api" notopic="" />
+      <apidata name="Generic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </containers>
+      <file name="47555c4d-5fae-a729-77c1-4913ddb223f9" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderKind.Nfc">
+      <topicdata group="api" notopic="" />
+      <apidata name="Nfc" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </containers>
+      <file name="7dd9ef5a-f29b-c212-4037-cbc29edae942" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderKind.Tpm">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tpm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </containers>
+      <file name="efd41936-b9cd-fef9-6448-f357014d2c10" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderKind.Uicc">
+      <topicdata group="api" notopic="" />
+      <apidata name="Uicc" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderKind" ref="false" />
+      </containers>
+      <file name="e0e91409-331f-31e3-d636-9c5720b7f688" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardReaderStatus">
+      <topicdata group="api" />
+      <apidata name="SmartCardReaderStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Disconnected" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Ready" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Exclusive" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aba835e1-dd92-4c13-7384-1e6060adc3c8" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </containers>
+      <file name="a91bbdcc-5c1c-6ff4-6d84-9bc6bef3f4fc" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Exclusive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exclusive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </containers>
+      <file name="7a956672-4b44-e38a-d118-fa93896265ea" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardReaderStatus.Ready">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ready" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardReaderStatus" ref="false" />
+      </containers>
+      <file name="fb240964-9222-0a34-b551-c432d8924cc0" />
+    </api>
+    <api id="T:Windows.Devices.SmartCards.SmartCardStatus">
+      <topicdata group="api" />
+      <apidata name="SmartCardStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.SmartCards.SmartCardStatus.Disconnected" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardStatus.Ready" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardStatus.Shared" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardStatus.Exclusive" />
+        <element api="F:Windows.Devices.SmartCards.SmartCardStatus.Unresponsive" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b52c15af-de03-7a7b-0d19-4b6e04235c6c" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </containers>
+      <file name="29a11738-0832-b2e0-c6fb-cb0f344eaf24" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardStatus.Exclusive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exclusive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </containers>
+      <file name="6f0cdafe-0578-9b80-90b5-cc0c1b268d2e" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardStatus.Ready">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ready" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </containers>
+      <file name="05fce3e8-2ed5-3a49-c18a-2daf54c9d8da" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardStatus.Shared">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shared" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </containers>
+      <file name="3efb74ba-44d0-e088-8d83-f58bd50bc35b" />
+    </api>
+    <api id="F:Windows.Devices.SmartCards.SmartCardStatus.Unresponsive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unresponsive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.SmartCards" />
+        <type api="T:Windows.Devices.SmartCards.SmartCardStatus" ref="false" />
+      </containers>
+      <file name="198a1f56-c465-f209-f405-f186c7844b57" />
+    </api>
+  </apis>
+</reflection>

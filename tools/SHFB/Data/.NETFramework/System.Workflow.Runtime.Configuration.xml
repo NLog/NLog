@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Workflow.Runtime">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.Configuration</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.Hosting</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsDefinitionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.Tracking</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Workflow.ComponentModel.Serialization.XmlnsPrefixAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/winfx/2006/xaml/workflow</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>wf</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Workflow.Runtime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Workflow.Runtime.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Workflow.Runtime.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+        <element api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+        <element api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      </elements>
+      <file name="df020900-ffbb-f4a0-d19a-c33bdd688869" />
+    </api>
+    <api id="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      <apidata name="WorkflowRuntimeSection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Workflow.* types are deprecated.  Instead, please use the new types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="99d9b7eb-1ca4-a0b4-59a5-e3715e1919c4" />
+    </api>
+    <api id="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection">
+      <topicdata name="WorkflowRuntimeSection" group="list" subgroup="members" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      <apidata name="WorkflowRuntimeSection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="M:System.Configuration.ConfigurationElement.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Configuration.ConfigurationSection.DeserializeSection(System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationSection.GetRuntimeObject" />
+        <element api="M:System.Configuration.ConfigurationSection.IsModified" />
+        <element api="M:System.Configuration.ConfigurationSection.ResetModified" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Configuration.ConfigurationSection.SerializeSection(System.Configuration.ConfigurationElement,System.String,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializeElementInTargetVersion(System.Configuration.ConfigurationElement,System.String,System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializePropertyInTargetVersion(System.Configuration.ConfigurationProperty,System.String,System.Runtime.Versioning.FrameworkName,System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializeSectionInTargetVersion(System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.CommonParameters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.EnablePerformanceCounters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Name" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Services" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.ValidateOnCreate" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.WorkflowDefinitionCacheCapacity" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      </containers>
+      <file name="de67db33-702e-1c82-3482-664d7d361a65" />
+    </api>
+    <api id="Methods.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection">
+      <topicdata name="WorkflowRuntimeSection" group="list" subgroup="Methods" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      <apidata name="WorkflowRuntimeSection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="M:System.Configuration.ConfigurationElement.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Configuration.ConfigurationSection.DeserializeSection(System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationSection.GetRuntimeObject" />
+        <element api="M:System.Configuration.ConfigurationSection.IsModified" />
+        <element api="M:System.Configuration.ConfigurationSection.ResetModified" />
+        <element api="M:System.Configuration.ConfigurationSection.SerializeSection(System.Configuration.ConfigurationElement,System.String,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializeElementInTargetVersion(System.Configuration.ConfigurationElement,System.String,System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializePropertyInTargetVersion(System.Configuration.ConfigurationProperty,System.String,System.Runtime.Versioning.FrameworkName,System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationSection.ShouldSerializeSectionInTargetVersion(System.Runtime.Versioning.FrameworkName)" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      </containers>
+      <file name="4f9741ea-0c0d-0587-42fa-6e8c30f4f377" />
+    </api>
+    <api id="Properties.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection">
+      <topicdata name="WorkflowRuntimeSection" group="list" subgroup="Properties" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      <apidata name="WorkflowRuntimeSection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.CommonParameters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.EnablePerformanceCounters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Name" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Services" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.ValidateOnCreate" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.WorkflowDefinitionCacheCapacity" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" />
+      </containers>
+      <file name="178cc46d-bd05-bd39-9d19-ad2069651139" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <file name="d4476e2b-0c05-4849-acfd-95b7cd1bbd33" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.CommonParameters">
+      <topicdata group="api" />
+      <apidata name="CommonParameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CommonParameters" />
+      <returns>
+        <type api="T:System.Configuration.NameValueConfigurationCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CommonParameters</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="95d14c33-34aa-b605-bb0d-822c0a5646e7" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.EnablePerformanceCounters">
+      <topicdata group="api" />
+      <apidata name="EnablePerformanceCounters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnablePerformanceCounters" />
+      <setter name="set_EnablePerformanceCounters" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>EnablePerformanceCounters</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0079765d-f3b1-815b-75fa-b41af3043950" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Name</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="be78f39d-003e-69cf-d569-fec8b6b7c7f5" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.Services">
+      <topicdata group="api" />
+      <apidata name="Services" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Services" />
+      <returns>
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Services</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="aacc971e-d92c-3863-db94-5efd1bb5c2fd" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.ValidateOnCreate">
+      <topicdata group="api" />
+      <apidata name="ValidateOnCreate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidateOnCreate" />
+      <setter name="set_ValidateOnCreate" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ValidateOnCreate</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="bbe1ea54-72a1-9533-9c41-7e1254c9f439" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection.WorkflowDefinitionCacheCapacity">
+      <topicdata group="api" />
+      <apidata name="WorkflowDefinitionCacheCapacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WorkflowDefinitionCacheCapacity" />
+      <setter name="set_WorkflowDefinitionCacheCapacity" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WorkflowDefinitionCacheCapacity</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="dc56dab1-0acb-6304-5c0d-bc94e2204897" />
+    </api>
+    <api id="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      <apidata name="WorkflowRuntimeServiceElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Workflow.* types are deprecated.  Instead, please use the new types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aa20d7fd-d4ac-2adb-80f1-39582881514d" />
+    </api>
+    <api id="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement">
+      <topicdata name="WorkflowRuntimeServiceElement" group="list" subgroup="members" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      <apidata name="WorkflowRuntimeServiceElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="M:System.Configuration.ConfigurationElement.IsModified" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="M:System.Configuration.ConfigurationElement.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElement.ResetModified" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Parameters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      </containers>
+      <file name="0380df94-2987-1cb8-aa3e-0403c1fdf954" />
+    </api>
+    <api id="Methods.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement">
+      <topicdata name="WorkflowRuntimeServiceElement" group="list" subgroup="Methods" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      <apidata name="WorkflowRuntimeServiceElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="M:System.Configuration.ConfigurationElement.IsModified" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="M:System.Configuration.ConfigurationElement.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElement.ResetModified" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElement.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      </containers>
+      <file name="52eba1da-12f6-02e0-4308-965fae1f207c" />
+    </api>
+    <api id="Properties.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement">
+      <topicdata name="WorkflowRuntimeServiceElement" group="list" subgroup="Properties" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      <apidata name="WorkflowRuntimeServiceElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Parameters" />
+        <element api="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" />
+      </containers>
+      <file name="00331bdb-49b7-3cb0-c8ec-7b3717af5639" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" ref="true" />
+      </containers>
+      <file name="8c740e6b-e588-0e51-1b50-f30ebd666c97" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="OnDeserializeUnrecognizedAttribute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)">
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" ref="true" />
+      </containers>
+      <file name="175703c2-aac7-75d5-6497-f79ae2743b73" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" ref="true" />
+      </containers>
+      <file name="fa618c05-26bb-b40a-ac7f-2766e2eb43df" />
+    </api>
+    <api id="P:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a872f763-e36c-affe-0d1a-19dc7a91063f" />
+    </api>
+    <api id="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      <apidata name="WorkflowRuntimeServiceElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ServiceModel.Configuration.ExtendedWorkflowRuntimeServiceElementCollection" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Workflow.* types are deprecated.  Instead, please use the new types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="891d016b-4857-0107-46ef-803831347858" />
+    </api>
+    <api id="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection">
+      <topicdata name="WorkflowRuntimeServiceElementCollection" group="list" subgroup="members" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      <apidata name="WorkflowRuntimeServiceElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.AddElementName" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.BaseAdd">
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Configuration.ConfigurationElement)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Configuration.ConfigurationElement,System.Boolean)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Int32,System.Configuration.ConfigurationElement)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseClear" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.BaseGet">
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseGet(System.Int32)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseGet(System.Object)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseGetAllKeys" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseGetKey(System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseIndexOf(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseIsRemoved(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseRemove(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseRemoveAt(System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.ClearElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement">
+          <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.CreateNewElement(System.String)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationElementCollection.ElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsElementName(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsElementRemovable(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsModified" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.RemoveElementName" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.ResetModified" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.SetReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.ThrowOnDuplicate" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.Add(System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      </containers>
+      <file name="aaf7a9b2-b2f5-d646-1984-0dc33af482f0" />
+    </api>
+    <api id="Methods.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection">
+      <topicdata name="WorkflowRuntimeServiceElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      <apidata name="WorkflowRuntimeServiceElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.DeserializeElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedAssemblyString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetTransformedTypeString(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.Init" />
+        <element api="M:System.Configuration.ConfigurationElement.InitializeDefault" />
+        <element api="M:System.Configuration.ConfigurationElement.ListErrors(System.Collections.IList)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnDeserializeUnrecognizedAttribute(System.String,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.OnRequiredPropertyNotFound(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.PostDeserialize" />
+        <element api="M:System.Configuration.ConfigurationElement.PreSerialize(System.Xml.XmlWriter)" />
+        <element api="M:System.Configuration.ConfigurationElement.SerializeToXmlElement(System.Xml.XmlWriter,System.String)" />
+        <element api="M:System.Configuration.ConfigurationElement.SetPropertyValue(System.Configuration.ConfigurationProperty,System.Object,System.Boolean)" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.BaseAdd">
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Configuration.ConfigurationElement)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Configuration.ConfigurationElement,System.Boolean)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseAdd(System.Int32,System.Configuration.ConfigurationElement)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseClear" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.BaseGet">
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseGet(System.Int32)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.BaseGet(System.Object)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseGetAllKeys" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseGetKey(System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseIndexOf(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseIsRemoved(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseRemove(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.BaseRemoveAt(System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement">
+          <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.CreateNewElement(System.String)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsElementName(System.String)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsElementRemovable(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsModified" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Reset(System.Configuration.ConfigurationElement)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.ResetModified" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.SerializeElement(System.Xml.XmlWriter,System.Boolean)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.SetReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.Add(System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement)" />
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      </containers>
+      <file name="eca80883-f40c-817f-f896-5ba6b1367aa9" />
+    </api>
+    <api id="Properties.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection">
+      <topicdata name="WorkflowRuntimeServiceElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      <apidata name="WorkflowRuntimeServiceElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementProperty" />
+        <element api="P:System.Configuration.ConfigurationElement.EvaluationContext" />
+        <element api="P:System.Configuration.ConfigurationElement.HasContext" />
+        <element api="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.Item">
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.Configuration.ConfigurationProperty)" />
+          <element api="P:System.Configuration.ConfigurationElement.Item(System.String)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElement.Properties" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.AddElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.ClearElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.ElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.RemoveElementName" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.ThrowOnDuplicate" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      </containers>
+      <file name="03f83d21-c390-4c21-f1cf-d19f94616be7" />
+    </api>
+    <api id="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement">
+      <topicdata name="CreateNewElement" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" />
+      <apidata name="CreateNewElement" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CreateNewElement(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </containers>
+      <file name="5df02469-f1ee-e43d-ac53-2f504ccae492" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </containers>
+      <file name="55873899-9493-9d16-8365-4ba1e5af9b5f" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.Add(System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceSettings">
+          <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </containers>
+      <file name="22364f9f-ae35-94b2-7a9c-34c5a6097020" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement">
+      <topicdata group="api" />
+      <apidata name="CreateNewElement" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.CreateNewElement" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.ConfigurationElementCollection.CreateNewElement">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </containers>
+      <file name="75fc3a1a-56bc-8db5-f435-c0415a6f4f9d" />
+    </api>
+    <api id="M:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+      <topicdata group="api" />
+      <apidata name="GetElementKey" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.ConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="settings">
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Workflow.Runtime" module="System.Workflow.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Workflow.Runtime.Configuration" />
+        <type api="T:System.Workflow.Runtime.Configuration.WorkflowRuntimeServiceElementCollection" ref="true" />
+      </containers>
+      <file name="e5a636c0-b075-3434-50ce-cc0c8307996a" />
+    </api>
+  </apis>
+</reflection>

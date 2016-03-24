@@ -1,0 +1,1374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Enumeration.Pnp">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Enumeration.Pnp" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" />
+        <element api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+        <element api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+        <element api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+        <element api="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      </elements>
+      <file name="6233e665-502c-4846-c058-27301c2042f0" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Pnp.PnpObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="PnpObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.Pnp.IPnpObject" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="7399faa0-339f-b474-b377-c48def1c505c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObject">
+      <topicdata name="PnpObject" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="PnpObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateFromIdAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher">
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+        </element>
+        <element api="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync">
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+        </element>
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Id" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Properties" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Type" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.Update(Windows.Devices.Enumeration.Pnp.PnpObjectUpdate)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      </containers>
+      <file name="79872762-c1ce-4051-cc54-a3ac665226d1" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.Pnp.PnpObject">
+      <topicdata name="PnpObject" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="PnpObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateFromIdAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher">
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+        </element>
+        <element api="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync">
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+        </element>
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.Update(Windows.Devices.Enumeration.Pnp.PnpObjectUpdate)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      </containers>
+      <file name="1d8b6f9c-8963-bb20-0efe-4598e04fbb5b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.Pnp.PnpObject">
+      <topicdata name="PnpObject" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="PnpObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Id" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Properties" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObject.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      </containers>
+      <file name="39b9536d-4dec-b11f-9b9c-15cfda81669b" />
+    </api>
+    <api id="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher">
+      <topicdata name="CreateWatcher" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="10086c98-4b5e-bb64-0319-4f2ae5b67d04" />
+    </api>
+    <api id="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync">
+      <topicdata name="FindAllAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObject" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="6242226e-3a81-ebdb-cf61-370eeb02894f" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateFromIdAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="CreateFromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+        </parameter>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="requestedProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="7dcde683-edc7-c879-f50c-dcf1b2415830" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+        </parameter>
+        <parameter name="requestedProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcher</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e0ece755-72bb-e9e7-071c-63539fc20368" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateWatcher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.CreateWatcher" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+        </parameter>
+        <parameter name="requestedProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateWatcherAqsFilter</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="28f878e2-ecc8-7661-6824-95aad4daeede" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+        </parameter>
+        <parameter name="requestedProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="35abc950-10d0-b4d0-813e-3ecc2d197a5d" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync(Windows.Devices.Enumeration.Pnp.PnpObjectType,Windows.Foundation.Collections.IIterable{System.String},System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.Enumeration.Pnp.PnpObject.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+        </parameter>
+        <parameter name="requestedProperties" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsyncAqsFilter</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fdcf6153-9aae-82b7-08fe-35ad2724ed28" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObject.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="daf87265-8ca5-2cd9-7e44-6771209c661e" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObject.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="f33caa81-96cc-9161-8caa-f98e961afd4a" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObject.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="3842fb85-eed0-54e6-e422-59122a60208b" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObject.Update(Windows.Devices.Enumeration.Pnp.PnpObjectUpdate)">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="updateInfo" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </containers>
+      <file name="d0e7768b-bda1-0dae-8571-e8cc8f5babda" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      <apidata name="PnpObjectCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="abcefb6b-ba44-8015-b64f-380cfd83c401" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection">
+      <topicdata name="PnpObjectCollection" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      <apidata name="PnpObjectCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.First" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.Pnp.PnpObject[])" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.IndexOf(Windows.Devices.Enumeration.Pnp.PnpObject,System.UInt32@)" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      </containers>
+      <file name="e4e4a4c7-92eb-bd9f-0218-ec709d263cec" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection">
+      <topicdata name="PnpObjectCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      <apidata name="PnpObjectCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.First" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.Pnp.PnpObject[])" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.IndexOf(Windows.Devices.Enumeration.Pnp.PnpObject,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      </containers>
+      <file name="2fd191fb-98e8-2288-567b-b574b529ea23" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection">
+      <topicdata name="PnpObjectCollection" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      <apidata name="PnpObjectCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" />
+      </containers>
+      <file name="a18ccbd5-1b7e-e93e-a3b8-7dffcb05cbf3" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+      </containers>
+      <file name="77182fa5-2c10-e8ca-3364-048676a1781b" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+      </containers>
+      <file name="c2ddf483-951f-533a-549c-2fd09eb45639" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.GetMany(System.UInt32,Windows.Devices.Enumeration.Pnp.PnpObject[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+      </containers>
+      <file name="577427c8-26a1-d0cd-8395-f55dde2b4d3e" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.IndexOf(Windows.Devices.Enumeration.Pnp.PnpObject,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+      </containers>
+      <file name="ba4372ee-11ad-d211-1ccb-b6ebf85ef50a" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObjectCollection.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVectorView`1.Size">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectCollection" ref="true" />
+      </containers>
+      <file name="7699d4fc-b187-b5b0-f932-1be7ae7afbd8" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Pnp.PnpObjectType">
+      <topicdata group="api" />
+      <apidata name="PnpObjectType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.Unknown" />
+        <element api="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceInterface" />
+        <element api="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceContainer" />
+        <element api="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.Device" />
+        <element api="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceInterfaceClass" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f59ab52a-8743-295c-bc7e-a90e1acceda3" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.Device">
+      <topicdata group="api" notopic="" />
+      <apidata name="Device" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </containers>
+      <file name="e2224614-c055-4959-df13-c6a399985aad" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceContainer">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceContainer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </containers>
+      <file name="01aff276-7f1c-f2ec-11ad-99274ef45cb7" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceInterface">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceInterface" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </containers>
+      <file name="9d4d18f8-4d35-595a-02bf-938f33c81fd2" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.DeviceInterfaceClass">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceInterfaceClass" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </containers>
+      <file name="435260eb-9217-9348-28f0-87c482ddbd8e" />
+    </api>
+    <api id="F:Windows.Devices.Enumeration.Pnp.PnpObjectType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </containers>
+      <file name="ff12f1fa-5d46-fc2f-87c9-c0354e80a8c8" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      <apidata name="PnpObjectUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.Pnp.IPnpObjectUpdate" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0693459d-697e-d6ac-e14d-8fb29e23103c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate">
+      <topicdata name="PnpObjectUpdate" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      <apidata name="PnpObjectUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Id" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Properties" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      </containers>
+      <file name="3c121415-fdf3-773a-5635-1ac3eb3e3af8" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate">
+      <topicdata name="PnpObjectUpdate" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      <apidata name="PnpObjectUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      </containers>
+      <file name="f496cb79-229b-1f57-b707-c08260ce9d9a" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate">
+      <topicdata name="PnpObjectUpdate" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      <apidata name="PnpObjectUpdate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Id" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Properties" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" />
+      </containers>
+      <file name="cf66c162-ee66-8158-fcde-6692330d3b99" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+      </containers>
+      <file name="ecde5203-76d9-c1e1-70ff-1edd9fab9778" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+      </containers>
+      <file name="379a4f71-c0fd-ded6-fd13-00ace2a4e63d" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+      </containers>
+      <file name="b90186e4-acaf-7a90-6bbe-1210665f799e" />
+    </api>
+    <api id="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      <apidata name="PnpObjectWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="eb4205d0-69f3-1a3a-0c86-418328878d0a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher">
+      <topicdata name="PnpObjectWatcher" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      <apidata name="PnpObjectWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Added" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Removed" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Start" />
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Status" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stop" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stopped" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      </containers>
+      <file name="19e01107-acc8-db13-edbf-80e82b6ae979" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher">
+      <topicdata name="PnpObjectWatcher" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      <apidata name="PnpObjectWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Start" />
+        <element api="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      </containers>
+      <file name="2616b434-a57d-7de7-39b9-eb116143b8fe" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher">
+      <topicdata name="PnpObjectWatcher" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      <apidata name="PnpObjectWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      </containers>
+      <file name="e420f9e6-4f69-a6e2-22aa-dea3263261cb" />
+    </api>
+    <api id="Events.T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher">
+      <topicdata name="PnpObjectWatcher" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      <apidata name="PnpObjectWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Added" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Removed" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stopped" />
+        <element api="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Updated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" />
+      </containers>
+      <file name="c4abf6a8-cd8f-e48a-7e5f-c839dbd4c737" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Added">
+      <topicdata group="api" />
+      <apidata name="Added" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Added" />
+      <remover name="remove_Added" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObject" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="99da33f1-160f-e9f9-c831-0d7dc180b0f9" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.EnumerationCompleted">
+      <topicdata group="api" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EnumerationCompleted" />
+      <remover name="remove_EnumerationCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="da482dfa-c120-8abb-2279-c9fc84450775" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Removed">
+      <topicdata group="api" />
+      <apidata name="Removed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Removed" />
+      <remover name="remove_Removed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="6398ad26-5da8-db7f-ed0c-2d5eda620950" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="8cc75bfa-0bf1-644f-d09c-50d8888f2f99" />
+    </api>
+    <api id="P:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DeviceWatcherStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="ff3e1f16-e06c-ac14-e362-b19a0827bd2e" />
+    </api>
+    <api id="M:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="d0260641-86fc-0110-efcd-a97eee9a4a0e" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Stopped" />
+      <remover name="remove_Stopped" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="0a0e17ae-3d27-697a-a202-df49a13b7806" />
+    </api>
+    <api id="E:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher.Updated">
+      <topicdata group="api" />
+      <apidata name="Updated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Updated" />
+      <remover name="remove_Updated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+            <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectUpdate" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Enumeration.Pnp" />
+        <type api="T:Windows.Devices.Enumeration.Pnp.PnpObjectWatcher" ref="true" />
+      </containers>
+      <file name="136cb01e-ecca-eb36-2e42-40eaffd93570" />
+    </api>
+  </apis>
+</reflection>

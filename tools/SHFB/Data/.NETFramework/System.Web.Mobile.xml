@@ -1,0 +1,2518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.Mobile">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.Mobile">
+      <topicdata group="api" />
+      <apidata name="System.Web.Mobile" group="namespace" />
+      <elements>
+        <element api="T:System.Web.Mobile.CookielessData" />
+        <element api="T:System.Web.Mobile.DeviceFiltersSection" />
+        <element api="T:System.Web.Mobile.DeviceFilterElementCollection" />
+        <element api="T:System.Web.Mobile.DeviceFilterElement" />
+        <element api="T:System.Web.Mobile.ErrorHandlerModule" />
+        <element api="T:System.Web.Mobile.MobileCapabilities" />
+        <element api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+        <element api="T:System.Web.Mobile.MobileErrorInfo" />
+        <element api="T:System.Web.Mobile.MobileFormsAuthentication" />
+      </elements>
+      <file name="d023340e-ebd7-7278-310e-6e420979ed63" />
+    </api>
+    <api id="T:System.Web.Mobile.CookielessData">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.CookielessData" />
+      <apidata name="CookielessData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.CookielessData.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Collections.Specialized.HybridDictionary" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="3e9cbc95-7577-4f19-4109-674fdeb00370" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.CookielessData">
+      <topicdata name="CookielessData" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.CookielessData" />
+      <apidata name="CookielessData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.CookielessData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Clear" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Contains(System.Object)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Count" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.GetEnumerator" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsFixedSize" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsReadOnly" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsSynchronized" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Item(System.Object)" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Keys" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Remove(System.Object)" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.SyncRoot" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Values" />
+        <element api="M:System.Web.Mobile.CookielessData.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.CookielessData" />
+      </containers>
+      <file name="f65ca376-3630-7769-104f-920a2836c504" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.CookielessData">
+      <topicdata name="CookielessData" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.CookielessData" />
+      <apidata name="CookielessData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.CookielessData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Clear" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Contains(System.Object)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.GetEnumerator" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.Remove(System.Object)" />
+        <element api="M:System.Collections.Specialized.HybridDictionary.System#Collections#IEnumerable#GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.CookielessData" />
+      </containers>
+      <file name="edaf05e0-1dce-c24b-d4a6-e988033e2fff" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.CookielessData">
+      <topicdata name="CookielessData" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.CookielessData" />
+      <apidata name="CookielessData" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.CookielessData.#ctor" />
+      <elements>
+        <element api="P:System.Collections.Specialized.HybridDictionary.Count" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsFixedSize" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsReadOnly" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.IsSynchronized" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Item(System.Object)" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Keys" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.SyncRoot" />
+        <element api="P:System.Collections.Specialized.HybridDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.CookielessData" />
+      </containers>
+      <file name="fe35714f-91fd-b003-a16f-8f1a5734b304" />
+    </api>
+    <api id="M:System.Web.Mobile.CookielessData.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.CookielessData" ref="true" />
+      </containers>
+      <file name="762986fe-96f6-8f97-ced9-57b5db00170a" />
+    </api>
+    <api id="T:System.Web.Mobile.DeviceFilterElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFilterElement" />
+      <apidata name="DeviceFilterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e88b7376-1271-51c3-ed80-edc76872207a" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.DeviceFilterElement">
+      <topicdata name="DeviceFilterElement" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.DeviceFilterElement" />
+      <apidata name="DeviceFilterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.Web.Mobile.DeviceFilterElement.#ctor">
+          <element api="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.String,System.String)" />
+          <element api="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.Type,System.String)" />
+        </element>
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Argument" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Compare" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.FilterClass" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Method" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" />
+      </containers>
+      <file name="58bd662f-9b54-adee-5073-76c15305e877" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.DeviceFilterElement">
+      <topicdata name="DeviceFilterElement" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.DeviceFilterElement" />
+      <apidata name="DeviceFilterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" />
+      </containers>
+      <file name="0286aedf-d8a3-8b4a-c5a9-0af8e57d7acd" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.DeviceFilterElement">
+      <topicdata name="DeviceFilterElement" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.DeviceFilterElement" />
+      <apidata name="DeviceFilterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Argument" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Compare" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.FilterClass" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Method" />
+        <element api="P:System.Web.Mobile.DeviceFilterElement.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" />
+      </containers>
+      <file name="e795694d-ee59-cda1-d1a4-2092d06fc1aa" />
+    </api>
+    <api id="Overload:System.Web.Mobile.DeviceFilterElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFilterElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.String,System.String)" />
+        <element api="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.Type,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <file name="ec9eab7b-b065-9e7f-6692-c7ca9a0a6724" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Mobile.DeviceFilterElement.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compareName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="argument">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <file name="6900c7b9-bfb0-2151-2797-26f5798cf75b" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElement.#ctor(System.String,System.Type,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Web.Mobile.DeviceFilterElement.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="filterClass">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="method">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <file name="73399a68-1bb2-dbc6-d21c-81ddfbe156cd" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElement.Argument">
+      <topicdata group="api" />
+      <apidata name="Argument" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Argument" />
+      <setter name="set_Argument" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>argument</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6590ba9a-5034-2e0b-c0d9-698467585c68" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElement.Compare">
+      <topicdata group="api" />
+      <apidata name="Compare" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Compare" />
+      <setter name="set_Compare" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>compare</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c3b002fa-fab4-1666-64f9-8edc8874bfd1" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElement.FilterClass">
+      <topicdata group="api" />
+      <apidata name="FilterClass" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FilterClass" />
+      <setter name="set_FilterClass" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.TypeConverterAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Web.UI.MobileControls.MobileTypeNameConverter" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e6cd1de9-2273-d882-c45f-eabfd03e1f45" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElement.Method">
+      <topicdata group="api" />
+      <apidata name="Method" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Method" />
+      <setter name="set_Method" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>method</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e77e8528-271c-f75e-b69f-e07b6af107cd" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElement.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>name</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsKey">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a3d36458-bf68-2f04-3387-3c9e2632058f" />
+    </api>
+    <api id="T:System.Web.Mobile.DeviceFilterElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="DeviceFilterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+            </typeValue>
+          </argument>
+          <assignment name="AddItemName">
+            <type api="T:System.String" ref="true" />
+            <value>filter</value>
+          </assignment>
+          <assignment name="CollectionType">
+            <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+            <enumValue>
+              <field name="BasicMap" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dc945711-7fbe-7d83-58ad-c7ea873f2163" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.DeviceFilterElementCollection">
+      <topicdata name="DeviceFilterElementCollection" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="DeviceFilterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Add(System.Web.Mobile.DeviceFilterElement)" />
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.AllKeys" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Clear" />
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.CollectionType" />
+        <element api="Overload:System.Web.Mobile.DeviceFilterElementCollection.Item">
+          <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.Int32)" />
+          <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.String)" />
+        </element>
+        <element api="Overload:System.Web.Mobile.DeviceFilterElementCollection.Remove">
+          <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.Web.Mobile.DeviceFilterElement)" />
+          <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      </containers>
+      <file name="ee73798d-594f-db99-9672-38e8dd919dc7" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.DeviceFilterElementCollection">
+      <topicdata name="DeviceFilterElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="DeviceFilterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Add(System.Web.Mobile.DeviceFilterElement)" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Clear" />
+        <element api="Overload:System.Web.Mobile.DeviceFilterElementCollection.Remove">
+          <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.Web.Mobile.DeviceFilterElement)" />
+          <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      </containers>
+      <file name="06500306-6741-3482-05d4-6275a72e1c3c" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.DeviceFilterElementCollection">
+      <topicdata name="DeviceFilterElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="DeviceFilterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.AllKeys" />
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.CollectionType" />
+        <element api="Overload:System.Web.Mobile.DeviceFilterElementCollection.Item">
+          <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.Int32)" />
+          <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" />
+      </containers>
+      <file name="304588af-2f7d-c3dd-a435-d12dd6861dba" />
+    </api>
+    <api id="Overload:System.Web.Mobile.DeviceFilterElementCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.Int32)" />
+        <element api="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="5f255e32-9c47-ffc2-6106-859c304ae938" />
+    </api>
+    <api id="Overload:System.Web.Mobile.DeviceFilterElementCollection.Remove">
+      <topicdata name="Remove" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFilterElementCollection" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.Web.Mobile.DeviceFilterElement)" />
+        <element api="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="7e6567ce-1773-8835-4997-b2884197c598" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="2ecd3d55-df0c-9617-02dc-35e98346512e" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.Add(System.Web.Mobile.DeviceFilterElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceFilter">
+          <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="f29e7564-57b3-a252-0b65-2c0d92b319f5" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElementCollection.AllKeys">
+      <topicdata group="api" />
+      <apidata name="AllKeys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllKeys" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="43bfe1ea-f19e-40d4-580f-06d1bcc0442c" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="101cf667-ed8d-a856-a13e-55218036bc79" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElementCollection.CollectionType">
+      <topicdata group="api" />
+      <apidata name="CollectionType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Configuration.ConfigurationElementCollection.CollectionType">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CollectionType" />
+      <returns>
+        <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="7ef7f3c1-6d17-98bc-a552-32bdabb14aad" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Web.Mobile.DeviceFilterElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="c5909218-05fa-515f-608a-4c4b1940facd" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFilterElementCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Web.Mobile.DeviceFilterElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="8eb88504-5c02-6f79-2734-b7c40cf8a398" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Mobile.DeviceFilterElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="61cfba7a-bc1f-8fa9-175a-c366b0773dd7" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.Remove(System.Web.Mobile.DeviceFilterElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.Mobile.DeviceFilterElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceFilter">
+          <type api="T:System.Web.Mobile.DeviceFilterElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="68e7a88b-e65e-b92c-5dca-0b13e42a957a" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFilterElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </containers>
+      <file name="e5d6ee5f-92d5-9da2-2d36-6b3665a64a08" />
+    </api>
+    <api id="T:System.Web.Mobile.DeviceFiltersSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.DeviceFiltersSection" />
+      <apidata name="DeviceFiltersSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFiltersSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f6383b2a-e7ed-3bf8-d8d8-6aa7fa41f318" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.DeviceFiltersSection">
+      <topicdata name="DeviceFiltersSection" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.DeviceFiltersSection" />
+      <apidata name="DeviceFiltersSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFiltersSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Web.Mobile.DeviceFiltersSection.#ctor" />
+        <element api="P:System.Web.Mobile.DeviceFiltersSection.Filters" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFiltersSection" />
+      </containers>
+      <file name="2a659bee-e82e-a376-85db-24c5a143e4b2" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.DeviceFiltersSection">
+      <topicdata name="DeviceFiltersSection" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.DeviceFiltersSection" />
+      <apidata name="DeviceFiltersSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFiltersSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFiltersSection" />
+      </containers>
+      <file name="4f9fc504-5879-882b-66ba-e004678ce545" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.DeviceFiltersSection">
+      <topicdata name="DeviceFiltersSection" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.DeviceFiltersSection" />
+      <apidata name="DeviceFiltersSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Web.Mobile.DeviceFiltersSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Web.Mobile.DeviceFiltersSection.Filters" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFiltersSection" />
+      </containers>
+      <file name="10679ce4-0744-fc22-52c0-8f7bcf118919" />
+    </api>
+    <api id="M:System.Web.Mobile.DeviceFiltersSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFiltersSection" ref="true" />
+      </containers>
+      <file name="d546e195-679b-ff2d-43f5-511d22729641" />
+    </api>
+    <api id="P:System.Web.Mobile.DeviceFiltersSection.Filters">
+      <topicdata group="api" />
+      <apidata name="Filters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Filters" />
+      <returns>
+        <type api="T:System.Web.Mobile.DeviceFilterElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.DeviceFiltersSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="IsDefaultCollection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="85ea991a-e46c-f8a3-7161-346e735759bc" />
+    </api>
+    <api id="T:System.Web.Mobile.ErrorHandlerModule">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.ErrorHandlerModule" />
+      <apidata name="ErrorHandlerModule" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.ErrorHandlerModule.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Web.IHttpModule" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="05ea6482-dd65-96dd-f21a-f97bf75902a1" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.ErrorHandlerModule">
+      <topicdata name="ErrorHandlerModule" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.ErrorHandlerModule" />
+      <apidata name="ErrorHandlerModule" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.ErrorHandlerModule.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Mobile.ErrorHandlerModule.#ctor" />
+        <element api="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Dispose" />
+        <element api="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Init(System.Web.HttpApplication)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.ErrorHandlerModule" />
+      </containers>
+      <file name="56638e51-2bda-a65b-5029-90f09ee3ef06" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.ErrorHandlerModule">
+      <topicdata name="ErrorHandlerModule" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.ErrorHandlerModule" />
+      <apidata name="ErrorHandlerModule" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.ErrorHandlerModule.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Dispose" />
+        <element api="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Init(System.Web.HttpApplication)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.ErrorHandlerModule" />
+      </containers>
+      <file name="b811124a-f391-3460-5346-1d6994337893" />
+    </api>
+    <api id="M:System.Web.Mobile.ErrorHandlerModule.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.ErrorHandlerModule" ref="true" />
+      </containers>
+      <file name="a788c8d4-f8a9-b28e-53e9-f23eee46f539" />
+    </api>
+    <api id="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Dispose">
+      <topicdata group="api" eiiName="IHttpModule.Dispose" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.Web.IHttpModule.Dispose">
+          <type api="T:System.Web.IHttpModule" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.ErrorHandlerModule" ref="true" />
+      </containers>
+      <file name="521e69e8-150d-f68e-0bb5-afdd3605b073" />
+    </api>
+    <api id="M:System.Web.Mobile.ErrorHandlerModule.System#Web#IHttpModule#Init(System.Web.HttpApplication)">
+      <topicdata group="api" eiiName="IHttpModule.Init" />
+      <apidata name="Init" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="application">
+          <type api="T:System.Web.HttpApplication" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Web.IHttpModule.Init(System.Web.HttpApplication)">
+          <type api="T:System.Web.IHttpModule" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.ErrorHandlerModule" ref="true" />
+      </containers>
+      <file name="b6c1e3bb-b0e5-266e-b058-67854681b71d" />
+    </api>
+    <api id="T:System.Web.Mobile.MobileCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.MobileCapabilities" />
+      <apidata name="MobileCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.HttpBrowserCapabilities" ref="true" />
+          <type api="T:System.Web.Configuration.HttpCapabilitiesBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c12b407e-1e85-b02c-dde5-96cdaa96e550" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.MobileCapabilities">
+      <topicdata name="MobileCapabilities" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.MobileCapabilities" />
+      <apidata name="MobileCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ActiveXControls" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Adapters" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.AddBrowser(System.String)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.AOL" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.BackgroundSounds" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Beta" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Browser" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Browsers" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanCombineFormsInDeck" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanInitiateVoiceCall" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderAfterInputOrSelectElement" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderEmptySelects" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderInputAndSelectElementsTogether" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderMixedSelects" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderOneventAndPrevElementsTogether" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderPostBackCards" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderSetvarZeroWithMultiSelectionList" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanSendMail" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Capabilities" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CDF" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ClrVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Cookies" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Crawler" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.CreateHtmlTextWriter(System.IO.TextWriter)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.DefaultSubmitButtonLimit" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.DisableOptimizedCacheKey" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.EcmaScriptVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Frames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayMajorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayMinorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayVersion" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.GetClrVersions" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HasBackButton" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HidesRightAlignedMultiselectScrollbars" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HtmlTextWriter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Id" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.Init" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.InputType" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.IsBrowser(System.String)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.IsColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.IsMobileDevice" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Item(System.String)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JavaApplets" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JavaScript" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JScriptVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MajorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumHrefLength" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumRenderedPageSize" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumSoftkeyLabelLength" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MinorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MinorVersionString" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MobileDeviceManufacturer" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MobileDeviceModel" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MSDomVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.NumberOfSoftkeys" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Platform" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredImageMime" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRenderingMime" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRenderingType" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRequestEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredResponseEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreakBeforeWmlSelectAndInput" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterHtmlLists" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterWmlAnchor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterWmlInput" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersWmlDoAcceptsInline" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersWmlSelectsAsMenuCards" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiredMetaTagNameValue" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresAttributeColonSubstitution" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresContentTypeMetaTag" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresControlStateInSession" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresDBCSCharacter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresHtmlAdaptiveErrorReporting" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresLeadingPageBreak" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresNoBreakInFormatting" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresOutputOptimization" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresPhoneNumbersAsPlainText" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresSpecialViewStateEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueFilePathSuffix" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueHtmlCheckboxNames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueHtmlInputNames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUrlEncodedPostfieldValues" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenBitDepth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenCharactersHeight" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenCharactersWidth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenPixelsHeight" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenPixelsWidth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsAccesskeyAttribute" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsBodyColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsBold" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCacheControlMetaTag" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCallback" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCss" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsDivAlign" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsDivNoWrap" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsEmptyStringInCookieValue" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontName" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontSize" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsImageSubmit" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsIModeSymbols" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsInputIStyle" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsInputMode" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsItalic" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsJPhoneMultiMediaAttributes" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsJPhoneSymbols" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsQueryStringInFormAction" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsRedirectWithCookie" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsSelectMultiple" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsUncheck" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsXmlHttp" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.System#Web#UI#IFilterResolutionService#CompareFilters(System.String,System.String)" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.System#Web#UI#IFilterResolutionService#EvaluateFilter(System.String)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Tables" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.TagWriter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Type" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.UseOptimizedCacheKey" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.VBScript" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Version" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.W3CDomVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Win16" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Win32" />
+        <element api="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+        <element api="M:System.Web.Mobile.MobileCapabilities.HasCapability(System.String,System.String)" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeChtml10" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeHtml32" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml11" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml12" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" />
+      </containers>
+      <file name="51a00090-f71f-33ec-b8d7-64acb96df369" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.MobileCapabilities">
+      <topicdata name="MobileCapabilities" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.MobileCapabilities" />
+      <apidata name="MobileCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.AddBrowser(System.String)" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.CreateHtmlTextWriter(System.IO.TextWriter)" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.DisableOptimizedCacheKey" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.GetClrVersions" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.Init" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.IsBrowser(System.String)" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.System#Web#UI#IFilterResolutionService#CompareFilters(System.String,System.String)" />
+        <element api="M:System.Web.Configuration.HttpCapabilitiesBase.System#Web#UI#IFilterResolutionService#EvaluateFilter(System.String)" />
+        <element api="M:System.Web.Mobile.MobileCapabilities.HasCapability(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" />
+      </containers>
+      <file name="9247305f-49fc-83c0-2c0b-9b3ffc385020" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.MobileCapabilities">
+      <topicdata name="MobileCapabilities" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.MobileCapabilities" />
+      <apidata name="MobileCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+      <elements>
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ActiveXControls" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Adapters" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.AOL" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.BackgroundSounds" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Beta" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Browser" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Browsers" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanCombineFormsInDeck" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanInitiateVoiceCall" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderAfterInputOrSelectElement" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderEmptySelects" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderInputAndSelectElementsTogether" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderMixedSelects" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderOneventAndPrevElementsTogether" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderPostBackCards" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanRenderSetvarZeroWithMultiSelectionList" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CanSendMail" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Capabilities" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.CDF" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ClrVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Cookies" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Crawler" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.DefaultSubmitButtonLimit" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.EcmaScriptVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Frames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayMajorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayMinorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.GatewayVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HasBackButton" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HidesRightAlignedMultiselectScrollbars" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.HtmlTextWriter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Id" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.InputType" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.IsColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.IsMobileDevice" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Item(System.String)" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JavaApplets" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JavaScript" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.JScriptVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MajorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumHrefLength" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumRenderedPageSize" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MaximumSoftkeyLabelLength" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MinorVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MinorVersionString" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MobileDeviceManufacturer" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MobileDeviceModel" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.MSDomVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.NumberOfSoftkeys" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Platform" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredImageMime" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRenderingMime" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRenderingType" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredRequestEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.PreferredResponseEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreakBeforeWmlSelectAndInput" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterHtmlLists" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterWmlAnchor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersBreaksAfterWmlInput" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersWmlDoAcceptsInline" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RendersWmlSelectsAsMenuCards" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiredMetaTagNameValue" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresAttributeColonSubstitution" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresContentTypeMetaTag" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresControlStateInSession" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresDBCSCharacter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresHtmlAdaptiveErrorReporting" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresLeadingPageBreak" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresNoBreakInFormatting" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresOutputOptimization" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresPhoneNumbersAsPlainText" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresSpecialViewStateEncoding" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueFilePathSuffix" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueHtmlCheckboxNames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUniqueHtmlInputNames" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.RequiresUrlEncodedPostfieldValues" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenBitDepth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenCharactersHeight" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenCharactersWidth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenPixelsHeight" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.ScreenPixelsWidth" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsAccesskeyAttribute" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsBodyColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsBold" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCacheControlMetaTag" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCallback" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsCss" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsDivAlign" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsDivNoWrap" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsEmptyStringInCookieValue" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontColor" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontName" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsFontSize" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsImageSubmit" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsIModeSymbols" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsInputIStyle" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsInputMode" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsItalic" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsJPhoneMultiMediaAttributes" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsJPhoneSymbols" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsQueryStringInFormAction" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsRedirectWithCookie" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsSelectMultiple" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsUncheck" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.SupportsXmlHttp" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Tables" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.TagWriter" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Type" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.UseOptimizedCacheKey" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.VBScript" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Version" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.W3CDomVersion" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Win16" />
+        <element api="P:System.Web.Configuration.HttpCapabilitiesBase.Win32" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" />
+      </containers>
+      <file name="a8408f8f-4452-260c-a76f-1261ace4a317" />
+    </api>
+    <api id="Fields.T:System.Web.Mobile.MobileCapabilities">
+      <topicdata name="MobileCapabilities" group="list" subgroup="Fields" typeTopicId="T:System.Web.Mobile.MobileCapabilities" />
+      <apidata name="MobileCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileCapabilities.#ctor" />
+      <elements>
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeChtml10" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeHtml32" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml11" />
+        <element api="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml12" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" />
+      </containers>
+      <file name="42fab5a7-b9f9-aacf-161a-c03c511e155e" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileCapabilities.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="5a811af1-f1a4-3a59-54c3-d6ecdfffa77a" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileCapabilities.HasCapability(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="HasCapability" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="delegateName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="optionalParameter">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="40ac88da-25ec-7120-0739-d40415a2250f" />
+    </api>
+    <api id="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeChtml10">
+      <topicdata group="api" />
+      <apidata name="PreferredRenderingTypeChtml10" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="8cab1b63-6248-ce20-ddba-1c4678fd5e3d" />
+    </api>
+    <api id="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeHtml32">
+      <topicdata group="api" />
+      <apidata name="PreferredRenderingTypeHtml32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="08f51734-ad0d-41c2-f965-5011888d580a" />
+    </api>
+    <api id="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml11">
+      <topicdata group="api" />
+      <apidata name="PreferredRenderingTypeWml11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="cd146313-7352-d3db-ba18-3f7b5da0ef64" />
+    </api>
+    <api id="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml12">
+      <topicdata group="api" />
+      <apidata name="PreferredRenderingTypeWml12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileCapabilities" ref="true" />
+      </containers>
+      <file name="474df4f9-78ea-f8ed-38f8-02b34d3dfa8c" />
+    </api>
+    <api id="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+      <apidata name="MobileDeviceCapabilitiesSectionHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Configuration.IConfigurationSectionHandler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="baadaf21-3c11-7d7b-d16e-c48082279c24" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler">
+      <topicdata name="MobileDeviceCapabilitiesSectionHandler" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+      <apidata name="MobileDeviceCapabilitiesSectionHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor" />
+        <element api="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)" />
+        <element api="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.System#Configuration#IConfigurationSectionHandler#Create(System.Object,System.Object,System.Xml.XmlNode)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+      </containers>
+      <file name="902e079c-49fd-a5a7-6a62-4ce7df3b984f" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler">
+      <topicdata name="MobileDeviceCapabilitiesSectionHandler" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+      <apidata name="MobileDeviceCapabilitiesSectionHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)" />
+        <element api="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.System#Configuration#IConfigurationSectionHandler#Create(System.Object,System.Object,System.Xml.XmlNode)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" />
+      </containers>
+      <file name="c995e8b8-fe7b-4701-58c3-d0d0b9811c92" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" ref="true" />
+      </containers>
+      <file name="54a810fc-841d-02ec-9832-3cea33e2f4cf" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="node">
+          <type api="T:System.Xml.XmlNode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" ref="true" />
+      </containers>
+      <file name="b4ddac1f-14e8-a807-a464-26b6f5d4565b" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.System#Configuration#IConfigurationSectionHandler#Create(System.Object,System.Object,System.Xml.XmlNode)">
+      <topicdata group="api" eiiName="IConfigurationSectionHandler.Create" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="node">
+          <type api="T:System.Xml.XmlNode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Configuration.IConfigurationSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+          <type api="T:System.Configuration.IConfigurationSectionHandler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" ref="true" />
+      </containers>
+      <file name="fb9fd01d-3e28-b27a-e79a-e0d9c043adcf" />
+    </api>
+    <api id="T:System.Web.Mobile.MobileErrorInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.MobileErrorInfo" />
+      <apidata name="MobileErrorInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8a9ed618-3c3d-68bc-7753-63898630e21f" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.MobileErrorInfo">
+      <topicdata name="MobileErrorInfo" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.MobileErrorInfo" />
+      <apidata name="MobileErrorInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="F:System.Web.Mobile.MobileErrorInfo.ContextKey" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Description" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.File" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Item(System.String)" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.LineNumber" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.MiscText" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.MiscTitle" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" />
+      </containers>
+      <file name="ae43776c-f072-6d98-30e1-710007f33313" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.MobileErrorInfo">
+      <topicdata name="MobileErrorInfo" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.MobileErrorInfo" />
+      <apidata name="MobileErrorInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" />
+      </containers>
+      <file name="802979c3-e83c-8932-15d0-7f1a701cde5d" />
+    </api>
+    <api id="Properties.T:System.Web.Mobile.MobileErrorInfo">
+      <topicdata name="MobileErrorInfo" group="list" subgroup="Properties" typeTopicId="T:System.Web.Mobile.MobileErrorInfo" />
+      <apidata name="MobileErrorInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Description" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.File" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Item(System.String)" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.LineNumber" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.MiscText" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.MiscTitle" />
+        <element api="P:System.Web.Mobile.MobileErrorInfo.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" />
+      </containers>
+      <file name="27e5990f-6d61-350e-706f-f90b5ceb338d" />
+    </api>
+    <api id="Fields.T:System.Web.Mobile.MobileErrorInfo">
+      <topicdata name="MobileErrorInfo" group="list" subgroup="Fields" typeTopicId="T:System.Web.Mobile.MobileErrorInfo" />
+      <apidata name="MobileErrorInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Web.Mobile.MobileErrorInfo.ContextKey" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" />
+      </containers>
+      <file name="70f46663-13fd-3767-aa45-beb2fa2c08db" />
+    </api>
+    <api id="F:System.Web.Mobile.MobileErrorInfo.ContextKey">
+      <topicdata group="api" />
+      <apidata name="ContextKey" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="41ade30c-ae7b-861a-999e-aa1d4c4172b2" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Description" />
+      <setter name="set_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="9669f783-6f40-4c94-7a4b-ca35c9246273" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.File">
+      <topicdata group="api" />
+      <apidata name="File" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_File" />
+      <setter name="set_File" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="72f32771-e5c3-639f-e724-5abef150665b" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="ac076dd2-cf0b-3504-fb17-9fc97f0d2ebb" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LineNumber" />
+      <setter name="set_LineNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="f75e3d57-b56c-410b-266d-591a8f1f6f70" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.MiscText">
+      <topicdata group="api" />
+      <apidata name="MiscText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MiscText" />
+      <setter name="set_MiscText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="9bf256b9-b826-8ec5-867a-624d7c8dbc57" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.MiscTitle">
+      <topicdata group="api" />
+      <apidata name="MiscTitle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MiscTitle" />
+      <setter name="set_MiscTitle" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="4d05b08b-8621-2425-8ca8-dd60814f1450" />
+    </api>
+    <api id="P:System.Web.Mobile.MobileErrorInfo.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileErrorInfo" ref="true" />
+      </containers>
+      <file name="3bbf4a30-dd65-8b65-4258-3b3a64be9ddd" />
+    </api>
+    <api id="T:System.Web.Mobile.MobileFormsAuthentication">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Mobile.MobileFormsAuthentication" />
+      <apidata name="MobileFormsAuthentication" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c3d4b1cb-850f-0066-a43b-3dd976a8bcf5" />
+    </api>
+    <api id="AllMembers.T:System.Web.Mobile.MobileFormsAuthentication">
+      <topicdata name="MobileFormsAuthentication" group="list" subgroup="members" typeTopicId="T:System.Web.Mobile.MobileFormsAuthentication" />
+      <apidata name="MobileFormsAuthentication" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage">
+          <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean)" />
+          <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Web.Mobile.MobileFormsAuthentication.SignOut" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" />
+      </containers>
+      <file name="b7959ae1-7e3c-863a-fdf5-2f0af70f50cc" />
+    </api>
+    <api id="Methods.T:System.Web.Mobile.MobileFormsAuthentication">
+      <topicdata name="MobileFormsAuthentication" group="list" subgroup="Methods" typeTopicId="T:System.Web.Mobile.MobileFormsAuthentication" />
+      <apidata name="MobileFormsAuthentication" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage">
+          <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean)" />
+          <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Web.Mobile.MobileFormsAuthentication.SignOut" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" />
+      </containers>
+      <file name="d651fe05-407f-9197-be5d-b3afdcc81bb8" />
+    </api>
+    <api id="Overload:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage">
+      <topicdata name="RedirectFromLoginPage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.Mobile.MobileFormsAuthentication" />
+      <apidata name="RedirectFromLoginPage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean)" />
+        <element api="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" ref="true" />
+      </containers>
+      <file name="a0d6ec14-fe5e-553e-7aa9-041298209a2e" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="RedirectFromLoginPage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="createPersistentCookie">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" ref="true" />
+      </containers>
+      <file name="86be76ea-94cf-dbcc-4c04-f61e32734c6f" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="RedirectFromLoginPage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="createPersistentCookie">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="strCookiePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" ref="true" />
+      </containers>
+      <file name="d6b4d9ad-fae1-f6d1-2bb4-1f3bd0713069" />
+    </api>
+    <api id="M:System.Web.Mobile.MobileFormsAuthentication.SignOut">
+      <topicdata group="api" />
+      <apidata name="SignOut" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Mobile" />
+        <type api="T:System.Web.Mobile.MobileFormsAuthentication" ref="true" />
+      </containers>
+      <file name="c67fbaab-de98-2776-d365-0e0820c01554" />
+    </api>
+  </apis>
+</reflection>

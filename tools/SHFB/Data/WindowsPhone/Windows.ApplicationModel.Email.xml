@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Email">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Email" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Email.EmailMessage" />
+        <element api="T:Windows.ApplicationModel.Email.EmailRecipient" />
+        <element api="T:Windows.ApplicationModel.Email.EmailAttachment" />
+        <element api="T:Windows.ApplicationModel.Email.EmailManager" />
+      </elements>
+      <file name="f9b178f8-d454-fba5-282d-94d8d6c5999d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Email.EmailAttachment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailAttachment" />
+      <apidata name="EmailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Email.IEmailAttachment" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="440b8ca3-2a32-7311-beac-dc915730b302" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Email.EmailAttachment">
+      <topicdata name="EmailAttachment" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      <apidata name="EmailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Email.EmailAttachment.#ctor">
+          <element api="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+          <element api="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor(System.String,Windows.Storage.Streams.IRandomAccessStreamReference)" />
+        </element>
+        <element api="P:Windows.ApplicationModel.Email.EmailAttachment.Data" />
+        <element api="P:Windows.ApplicationModel.Email.EmailAttachment.FileName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      </containers>
+      <file name="d0f02f0b-4959-5070-a5cb-0d0b38184bc3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Email.EmailAttachment">
+      <topicdata name="EmailAttachment" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      <apidata name="EmailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      </containers>
+      <file name="e38b2fc8-5eee-82b1-9fdd-693a2c11cfc4" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Email.EmailAttachment">
+      <topicdata name="EmailAttachment" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      <apidata name="EmailAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Email.EmailAttachment.Data" />
+        <element api="P:Windows.ApplicationModel.Email.EmailAttachment.FileName" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" />
+      </containers>
+      <file name="bfdfe531-a84a-9982-5384-e991d8717cf5" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Email.EmailAttachment.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailAttachment" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+        <element api="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor(System.String,Windows.Storage.Streams.IRandomAccessStreamReference)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+      </containers>
+      <file name="4c44d6c9-0f0e-e15c-6b7b-bf7ec5e7af13" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+      </containers>
+      <file name="d20da37c-f7ec-a9ae-468f-bfc681bc62d2" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailAttachment.#ctor(System.String,Windows.Storage.Streams.IRandomAccessStreamReference)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Email.EmailAttachment.#ctor" />
+      <parameters>
+        <parameter name="fileName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+      </containers>
+      <file name="c2a6fb38-6ed5-7d21-6b52-6c4d68e03948" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailAttachment.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Data" />
+      <setter name="set_Data" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+      </containers>
+      <file name="9bab6183-0603-0f20-3dfb-f57a875e6e49" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailAttachment.FileName">
+      <topicdata group="api" />
+      <apidata name="FileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FileName" />
+      <setter name="set_FileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+      </containers>
+      <file name="1d77b0b3-42d5-9997-9ff0-869d4a925ae3" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Email.EmailManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailManager" />
+      <apidata name="EmailManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a6de5e65-86f5-06ce-d907-12762d57b711" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Email.EmailManager">
+      <topicdata name="EmailManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Email.EmailManager" />
+      <apidata name="EmailManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(Windows.ApplicationModel.Email.EmailMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailManager" />
+      </containers>
+      <file name="69fca9d0-35d1-9035-18d4-13b7eaa8bbf1" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Email.EmailManager">
+      <topicdata name="EmailManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Email.EmailManager" />
+      <apidata name="EmailManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(Windows.ApplicationModel.Email.EmailMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailManager" />
+      </containers>
+      <file name="6ff85862-10a6-252b-e12d-d658edf2b3ab" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(Windows.ApplicationModel.Email.EmailMessage)">
+      <topicdata group="api" />
+      <apidata name="ShowComposeNewEmailAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailManager" ref="true" />
+      </containers>
+      <file name="32ac08f6-af32-c79b-1c95-813a59fa51b8" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Email.EmailMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailMessage" />
+      <apidata name="EmailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailMessage.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Email.IEmailMessage" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a7d23b7-d669-ae6e-fa49-4e527b410050" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Email.EmailMessage">
+      <topicdata name="EmailMessage" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Email.EmailMessage" />
+      <apidata name="EmailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Email.EmailMessage.#ctor" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Attachments" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Bcc" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Body" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.CC" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Subject" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.To" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" />
+      </containers>
+      <file name="a3cc6fce-0443-8da6-d758-2052c55d57a6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Email.EmailMessage">
+      <topicdata name="EmailMessage" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Email.EmailMessage" />
+      <apidata name="EmailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" />
+      </containers>
+      <file name="68f2002f-1bec-a5c0-6a38-f4d89f4575e2" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Email.EmailMessage">
+      <topicdata name="EmailMessage" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Email.EmailMessage" />
+      <apidata name="EmailMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailMessage.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Attachments" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Bcc" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Body" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.CC" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.Subject" />
+        <element api="P:Windows.ApplicationModel.Email.EmailMessage.To" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" />
+      </containers>
+      <file name="096ab2b4-0371-8983-385c-71e76afac459" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailMessage.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="ebb86bbc-612f-8039-ae51-7cd2d9bd2dae" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.Attachments">
+      <topicdata group="api" />
+      <apidata name="Attachments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Attachments" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Email.EmailAttachment" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="e9990c8c-bdc2-9a6e-61bd-a3b247bacf6c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.Bcc">
+      <topicdata group="api" />
+      <apidata name="Bcc" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Bcc" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="19e6a58f-bc5f-0155-1a64-30b3dc36bd6b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Body" />
+      <setter name="set_Body" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="f8cbf2f8-a539-bd54-3eaa-4e446af01822" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.CC">
+      <topicdata group="api" />
+      <apidata name="CC" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CC" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="a924c2e1-b5d1-24d1-40e7-9e61ab8a1ce6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Subject" />
+      <setter name="set_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="e0035e0c-051a-d479-1ac5-2d66aa662d6a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailMessage.To">
+      <topicdata group="api" />
+      <apidata name="To" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_To" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailMessage" ref="true" />
+      </containers>
+      <file name="c95d257b-c0f9-db82-2aac-8234a6d01168" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Email.EmailRecipient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailRecipient" />
+      <apidata name="EmailRecipient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Email.IEmailRecipient" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="32e49808-4686-7911-057f-be96d3af2751" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Email.EmailRecipient">
+      <topicdata name="EmailRecipient" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      <apidata name="EmailRecipient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Email.EmailRecipient.#ctor">
+          <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+          <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String)" />
+          <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String,System.String)" />
+        </element>
+        <element api="P:Windows.ApplicationModel.Email.EmailRecipient.Address" />
+        <element api="P:Windows.ApplicationModel.Email.EmailRecipient.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      </containers>
+      <file name="b366fcea-0bad-6f8f-15e8-1081aa1b9d7d" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Email.EmailRecipient">
+      <topicdata name="EmailRecipient" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      <apidata name="EmailRecipient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      </containers>
+      <file name="4b900e82-4072-a2dd-346b-13376c9ef005" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Email.EmailRecipient">
+      <topicdata name="EmailRecipient" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      <apidata name="EmailRecipient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Email.EmailRecipient.Address" />
+        <element api="P:Windows.ApplicationModel.Email.EmailRecipient.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" />
+      </containers>
+      <file name="899bc808-a6f2-0748-c010-4f004f7ca62e" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Email.EmailRecipient.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Email.EmailRecipient" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+        <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String)" />
+        <element api="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="8e0f22d5-663a-82ad-0151-6676aeee9fa5" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="6575270e-4f78-41be-b9f7-df3432dba7b6" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <parameters>
+        <parameter name="address" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="cfaef676-debc-b5f7-9204-250925ba1306" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Email.EmailRecipient.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Email.EmailRecipient.#ctor" />
+      <parameters>
+        <parameter name="address" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="dfa5aea3-73de-76b8-6707-11c864dd6f1b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailRecipient.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Address" />
+      <setter name="set_Address" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="b4d1a7be-67dc-52ff-d6a5-05df6336b974" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Email.EmailRecipient.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Email" />
+        <type api="T:Windows.ApplicationModel.Email.EmailRecipient" ref="true" />
+      </containers>
+      <file name="b5f9dad2-ea9b-21fc-4c54-e056a3f1e1e1" />
+    </api>
+  </apis>
+</reflection>

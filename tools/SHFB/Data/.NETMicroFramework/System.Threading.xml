@@ -1,0 +1,2090 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Threading">
+      <topicdata group="api" />
+      <apidata name="System.Threading" group="namespace" />
+      <elements>
+        <element api="T:System.Threading.WaitHandle" />
+        <element api="T:System.Threading.AutoResetEvent" />
+        <element api="T:System.Threading.Interlocked" />
+        <element api="T:System.Threading.ManualResetEvent" />
+        <element api="T:System.Threading.Monitor" />
+        <element api="T:System.Threading.Thread" />
+        <element api="T:System.Threading.ThreadAbortException" />
+        <element api="T:System.Threading.ThreadPriority" />
+        <element api="T:System.Threading.ThreadStart" />
+        <element api="T:System.Threading.ThreadState" />
+        <element api="T:System.Threading.TimerCallback" />
+        <element api="T:System.Threading.Timer" />
+        <element api="T:System.Threading.Timeout" />
+      </elements>
+      <file name="5a7eb80e-d6d1-5d50-dd63-14472aec3e5d" />
+    </api>
+    <api id="T:System.Threading.AutoResetEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.AutoResetEvent" />
+      <apidata name="AutoResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Threading.WaitHandle" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="7728d8b5-2b8d-2792-a5b1-22ddb3709f8a" />
+    </api>
+    <api id="AllMembers.T:System.Threading.AutoResetEvent">
+      <topicdata name="AutoResetEvent" group="list" subgroup="members" typeTopicId="T:System.Threading.AutoResetEvent" />
+      <apidata name="AutoResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.AutoResetEvent.#ctor(System.Boolean)" />
+        <element api="M:System.Threading.AutoResetEvent.Reset" />
+        <element api="M:System.Threading.AutoResetEvent.Set" />
+        <element api="Overload:System.Threading.AutoResetEvent.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.AutoResetEvent" />
+      </containers>
+      <file name="52dc437d-931d-0e1a-26fa-dff34af1681b" />
+    </api>
+    <api id="Methods.T:System.Threading.AutoResetEvent">
+      <topicdata name="AutoResetEvent" group="list" subgroup="Methods" typeTopicId="T:System.Threading.AutoResetEvent" />
+      <apidata name="AutoResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.AutoResetEvent.Reset" />
+        <element api="M:System.Threading.AutoResetEvent.Set" />
+        <element api="Overload:System.Threading.AutoResetEvent.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.AutoResetEvent" />
+      </containers>
+      <file name="4f06fbd7-7ac0-a748-93ec-6360722cd5f9" />
+    </api>
+    <api id="M:System.Threading.AutoResetEvent.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="initialState">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.AutoResetEvent" ref="true" />
+      </containers>
+      <file name="3cfb43ea-2ca5-b33e-677b-3e6f15bd64f8" />
+    </api>
+    <api id="M:System.Threading.AutoResetEvent.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.AutoResetEvent" ref="true" />
+      </containers>
+      <file name="52923f33-7ab2-5f38-34fd-caef1d760549" />
+    </api>
+    <api id="M:System.Threading.AutoResetEvent.Set">
+      <topicdata group="api" />
+      <apidata name="Set" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.AutoResetEvent" ref="true" />
+      </containers>
+      <file name="11ed1941-a523-c5c0-12bf-90d39991d92c" />
+    </api>
+    <api id="T:System.Threading.Interlocked">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.Interlocked" />
+      <apidata name="Interlocked" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="0d529287-6ddc-cbad-6c9d-b89a3ebc4fce" />
+    </api>
+    <api id="AllMembers.T:System.Threading.Interlocked">
+      <topicdata name="Interlocked" group="list" subgroup="members" typeTopicId="T:System.Threading.Interlocked" />
+      <apidata name="Interlocked" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)" />
+        <element api="M:System.Threading.Interlocked.Decrement(System.Int32@)" />
+        <element api="M:System.Threading.Interlocked.Exchange(System.Int32@,System.Int32)" />
+        <element api="M:System.Threading.Interlocked.Increment(System.Int32@)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" />
+      </containers>
+      <file name="69ad606b-9ad0-f9e6-aeec-943950ab3cb2" />
+    </api>
+    <api id="Methods.T:System.Threading.Interlocked">
+      <topicdata name="Interlocked" group="list" subgroup="Methods" typeTopicId="T:System.Threading.Interlocked" />
+      <apidata name="Interlocked" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)" />
+        <element api="M:System.Threading.Interlocked.Decrement(System.Int32@)" />
+        <element api="M:System.Threading.Interlocked.Exchange(System.Int32@,System.Int32)" />
+        <element api="M:System.Threading.Interlocked.Increment(System.Int32@)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" />
+      </containers>
+      <file name="ee43b75f-691c-6579-0b18-efa6b69c86c4" />
+    </api>
+    <api id="M:System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CompareExchange" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location1">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="comparand">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" ref="true" />
+      </containers>
+      <file name="3a7a331e-f2aa-e440-5331-ca1e7e609b7d" />
+    </api>
+    <api id="M:System.Threading.Interlocked.Decrement(System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="Decrement" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" ref="true" />
+      </containers>
+      <file name="279b2b86-989a-1015-7fca-f25a02a01c79" />
+    </api>
+    <api id="M:System.Threading.Interlocked.Exchange(System.Int32@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Exchange" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location1">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" ref="true" />
+      </containers>
+      <file name="c90cbe52-95b3-e94a-d668-90cc0429dfe8" />
+    </api>
+    <api id="M:System.Threading.Interlocked.Increment(System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="Increment" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Interlocked" ref="true" />
+      </containers>
+      <file name="211ebb09-d7af-f26c-576f-4a5f20e36279" />
+    </api>
+    <api id="T:System.Threading.ManualResetEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.ManualResetEvent" />
+      <apidata name="ManualResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Threading.WaitHandle" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="2c9a7f79-6f1f-6fe7-d6f6-5f3a99084d9f" />
+    </api>
+    <api id="AllMembers.T:System.Threading.ManualResetEvent">
+      <topicdata name="ManualResetEvent" group="list" subgroup="members" typeTopicId="T:System.Threading.ManualResetEvent" />
+      <apidata name="ManualResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.ManualResetEvent.#ctor(System.Boolean)" />
+        <element api="M:System.Threading.ManualResetEvent.Reset" />
+        <element api="M:System.Threading.ManualResetEvent.Set" />
+        <element api="Overload:System.Threading.ManualResetEvent.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ManualResetEvent" />
+      </containers>
+      <file name="d80ec9c5-91bc-ee57-82f2-01114799301d" />
+    </api>
+    <api id="Methods.T:System.Threading.ManualResetEvent">
+      <topicdata name="ManualResetEvent" group="list" subgroup="Methods" typeTopicId="T:System.Threading.ManualResetEvent" />
+      <apidata name="ManualResetEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.ManualResetEvent.Reset" />
+        <element api="M:System.Threading.ManualResetEvent.Set" />
+        <element api="Overload:System.Threading.ManualResetEvent.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ManualResetEvent" />
+      </containers>
+      <file name="79627719-4f60-a4e6-8b52-d6393dc3f7fa" />
+    </api>
+    <api id="M:System.Threading.ManualResetEvent.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="initialState">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ManualResetEvent" ref="true" />
+      </containers>
+      <file name="96ac5917-6bfd-854b-b2a0-e73376c1abcf" />
+    </api>
+    <api id="M:System.Threading.ManualResetEvent.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ManualResetEvent" ref="true" />
+      </containers>
+      <file name="3c395687-b0b8-ef81-b802-08f999b4895f" />
+    </api>
+    <api id="M:System.Threading.ManualResetEvent.Set">
+      <topicdata group="api" />
+      <apidata name="Set" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ManualResetEvent" ref="true" />
+      </containers>
+      <file name="6b4b2008-ee19-e9f3-bc0b-dddea206a065" />
+    </api>
+    <api id="T:System.Threading.Monitor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.Monitor" />
+      <apidata name="Monitor" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="ac37fe1b-1492-0c20-7e70-f6e96cb490c8" />
+    </api>
+    <api id="AllMembers.T:System.Threading.Monitor">
+      <topicdata name="Monitor" group="list" subgroup="members" typeTopicId="T:System.Threading.Monitor" />
+      <apidata name="Monitor" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Threading.Monitor.Enter(System.Object)" />
+        <element api="M:System.Threading.Monitor.Exit(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Monitor" />
+      </containers>
+      <file name="b154bb7b-55b2-8ec7-8c45-d757183ea808" />
+    </api>
+    <api id="Methods.T:System.Threading.Monitor">
+      <topicdata name="Monitor" group="list" subgroup="Methods" typeTopicId="T:System.Threading.Monitor" />
+      <apidata name="Monitor" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Threading.Monitor.Enter(System.Object)" />
+        <element api="M:System.Threading.Monitor.Exit(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Monitor" />
+      </containers>
+      <file name="135d14dc-c443-9833-597b-a916284fbb32" />
+    </api>
+    <api id="M:System.Threading.Monitor.Enter(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Enter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Monitor" ref="true" />
+      </containers>
+      <file name="41d5820f-e06b-599a-7d2c-178fb163e79b" />
+    </api>
+    <api id="M:System.Threading.Monitor.Exit(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Exit" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Monitor" ref="true" />
+      </containers>
+      <file name="bd25b5c4-9f48-7359-757a-9545bc1f50b3" />
+    </api>
+    <api id="T:System.Threading.Thread">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.Thread" />
+      <apidata name="Thread" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="12e08039-e8ba-962e-89d0-d7a8fcffed2c" />
+    </api>
+    <api id="AllMembers.T:System.Threading.Thread">
+      <topicdata name="Thread" group="list" subgroup="members" typeTopicId="T:System.Threading.Thread" />
+      <apidata name="Thread" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.Thread.#ctor(System.Threading.ThreadStart)" />
+        <element api="M:System.Threading.Thread.Abort" />
+        <element api="P:System.Threading.Thread.CurrentThread" />
+        <element api="M:System.Threading.Thread.GetDomain" />
+        <element api="P:System.Threading.Thread.IsAlive" />
+        <element api="Overload:System.Threading.Thread.Join">
+          <element api="M:System.Threading.Thread.Join" />
+          <element api="M:System.Threading.Thread.Join(System.Int32)" />
+          <element api="M:System.Threading.Thread.Join(System.TimeSpan)" />
+        </element>
+        <element api="P:System.Threading.Thread.ManagedThreadId" />
+        <element api="P:System.Threading.Thread.Priority" />
+        <element api="M:System.Threading.Thread.Resume" />
+        <element api="M:System.Threading.Thread.Sleep(System.Int32)" />
+        <element api="M:System.Threading.Thread.Start" />
+        <element api="M:System.Threading.Thread.Suspend" />
+        <element api="P:System.Threading.Thread.ThreadState" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" />
+      </containers>
+      <file name="af934685-594f-e280-e7c4-b69333462051" />
+    </api>
+    <api id="Methods.T:System.Threading.Thread">
+      <topicdata name="Thread" group="list" subgroup="Methods" typeTopicId="T:System.Threading.Thread" />
+      <apidata name="Thread" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.Thread.Abort" />
+        <element api="M:System.Threading.Thread.GetDomain" />
+        <element api="Overload:System.Threading.Thread.Join">
+          <element api="M:System.Threading.Thread.Join" />
+          <element api="M:System.Threading.Thread.Join(System.Int32)" />
+          <element api="M:System.Threading.Thread.Join(System.TimeSpan)" />
+        </element>
+        <element api="M:System.Threading.Thread.Resume" />
+        <element api="M:System.Threading.Thread.Sleep(System.Int32)" />
+        <element api="M:System.Threading.Thread.Start" />
+        <element api="M:System.Threading.Thread.Suspend" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" />
+      </containers>
+      <file name="4255ac08-25dd-0097-d181-d54845a4d19a" />
+    </api>
+    <api id="Properties.T:System.Threading.Thread">
+      <topicdata name="Thread" group="list" subgroup="Properties" typeTopicId="T:System.Threading.Thread" />
+      <apidata name="Thread" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Threading.Thread.CurrentThread" />
+        <element api="P:System.Threading.Thread.IsAlive" />
+        <element api="P:System.Threading.Thread.ManagedThreadId" />
+        <element api="P:System.Threading.Thread.Priority" />
+        <element api="P:System.Threading.Thread.ThreadState" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" />
+      </containers>
+      <file name="1937c044-48cb-203e-3f4f-869a0729a468" />
+    </api>
+    <api id="Overload:System.Threading.Thread.Join">
+      <topicdata name="Join" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.Thread" />
+      <apidata name="Join" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Threading.Thread.Join" />
+        <element api="M:System.Threading.Thread.Join(System.Int32)" />
+        <element api="M:System.Threading.Thread.Join(System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="424705fb-1dd1-6a8b-f46e-28918657291d" />
+    </api>
+    <api id="M:System.Threading.Thread.#ctor(System.Threading.ThreadStart)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="start">
+          <type api="T:System.Threading.ThreadStart" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="b9808ce1-0bfd-ff55-54fc-f3f36db41ba7" />
+    </api>
+    <api id="M:System.Threading.Thread.Abort">
+      <topicdata group="api" />
+      <apidata name="Abort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="7437ddfb-7884-1b3e-5585-b5c3b34fdce9" />
+    </api>
+    <api id="P:System.Threading.Thread.CurrentThread">
+      <topicdata group="api" />
+      <apidata name="CurrentThread" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentThread" />
+      <returns>
+        <type api="T:System.Threading.Thread" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="7f3a6589-fdaa-234d-51b3-94772cfee84b" />
+    </api>
+    <api id="M:System.Threading.Thread.GetDomain">
+      <topicdata group="api" />
+      <apidata name="GetDomain" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.AppDomain" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="91b05a7d-a56d-003a-00c8-2fcb0142e573" />
+    </api>
+    <api id="P:System.Threading.Thread.IsAlive">
+      <topicdata group="api" />
+      <apidata name="IsAlive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAlive" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="fbe312c0-7b9c-04e8-1f69-9c502c1e17e8" />
+    </api>
+    <api id="M:System.Threading.Thread.Join">
+      <topicdata group="api" />
+      <apidata name="Join" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.Thread.Join" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="56ed7b6f-efe0-67e7-34bc-766dd9f693f9" />
+    </api>
+    <api id="M:System.Threading.Thread.Join(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Join" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.Thread.Join" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="millisecondsTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="a9c2d4b0-25b8-350c-3379-ce81b37cef36" />
+    </api>
+    <api id="M:System.Threading.Thread.Join(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Join" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.Thread.Join" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="540d676f-8e49-5812-fa54-7e22c1706297" />
+    </api>
+    <api id="P:System.Threading.Thread.ManagedThreadId">
+      <topicdata group="api" />
+      <apidata name="ManagedThreadId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ManagedThreadId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="9f68a007-1429-aaaa-9018-a2a863947dee" />
+    </api>
+    <api id="P:System.Threading.Thread.Priority">
+      <topicdata group="api" />
+      <apidata name="Priority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Priority" />
+      <setter name="set_Priority" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="0075d0ab-549f-7ab3-d65b-28817979740b" />
+    </api>
+    <api id="M:System.Threading.Thread.Resume">
+      <topicdata group="api" />
+      <apidata name="Resume" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="6956ed47-126e-fe96-c55f-7b8a84b9db6d" />
+    </api>
+    <api id="M:System.Threading.Thread.Sleep(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Sleep" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="millisecondsTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="b972105f-ae2d-d81d-28a4-4001b174ab7d" />
+    </api>
+    <api id="M:System.Threading.Thread.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="b84421cd-6fdd-7343-538c-87f1141d37e8" />
+    </api>
+    <api id="M:System.Threading.Thread.Suspend">
+      <topicdata group="api" />
+      <apidata name="Suspend" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="45a9450f-44ef-77c7-c86d-05c97121397e" />
+    </api>
+    <api id="P:System.Threading.Thread.ThreadState">
+      <topicdata group="api" />
+      <apidata name="ThreadState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ThreadState" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Thread" ref="true" />
+      </containers>
+      <file name="6a3aa666-76b5-7d31-91a6-2ee391285408" />
+    </api>
+    <api id="T:System.Threading.ThreadAbortException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.ThreadAbortException" />
+      <apidata name="ThreadAbortException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="a8a5471b-0d5e-8358-a97e-9a4adbf78e37" />
+    </api>
+    <api id="AllMembers.T:System.Threading.ThreadAbortException">
+      <topicdata name="ThreadAbortException" group="list" subgroup="members" typeTopicId="T:System.Threading.ThreadAbortException" />
+      <apidata name="ThreadAbortException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadAbortException" />
+      </containers>
+      <file name="209699b8-b4f1-bf65-5ff9-885f8e72b5f5" />
+    </api>
+    <api id="Methods.T:System.Threading.ThreadAbortException">
+      <topicdata name="ThreadAbortException" group="list" subgroup="Methods" typeTopicId="T:System.Threading.ThreadAbortException" />
+      <apidata name="ThreadAbortException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadAbortException" />
+      </containers>
+      <file name="e0c46b28-eb41-8ada-9337-7264f6e3f56c" />
+    </api>
+    <api id="Properties.T:System.Threading.ThreadAbortException">
+      <topicdata name="ThreadAbortException" group="list" subgroup="Properties" typeTopicId="T:System.Threading.ThreadAbortException" />
+      <apidata name="ThreadAbortException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadAbortException" />
+      </containers>
+      <file name="dbb5175d-cb37-2617-7670-b0c09ae8e336" />
+    </api>
+    <api id="T:System.Threading.ThreadPriority">
+      <topicdata group="api" />
+      <apidata name="ThreadPriority" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Threading.ThreadPriority.Lowest" />
+        <element api="F:System.Threading.ThreadPriority.BelowNormal" />
+        <element api="F:System.Threading.ThreadPriority.Normal" />
+        <element api="F:System.Threading.ThreadPriority.AboveNormal" />
+        <element api="F:System.Threading.ThreadPriority.Highest" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="87ef68e9-07c2-2d56-a913-a111541fb88e" />
+    </api>
+    <api id="F:System.Threading.ThreadPriority.AboveNormal">
+      <topicdata group="api" notopic="" />
+      <apidata name="AboveNormal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </containers>
+      <file name="cf540fea-7105-2126-c58f-09dba647b90e" />
+    </api>
+    <api id="F:System.Threading.ThreadPriority.BelowNormal">
+      <topicdata group="api" notopic="" />
+      <apidata name="BelowNormal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </containers>
+      <file name="9b473bf9-6bf8-9b8c-6091-9734796b5b13" />
+    </api>
+    <api id="F:System.Threading.ThreadPriority.Highest">
+      <topicdata group="api" notopic="" />
+      <apidata name="Highest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </containers>
+      <file name="e258dee9-dfcb-0d65-c50a-9b12455acf8e" />
+    </api>
+    <api id="F:System.Threading.ThreadPriority.Lowest">
+      <topicdata group="api" notopic="" />
+      <apidata name="Lowest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </containers>
+      <file name="91e8da96-6650-c765-e52b-5a64fcbcdbc3" />
+    </api>
+    <api id="F:System.Threading.ThreadPriority.Normal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Normal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadPriority" ref="false" />
+      </containers>
+      <file name="cbc7fca4-4ba7-b2a4-ceaa-afd9f59b83b8" />
+    </api>
+    <api id="T:System.Threading.ThreadStart">
+      <topicdata group="api" />
+      <apidata name="ThreadStart" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="4bd42707-e766-2576-f7c6-c8b2375ce996" />
+    </api>
+    <api id="T:System.Threading.ThreadState">
+      <topicdata group="api" />
+      <apidata name="ThreadState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Threading.ThreadState.Running" />
+        <element api="F:System.Threading.ThreadState.StopRequested" />
+        <element api="F:System.Threading.ThreadState.SuspendRequested" />
+        <element api="F:System.Threading.ThreadState.Background" />
+        <element api="F:System.Threading.ThreadState.Unstarted" />
+        <element api="F:System.Threading.ThreadState.Stopped" />
+        <element api="F:System.Threading.ThreadState.WaitSleepJoin" />
+        <element api="F:System.Threading.ThreadState.Suspended" />
+        <element api="F:System.Threading.ThreadState.AbortRequested" />
+        <element api="F:System.Threading.ThreadState.Aborted" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4d22a28e-e983-0d0f-ec51-5ae3209beb41" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="0775e314-ac3f-4543-e36e-9439659e0dc6" />
+    </api>
+    <api id="F:System.Threading.ThreadState.AbortRequested">
+      <topicdata group="api" notopic="" />
+      <apidata name="AbortRequested" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="249f12eb-a52c-9926-469c-5f9a1f6a0a59" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Background">
+      <topicdata group="api" notopic="" />
+      <apidata name="Background" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="7c7c6b58-1675-897b-ed91-d632e47cdbcd" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Running">
+      <topicdata group="api" notopic="" />
+      <apidata name="Running" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="9849c613-ac15-09c1-7373-17d39c6bf27d" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="d0da1550-2e5f-ca0c-5956-cde0efa05157" />
+    </api>
+    <api id="F:System.Threading.ThreadState.StopRequested">
+      <topicdata group="api" notopic="" />
+      <apidata name="StopRequested" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="643955e8-3192-5df2-9f87-88704c38e625" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Suspended">
+      <topicdata group="api" notopic="" />
+      <apidata name="Suspended" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="7216be22-a7db-6470-41cf-c5c34e95a63a" />
+    </api>
+    <api id="F:System.Threading.ThreadState.SuspendRequested">
+      <topicdata group="api" notopic="" />
+      <apidata name="SuspendRequested" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="bc22753f-7865-3510-5666-7b99e96b7346" />
+    </api>
+    <api id="F:System.Threading.ThreadState.Unstarted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unstarted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="5b4bda66-32d9-37b3-95e7-bbff62f7ac41" />
+    </api>
+    <api id="F:System.Threading.ThreadState.WaitSleepJoin">
+      <topicdata group="api" notopic="" />
+      <apidata name="WaitSleepJoin" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.ThreadState" ref="false" />
+      </containers>
+      <file name="5ecb4ec4-d2c2-2438-48eb-261cb8f7af1f" />
+    </api>
+    <api id="T:System.Threading.Timeout">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.Timeout" />
+      <apidata name="Timeout" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="4d65536b-5234-dfa8-81a0-58b54a211353" />
+    </api>
+    <api id="AllMembers.T:System.Threading.Timeout">
+      <topicdata name="Timeout" group="list" subgroup="members" typeTopicId="T:System.Threading.Timeout" />
+      <apidata name="Timeout" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Threading.Timeout.Infinite" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timeout" />
+      </containers>
+      <file name="86bb4af5-78bb-895f-9686-c3cd2767ef42" />
+    </api>
+    <api id="Fields.T:System.Threading.Timeout">
+      <topicdata name="Timeout" group="list" subgroup="Fields" typeTopicId="T:System.Threading.Timeout" />
+      <apidata name="Timeout" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Threading.Timeout.Infinite" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timeout" />
+      </containers>
+      <file name="809b1002-778d-4d86-a5b0-092a69cb60da" />
+    </api>
+    <api id="F:System.Threading.Timeout.Infinite">
+      <topicdata group="api" />
+      <apidata name="Infinite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timeout" ref="true" />
+      </containers>
+      <file name="5004ac17-896b-d8dd-d544-c5b27105e81c" />
+    </api>
+    <api id="T:System.Threading.Timer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="d3391a05-7680-260b-fcba-817443739647" />
+    </api>
+    <api id="AllMembers.T:System.Threading.Timer">
+      <topicdata name="Timer" group="list" subgroup="members" typeTopicId="T:System.Threading.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Threading.Timer.#ctor">
+          <element api="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.Int32,System.Int32)" />
+          <element api="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.TimeSpan,System.TimeSpan)" />
+        </element>
+        <element api="Overload:System.Threading.Timer.Change">
+          <element api="M:System.Threading.Timer.Change(System.Int32,System.Int32)" />
+          <element api="M:System.Threading.Timer.Change(System.TimeSpan,System.TimeSpan)" />
+        </element>
+        <element api="M:System.Threading.Timer.Dispose" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" />
+      </containers>
+      <file name="6bda3d33-8116-09f6-394e-d1315d509479" />
+    </api>
+    <api id="Methods.T:System.Threading.Timer">
+      <topicdata name="Timer" group="list" subgroup="Methods" typeTopicId="T:System.Threading.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Threading.Timer.Change">
+          <element api="M:System.Threading.Timer.Change(System.Int32,System.Int32)" />
+          <element api="M:System.Threading.Timer.Change(System.TimeSpan,System.TimeSpan)" />
+        </element>
+        <element api="M:System.Threading.Timer.Dispose" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" />
+      </containers>
+      <file name="3d43055e-0c07-945b-07e1-e20a48da1338" />
+    </api>
+    <api id="Overload:System.Threading.Timer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.Timer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.Int32,System.Int32)" />
+        <element api="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.TimeSpan,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="53bd19b6-21da-43da-998f-3c497eb47f82" />
+    </api>
+    <api id="Overload:System.Threading.Timer.Change">
+      <topicdata name="Change" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.Timer" />
+      <apidata name="Change" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Threading.Timer.Change(System.Int32,System.Int32)" />
+        <element api="M:System.Threading.Timer.Change(System.TimeSpan,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="cb891a55-121f-eabc-4d11-a51093dac5bb" />
+    </api>
+    <api id="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Threading.Timer.#ctor" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.Threading.TimerCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="dueTime">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="period">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="3bdca732-9eba-e8d2-8352-632abf9e2984" />
+    </api>
+    <api id="M:System.Threading.Timer.#ctor(System.Threading.TimerCallback,System.Object,System.TimeSpan,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Threading.Timer.#ctor" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.Threading.TimerCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="dueTime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="period">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="be40affd-7e7e-70f2-3247-dfff9e4d1570" />
+    </api>
+    <api id="M:System.Threading.Timer.Change(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Change" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.Timer.Change" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dueTime">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="period">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="5ce0f25f-2117-0d98-f1ce-28188310db36" />
+    </api>
+    <api id="M:System.Threading.Timer.Change(System.TimeSpan,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Change" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.Timer.Change" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dueTime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="period">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="c5fb9f23-1e74-ef83-a96a-4995d588d54e" />
+    </api>
+    <api id="M:System.Threading.Timer.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.Timer" ref="true" />
+      </containers>
+      <file name="42958e4a-7275-0239-a407-1128f6ff42ab" />
+    </api>
+    <api id="T:System.Threading.TimerCallback">
+      <topicdata group="api" />
+      <apidata name="TimerCallback" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="b3fd28d7-e343-bc26-2f85-60577d0a93b5" />
+    </api>
+    <api id="T:System.Threading.WaitHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Threading.WaitHandle" />
+      <apidata name="WaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Threading.AutoResetEvent" ref="true" />
+          <type api="T:System.Threading.ManualResetEvent" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+      </containers>
+      <file name="3e1c0ae1-caa4-80d2-b4c4-9da1f975e394" />
+    </api>
+    <api id="AllMembers.T:System.Threading.WaitHandle">
+      <topicdata name="WaitHandle" group="list" subgroup="members" typeTopicId="T:System.Threading.WaitHandle" />
+      <apidata name="WaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Threading.WaitHandle.#ctor" />
+        <element api="Overload:System.Threading.WaitHandle.WaitAll">
+          <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[])" />
+          <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Threading.WaitHandle.WaitAny">
+          <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[])" />
+          <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Threading.WaitHandle.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+        <element api="F:System.Threading.WaitHandle.WaitTimeout" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" />
+      </containers>
+      <file name="883d01d0-4558-1d07-ab25-875985c362cb" />
+    </api>
+    <api id="Methods.T:System.Threading.WaitHandle">
+      <topicdata name="WaitHandle" group="list" subgroup="Methods" typeTopicId="T:System.Threading.WaitHandle" />
+      <apidata name="WaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Threading.WaitHandle.WaitAll">
+          <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[])" />
+          <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Threading.WaitHandle.WaitAny">
+          <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[])" />
+          <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Threading.WaitHandle.WaitOne">
+          <element api="M:System.Threading.WaitHandle.WaitOne" />
+          <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" />
+      </containers>
+      <file name="81624f49-85e9-3a60-22bf-73726c1a306c" />
+    </api>
+    <api id="Fields.T:System.Threading.WaitHandle">
+      <topicdata name="WaitHandle" group="list" subgroup="Fields" typeTopicId="T:System.Threading.WaitHandle" />
+      <apidata name="WaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Threading.WaitHandle.WaitTimeout" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" />
+      </containers>
+      <file name="540bcf7a-9a27-f92c-fe6d-e6ef821d6cc2" />
+    </api>
+    <api id="Overload:System.Threading.WaitHandle.WaitAll">
+      <topicdata name="WaitAll" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.WaitHandle" />
+      <apidata name="WaitAll" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[])" />
+        <element api="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="74437002-aafc-d650-8201-fb7d3171f194" />
+    </api>
+    <api id="Overload:System.Threading.WaitHandle.WaitAny">
+      <topicdata name="WaitAny" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.WaitHandle" />
+      <apidata name="WaitAny" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[])" />
+        <element api="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[],System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="6da22bba-96f0-8add-9242-79683ea01773" />
+    </api>
+    <api id="Overload:System.Threading.WaitHandle.WaitOne">
+      <topicdata name="WaitOne" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Threading.WaitHandle" />
+      <apidata name="WaitOne" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Threading.WaitHandle.WaitOne" />
+        <element api="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="1045e03b-8962-922c-1666-f8b5596fc5e5" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="f6d23396-d169-ba22-d7a6-f2237b291522" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[])">
+      <topicdata group="api" />
+      <apidata name="WaitAll" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Threading.WaitHandle.WaitAll" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="waitHandles">
+          <arrayOf rank="1">
+            <type api="T:System.Threading.WaitHandle" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="2352edd8-7f73-ef5e-2c97-d84a591cc902" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[],System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WaitAll" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Threading.WaitHandle.WaitAll" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="waitHandles">
+          <arrayOf rank="1">
+            <type api="T:System.Threading.WaitHandle" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="millisecondsTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="exitContext">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="615bea09-b771-14bb-e3bd-3dedaf6f7d07" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[])">
+      <topicdata group="api" />
+      <apidata name="WaitAny" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Threading.WaitHandle.WaitAny" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="waitHandles">
+          <arrayOf rank="1">
+            <type api="T:System.Threading.WaitHandle" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="b5fc74c5-ff07-dc37-215b-2a2ce5b1113f" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitAny(System.Threading.WaitHandle[],System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WaitAny" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Threading.WaitHandle.WaitAny" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="waitHandles">
+          <arrayOf rank="1">
+            <type api="T:System.Threading.WaitHandle" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="millisecondsTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="exitContext">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="657d0cd8-405c-c379-1e13-962aedcfc183" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitOne">
+      <topicdata group="api" />
+      <apidata name="WaitOne" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.WaitHandle.WaitOne" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="4761368f-3fdd-635f-3de0-286fefe60717" />
+    </api>
+    <api id="M:System.Threading.WaitHandle.WaitOne(System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WaitOne" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Threading.WaitHandle.WaitOne" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="millisecondsTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="exitContext">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="fd64fac0-c5b1-e391-dc6a-dc7a9cd318f4" />
+    </api>
+    <api id="F:System.Threading.WaitHandle.WaitTimeout">
+      <topicdata group="api" />
+      <apidata name="WaitTimeout" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>258</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Threading" />
+        <type api="T:System.Threading.WaitHandle" ref="true" />
+      </containers>
+      <file name="3f73b245-4458-272a-d0f9-fbb5f4fce09a" />
+    </api>
+  </apis>
+</reflection>

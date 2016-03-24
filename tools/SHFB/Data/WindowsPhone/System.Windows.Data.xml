@@ -1,0 +1,2776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Data">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Data" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Data.BindingBase" />
+        <element api="T:System.Windows.Data.Binding" />
+        <element api="T:System.Windows.Data.BindingExpressionBase" />
+        <element api="T:System.Windows.Data.BindingExpression" />
+        <element api="T:System.Windows.Data.BindingMode" />
+        <element api="T:System.Windows.Data.RelativeSourceMode" />
+        <element api="T:System.Windows.Data.RelativeSource" />
+        <element api="T:System.Windows.Data.UpdateSourceTrigger" />
+        <element api="T:System.Windows.Data.CollectionViewGroup" />
+        <element api="T:System.Windows.Data.IValueConverter" />
+        <element api="T:System.Windows.Data.PropertyGroupDescription" />
+        <element api="T:System.Windows.Data.CollectionViewSource" />
+        <element api="T:System.Windows.Data.FilterEventArgs" />
+        <element api="T:System.Windows.Data.FilterEventHandler" />
+        <element api="T:System.Windows.Data.BindingOperations" />
+      </elements>
+      <file name="d9a5171e-d5f1-edd5-2bed-288d5d8f2be3" />
+    </api>
+    <api id="T:System.Windows.Data.Binding">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.Binding" />
+      <apidata name="Binding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.Binding.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Data.BindingBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="138a062e-bdb9-28d2-4514-f8f43746d433" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.Binding">
+      <topicdata name="Binding" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.Binding" />
+      <apidata name="Binding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.Binding.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Data.Binding.#ctor">
+          <element api="M:System.Windows.Data.Binding.#ctor" />
+          <element api="M:System.Windows.Data.Binding.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Windows.Data.Binding.BindsDirectlyToSource" />
+        <element api="P:System.Windows.Data.Binding.Converter" />
+        <element api="P:System.Windows.Data.Binding.ConverterCulture" />
+        <element api="P:System.Windows.Data.Binding.ConverterParameter" />
+        <element api="P:System.Windows.Data.Binding.ElementName" />
+        <element api="P:System.Windows.Data.Binding.Mode" />
+        <element api="P:System.Windows.Data.Binding.NotifyOnValidationError" />
+        <element api="P:System.Windows.Data.Binding.Path" />
+        <element api="P:System.Windows.Data.Binding.RelativeSource" />
+        <element api="P:System.Windows.Data.Binding.Source" />
+        <element api="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#EndInit" />
+        <element api="P:System.Windows.Data.Binding.UpdateSourceTrigger" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnDataErrors" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnExceptions" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnNotifyDataErrors" />
+        <element api="M:System.Windows.Data.BindingBase.CheckSealed" />
+        <element api="P:System.Windows.Data.BindingBase.FallbackValue" />
+        <element api="P:System.Windows.Data.BindingBase.StringFormat" />
+        <element api="P:System.Windows.Data.BindingBase.TargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" />
+      </containers>
+      <file name="3a0ce287-6fcd-c819-2f49-c3e86ca9a2dd" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.Binding">
+      <topicdata name="Binding" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.Binding" />
+      <apidata name="Binding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.Binding.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#EndInit" />
+        <element api="M:System.Windows.Data.BindingBase.CheckSealed" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" />
+      </containers>
+      <file name="53ecca4f-10e1-fa74-a169-3e85c34efa08" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.Binding">
+      <topicdata name="Binding" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.Binding" />
+      <apidata name="Binding" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.Binding.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Data.Binding.BindsDirectlyToSource" />
+        <element api="P:System.Windows.Data.Binding.Converter" />
+        <element api="P:System.Windows.Data.Binding.ConverterCulture" />
+        <element api="P:System.Windows.Data.Binding.ConverterParameter" />
+        <element api="P:System.Windows.Data.Binding.ElementName" />
+        <element api="P:System.Windows.Data.Binding.Mode" />
+        <element api="P:System.Windows.Data.Binding.NotifyOnValidationError" />
+        <element api="P:System.Windows.Data.Binding.Path" />
+        <element api="P:System.Windows.Data.Binding.RelativeSource" />
+        <element api="P:System.Windows.Data.Binding.Source" />
+        <element api="P:System.Windows.Data.Binding.UpdateSourceTrigger" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnDataErrors" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnExceptions" />
+        <element api="P:System.Windows.Data.Binding.ValidatesOnNotifyDataErrors" />
+        <element api="P:System.Windows.Data.BindingBase.FallbackValue" />
+        <element api="P:System.Windows.Data.BindingBase.StringFormat" />
+        <element api="P:System.Windows.Data.BindingBase.TargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" />
+      </containers>
+      <file name="f109054e-083c-8e40-caea-65490a666392" />
+    </api>
+    <api id="Overload:System.Windows.Data.Binding.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Data.Binding" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Data.Binding.#ctor" />
+        <element api="M:System.Windows.Data.Binding.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="c274861b-e5b8-8b85-00f1-f4bb0436aa07" />
+    </api>
+    <api id="M:System.Windows.Data.Binding.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.Binding.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="ef5e4ebb-024f-74af-9764-980ca2037b83" />
+    </api>
+    <api id="M:System.Windows.Data.Binding.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.Binding.#ctor" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="4005900d-33fb-be36-8c63-1d069b4f083f" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.BindsDirectlyToSource">
+      <topicdata group="api" />
+      <apidata name="BindsDirectlyToSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BindsDirectlyToSource" />
+      <setter name="set_BindsDirectlyToSource" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="7032d631-77b2-4dfa-7c18-32a2065d1daf" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.Converter">
+      <topicdata group="api" />
+      <apidata name="Converter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Converter" />
+      <setter name="set_Converter" />
+      <returns>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="ebeec08e-14d5-7f59-a3e3-a9323731dfe3" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ConverterCulture">
+      <topicdata group="api" />
+      <apidata name="ConverterCulture" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ConverterCulture" />
+      <setter name="set_ConverterCulture" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="f1b7d720-bfb6-181c-9a8c-ae2fe055def7" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ConverterParameter">
+      <topicdata group="api" />
+      <apidata name="ConverterParameter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ConverterParameter" />
+      <setter name="set_ConverterParameter" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="c17f8585-1023-498b-c1b2-a5038c4cc12d" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ElementName">
+      <topicdata group="api" />
+      <apidata name="ElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ElementName" />
+      <setter name="set_ElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="6552bb0f-e4b4-c9c6-c111-3a8693e21707" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Mode" />
+      <setter name="set_Mode" />
+      <returns>
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="1acda585-a5b2-a12c-4c08-1cdc4249ca7c" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.NotifyOnValidationError">
+      <topicdata group="api" />
+      <apidata name="NotifyOnValidationError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NotifyOnValidationError" />
+      <setter name="set_NotifyOnValidationError" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="d68aa719-c10c-bf3f-b28f-53bed7f936ec" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.Path">
+      <topicdata group="api" />
+      <apidata name="Path" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Path" />
+      <setter name="set_Path" />
+      <returns>
+        <type api="T:System.Windows.PropertyPath" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.TypeConverterAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Windows.PropertyPathConverter" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="186ab109-d5c3-b05d-d4fa-6b94bd673e1d" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.RelativeSource">
+      <topicdata group="api" />
+      <apidata name="RelativeSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RelativeSource" />
+      <setter name="set_RelativeSource" />
+      <returns>
+        <type api="T:System.Windows.Data.RelativeSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="41b63732-c07d-0006-ab0e-0f762e635bd4" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="daf9d2c2-fc2d-3253-6a9e-30ad0dd9896f" />
+    </api>
+    <api id="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#BeginInit">
+      <topicdata group="api" eiiName="ISupportInitialize.BeginInit" />
+      <apidata name="BeginInit" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.BeginInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="bf2dc1ba-d6b3-994f-d579-91cd2c03900a" />
+    </api>
+    <api id="M:System.Windows.Data.Binding.System#ComponentModel#ISupportInitialize#EndInit">
+      <topicdata group="api" eiiName="ISupportInitialize.EndInit" />
+      <apidata name="EndInit" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.EndInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="05699826-7701-a8bf-0b36-139b9494dec5" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.UpdateSourceTrigger">
+      <topicdata group="api" />
+      <apidata name="UpdateSourceTrigger" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UpdateSourceTrigger" />
+      <setter name="set_UpdateSourceTrigger" />
+      <returns>
+        <type api="T:System.Windows.Data.UpdateSourceTrigger" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="ae24a703-493d-048e-cc3d-bbf4b6476627" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ValidatesOnDataErrors">
+      <topicdata group="api" />
+      <apidata name="ValidatesOnDataErrors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidatesOnDataErrors" />
+      <setter name="set_ValidatesOnDataErrors" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="2ae930fa-216c-fe76-f7d2-3281a62ea717" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ValidatesOnExceptions">
+      <topicdata group="api" />
+      <apidata name="ValidatesOnExceptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidatesOnExceptions" />
+      <setter name="set_ValidatesOnExceptions" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="6f4e63f8-2814-70a8-fb2b-eaae47dcdfe2" />
+    </api>
+    <api id="P:System.Windows.Data.Binding.ValidatesOnNotifyDataErrors">
+      <topicdata group="api" />
+      <apidata name="ValidatesOnNotifyDataErrors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidatesOnNotifyDataErrors" />
+      <setter name="set_ValidatesOnNotifyDataErrors" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </containers>
+      <file name="788a84e6-6ed3-19f7-5322-ce1222f706be" />
+    </api>
+    <api id="T:System.Windows.Data.BindingBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.BindingBase" />
+      <apidata name="BindingBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Data.Binding" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="743a1848-0bf8-460c-af90-1e75abb0dbbf" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.BindingBase">
+      <topicdata name="BindingBase" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.BindingBase" />
+      <apidata name="BindingBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.BindingBase.#ctor" />
+        <element api="M:System.Windows.Data.BindingBase.CheckSealed" />
+        <element api="P:System.Windows.Data.BindingBase.FallbackValue" />
+        <element api="P:System.Windows.Data.BindingBase.StringFormat" />
+        <element api="P:System.Windows.Data.BindingBase.TargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" />
+      </containers>
+      <file name="dde1be1e-901a-16a6-aed8-448f8dc3996f" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.BindingBase">
+      <topicdata name="BindingBase" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.BindingBase" />
+      <apidata name="BindingBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.BindingBase.CheckSealed" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" />
+      </containers>
+      <file name="61d69add-470d-d4e5-8e38-467cb6271f35" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.BindingBase">
+      <topicdata name="BindingBase" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.BindingBase" />
+      <apidata name="BindingBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.BindingBase.FallbackValue" />
+        <element api="P:System.Windows.Data.BindingBase.StringFormat" />
+        <element api="P:System.Windows.Data.BindingBase.TargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" />
+      </containers>
+      <file name="49273183-2e3b-74ef-2152-8ca84e1c9057" />
+    </api>
+    <api id="M:System.Windows.Data.BindingBase.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </containers>
+      <file name="c159aef3-41c9-54ee-8028-3f914275b6de" />
+    </api>
+    <api id="M:System.Windows.Data.BindingBase.CheckSealed">
+      <topicdata group="api" />
+      <apidata name="CheckSealed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </containers>
+      <file name="b9295d1a-e3d2-8069-f081-e8fbfa415855" />
+    </api>
+    <api id="P:System.Windows.Data.BindingBase.FallbackValue">
+      <topicdata group="api" />
+      <apidata name="FallbackValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FallbackValue" />
+      <setter name="set_FallbackValue" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </containers>
+      <file name="8e15d116-abba-4b21-f155-07c0d18619b3" />
+    </api>
+    <api id="P:System.Windows.Data.BindingBase.StringFormat">
+      <topicdata group="api" />
+      <apidata name="StringFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StringFormat" />
+      <setter name="set_StringFormat" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </containers>
+      <file name="abdd344a-4dc4-d993-117b-eff1f2d586bf" />
+    </api>
+    <api id="P:System.Windows.Data.BindingBase.TargetNullValue">
+      <topicdata group="api" />
+      <apidata name="TargetNullValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TargetNullValue" />
+      <setter name="set_TargetNullValue" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </containers>
+      <file name="a155f5df-a5de-0ef2-94db-f3169eea238f" />
+    </api>
+    <api id="T:System.Windows.Data.BindingExpression">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.BindingExpression" />
+      <apidata name="BindingExpression" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Data.BindingExpressionBase" ref="true" />
+          <type api="T:System.Windows.Expression" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="ec188a8f-f76f-98f2-e8a4-04d1a0b1dfd6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.BindingExpression">
+      <topicdata name="BindingExpression" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.BindingExpression" />
+      <apidata name="BindingExpression" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Data.BindingExpression.DataItem" />
+        <element api="P:System.Windows.Data.BindingExpression.ParentBinding" />
+        <element api="M:System.Windows.Data.BindingExpression.UpdateSource" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" />
+      </containers>
+      <file name="4bc0c2c9-baf5-9880-0c7e-7dd6dfda97ce" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.BindingExpression">
+      <topicdata name="BindingExpression" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.BindingExpression" />
+      <apidata name="BindingExpression" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.BindingExpression.UpdateSource" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" />
+      </containers>
+      <file name="250e5502-012a-d415-8ffc-1f679300dfc4" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.BindingExpression">
+      <topicdata name="BindingExpression" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.BindingExpression" />
+      <apidata name="BindingExpression" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.BindingExpression.DataItem" />
+        <element api="P:System.Windows.Data.BindingExpression.ParentBinding" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" />
+      </containers>
+      <file name="174c3b70-923b-fcb4-0aa6-d128b157d1cb" />
+    </api>
+    <api id="P:System.Windows.Data.BindingExpression.DataItem">
+      <topicdata group="api" />
+      <apidata name="DataItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DataItem" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" ref="true" />
+      </containers>
+      <file name="ded2cada-24cc-17b2-ded6-c5010e3c4d33" />
+    </api>
+    <api id="P:System.Windows.Data.BindingExpression.ParentBinding">
+      <topicdata group="api" />
+      <apidata name="ParentBinding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ParentBinding" />
+      <returns>
+        <type api="T:System.Windows.Data.Binding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" ref="true" />
+      </containers>
+      <file name="45df228c-b484-f2ef-cca4-b54bf6e1639d" />
+    </api>
+    <api id="M:System.Windows.Data.BindingExpression.UpdateSource">
+      <topicdata group="api" />
+      <apidata name="UpdateSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpression" ref="true" />
+      </containers>
+      <file name="c1007b84-be5d-a258-5843-b29ada3997d8" />
+    </api>
+    <api id="T:System.Windows.Data.BindingExpressionBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.BindingExpressionBase" />
+      <apidata name="BindingExpressionBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Expression" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Data.BindingExpression" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="47b6a0f4-03e1-3129-512f-6309fe450012" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.BindingExpressionBase">
+      <topicdata name="BindingExpressionBase" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.BindingExpressionBase" />
+      <apidata name="BindingExpressionBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpressionBase" />
+      </containers>
+      <file name="e1c5846a-7a0a-ffba-8309-cd6a45865fd3" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.BindingExpressionBase">
+      <topicdata name="BindingExpressionBase" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.BindingExpressionBase" />
+      <apidata name="BindingExpressionBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingExpressionBase" />
+      </containers>
+      <file name="74f48a6f-320e-a005-fd44-87cc3734f611" />
+    </api>
+    <api id="T:System.Windows.Data.BindingMode">
+      <topicdata group="api" />
+      <apidata name="BindingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Data.BindingMode.OneWay" />
+        <element api="F:System.Windows.Data.BindingMode.OneTime" />
+        <element api="F:System.Windows.Data.BindingMode.TwoWay" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="cdb75889-e84d-3566-c40b-a7ab215bdd72" />
+    </api>
+    <api id="F:System.Windows.Data.BindingMode.OneTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </containers>
+      <file name="9429c0bc-c3ca-a653-1a45-5484c7504802" />
+    </api>
+    <api id="F:System.Windows.Data.BindingMode.OneWay">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneWay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </containers>
+      <file name="94c0c0d8-8052-5dd3-bb24-01521bfe7a8d" />
+    </api>
+    <api id="F:System.Windows.Data.BindingMode.TwoWay">
+      <topicdata group="api" notopic="" />
+      <apidata name="TwoWay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingMode" ref="false" />
+      </containers>
+      <file name="b8ce96b8-9697-842f-b333-8d3da99ad032" />
+    </api>
+    <api id="T:System.Windows.Data.BindingOperations">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.BindingOperations" />
+      <apidata name="BindingOperations" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="02c33016-be89-c7ae-66d6-b8b0ef1db84f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.BindingOperations">
+      <topicdata name="BindingOperations" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.BindingOperations" />
+      <apidata name="BindingOperations" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Data.BindingOperations.SetBinding(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.Data.BindingBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingOperations" />
+      </containers>
+      <file name="6bdede7b-e4cf-2b79-f1e7-b6f16afc28df" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.BindingOperations">
+      <topicdata name="BindingOperations" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.BindingOperations" />
+      <apidata name="BindingOperations" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Data.BindingOperations.SetBinding(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.Data.BindingBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingOperations" />
+      </containers>
+      <file name="c0c74f41-6703-3e1f-c2e4-600cb0a11e07" />
+    </api>
+    <api id="M:System.Windows.Data.BindingOperations.SetBinding(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.Data.BindingBase)">
+      <topicdata group="api" />
+      <apidata name="SetBinding" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="dp">
+          <type api="T:System.Windows.DependencyProperty" ref="true" />
+        </parameter>
+        <parameter name="binding">
+          <type api="T:System.Windows.Data.BindingBase" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Data.BindingExpressionBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.BindingOperations" ref="true" />
+      </containers>
+      <file name="12dffa59-c1ef-8488-709a-0b69a0c90b25" />
+    </api>
+    <api id="T:System.Windows.Data.CollectionViewGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.CollectionViewGroup" />
+      <apidata name="CollectionViewGroup" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ComponentModel.INotifyPropertyChanged" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="84fd4c83-123a-e4dc-3ec5-e5efe28d13bd" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.CollectionViewGroup">
+      <topicdata name="CollectionViewGroup" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.CollectionViewGroup" />
+      <apidata name="CollectionViewGroup" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.CollectionViewGroup.#ctor(System.Object)" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.IsBottomLevel" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ItemCount" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.Items" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.Name" />
+        <element api="M:System.Windows.Data.CollectionViewGroup.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)" />
+        <element api="E:System.Windows.Data.CollectionViewGroup.PropertyChanged" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ProtectedItemCount" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ProtectedItems" />
+        <element api="E:System.Windows.Data.CollectionViewGroup.System#ComponentModel#INotifyPropertyChanged#PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" />
+      </containers>
+      <file name="31a481b9-6dc4-3283-8787-cad8d077b4c5" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.CollectionViewGroup">
+      <topicdata name="CollectionViewGroup" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.CollectionViewGroup" />
+      <apidata name="CollectionViewGroup" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Data.CollectionViewGroup.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" />
+      </containers>
+      <file name="ba114d16-c125-5ca5-3ac2-8a4f9532a5b6" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.CollectionViewGroup">
+      <topicdata name="CollectionViewGroup" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.CollectionViewGroup" />
+      <apidata name="CollectionViewGroup" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.CollectionViewGroup.IsBottomLevel" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ItemCount" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.Items" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.Name" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ProtectedItemCount" />
+        <element api="P:System.Windows.Data.CollectionViewGroup.ProtectedItems" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" />
+      </containers>
+      <file name="95c9e0d8-3b0b-299f-dae0-d5eaa66d0bc3" />
+    </api>
+    <api id="Events.T:System.Windows.Data.CollectionViewGroup">
+      <topicdata name="CollectionViewGroup" group="list" subgroup="Events" typeTopicId="T:System.Windows.Data.CollectionViewGroup" />
+      <apidata name="CollectionViewGroup" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Data.CollectionViewGroup.PropertyChanged" />
+        <element api="E:System.Windows.Data.CollectionViewGroup.System#ComponentModel#INotifyPropertyChanged#PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" />
+      </containers>
+      <file name="a5a6c17c-4e40-0f05-d628-74c61cbce3f8" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewGroup.#ctor(System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="5d6cfa45-bd83-9877-555c-1d83933a4747" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.IsBottomLevel">
+      <topicdata group="api" />
+      <apidata name="IsBottomLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsBottomLevel" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="b6e11c54-9644-d35d-dd27-5a22709a507f" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.ItemCount">
+      <topicdata group="api" />
+      <apidata name="ItemCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ItemCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="394ac2a7-ad7d-ae7c-732a-4ea22320e383" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.Items">
+      <topicdata group="api" />
+      <apidata name="Items" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Items" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="57ebe179-b5b0-65ce-cabe-40104aa33612" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="d278b02e-5069-77e2-4d9f-47593c76be67" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewGroup.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnPropertyChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="6b300a13-3fc4-c76a-abf6-74aab522f2e3" />
+    </api>
+    <api id="E:System.Windows.Data.CollectionViewGroup.PropertyChanged">
+      <topicdata group="api" />
+      <apidata name="PropertyChanged" group="member" subgroup="event" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PropertyChanged" />
+      <remover name="remove_PropertyChanged" />
+      <eventhandler>
+        <type api="T:System.ComponentModel.PropertyChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="54a87861-de09-12e4-8163-2fdeb970e882" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.ProtectedItemCount">
+      <topicdata group="api" />
+      <apidata name="ProtectedItemCount" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProtectedItemCount" />
+      <setter name="set_ProtectedItemCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="7fcaeac3-1d10-eaa2-3a95-fc0c99f654f5" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewGroup.ProtectedItems">
+      <topicdata group="api" />
+      <apidata name="ProtectedItems" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProtectedItems" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ObservableCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="7a7cb57f-f511-27de-7977-b93ece61dd34" />
+    </api>
+    <api id="E:System.Windows.Data.CollectionViewGroup.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+      <topicdata group="api" eiiName="INotifyPropertyChanged.PropertyChanged" />
+      <apidata name="PropertyChanged" group="member" subgroup="event" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />
+      <remover name="remove_System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />
+      <eventhandler>
+        <type api="T:System.ComponentModel.PropertyChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+      </eventargs>
+      <implements>
+        <member api="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged">
+          <type api="T:System.ComponentModel.INotifyPropertyChanged" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewGroup" ref="true" />
+      </containers>
+      <file name="527574f2-971d-5ed1-0f83-ce7ace5d687e" />
+    </api>
+    <api id="T:System.Windows.Data.CollectionViewSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="94d2418d-9b95-55d7-a61c-a6042d4f11d6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.CollectionViewSource">
+      <topicdata name="CollectionViewSource" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Data.CollectionViewSource.#ctor" />
+        <element api="P:System.Windows.Data.CollectionViewSource.Culture" />
+        <element api="M:System.Windows.Data.CollectionViewSource.DeferRefresh" />
+        <element api="E:System.Windows.Data.CollectionViewSource.Filter" />
+        <element api="P:System.Windows.Data.CollectionViewSource.GroupDescriptions" />
+        <element api="M:System.Windows.Data.CollectionViewSource.OnCollectionViewTypeChanged(System.Type,System.Type)" />
+        <element api="M:System.Windows.Data.CollectionViewSource.OnSourceChanged(System.Object,System.Object)" />
+        <element api="P:System.Windows.Data.CollectionViewSource.SortDescriptions" />
+        <element api="P:System.Windows.Data.CollectionViewSource.Source" />
+        <element api="F:System.Windows.Data.CollectionViewSource.SourceProperty" />
+        <element api="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#EndInit" />
+        <element api="P:System.Windows.Data.CollectionViewSource.View" />
+        <element api="F:System.Windows.Data.CollectionViewSource.ViewProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" />
+      </containers>
+      <file name="1cf01b58-ab4b-fd4c-4ac9-c8bf94ddf973" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.CollectionViewSource">
+      <topicdata name="CollectionViewSource" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Data.CollectionViewSource.DeferRefresh" />
+        <element api="M:System.Windows.Data.CollectionViewSource.OnCollectionViewTypeChanged(System.Type,System.Type)" />
+        <element api="M:System.Windows.Data.CollectionViewSource.OnSourceChanged(System.Object,System.Object)" />
+        <element api="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#BeginInit" />
+        <element api="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#EndInit" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" />
+      </containers>
+      <file name="6af3bed1-97d5-6f57-a8f9-20c1f36af671" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.CollectionViewSource">
+      <topicdata name="CollectionViewSource" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Data.CollectionViewSource.Culture" />
+        <element api="P:System.Windows.Data.CollectionViewSource.GroupDescriptions" />
+        <element api="P:System.Windows.Data.CollectionViewSource.SortDescriptions" />
+        <element api="P:System.Windows.Data.CollectionViewSource.Source" />
+        <element api="P:System.Windows.Data.CollectionViewSource.View" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" />
+      </containers>
+      <file name="600c0e80-71f3-86e5-c7ed-43b2a616a048" />
+    </api>
+    <api id="Events.T:System.Windows.Data.CollectionViewSource">
+      <topicdata name="CollectionViewSource" group="list" subgroup="Events" typeTopicId="T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Data.CollectionViewSource.Filter" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" />
+      </containers>
+      <file name="d188d95d-1249-0ac3-47f4-e0db43ebf174" />
+    </api>
+    <api id="Fields.T:System.Windows.Data.CollectionViewSource">
+      <topicdata name="CollectionViewSource" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Data.CollectionViewSource" />
+      <apidata name="CollectionViewSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.CollectionViewSource.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Data.CollectionViewSource.SourceProperty" />
+        <element api="F:System.Windows.Data.CollectionViewSource.ViewProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" />
+      </containers>
+      <file name="ee4fd0cd-3567-4ccd-d329-e80005d65f20" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="7d841f0a-0d41-c3e5-757d-bbbdc34f3ca5" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewSource.Culture">
+      <topicdata group="api" />
+      <apidata name="Culture" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Culture" />
+      <setter name="set_Culture" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="c69affcd-b63a-1400-9125-32b078dd92d5" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.DeferRefresh">
+      <topicdata group="api" />
+      <apidata name="DeferRefresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IDisposable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="d7cf5b73-5259-4ba0-e907-d5e7cc6b7349" />
+    </api>
+    <api id="E:System.Windows.Data.CollectionViewSource.Filter">
+      <topicdata group="api" />
+      <apidata name="Filter" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Filter" />
+      <remover name="remove_Filter" />
+      <eventhandler>
+        <type api="T:System.Windows.Data.FilterEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Data.FilterEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="cbf6146f-cbd4-2d1e-876e-17e84bd1207e" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewSource.GroupDescriptions">
+      <topicdata group="api" />
+      <apidata name="GroupDescriptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GroupDescriptions" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ObservableCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.ComponentModel.GroupDescription" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="8837051b-ba10-ccd5-9d9b-cbb6d5d26cea" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.OnCollectionViewTypeChanged(System.Type,System.Type)">
+      <topicdata group="api" />
+      <apidata name="OnCollectionViewTypeChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="oldCollectionViewType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="newCollectionViewType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="c245aa43-7f23-e568-bb61-33c188ffce87" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.OnSourceChanged(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnSourceChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="oldSource">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="newSource">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="dc9adfae-829e-c6ec-b3af-c63d7aa645f4" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewSource.SortDescriptions">
+      <topicdata group="api" />
+      <apidata name="SortDescriptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SortDescriptions" />
+      <returns>
+        <type api="T:System.ComponentModel.SortDescriptionCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="f8922b60-30d1-f0f1-e2a9-64be7a135b9b" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewSource.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="19f913d6-76c8-6742-8451-d334317a0277" />
+    </api>
+    <api id="F:System.Windows.Data.CollectionViewSource.SourceProperty">
+      <topicdata group="api" />
+      <apidata name="SourceProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="7f643016-eec5-2a1e-6b23-c335c5a445e3" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#BeginInit">
+      <topicdata group="api" eiiName="ISupportInitialize.BeginInit" />
+      <apidata name="BeginInit" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.BeginInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="b8ceee88-48e8-ef9a-1b8a-3637234b1a06" />
+    </api>
+    <api id="M:System.Windows.Data.CollectionViewSource.System#ComponentModel#ISupportInitialize#EndInit">
+      <topicdata group="api" eiiName="ISupportInitialize.EndInit" />
+      <apidata name="EndInit" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.EndInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="9796442d-a51b-e3ff-5911-acc08b66382c" />
+    </api>
+    <api id="P:System.Windows.Data.CollectionViewSource.View">
+      <topicdata group="api" />
+      <apidata name="View" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_View" />
+      <returns>
+        <type api="T:System.ComponentModel.ICollectionView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="af8c3b53-52c7-fcfd-28c8-52d0f29aaca2" />
+    </api>
+    <api id="F:System.Windows.Data.CollectionViewSource.ViewProperty">
+      <topicdata group="api" />
+      <apidata name="ViewProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.CollectionViewSource" ref="true" />
+      </containers>
+      <file name="33313a80-b1df-b4d5-54c0-8c1621aabf9c" />
+    </api>
+    <api id="T:System.Windows.Data.FilterEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.FilterEventArgs" />
+      <apidata name="FilterEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="4fb01731-98a4-cce5-0b20-b377359b20ce" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.FilterEventArgs">
+      <topicdata name="FilterEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.FilterEventArgs" />
+      <apidata name="FilterEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Data.FilterEventArgs.Accepted" />
+        <element api="P:System.Windows.Data.FilterEventArgs.Item" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.FilterEventArgs" />
+      </containers>
+      <file name="348d05b9-846c-41a5-9d12-b5852948ea7f" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.FilterEventArgs">
+      <topicdata name="FilterEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.FilterEventArgs" />
+      <apidata name="FilterEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.FilterEventArgs" />
+      </containers>
+      <file name="f2e40655-4114-938b-8c36-7f0cb2d6e5da" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.FilterEventArgs">
+      <topicdata name="FilterEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.FilterEventArgs" />
+      <apidata name="FilterEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.FilterEventArgs.Accepted" />
+        <element api="P:System.Windows.Data.FilterEventArgs.Item" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.FilterEventArgs" />
+      </containers>
+      <file name="f8683d37-70f0-c657-072e-2b925ad24905" />
+    </api>
+    <api id="P:System.Windows.Data.FilterEventArgs.Accepted">
+      <topicdata group="api" />
+      <apidata name="Accepted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Accepted" />
+      <setter name="set_Accepted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.FilterEventArgs" ref="true" />
+      </containers>
+      <file name="7bb8d8a7-4488-d9be-18b1-829a58964895" />
+    </api>
+    <api id="P:System.Windows.Data.FilterEventArgs.Item">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.FilterEventArgs" ref="true" />
+      </containers>
+      <file name="19468fbd-1ad2-a50c-bfcb-768af61c5f58" />
+    </api>
+    <api id="T:System.Windows.Data.FilterEventHandler">
+      <topicdata group="api" />
+      <apidata name="FilterEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Data.FilterEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="eb250b78-0bfa-8d06-0f90-1157585c6625" />
+    </api>
+    <api id="T:System.Windows.Data.IValueConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.IValueConverter" />
+      <apidata name="IValueConverter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Phone.Controls.JumpListItemForegroundConverter" ref="true" />
+        <type api="T:Microsoft.Phone.Controls.JumpListItemBackgroundConverter" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="1934e3cc-53dc-5936-2562-f0c2f68125e5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.IValueConverter">
+      <topicdata name="IValueConverter" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.IValueConverter" />
+      <apidata name="IValueConverter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.IValueConverter" />
+      </containers>
+      <file name="26ea635c-301d-2e97-49ed-bb114407a9f6" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.IValueConverter">
+      <topicdata name="IValueConverter" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.IValueConverter" />
+      <apidata name="IValueConverter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.IValueConverter" />
+      </containers>
+      <file name="4ee3b1c5-8ec6-7e0c-c31e-335f286cc0d8" />
+    </api>
+    <api id="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </containers>
+      <file name="3960db30-8f4e-0b5c-bfc5-0950216a4219" />
+    </api>
+    <api id="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </containers>
+      <file name="e4ebc836-eeb3-39a3-18f2-8802988550c3" />
+    </api>
+    <api id="T:System.Windows.Data.PropertyGroupDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name="PropertyGroupDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.GroupDescription" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="2402c69d-dabc-a104-dde8-bd54ad549ef9" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.PropertyGroupDescription">
+      <topicdata name="PropertyGroupDescription" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name="PropertyGroupDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.GroupDescription.GroupNames" />
+        <element api="M:System.ComponentModel.GroupDescription.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)" />
+        <element api="E:System.ComponentModel.GroupDescription.PropertyChanged" />
+        <element api="M:System.ComponentModel.GroupDescription.ShouldSerializeGroupNames" />
+        <element api="E:System.ComponentModel.GroupDescription.System#ComponentModel#INotifyPropertyChanged#PropertyChanged" />
+        <element api="Overload:System.Windows.Data.PropertyGroupDescription.#ctor">
+          <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+          <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String)" />
+          <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter)" />
+          <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter,System.StringComparison)" />
+        </element>
+        <element api="P:System.Windows.Data.PropertyGroupDescription.Converter" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.GroupNameFromItem(System.Object,System.Int32,System.Globalization.CultureInfo)" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.NamesMatch(System.Object,System.Object)" />
+        <element api="P:System.Windows.Data.PropertyGroupDescription.PropertyName" />
+        <element api="P:System.Windows.Data.PropertyGroupDescription.StringComparison" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" />
+      </containers>
+      <file name="d6355ab4-a2c8-792e-e187-a80b07670de3" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.PropertyGroupDescription">
+      <topicdata name="PropertyGroupDescription" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name="PropertyGroupDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.GroupDescription.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)" />
+        <element api="M:System.ComponentModel.GroupDescription.ShouldSerializeGroupNames" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.GroupNameFromItem(System.Object,System.Int32,System.Globalization.CultureInfo)" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.NamesMatch(System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" />
+      </containers>
+      <file name="4a0e9e81-f572-bd0e-e345-22cf3b233348" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.PropertyGroupDescription">
+      <topicdata name="PropertyGroupDescription" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name="PropertyGroupDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.GroupDescription.GroupNames" />
+        <element api="P:System.Windows.Data.PropertyGroupDescription.Converter" />
+        <element api="P:System.Windows.Data.PropertyGroupDescription.PropertyName" />
+        <element api="P:System.Windows.Data.PropertyGroupDescription.StringComparison" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" />
+      </containers>
+      <file name="bd030790-a589-aadc-14d9-636abb9b75ea" />
+    </api>
+    <api id="Events.T:System.Windows.Data.PropertyGroupDescription">
+      <topicdata name="PropertyGroupDescription" group="list" subgroup="Events" typeTopicId="T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name="PropertyGroupDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.GroupDescription.PropertyChanged" />
+        <element api="E:System.ComponentModel.GroupDescription.System#ComponentModel#INotifyPropertyChanged#PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" />
+      </containers>
+      <file name="6194b062-0ec0-dea1-caac-e885e8be7466" />
+    </api>
+    <api id="Overload:System.Windows.Data.PropertyGroupDescription.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Data.PropertyGroupDescription" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String)" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter)" />
+        <element api="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter,System.StringComparison)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="5e195257-ce32-478c-745d-72260a688630" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="eb7ba696-4063-432b-8a66-b6294117792a" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="90a88dc3-7601-a850-80a6-402152ecbf4d" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="converter">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="855acf45-e478-a029-8284-ba6c3ab895c7" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.#ctor(System.String,System.Windows.Data.IValueConverter,System.StringComparison)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.PropertyGroupDescription.#ctor" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="converter">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </parameter>
+        <parameter name="stringComparison">
+          <type api="T:System.StringComparison" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="56811ec9-08b8-cf96-e0ff-4cd403500152" />
+    </api>
+    <api id="P:System.Windows.Data.PropertyGroupDescription.Converter">
+      <topicdata group="api" />
+      <apidata name="Converter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Converter" />
+      <setter name="set_Converter" />
+      <returns>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5217cb16-9e42-80d1-ffc8-88c464db53fc" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.GroupNameFromItem(System.Object,System.Int32,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GroupNameFromItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.GroupDescription.GroupNameFromItem(System.Object,System.Int32,System.Globalization.CultureInfo)">
+          <type api="T:System.ComponentModel.GroupDescription" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="item">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="level">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="904aa06e-6e01-28a5-68e7-5e1502158ab4" />
+    </api>
+    <api id="M:System.Windows.Data.PropertyGroupDescription.NamesMatch(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="NamesMatch" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.GroupDescription.NamesMatch(System.Object,System.Object)">
+          <type api="T:System.ComponentModel.GroupDescription" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="groupName">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="itemName">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <file name="1a2da3fa-6b2d-5eb6-66fb-bec70f3485a2" />
+    </api>
+    <api id="P:System.Windows.Data.PropertyGroupDescription.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PropertyName" />
+      <setter name="set_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3b582ba9-b9f7-88c7-89e6-752b70a0857f" />
+    </api>
+    <api id="P:System.Windows.Data.PropertyGroupDescription.StringComparison">
+      <topicdata group="api" />
+      <apidata name="StringComparison" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StringComparison" />
+      <setter name="set_StringComparison" />
+      <returns>
+        <type api="T:System.StringComparison" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.PropertyGroupDescription" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.StringComparison" ref="false" />
+            <enumValue>
+              <field name="Ordinal" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9e7ed838-c576-0c58-66f9-48450fc9cdfa" />
+    </api>
+    <api id="T:System.Windows.Data.RelativeSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.RelativeSource" />
+      <apidata name="RelativeSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.RelativeSource.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="0e063bd5-62fb-10b5-30c4-a38ca43743b4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.RelativeSource">
+      <topicdata name="RelativeSource" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.RelativeSource" />
+      <apidata name="RelativeSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.RelativeSource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Data.RelativeSource.#ctor">
+          <element api="M:System.Windows.Data.RelativeSource.#ctor" />
+          <element api="M:System.Windows.Data.RelativeSource.#ctor(System.Windows.Data.RelativeSourceMode)" />
+        </element>
+        <element api="P:System.Windows.Data.RelativeSource.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" />
+      </containers>
+      <file name="58a1ec70-0d1f-0a5a-e187-5e24b7fc1127" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.RelativeSource">
+      <topicdata name="RelativeSource" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.RelativeSource" />
+      <apidata name="RelativeSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.RelativeSource.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" />
+      </containers>
+      <file name="e09f7aa9-7b5f-1741-04f8-440d4ef6d937" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.RelativeSource">
+      <topicdata name="RelativeSource" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.RelativeSource" />
+      <apidata name="RelativeSource" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Data.RelativeSource.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Data.RelativeSource.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" />
+      </containers>
+      <file name="74521bf9-7c34-3ee1-5313-76504036d4d4" />
+    </api>
+    <api id="Overload:System.Windows.Data.RelativeSource.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Data.RelativeSource" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Data.RelativeSource.#ctor" />
+        <element api="M:System.Windows.Data.RelativeSource.#ctor(System.Windows.Data.RelativeSourceMode)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" ref="true" />
+      </containers>
+      <file name="56915e89-b4f0-2602-db5a-2ffde74966e8" />
+    </api>
+    <api id="M:System.Windows.Data.RelativeSource.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.RelativeSource.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" ref="true" />
+      </containers>
+      <file name="ce9a18dd-17eb-c39d-6292-cb36626f022b" />
+    </api>
+    <api id="M:System.Windows.Data.RelativeSource.#ctor(System.Windows.Data.RelativeSourceMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Data.RelativeSource.#ctor" />
+      <parameters>
+        <parameter name="mode">
+          <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" ref="true" />
+      </containers>
+      <file name="2c0de676-c5a0-8688-933e-228e3c35488a" />
+    </api>
+    <api id="P:System.Windows.Data.RelativeSource.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Mode" />
+      <setter name="set_Mode" />
+      <returns>
+        <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSource" ref="true" />
+      </containers>
+      <file name="6242e9c9-31e8-47a9-e83e-5e1e10dba8d0" />
+    </api>
+    <api id="T:System.Windows.Data.RelativeSourceMode">
+      <topicdata group="api" />
+      <apidata name="RelativeSourceMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Data.RelativeSourceMode.TemplatedParent" />
+        <element api="F:System.Windows.Data.RelativeSourceMode.Self" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="4eb6ae40-51a7-26ff-8bd5-fded6b0cf7e2" />
+    </api>
+    <api id="F:System.Windows.Data.RelativeSourceMode.Self">
+      <topicdata group="api" notopic="" />
+      <apidata name="Self" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+      </containers>
+      <file name="14c05dbd-93c8-e3b4-a8e2-618a4f7f8aa7" />
+    </api>
+    <api id="F:System.Windows.Data.RelativeSourceMode.TemplatedParent">
+      <topicdata group="api" notopic="" />
+      <apidata name="TemplatedParent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.RelativeSourceMode" ref="false" />
+      </containers>
+      <file name="578d3c0d-6f8a-1476-ebab-56ebdfc6b21a" />
+    </api>
+    <api id="T:System.Windows.Data.UpdateSourceTrigger">
+      <topicdata group="api" />
+      <apidata name="UpdateSourceTrigger" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Data.UpdateSourceTrigger.Default" />
+        <element api="F:System.Windows.Data.UpdateSourceTrigger.Explicit" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+      </containers>
+      <file name="7bca8325-483f-8ede-6b8f-c5344be36951" />
+    </api>
+    <api id="F:System.Windows.Data.UpdateSourceTrigger.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.UpdateSourceTrigger" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.UpdateSourceTrigger" ref="false" />
+      </containers>
+      <file name="d51227e1-d8f7-2d32-98fe-45f31a9d7235" />
+    </api>
+    <api id="F:System.Windows.Data.UpdateSourceTrigger.Explicit">
+      <topicdata group="api" notopic="" />
+      <apidata name="Explicit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.UpdateSourceTrigger" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Data" />
+        <type api="T:System.Windows.Data.UpdateSourceTrigger" ref="false" />
+      </containers>
+      <file name="35143c8d-58a3-f57b-05a0-68d6e56373db" />
+    </api>
+  </apis>
+</reflection>

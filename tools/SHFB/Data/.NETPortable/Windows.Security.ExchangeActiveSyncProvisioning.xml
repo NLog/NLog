@@ -1,0 +1,2913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.ExchangeActiveSyncProvisioning">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.ExchangeActiveSyncProvisioning" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </elements>
+      <file name="e6af8ffe-0cbe-658d-6039-4bb973ad57d7" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="819ff4a1-b65a-942c-0ceb-3e63d8e942e1" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="members" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="650ef8a9-94d4-0f74-6232-0dffb6f9fba5" />
+    </api>
+    <api id="Methods.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="df811971-8443-6dd2-079f-e971629bc7b5" />
+    </api>
+    <api id="Properties.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="5d27ffda-bccb-c688-3800-e44dab0a638d" />
+    </api>
+    <api id="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="545071ea-8c0a-a19a-259f-f16e5dbf8741" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName">
+      <topicdata group="api" />
+      <apidata name="FriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="5ba7371b-2fc9-d0a7-3df0-0f54de799ee1" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="ca9134c3-ad26-60c7-fb27-330cd93c715d" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem">
+      <topicdata group="api" />
+      <apidata name="OperatingSystem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OperatingSystem" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="693f0409-462f-b59c-703b-f0601f1bc238" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer">
+      <topicdata group="api" />
+      <apidata name="SystemManufacturer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemManufacturer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="e9eacf23-99b9-c2c5-7554-f3b28b1d6a2a" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName">
+      <topicdata group="api" />
+      <apidata name="SystemProductName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemProductName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="92e694cd-a95d-027b-9170-c7f621313246" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku">
+      <topicdata group="api" />
+      <apidata name="SystemSku" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemSku" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="2e66cb09-2a61-3ec9-8523-86e1f5c40b50" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      <apidata name="EasClientSecurityPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a1a6386f-075d-df6e-ccf0-a53f4cd6dca4" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy">
+      <topicdata name="EasClientSecurityPolicy" group="list" subgroup="members" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      <apidata name="EasClientSecurityPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.ApplyAsync" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.CheckCompliance" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.DisallowConvenienceLogon" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxInactivityTimeLock" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxPasswordFailedAttempts" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordComplexCharacters" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordLength" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordExpiration" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordHistory" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.RequireEncryption" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      </containers>
+      <file name="d87b40b3-dbc3-40c6-4328-8d3f0777414a" />
+    </api>
+    <api id="Methods.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy">
+      <topicdata name="EasClientSecurityPolicy" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      <apidata name="EasClientSecurityPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.ApplyAsync" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.CheckCompliance" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      </containers>
+      <file name="049fb030-51a0-14f8-0e80-0f95dfb625ea" />
+    </api>
+    <api id="Properties.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy">
+      <topicdata name="EasClientSecurityPolicy" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      <apidata name="EasClientSecurityPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor" />
+      <elements>
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.DisallowConvenienceLogon" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxInactivityTimeLock" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxPasswordFailedAttempts" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordComplexCharacters" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordLength" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordExpiration" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordHistory" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.RequireEncryption" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" />
+      </containers>
+      <file name="3ed3ab27-3415-af74-5780-529842c29667" />
+    </api>
+    <api id="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="4995ce78-12d0-60c2-a006-991c3fe93cbe" />
+    </api>
+    <api id="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.ApplyAsync">
+      <topicdata group="api" />
+      <apidata name="ApplyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="70f84856-1101-86ff-32cb-cc20ae77eb35" />
+    </api>
+    <api id="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.CheckCompliance">
+      <topicdata group="api" />
+      <apidata name="CheckCompliance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="f04bf631-a023-82e1-6a32-b511bb413dbe" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.DisallowConvenienceLogon">
+      <topicdata group="api" />
+      <apidata name="DisallowConvenienceLogon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisallowConvenienceLogon" />
+      <setter name="set_DisallowConvenienceLogon" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="721600da-2355-4c8a-0556-d01befb4e2c7" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxInactivityTimeLock">
+      <topicdata group="api" />
+      <apidata name="MaxInactivityTimeLock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxInactivityTimeLock" />
+      <setter name="set_MaxInactivityTimeLock" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="554c5249-7c02-6897-695a-9cda872dd4f5" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MaxPasswordFailedAttempts">
+      <topicdata group="api" />
+      <apidata name="MaxPasswordFailedAttempts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPasswordFailedAttempts" />
+      <setter name="set_MaxPasswordFailedAttempts" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="bf755d7d-65cc-64ed-1fc0-8a26deee9d40" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordComplexCharacters">
+      <topicdata group="api" />
+      <apidata name="MinPasswordComplexCharacters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinPasswordComplexCharacters" />
+      <setter name="set_MinPasswordComplexCharacters" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="c77ac91f-7380-9ccd-af83-b6d0346af640" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.MinPasswordLength">
+      <topicdata group="api" />
+      <apidata name="MinPasswordLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinPasswordLength" />
+      <setter name="set_MinPasswordLength" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="95d8d998-ce65-92b5-5278-1c22daaf2c12" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordExpiration">
+      <topicdata group="api" />
+      <apidata name="PasswordExpiration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PasswordExpiration" />
+      <setter name="set_PasswordExpiration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="ce027c7e-95d0-78d5-5ef7-bd6b32372239" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.PasswordHistory">
+      <topicdata group="api" />
+      <apidata name="PasswordHistory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PasswordHistory" />
+      <setter name="set_PasswordHistory" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="131270f5-0758-7eb7-da83-2627f6da7af2" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy.RequireEncryption">
+      <topicdata group="api" />
+      <apidata name="RequireEncryption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequireEncryption" />
+      <setter name="set_RequireEncryption" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy" ref="true" />
+      </containers>
+      <file name="75722a7b-1eee-db16-439e-204a0f21e72b" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      <apidata name="EasComplianceResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults" ref="true" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0387ec01-ae75-543f-bfa4-fe7c2e369fc4" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults">
+      <topicdata name="EasComplianceResults" group="list" subgroup="members" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      <apidata name="EasComplianceResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.Compliant" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.DisallowConvenienceLogonResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.EncryptionProviderType" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxInactivityTimeLockResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxPasswordFailedAttemptsResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordComplexCharactersResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordLengthResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordExpirationResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordHistoryResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.RequireEncryptionResult" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      </containers>
+      <file name="cd2678fd-c2c2-4ff3-a8b4-778e1be65645" />
+    </api>
+    <api id="Methods.T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults">
+      <topicdata name="EasComplianceResults" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      <apidata name="EasComplianceResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      </containers>
+      <file name="8a833f30-b654-d8eb-4aef-bf57c5de20fd" />
+    </api>
+    <api id="Properties.T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults">
+      <topicdata name="EasComplianceResults" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      <apidata name="EasComplianceResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.Compliant" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.DisallowConvenienceLogonResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.EncryptionProviderType" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxInactivityTimeLockResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxPasswordFailedAttemptsResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordComplexCharactersResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordLengthResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordExpirationResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordHistoryResult" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.RequireEncryptionResult" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" />
+      </containers>
+      <file name="56945e7c-2be9-772b-1453-0668b24e5386" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.Compliant">
+      <topicdata group="api" />
+      <apidata name="Compliant" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Compliant" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="ee776404-c1b6-2d9a-29a6-1e967e5f7499" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.DisallowConvenienceLogonResult">
+      <topicdata group="api" />
+      <apidata name="DisallowConvenienceLogonResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisallowConvenienceLogonResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="67bc086d-f51c-dae7-0f65-a4aaacbed44d" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.EncryptionProviderType">
+      <topicdata group="api" />
+      <apidata name="EncryptionProviderType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EncryptionProviderType" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="a666a810-cb5f-fb2e-b0d6-2d9bb9ac9dfd" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxInactivityTimeLockResult">
+      <topicdata group="api" />
+      <apidata name="MaxInactivityTimeLockResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxInactivityTimeLockResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="45a5f06f-af47-62bc-1c3f-27edf537dab7" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MaxPasswordFailedAttemptsResult">
+      <topicdata group="api" />
+      <apidata name="MaxPasswordFailedAttemptsResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxPasswordFailedAttemptsResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="9cded945-daf9-55eb-38ac-c96ffecfc000" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordComplexCharactersResult">
+      <topicdata group="api" />
+      <apidata name="MinPasswordComplexCharactersResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MinPasswordComplexCharactersResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="ab41a906-4534-e591-cb21-968a1bac972e" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.MinPasswordLengthResult">
+      <topicdata group="api" />
+      <apidata name="MinPasswordLengthResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MinPasswordLengthResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="228c0823-1f9f-9603-660a-c9d2897183de" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordExpirationResult">
+      <topicdata group="api" />
+      <apidata name="PasswordExpirationResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PasswordExpirationResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="30c296df-54c7-b785-8db5-b65a72f5236e" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.PasswordHistoryResult">
+      <topicdata group="api" />
+      <apidata name="PasswordHistoryResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PasswordHistoryResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="d3a7a240-1e36-1806-6f90-53248c4714a6" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults.RequireEncryptionResult">
+      <topicdata group="api" />
+      <apidata name="RequireEncryptionResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequireEncryptionResult" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults" ref="true" />
+      </containers>
+      <file name="f7b5724d-c830-f827-a9ae-f5f30aacc2cb" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult">
+      <topicdata group="api" />
+      <apidata name="EasDisallowConvenienceLogonResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.RequestedPolicyIsStricter" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ba7470cb-5761-4483-b110-d2f3e68b8c64" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </containers>
+      <file name="07b76496-24db-56c0-3f6b-ed6d7090b380" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </containers>
+      <file name="2a968114-183a-8977-d154-be40d0e5e0c6" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </containers>
+      <file name="3d74e23d-407f-0702-9ad7-adde1734c6e7" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult" ref="false" />
+      </containers>
+      <file name="c3a091d9-1530-291c-2911-004d1e4bd3a8" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType">
+      <topicdata group="api" />
+      <apidata name="EasEncryptionProviderType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.WindowsEncryption" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.OtherEncryption" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c74a1ca9-9dfc-c4df-27b3-ff3409ea99e9" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </containers>
+      <file name="fe18b668-1ce0-497d-f693-d289b97eac54" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.OtherEncryption">
+      <topicdata group="api" notopic="" />
+      <apidata name="OtherEncryption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </containers>
+      <file name="5cbaa516-7078-a8cb-daec-04e45615a627" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType.WindowsEncryption">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowsEncryption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType" ref="false" />
+      </containers>
+      <file name="78434a41-7f4f-bd19-e48a-e3a99bec9027" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult">
+      <topicdata group="api" />
+      <apidata name="EasMaxInactivityTimeLockResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.InvalidParameter" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d49659c1-0ade-78c4-a6f6-3714cfc55e95" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </containers>
+      <file name="8179092f-f592-d328-efb3-6430ebe852fc" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </containers>
+      <file name="70f06468-bf52-fceb-c8f2-a7fe79c57906" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </containers>
+      <file name="b5fa85c2-82f0-5c56-b51b-7b38f33af949" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </containers>
+      <file name="15f4b279-7a7b-083a-1092-160b82e8edeb" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult" ref="false" />
+      </containers>
+      <file name="da82c2de-6fd1-4d49-2440-1d03ee63f026" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult">
+      <topicdata group="api" />
+      <apidata name="EasMaxPasswordFailedAttemptsResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.InvalidParameter" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6c757311-bcfc-0291-3ea7-ac3b0671e692" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </containers>
+      <file name="8d159fc6-ca60-1e2b-5e73-c9e38867cfac" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </containers>
+      <file name="d7384000-69d9-d0c8-412d-938df32598e6" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </containers>
+      <file name="f6ef8b8a-751e-2625-6029-c9526865673e" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </containers>
+      <file name="26fbf3f7-9994-ab2c-5b1b-72d308291e0c" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult" ref="false" />
+      </containers>
+      <file name="10adbef1-96ef-8d93-9c0c-941aa7fbf656" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult">
+      <topicdata group="api" />
+      <apidata name="EasMinPasswordComplexCharactersResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.RequestedPolicyNotEnforceable" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.InvalidParameter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.CurrentUserHasBlankPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.AdminsHaveBlankPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.UserCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.AdminsCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.LocalControlledUsersCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ConnectedAdminsProviderPolicyIsWeak" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ConnectedUserProviderPolicyIsWeak" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ChangeConnectedAdminsPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ChangeConnectedUserPassword" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90fd8bea-280d-b13c-52bb-995f3b2f5ba3" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.AdminsCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="AdminsCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="c566b396-8ea6-0879-7a3d-fbff0702c911" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.AdminsHaveBlankPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="AdminsHaveBlankPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="953389ac-31c9-cbcb-1411-6d9918641ec6" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="e9f13949-dac3-f10f-821a-eb5c16a91145" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ChangeConnectedAdminsPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeConnectedAdminsPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="b006ca2b-d998-eaa0-b050-99515bea56b8" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ChangeConnectedUserPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeConnectedUserPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="7b32032c-62e2-ab51-aab2-82e600e6511e" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="46fa60a5-563b-6469-ccf0-4f810810f6cf" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ConnectedAdminsProviderPolicyIsWeak">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectedAdminsProviderPolicyIsWeak" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="f567c16d-b26f-759e-74a0-45ca4b1ae625" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.ConnectedUserProviderPolicyIsWeak">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectedUserProviderPolicyIsWeak" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="0f013978-dfec-aa7b-7602-8d793a4af4f2" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.CurrentUserHasBlankPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="CurrentUserHasBlankPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="085ac69e-32ca-07c9-14e2-08196ec0b623" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="f60ceedc-ff4e-be44-7dce-a39d3239a159" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.LocalControlledUsersCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="LocalControlledUsersCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="25db4ee5-fb16-222d-4570-ae75a6cf2fba" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="e0ef39fe-cd7d-d0a1-f14e-add549b463a4" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="d587ad7d-722d-5050-6279-e36c56439664" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.RequestedPolicyNotEnforceable">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyNotEnforceable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="1c18bfc2-7194-da43-71fa-c0816f94efb1" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult.UserCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult" ref="false" />
+      </containers>
+      <file name="e17099fd-0105-c729-8df0-ba182aaa5ba2" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult">
+      <topicdata group="api" />
+      <apidata name="EasMinPasswordLengthResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.RequestedPolicyNotEnforceable" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.InvalidParameter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.CurrentUserHasBlankPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.AdminsHaveBlankPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.UserCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.AdminsCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.LocalControlledUsersCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ConnectedAdminsProviderPolicyIsWeak" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ConnectedUserProviderPolicyIsWeak" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ChangeConnectedAdminsPassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ChangeConnectedUserPassword" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f35c5ad9-192c-23b1-7042-466db3be1f1f" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.AdminsCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="AdminsCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="c5ad22c4-dc04-29cf-415e-929c21c98013" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.AdminsHaveBlankPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="AdminsHaveBlankPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="62e23781-d13f-5a7b-6d2e-77255fa73d25" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="fd597ab5-1d59-01ad-574b-440aaa2b6dbd" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ChangeConnectedAdminsPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeConnectedAdminsPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="e69a103b-f088-920e-5c86-2ebedbdd4399" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ChangeConnectedUserPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeConnectedUserPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="d06ab29b-bcd3-f5be-da68-1c9380fae0c5" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="23a86178-0079-bf3d-cdc8-6bc4de11f89b" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ConnectedAdminsProviderPolicyIsWeak">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectedAdminsProviderPolicyIsWeak" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="975e4b70-e2e8-ef8e-2cf4-6038f5ebdd46" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.ConnectedUserProviderPolicyIsWeak">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectedUserProviderPolicyIsWeak" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="3619e723-69ee-2660-4249-d3f1a790a438" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.CurrentUserHasBlankPassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="CurrentUserHasBlankPassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="0512b770-33b8-50f1-cad7-7095e3b4a5f8" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="869bf4e3-2038-bf8d-4be0-8956ac7c543c" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.LocalControlledUsersCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="LocalControlledUsersCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="3c93a37e-d24f-cf2c-e4b8-888d45a4ae53" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="c6687cab-7395-7fe3-855b-70e779d055a5" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="7c1eb5f7-331a-eaad-2267-e7d596391d34" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.RequestedPolicyNotEnforceable">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyNotEnforceable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="70595a77-b682-486a-056e-60d61063bd7e" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult.UserCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult" ref="false" />
+      </containers>
+      <file name="df49d842-62ea-061a-3187-fbc8eed0b140" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult">
+      <topicdata group="api" />
+      <apidata name="EasPasswordExpirationResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.RequestedExpirationIncompatible" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.InvalidParameter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.UserCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.AdminsCannotChangePassword" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.LocalControlledUsersCannotChangePassword" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e9288645-e69b-d7ae-4a4a-aeb1c47f1363" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.AdminsCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="AdminsCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="5c7f1ce7-cc08-79cd-274c-bd0e252b18a9" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="343d0ddb-c342-ce0f-020f-e46d26260811" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="e6c3a196-d51f-4672-8f0b-4fb1f778d45d" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="158735ab-50f9-5dfb-0845-28baf8543148" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.LocalControlledUsersCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="LocalControlledUsersCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="7bf302a3-96d9-7f07-fe48-fdb66a2f30be" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="f5951e93-9dd3-b6d2-a049-4330333d9057" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.RequestedExpirationIncompatible">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedExpirationIncompatible" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="f8734332-c1ae-602a-4ab7-a558d2f91b64" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="b1af7ed0-939f-2580-9e5f-189bb2c7d3ac" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult.UserCannotChangePassword">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCannotChangePassword" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult" ref="false" />
+      </containers>
+      <file name="97d32337-4752-e559-925c-9b0191a2fc06" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult">
+      <topicdata group="api" />
+      <apidata name="EasPasswordHistoryResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.RequestedPolicyIsStricter" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.InvalidParameter" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="97585ba0-c189-4190-63ba-9cd7a01cf688" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </containers>
+      <file name="9335e27d-9c23-8e19-1943-6fd61978aa62" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </containers>
+      <file name="132aea0d-4fbb-e2a6-b0d7-e5bb190c993f" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.InvalidParameter">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidParameter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </containers>
+      <file name="b303c40c-a4b6-3466-77f6-292638476627" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </containers>
+      <file name="a86fb70d-e156-652d-7808-d06c07df97a5" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult.RequestedPolicyIsStricter">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestedPolicyIsStricter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult" ref="false" />
+      </containers>
+      <file name="defcd49e-0493-28b2-f586-e180b071738e" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult">
+      <topicdata group="api" />
+      <apidata name="EasRequireEncryptionResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NotEvaluated" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.Compliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.CanBeCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NotProvisionedOnAllVolumes" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeFixedDataNotSupported" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.FixedDataNotSupported" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeHardwareNotCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.HardwareNotCompliant" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeWinReNotConfigured" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.LockNotConfigured" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeProtectionSuspended" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.ProtectionSuspended" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeOsVolumeNotProtected" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.OsVolumeNotProtected" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeProtectionNotYetEnabled" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.ProtectionNotYetEnabled" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NoFeatureLicense" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.OsNotProtected" />
+        <element api="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.UnexpectedFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6b678e9f-3632-7211-e2ac-4688f86955f2" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.CanBeCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanBeCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="01ca8416-a1bc-6f91-ffa6-9a380aa0e146" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.Compliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="711a7f26-6f10-dd64-9f7b-06a553bdf395" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeFixedDataNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeFixedDataNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeFixedDataNotSupported may be altered or unavailable for releases after Windows 8.1. Instead, use FixedDataNotSupported.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="67546255-958e-2f20-b54a-d6be80ccd5c3" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeHardwareNotCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeHardwareNotCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeHardwareNotCompliant may be altered or unavailable for releases after Windows 8.1. Instead, use HardwareNotCompliant.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2123b5a9-8b10-5db4-de84-37d2a6192838" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeOsVolumeNotProtected">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeOsVolumeNotProtected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeOsVolumeNotProtected may be altered or unavailable for releases after Windows 8.1. Instead, use OsVolumeNotProtected.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3b379878-07dc-b957-63c1-d33cd693bc1e" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeProtectionNotYetEnabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeProtectionNotYetEnabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeProtectionNotYetEnabled may be altered or unavailable for releases after Windows 8.1. Instead, use ProtectionNotYetEnabled.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90abbb11-0d9a-85a6-4f04-a851c9fb7635" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeProtectionSuspended">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeProtectionSuspended" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeProtectionSuspended may be altered or unavailable for releases after Windows 8.1. Instead, use ProtectionSuspended.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="43509f90-7ceb-b2ea-a4c9-903e9cbd5180" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.DeWinReNotConfigured">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeWinReNotConfigured" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DeWinReNotConfigured may be altered or unavailable for releases after Windows 8.1. Instead, use LockNotConfigured.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="68d877db-b26c-74ab-4e18-3f1d477c92b2" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.FixedDataNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="FixedDataNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6e1c3cc4-6ed6-8251-306d-79e9af0f6d77" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.HardwareNotCompliant">
+      <topicdata group="api" notopic="" />
+      <apidata name="HardwareNotCompliant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2a71cd1-308d-afeb-30fc-1ccf4a50a615" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.LockNotConfigured">
+      <topicdata group="api" notopic="" />
+      <apidata name="LockNotConfigured" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9d3da027-a000-c39f-4bfa-f4f7aec19c65" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NoFeatureLicense">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoFeatureLicense" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="9b48f5d0-7a5a-cf11-a861-8ce55e8d2cb3" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NotEvaluated">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotEvaluated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="9e50c46b-caf0-4eab-5ee6-711ee16e7789" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.NotProvisionedOnAllVolumes">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotProvisionedOnAllVolumes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="3dcfea5c-2bb1-a7e6-2935-4c6bce460095" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.OsNotProtected">
+      <topicdata group="api" notopic="" />
+      <apidata name="OsNotProtected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <file name="e35462c8-e85f-6078-3e5f-f393b0ddda03" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.OsVolumeNotProtected">
+      <topicdata group="api" notopic="" />
+      <apidata name="OsVolumeNotProtected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0f123a7c-c9d5-6085-ae4b-2a8ba91e44e3" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.ProtectionNotYetEnabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectionNotYetEnabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a93334e6-0a89-8ef4-83e6-54cffd8b9c13" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.ProtectionSuspended">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectionSuspended" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a364b4b6-4c01-2041-9fa5-6ebbece82bcb" />
+    </api>
+    <api id="F:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult.UnexpectedFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnexpectedFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4dc9bd35-1ee1-14d0-77c7-67d7e2e5a92f" />
+    </api>
+  </apis>
+</reflection>

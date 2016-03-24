@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices.Automation">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices.Automation" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+        <element api="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+        <element api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      </elements>
+      <file name="604d8fd5-bd12-c445-0deb-21474dc70304" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.Automation.AutomationEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      <apidata name="AutomationEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+      </containers>
+      <file name="4358395b-5ac6-de15-5fcd-32f4a51aeb30" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationEvent">
+      <topicdata name="AutomationEvent" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      <apidata name="AutomationEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationEvent.AddEventHandler(System.Delegate)" />
+        <element api="E:System.Runtime.InteropServices.Automation.AutomationEvent.EventRaised" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationEvent.RemoveEventHandler(System.Delegate)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      </containers>
+      <file name="791511d1-2090-f109-15e3-cf82a8a6bf8e" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.Automation.AutomationEvent">
+      <topicdata name="AutomationEvent" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      <apidata name="AutomationEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationEvent.AddEventHandler(System.Delegate)" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationEvent.RemoveEventHandler(System.Delegate)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      </containers>
+      <file name="e6001739-2836-8353-74fa-d100219517e4" />
+    </api>
+    <api id="Events.T:System.Runtime.InteropServices.Automation.AutomationEvent">
+      <topicdata name="AutomationEvent" group="list" subgroup="Events" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      <apidata name="AutomationEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Runtime.InteropServices.Automation.AutomationEvent.EventRaised" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" />
+      </containers>
+      <file name="e8435f4f-76ba-625d-4460-64d203fe2ddc" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationEvent.AddEventHandler(System.Delegate)">
+      <topicdata group="api" />
+      <apidata name="AddEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <type api="T:System.Delegate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" ref="true" />
+      </containers>
+      <file name="75f7a991-90b8-e83c-2c9b-da8452704ebe" />
+    </api>
+    <api id="E:System.Runtime.InteropServices.Automation.AutomationEvent.EventRaised">
+      <topicdata group="api" />
+      <apidata name="EventRaised" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EventRaised" />
+      <remover name="remove_EventRaised" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" ref="true" />
+      </containers>
+      <file name="5fa58c54-50f5-eb1d-2e71-a0c34affc30a" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationEvent.RemoveEventHandler(System.Delegate)">
+      <topicdata group="api" />
+      <apidata name="RemoveEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <type api="T:System.Delegate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" ref="true" />
+      </containers>
+      <file name="d8e3e871-787a-4ccb-930f-142c8c800bb8" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.Automation.AutomationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      <apidata name="AutomationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+      </containers>
+      <file name="958ec0b1-496c-7b66-d4f7-573440a6604e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationEventArgs">
+      <topicdata name="AutomationEventArgs" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      <apidata name="AutomationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.InteropServices.Automation.AutomationEventArgs.Arguments" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      </containers>
+      <file name="c8a91845-877d-bf04-4f03-29e1e7a6a6f7" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.Automation.AutomationEventArgs">
+      <topicdata name="AutomationEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      <apidata name="AutomationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      </containers>
+      <file name="324d2ca5-5505-1911-d7b0-8a1fc9505702" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.Automation.AutomationEventArgs">
+      <topicdata name="AutomationEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      <apidata name="AutomationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.Automation.AutomationEventArgs.Arguments" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" />
+      </containers>
+      <file name="4c1c0fa9-72dd-b1f6-f514-244f66629b90" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.Automation.AutomationEventArgs.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Arguments" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEventArgs" ref="true" />
+      </containers>
+      <file name="d51be448-4f94-21a1-1425-cb292fa67ac1" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.Automation.AutomationFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      <apidata name="AutomationFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+      </containers>
+      <file name="56400ffe-f78d-db8f-c297-f6186b84502d" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationFactory">
+      <topicdata name="AutomationFactory" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      <apidata name="AutomationFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject">
+          <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject``1" />
+          <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject(System.String)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetEvent(System.Object,System.String)" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetObject(System.String)" />
+        <element api="P:System.Runtime.InteropServices.Automation.AutomationFactory.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      </containers>
+      <file name="7a1cd0b8-40e0-9f01-f9bf-47d040d0d5e0" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.Automation.AutomationFactory">
+      <topicdata name="AutomationFactory" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      <apidata name="AutomationFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject">
+          <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject``1" />
+          <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject(System.String)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetEvent(System.Object,System.String)" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetObject(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      </containers>
+      <file name="95ea2d4b-3490-a6fd-e6ff-e44891c11060" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.Automation.AutomationFactory">
+      <topicdata name="AutomationFactory" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      <apidata name="AutomationFactory" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.Automation.AutomationFactory.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      </containers>
+      <file name="13da3a15-2a46-bc2a-5386-74519221ff00" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject">
+      <topicdata name="CreateObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.Automation.AutomationFactory" />
+      <apidata name="CreateObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject``1" />
+        <element api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <file name="dd4d378c-8172-3b22-b699-3503de60d24c" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject``1">
+      <topicdata group="api" />
+      <apidata name="CreateObject" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject``1" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="63732499-768c-10d9-17b6-45a52c213375" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateObject" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Runtime.InteropServices.Automation.AutomationFactory.CreateObject" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="progID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <file name="4e5e6516-516a-bc8a-0b1b-7186099be7f2" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetEvent(System.Object,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="automationObject">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="eventName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <file name="ee79faa6-58a6-6cae-d2e2-885bc7ab5083" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.Automation.AutomationFactory.GetObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="progID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <file name="529ad382-387b-6636-5015-ec631a5d5892" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.Automation.AutomationFactory.IsAvailable">
+      <topicdata group="api" />
+      <apidata name="IsAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices.Automation" />
+        <type api="T:System.Runtime.InteropServices.Automation.AutomationFactory" ref="true" />
+      </containers>
+      <file name="8684cc37-eb23-5f46-4f33-9574e0270428" />
+    </api>
+  </apis>
+</reflection>

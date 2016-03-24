@@ -1,0 +1,3202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Foundation.Collections">
+      <topicdata group="api" />
+      <apidata name="Windows.Foundation.Collections" group="namespace" />
+      <elements>
+        <element api="T:Windows.Foundation.Collections.CollectionChange" />
+        <element api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+        <element api="T:Windows.Foundation.Collections.IPropertySet" />
+        <element api="T:Windows.Foundation.Collections.PropertySet" />
+        <element api="T:Windows.Foundation.Collections.ValueSet" />
+        <element api="T:System.Collections.Generic.IEnumerable`1" />
+        <element api="T:Windows.Foundation.Collections.IIterator`1" />
+        <element api="T:System.Collections.Generic.IReadOnlyList`1" />
+        <element api="T:System.Collections.Generic.IList`1" />
+        <element api="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+        <element api="T:System.Collections.Generic.IDictionary`2" />
+        <element api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+        <element api="T:Windows.Foundation.Collections.VectorChangedEventHandler`1" />
+        <element api="T:Windows.Foundation.Collections.IObservableVector`1" />
+        <element api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+        <element api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" />
+        <element api="T:Windows.Foundation.Collections.IObservableMap`2" />
+      </elements>
+      <file name="3e775c85-7cb8-c8e8-3658-713192014a95" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.CollectionChange">
+      <topicdata group="api" />
+      <apidata name="CollectionChange" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Collections.CollectionChange.Reset" />
+        <element api="F:Windows.Foundation.Collections.CollectionChange.ItemInserted" />
+        <element api="F:Windows.Foundation.Collections.CollectionChange.ItemRemoved" />
+        <element api="F:Windows.Foundation.Collections.CollectionChange.ItemChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="026f03d3-a820-9e01-e49c-0936ef75cf38" />
+    </api>
+    <api id="F:Windows.Foundation.Collections.CollectionChange.ItemChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="ItemChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </containers>
+      <file name="03142195-29d2-1b4d-a344-21885ab4ca78" />
+    </api>
+    <api id="F:Windows.Foundation.Collections.CollectionChange.ItemInserted">
+      <topicdata group="api" notopic="" />
+      <apidata name="ItemInserted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </containers>
+      <file name="36417044-ce58-4b3a-de43-c0d27ad763a6" />
+    </api>
+    <api id="F:Windows.Foundation.Collections.CollectionChange.ItemRemoved">
+      <topicdata group="api" notopic="" />
+      <apidata name="ItemRemoved" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </containers>
+      <file name="1dcbf91d-adca-d6fa-ccc6-424731a5ed16" />
+    </api>
+    <api id="F:Windows.Foundation.Collections.CollectionChange.Reset">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </containers>
+      <file name="542bc093-2294-40ff-093f-79155b5f2446" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IIterable`1.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.Collections.Generic.IEnumerable`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true" />
+      </containers>
+      <file name="e6f56272-71e3-0b65-81e5-6342a7e53198" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IIterator`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IIterator`1" />
+      <apidata name="IIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <implementors>
+        <type api="T:Windows.ApplicationModel.Resources.Core.ResourceMapIterator" ref="true" />
+        <type api="T:Windows.ApplicationModel.Resources.Core.ResourceMapMapViewIterator" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1786374243</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17152</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17818</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>102</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>203</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>96</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>150</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>225</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ea971e73-2fa9-0060-1aaa-719e21bf7bd0" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IIterator`1">
+      <topicdata name="IIterator" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IIterator`1" />
+      <apidata name="IIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IIterator`1.Current" />
+        <element api="M:Windows.Foundation.Collections.IIterator`1.GetMany(`0[])" />
+        <element api="P:Windows.Foundation.Collections.IIterator`1.HasCurrent" />
+        <element api="M:Windows.Foundation.Collections.IIterator`1.MoveNext" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" />
+      </containers>
+      <file name="fd871717-2ad1-45ff-9cc0-cab5faae520d" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.IIterator`1">
+      <topicdata name="IIterator" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.IIterator`1" />
+      <apidata name="IIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IIterator`1.GetMany(`0[])" />
+        <element api="M:Windows.Foundation.Collections.IIterator`1.MoveNext" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" />
+      </containers>
+      <file name="5a7a4b93-b51d-c890-94b7-0950380ed54b" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IIterator`1">
+      <topicdata name="IIterator" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IIterator`1" />
+      <apidata name="IIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IIterator`1.Current" />
+        <element api="P:Windows.Foundation.Collections.IIterator`1.HasCurrent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" />
+      </containers>
+      <file name="3d203e29-2a32-31d9-97ff-5543537d4f19" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IIterator`1.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <template name="T" index="0" api="T:Windows.Foundation.Collections.IIterator`1" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true" />
+      </containers>
+      <file name="50421703-36e4-2127-49b6-45acf7ba283f" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IIterator`1.GetMany(`0[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <template name="T" index="0" api="T:Windows.Foundation.Collections.IIterator`1" />
+          </arrayOf>
+          <attributes>
+            <attribute>
+              <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" ref="true" />
+              <argument>
+                <type api="T:System.Int32" ref="false" />
+                <value>0</value>
+              </argument>
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true" />
+      </containers>
+      <file name="b1faac40-9a39-49ba-718e-2351a41833fb" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IIterator`1.HasCurrent">
+      <topicdata group="api" />
+      <apidata name="HasCurrent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HasCurrent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true" />
+      </containers>
+      <file name="f0400b9a-5eaa-0707-4224-e9f45f13f709" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IIterator`1.MoveNext">
+      <topicdata group="api" />
+      <apidata name="MoveNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true" />
+      </containers>
+      <file name="891fa9cb-bee4-e517-bd12-581e759eff0d" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IKeyValuePair`2">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      <apidata name="IKeyValuePair" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>45422889</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>49604</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19070</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>64</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>3</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>18</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>181</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>193</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>133</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>0</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8fa93a4a-fefe-7e53-5ee7-0dddfd984171" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IKeyValuePair`2">
+      <topicdata name="IKeyValuePair" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      <apidata name="IKeyValuePair" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IKeyValuePair`2.Key" />
+        <element api="P:Windows.Foundation.Collections.IKeyValuePair`2.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      </containers>
+      <file name="e880ad4a-3f35-f9be-5141-5a38b074184a" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IKeyValuePair`2">
+      <topicdata name="IKeyValuePair" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      <apidata name="IKeyValuePair" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IKeyValuePair`2.Key" />
+        <element api="P:Windows.Foundation.Collections.IKeyValuePair`2.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      </containers>
+      <file name="8689bea4-b5ba-11ee-ced9-d102b673da6c" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IKeyValuePair`2.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <template name="K" index="0" api="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true" />
+      </containers>
+      <file name="03868acd-b9d4-9a65-62c7-6dfde8c29f75" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IKeyValuePair`2.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <template name="V" index="1" api="T:Windows.Foundation.Collections.IKeyValuePair`2" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true" />
+      </containers>
+      <file name="ec010d1f-1066-4fff-eeb7-baa9f8e3c79e" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Collections.Generic.IDictionary`2.Clear" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="8904b2a6-f4ee-e917-ae80-d0ec1fc6a884" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <template name="K" index="0" api="T:System.Collections.Generic.IDictionary`2" />
+            <template name="V" index="1" api="T:System.Collections.Generic.IDictionary`2" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="8d7cc8eb-75ac-b4b2-fd51-f918a8d2daa9" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)">
+      <topicdata group="api" />
+      <apidata name="HasKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IDictionary`2" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="09ce3ac4-9322-1d93-cac6-c3e86de07c09" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IDictionary`2" />
+        </parameter>
+        <parameter name="value" in="true">
+          <template name="V" index="1" api="T:System.Collections.Generic.IDictionary`2" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="2d88f77d-e9da-8057-c49a-64cefc96691c" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IDictionary`2" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="V" index="1" api="T:System.Collections.Generic.IDictionary`2" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="7bfeef58-d756-0bb1-554d-009819f8a5de" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMap`2.Remove(`0)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Collections.Generic.IDictionary`2.Remove" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IDictionary`2" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="06f24c9f-25d8-7575-d9f8-6bbb7f11ae29" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IMap`2.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+      </containers>
+      <file name="650e751c-0d26-4d32-8d14-8d619110cf3a" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IMapChangedEventArgs`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      <apidata name="IMapChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+      </templates>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2570712287</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>1290</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19471</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>96</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>119</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>7</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>95</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>71</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>119</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7cfc5c05-67fd-905e-8f75-cbb96824897b" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IMapChangedEventArgs`1">
+      <topicdata name="IMapChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      <apidata name="IMapChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.CollectionChange" />
+        <element api="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.Key" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      </containers>
+      <file name="c713479c-0784-d50b-a24a-9f9b6ae72913" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IMapChangedEventArgs`1">
+      <topicdata name="IMapChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      <apidata name="IMapChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.CollectionChange" />
+        <element api="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.Key" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      </containers>
+      <file name="ea6ff418-0180-134d-7e97-cd8a495761db" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.CollectionChange">
+      <topicdata group="api" />
+      <apidata name="CollectionChange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CollectionChange" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" ref="true" />
+      </containers>
+      <file name="0fecdecd-f6d7-0a7d-1b90-df195db7ba93" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IMapChangedEventArgs`1.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <template name="K" index="0" api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" ref="true" />
+      </containers>
+      <file name="699f0267-2ad0-1457-4a97-c635899a5c2a" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMapView`2.HasKey(`0)">
+      <topicdata group="api" />
+      <apidata name="HasKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true" />
+      </containers>
+      <file name="6c618ab5-6fdd-d7b7-a076-5888f856903e" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMapView`2.Lookup(`0)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <template name="K" index="0" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="V" index="1" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true" />
+      </containers>
+      <file name="4df996e3-cf45-7107-e022-c1e44a903a0d" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IMapView`2.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true" />
+      </containers>
+      <file name="5357ef28-ae09-0203-8ab7-7bf48d6eb498" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IMapView`2.Split(Windows.Foundation.Collections.IMapView{`0,`1}@,Windows.Foundation.Collections.IMapView{`0,`1}@)">
+      <topicdata group="api" />
+      <apidata name="Split" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="first" out="true">
+          <referenceTo>
+            <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+              <specialization>
+                <template name="K" index="0" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+                <template name="V" index="1" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+        <parameter name="second" out="true">
+          <referenceTo>
+            <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+              <specialization>
+                <template name="K" index="0" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+                <template name="V" index="1" api="T:System.Collections.Generic.IReadOnlyDictionary`2" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true" />
+      </containers>
+      <file name="774bdde5-d3de-5847-e473-a533c3364b77" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IObservableMap`2">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IObservableMap`2" />
+      <apidata name="IObservableMap" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <implements>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <template name="K" index="0" api="T:Windows.Foundation.Collections.IObservableMap`2" />
+            <template name="V" index="1" api="T:Windows.Foundation.Collections.IObservableMap`2" />
+          </specialization>
+        </type>
+      </implements>
+      <implementors>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+        <type api="T:Windows.Storage.ApplicationDataContainerSettings" ref="true" />
+        <type api="T:Windows.Storage.ApplicationDataCompositeValue" ref="true" />
+        <type api="T:Windows.ApplicationModel.Resources.Core.ResourceQualifierObservableMap" ref="true" />
+        <type api="T:Windows.Security.Credentials.PasswordCredentialPropertyStore" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1709124597</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>48953</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16821</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>90</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>157</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>94</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>71</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>43</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2807d521-52e5-d687-3d1e-9db9f5ffd371" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IObservableMap`2">
+      <topicdata name="IObservableMap" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IObservableMap`2" />
+      <apidata name="IObservableMap" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IMap`2.Clear" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.GetView" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)" />
+        <element api="P:Windows.Foundation.Collections.IMap`2.Size" />
+        <element api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" />
+      </containers>
+      <file name="c9b04365-ecad-b48c-df9f-367c24865626" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.IObservableMap`2">
+      <topicdata name="IObservableMap" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.IObservableMap`2" />
+      <apidata name="IObservableMap" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IMap`2.Clear" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.GetView" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" />
+      </containers>
+      <file name="a8506151-1c8b-448d-5b7a-b44aad255220" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IObservableMap`2">
+      <topicdata name="IObservableMap" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IObservableMap`2" />
+      <apidata name="IObservableMap" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IMap`2.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" />
+      </containers>
+      <file name="0947f7f9-475c-5cc4-7c75-7e5dd5fad6da" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Collections.IObservableMap`2">
+      <topicdata name="IObservableMap" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Collections.IObservableMap`2" />
+      <apidata name="IObservableMap" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <elements>
+        <element api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" />
+      </containers>
+      <file name="ede28c08-8dbe-5f42-a0bd-0d66ae0d62d1" />
+    </api>
+    <api id="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged">
+      <topicdata group="api" />
+      <apidata name="MapChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MapChanged" />
+      <remover name="remove_MapChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" ref="true">
+          <specialization>
+            <template name="K" index="0" api="T:Windows.Foundation.Collections.IObservableMap`2" />
+            <template name="V" index="1" api="T:Windows.Foundation.Collections.IObservableMap`2" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true" />
+      </containers>
+      <file name="a9fad0a1-d2fb-a64f-47e3-a1f391a5ced7" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IObservableVector`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IObservableVector`1" />
+      <apidata name="IObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:Windows.Foundation.Collections.IObservableVector`1" />
+          </specialization>
+        </type>
+      </implements>
+      <implementors>
+        <type api="T:Windows.UI.Xaml.Controls.ItemCollection" ref="true" />
+        <type api="T:Windows.UI.Xaml.DependencyObjectCollection" ref="true" />
+        <type api="T:Windows.UI.Xaml.Data.ICollectionView" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1494739795</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20660</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18957</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>179</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>9</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>101</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>43</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>63</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>29</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a3e289a8-1a79-1838-4c5e-f5a745f10871" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IObservableVector`1">
+      <topicdata name="IObservableVector" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IObservableVector`1" />
+      <apidata name="IObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="E:Windows.Foundation.Collections.IObservableVector`1.VectorChanged" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.Append(`0)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.Clear" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetAt(System.UInt32)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetMany(System.UInt32,`0[])" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetView" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.IndexOf(`0,System.UInt32@)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.InsertAt(System.UInt32,`0)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.RemoveAtEnd" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.ReplaceAll(`0[])" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.SetAt(System.UInt32,`0)" />
+        <element api="P:Windows.Foundation.Collections.IVector`1.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" />
+      </containers>
+      <file name="41be8433-55fe-24ea-e4e7-8fda32c35a3c" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.IObservableVector`1">
+      <topicdata name="IObservableVector" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.IObservableVector`1" />
+      <apidata name="IObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IVector`1.Append(`0)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.Clear" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetAt(System.UInt32)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetMany(System.UInt32,`0[])" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.GetView" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.IndexOf(`0,System.UInt32@)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.InsertAt(System.UInt32,`0)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.RemoveAtEnd" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.ReplaceAll(`0[])" />
+        <element api="M:Windows.Foundation.Collections.IVector`1.SetAt(System.UInt32,`0)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" />
+      </containers>
+      <file name="64f6345a-0a89-3c52-f742-28467ced0665" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IObservableVector`1">
+      <topicdata name="IObservableVector" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IObservableVector`1" />
+      <apidata name="IObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IVector`1.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" />
+      </containers>
+      <file name="65e4acd7-8317-7b9f-8c5c-ba2a7d89ac95" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Collections.IObservableVector`1">
+      <topicdata name="IObservableVector" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Collections.IObservableVector`1" />
+      <apidata name="IObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="E:Windows.Foundation.Collections.IObservableVector`1.VectorChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" />
+      </containers>
+      <file name="01f4747f-2dc2-2ef7-f645-515a34e4aa2c" />
+    </api>
+    <api id="E:Windows.Foundation.Collections.IObservableVector`1.VectorChanged">
+      <topicdata group="api" />
+      <apidata name="VectorChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VectorChanged" />
+      <remover name="remove_VectorChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.Collections.VectorChangedEventHandler`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:Windows.Foundation.Collections.IObservableVector`1" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" ref="true" />
+      </containers>
+      <file name="c97387ae-decf-33f9-7d82-2bf7933b6ff7" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IPropertySet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IPropertySet" />
+      <apidata name="IPropertySet" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </implements>
+      <implementors>
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+        <type api="T:Windows.Storage.ApplicationDataContainerSettings" ref="true" />
+        <type api="T:Windows.Storage.ApplicationDataCompositeValue" ref="true" />
+        <type api="T:Windows.Security.Credentials.PasswordCredentialPropertyStore" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2319707551</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>62694</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17441</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>172</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>249</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>29</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>171</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>41</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>12</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.HasVariantAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="07aeae60-4b82-a4e2-a1d1-bcf051847881" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IPropertySet">
+      <topicdata name="IPropertySet" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IPropertySet" />
+      <apidata name="IPropertySet" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IIterable`1.First" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Clear" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.GetView" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)" />
+        <element api="P:Windows.Foundation.Collections.IMap`2.Size" />
+        <element api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IPropertySet" />
+      </containers>
+      <file name="38a10368-37b0-8809-5311-daf05b5a0c74" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.IPropertySet">
+      <topicdata name="IPropertySet" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.IPropertySet" />
+      <apidata name="IPropertySet" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Collections.IIterable`1.First" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Clear" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.GetView" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)" />
+        <element api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IPropertySet" />
+      </containers>
+      <file name="a9822b07-e51b-6b4c-3562-c278195bf86f" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IPropertySet">
+      <topicdata name="IPropertySet" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IPropertySet" />
+      <apidata name="IPropertySet" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IMap`2.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IPropertySet" />
+      </containers>
+      <file name="e90bf370-dd95-1d5b-4e5e-538f8aeda439" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Collections.IPropertySet">
+      <topicdata name="IPropertySet" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Collections.IPropertySet" />
+      <apidata name="IPropertySet" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IPropertySet" />
+      </containers>
+      <file name="ab1114b2-8452-8704-25d0-fad24a022ab1" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.Append(`0)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="7a097c9b-1e7b-e98d-d8c7-214f82f24a8f" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Collections.Generic.IList`1.Clear" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="6fc6ad40-356b-c104-d32b-723965036d4b" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="6bd4081b-4e8f-98f2-6ad6-6e9f78a2b674" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.GetMany(System.UInt32,`0[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+          </arrayOf>
+          <attributes>
+            <attribute>
+              <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" ref="true" />
+              <argument>
+                <type api="T:System.Int32" ref="false" />
+                <value>0</value>
+              </argument>
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="2ef18b85-bfb2-9a84-80b6-5464c1794c42" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="e52f9b6e-bbd1-3369-11ef-50c0fe3d7878" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.IndexOf(`0,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Collections.Generic.IList`1.IndexOf" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="303377b4-d027-4022-17f5-339e4286a8b4" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.InsertAt(System.UInt32,`0)">
+      <topicdata group="api" />
+      <apidata name="InsertAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="e3e22386-01e4-ed27-7e6c-b86f8c35cc6c" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.RemoveAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Collections.Generic.IList`1.RemoveAt" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="d93032a5-c056-965e-4bc2-aaf1cefdb78e" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.RemoveAtEnd">
+      <topicdata group="api" />
+      <apidata name="RemoveAtEnd" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="dbae5e91-eeb1-a666-4b20-8cc307175dda" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.ReplaceAll(`0[])">
+      <topicdata group="api" />
+      <apidata name="ReplaceAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="items" in="true">
+          <arrayOf rank="1">
+            <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="4a0b9819-28e0-4ce4-49a8-472912ddb696" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVector`1.SetAt(System.UInt32,`0)">
+      <topicdata group="api" />
+      <apidata name="SetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <template name="T" index="0" api="T:System.Collections.Generic.IList`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="0569c1ff-5431-7ff1-1d89-2847f9e02b9a" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IVector`1.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+      </containers>
+      <file name="e9d180ae-ccee-6280-4bfa-d3e90d4ee5bd" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.IVectorChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+      <apidata name="IVectorChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1465463775</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>13566</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>175</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>7</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>105</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>31</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>61</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>93</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>155</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e47006c8-93a1-4e05-1d71-b3840ee24258" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.IVectorChangedEventArgs">
+      <topicdata name="IVectorChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+      <apidata name="IVectorChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IVectorChangedEventArgs.CollectionChange" />
+        <element api="P:Windows.Foundation.Collections.IVectorChangedEventArgs.Index" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+      </containers>
+      <file name="09cb0bcd-bec5-3422-1dee-829c039289f8" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.IVectorChangedEventArgs">
+      <topicdata name="IVectorChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+      <apidata name="IVectorChangedEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Collections.IVectorChangedEventArgs.CollectionChange" />
+        <element api="P:Windows.Foundation.Collections.IVectorChangedEventArgs.Index" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" />
+      </containers>
+      <file name="ba30aba8-b933-3ed9-1559-4f72a5c4ae40" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IVectorChangedEventArgs.CollectionChange">
+      <topicdata group="api" />
+      <apidata name="CollectionChange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CollectionChange" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.CollectionChange" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" ref="true" />
+      </containers>
+      <file name="46a88609-01d7-1e5f-00ff-8389500de31c" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IVectorChangedEventArgs.Index">
+      <topicdata group="api" />
+      <apidata name="Index" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Index" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" ref="true" />
+      </containers>
+      <file name="9b91a9c8-8363-34e4-7c24-3ab859e2704f" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="T:System.Collections.Generic.IReadOnlyList`1" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true" />
+      </containers>
+      <file name="25d984bc-8ff2-b219-9f14-b5a65b12800d" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <template name="T" index="0" api="T:System.Collections.Generic.IReadOnlyList`1" />
+          </arrayOf>
+          <attributes>
+            <attribute>
+              <type api="T:Windows.Foundation.Metadata.LengthIsAttribute" ref="true" />
+              <argument>
+                <type api="T:System.Int32" ref="false" />
+                <value>0</value>
+              </argument>
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true" />
+      </containers>
+      <file name="cd02a9c4-d2b2-8a9e-f2c4-5be3dbafcb4f" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <template name="T" index="0" api="T:System.Collections.Generic.IReadOnlyList`1" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true" />
+      </containers>
+      <file name="0b81b74a-bd10-3a86-a8ad-c0a6cfedcd27" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.IVectorView`1.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true" />
+      </containers>
+      <file name="e9ce2da9-1976-ff30-5582-eb573dac67fc" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.MapChangedEventHandler`2">
+      <topicdata group="api" />
+      <apidata name="MapChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <templates>
+        <template name="K" />
+        <template name="V" />
+      </templates>
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+            <specialization>
+              <template name="K" index="0" api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" />
+              <template name="V" index="1" api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="event" in="true">
+          <type api="T:Windows.Foundation.Collections.IMapChangedEventArgs`1" ref="true">
+            <specialization>
+              <template name="K" index="0" api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>395646963</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>38126</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16888</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>220</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>118</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>85</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>68</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>243</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c43ffc9c-0bed-c1f1-5721-2dcec3f2a1a1" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.PropertySet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.PropertySet" />
+      <apidata name="PropertySet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a3418d75-4043-4e78-4239-4ff2c7185c11" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.PropertySet">
+      <topicdata name="PropertySet" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.PropertySet" />
+      <apidata name="PropertySet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Clear" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.First" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.GetView" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.HasKey(System.String)" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Insert(System.String,System.Object)" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Lookup(System.String)" />
+        <element api="E:Windows.Foundation.Collections.PropertySet.MapChanged" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Remove(System.String)" />
+        <element api="P:Windows.Foundation.Collections.PropertySet.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" />
+      </containers>
+      <file name="408a59d8-23e6-d63e-9ea3-5bdfadfd20f9" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.PropertySet">
+      <topicdata name="PropertySet" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.PropertySet" />
+      <apidata name="PropertySet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Clear" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.First" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.GetView" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.HasKey(System.String)" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Insert(System.String,System.Object)" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Lookup(System.String)" />
+        <element api="M:Windows.Foundation.Collections.PropertySet.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" />
+      </containers>
+      <file name="ed6b1caf-3faa-809d-97d7-b95a36b3982c" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.PropertySet">
+      <topicdata name="PropertySet" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.PropertySet" />
+      <apidata name="PropertySet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+      <elements>
+        <element api="P:Windows.Foundation.Collections.PropertySet.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" />
+      </containers>
+      <file name="afdef76f-85a5-7440-e541-15928189480c" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Collections.PropertySet">
+      <topicdata name="PropertySet" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Collections.PropertySet" />
+      <apidata name="PropertySet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.PropertySet.#ctor" />
+      <elements>
+        <element api="E:Windows.Foundation.Collections.PropertySet.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" />
+      </containers>
+      <file name="0d7d55f2-6c35-c7a3-911a-34a6eb141d43" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="c72ebe1c-2591-e6c3-cbff-522e5ad016b3" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Clear">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="b066b883-7525-333d-d80c-a8fb5e61ab90" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+                <specialization>
+                  <type api="T:System.String" ref="true" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="e08c1955-d11f-7880-93cd-e1e733973c4c" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.GetView">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="d6f48701-78c6-6a77-6cae-a87053f312fb" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.HasKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="HasKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="20702881-c2cb-03c2-79e6-3c3eb94d83c8" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.Insert(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="256aca0c-5964-deb9-8610-d6b17efc8ad6" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.Lookup(System.String)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="dcc218ea-7377-d7c3-5591-8f3affce4d2b" />
+    </api>
+    <api id="E:Windows.Foundation.Collections.PropertySet.MapChanged">
+      <topicdata group="api" />
+      <apidata name="MapChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MapChanged" />
+      <remover name="remove_MapChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged">
+          <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="c0c31b8d-80c0-35f2-ba26-3a197f90cfa9" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.PropertySet.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="7dfe68c9-faf6-ad4a-f48c-ba1c620941eb" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.PropertySet.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IMap`2.Size">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.PropertySet" ref="true" />
+      </containers>
+      <file name="51c90578-dde0-5fe4-047e-b9174b174f17" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.ValueSet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Collections.ValueSet" />
+      <apidata name="ValueSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ce4aa838-e596-e083-dc0f-0e27f9b3d9f0" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Collections.ValueSet">
+      <topicdata name="ValueSet" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Collections.ValueSet" />
+      <apidata name="ValueSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Clear" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.First" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.GetView" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.HasKey(System.String)" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Insert(System.String,System.Object)" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Lookup(System.String)" />
+        <element api="E:Windows.Foundation.Collections.ValueSet.MapChanged" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Remove(System.String)" />
+        <element api="P:Windows.Foundation.Collections.ValueSet.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" />
+      </containers>
+      <file name="be702bc9-6325-169b-112b-9da2b34bcd7d" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Collections.ValueSet">
+      <topicdata name="ValueSet" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Collections.ValueSet" />
+      <apidata name="ValueSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Clear" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.First" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.GetView" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.HasKey(System.String)" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Insert(System.String,System.Object)" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Lookup(System.String)" />
+        <element api="M:Windows.Foundation.Collections.ValueSet.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" />
+      </containers>
+      <file name="833e7736-b2b8-fe9e-ea50-eaee9307c96a" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Collections.ValueSet">
+      <topicdata name="ValueSet" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Collections.ValueSet" />
+      <apidata name="ValueSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+      <elements>
+        <element api="P:Windows.Foundation.Collections.ValueSet.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" />
+      </containers>
+      <file name="6e4cdb50-f953-a3df-9d55-0624f8d4efda" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Collections.ValueSet">
+      <topicdata name="ValueSet" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Collections.ValueSet" />
+      <apidata name="ValueSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Collections.ValueSet.#ctor" />
+      <elements>
+        <element api="E:Windows.Foundation.Collections.ValueSet.MapChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" />
+      </containers>
+      <file name="3bc6fabd-0af0-057d-14ef-326d3e39d258" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="5384fa32-27e8-9ebe-676c-2aba1fbe6c7a" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Clear">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="0e91990a-df34-71b0-1a93-f03da9b80bf9" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+                <specialization>
+                  <type api="T:System.String" ref="true" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="cab4d614-8600-ed7c-cd03-275c2ea43159" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.GetView">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="8aec6de0-581f-8829-1e0b-a53e88267167" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.HasKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="HasKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="989c1aba-441d-be1d-090f-67993b631ea8" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.Insert(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="7e6df374-f49e-4ef0-fdee-37e7e4fff4bd" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.Lookup(System.String)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="69b0968a-a49f-69aa-6833-38c70c45776e" />
+    </api>
+    <api id="E:Windows.Foundation.Collections.ValueSet.MapChanged">
+      <topicdata group="api" />
+      <apidata name="MapChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MapChanged" />
+      <remover name="remove_MapChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.Collections.MapChangedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Foundation.Collections.IObservableMap`2.MapChanged">
+          <type api="T:Windows.Foundation.Collections.IObservableMap`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="584dc540-af50-d4f3-6b16-f332e5149736" />
+    </api>
+    <api id="M:Windows.Foundation.Collections.ValueSet.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="c5a1fb9a-a90d-9b90-12e4-1225db901af9" />
+    </api>
+    <api id="P:Windows.Foundation.Collections.ValueSet.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IMap`2.Size">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+        <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+      </containers>
+      <file name="86744e3b-5388-b55b-70c4-efc3648c32b0" />
+    </api>
+    <api id="T:Windows.Foundation.Collections.VectorChangedEventHandler`1">
+      <topicdata group="api" />
+      <apidata name="VectorChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Foundation.Collections.IObservableVector`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="T:Windows.Foundation.Collections.VectorChangedEventHandler`1" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="event" in="true">
+          <type api="T:Windows.Foundation.Collections.IVectorChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Collections" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>201660242</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>40895</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19568</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>12</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>14</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>76</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>217</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>167</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>97</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8867a06c-f4a0-54d8-393b-baa2e918185f" />
+    </api>
+  </apis>
+</reflection>

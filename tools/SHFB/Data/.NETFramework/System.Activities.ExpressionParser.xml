@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.ExpressionParser">
+      <topicdata group="api" />
+      <apidata name="System.Activities.ExpressionParser" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      </elements>
+      <file name="67a7e5a5-1aa2-75c4-56e3-92e9b80b5635" />
+    </api>
+    <api id="T:System.Activities.ExpressionParser.SourceExpressionException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name="SourceExpressionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+      </containers>
+      <file name="92edca01-c676-d083-0834-86cc274511fd" />
+    </api>
+    <api id="AllMembers.T:System.Activities.ExpressionParser.SourceExpressionException">
+      <topicdata name="SourceExpressionException" group="list" subgroup="members" typeTopicId="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name="SourceExpressionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor">
+          <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+          <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String)" />
+          <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.CodeDom.Compiler.CompilerErrorCollection)" />
+          <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Activities.ExpressionParser.SourceExpressionException.Errors" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      </containers>
+      <file name="bf4ec0c3-018a-d7a3-c822-9c94736e84f0" />
+    </api>
+    <api id="Methods.T:System.Activities.ExpressionParser.SourceExpressionException">
+      <topicdata name="SourceExpressionException" group="list" subgroup="Methods" typeTopicId="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name="SourceExpressionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      </containers>
+      <file name="f6094005-733f-1308-766b-0203f57dd168" />
+    </api>
+    <api id="Properties.T:System.Activities.ExpressionParser.SourceExpressionException">
+      <topicdata name="SourceExpressionException" group="list" subgroup="Properties" typeTopicId="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name="SourceExpressionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.Activities.ExpressionParser.SourceExpressionException.Errors" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      </containers>
+      <file name="4e8beda9-4c0c-1738-7984-295bb9001c2c" />
+    </api>
+    <api id="Events.T:System.Activities.ExpressionParser.SourceExpressionException">
+      <topicdata name="SourceExpressionException" group="list" subgroup="Events" typeTopicId="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name="SourceExpressionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" />
+      </containers>
+      <file name="828af84c-fef5-fe6c-34c3-521a302c9452" />
+    </api>
+    <api id="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.ExpressionParser.SourceExpressionException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String)" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.CodeDom.Compiler.CompilerErrorCollection)" />
+        <element api="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="81cdc3a2-ebde-e790-ee47-8a3f726a6987" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="6de37c24-52a2-9d79-54e0-e6723f3a6304" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="31b644c7-90de-4e57-eb74-4abfbc37ec21" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="14fefa47-4440-1aeb-6a46-ec8e9bfea7a6" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.CodeDom.Compiler.CompilerErrorCollection)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="errors">
+          <type api="T:System.CodeDom.Compiler.CompilerErrorCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="a31bb995-2d21-a259-8b09-13a03340fdad" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.ExpressionParser.SourceExpressionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="ec2ada2c-de1c-e34b-bb52-dd0cd81e8bd4" />
+    </api>
+    <api id="P:System.Activities.ExpressionParser.SourceExpressionException.Errors">
+      <topicdata group="api" />
+      <apidata name="Errors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Errors" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.CodeDom.Compiler.CompilerError" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <file name="e9d7caf0-dacf-0675-f220-cf51a267a242" />
+    </api>
+    <api id="M:System.Activities.ExpressionParser.SourceExpressionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.ExpressionParser" />
+        <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e1ad85e1-ef48-b8ec-727b-13b20077f687" />
+    </api>
+  </apis>
+</reflection>

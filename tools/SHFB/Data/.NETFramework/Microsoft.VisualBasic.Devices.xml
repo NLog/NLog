@@ -1,0 +1,3251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.VisualBasic">
+      <assemblydata version="10.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 12 CTP</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\\dd\\tools\\devdiv\\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic.Devices">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic.Devices" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.Devices.Audio" />
+        <element api="T:Microsoft.VisualBasic.Devices.Clock" />
+        <element api="T:Microsoft.VisualBasic.Devices.Computer" />
+        <element api="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+        <element api="T:Microsoft.VisualBasic.Devices.Keyboard" />
+        <element api="T:Microsoft.VisualBasic.Devices.Mouse" />
+        <element api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+        <element api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventHandler" />
+        <element api="T:Microsoft.VisualBasic.Devices.Network" />
+        <element api="T:Microsoft.VisualBasic.Devices.Ports" />
+        <element api="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      </elements>
+      <file name="05442f5c-e83b-16b2-dc90-1b03579524e6" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Audio">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Audio" />
+      <apidata name="Audio" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Audio.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="55719b25-c148-fb74-5326-b48a23f5d9c1" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Audio">
+      <topicdata name="Audio" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Audio" />
+      <apidata name="Audio" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Audio.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.#ctor" />
+        <element api="Overload:Microsoft.VisualBasic.Devices.Audio.Play">
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.Byte[],Microsoft.VisualBasic.AudioPlayMode)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.IO.Stream,Microsoft.VisualBasic.AudioPlayMode)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String,Microsoft.VisualBasic.AudioPlayMode)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.PlaySystemSound(System.Media.SystemSound)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" />
+      </containers>
+      <file name="033f1996-7808-d8d4-3f10-f2d9d10417b1" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Audio">
+      <topicdata name="Audio" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Audio" />
+      <apidata name="Audio" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Audio.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Audio.Play">
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.Byte[],Microsoft.VisualBasic.AudioPlayMode)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.IO.Stream,Microsoft.VisualBasic.AudioPlayMode)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String,Microsoft.VisualBasic.AudioPlayMode)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.PlaySystemSound(System.Media.SystemSound)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" />
+      </containers>
+      <file name="ca91b4aa-ec58-f124-37a7-6a1b668d7a09" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Audio.Play">
+      <topicdata name="Play" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Audio" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.Byte[],Microsoft.VisualBasic.AudioPlayMode)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.IO.Stream,Microsoft.VisualBasic.AudioPlayMode)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String,Microsoft.VisualBasic.AudioPlayMode)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="68a32c65-9705-6c97-00b7-4de65075acdd" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="06d637bf-35ab-050d-c746-362312ce3bb2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.Play(System.Byte[],Microsoft.VisualBasic.AudioPlayMode)">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Audio.Play" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="playMode">
+          <type api="T:Microsoft.VisualBasic.AudioPlayMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="a4152004-523a-fe8b-d788-825ef8540639" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.Play(System.IO.Stream,Microsoft.VisualBasic.AudioPlayMode)">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Audio.Play" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="playMode">
+          <type api="T:Microsoft.VisualBasic.AudioPlayMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="cfc05fa8-085f-1206-71b5-fd79c7cfbbec" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String)">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Audio.Play" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="12929b2e-ae9b-fb4b-71ae-099a00e97a78" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.Play(System.String,Microsoft.VisualBasic.AudioPlayMode)">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Audio.Play" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="location">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="playMode">
+          <type api="T:Microsoft.VisualBasic.AudioPlayMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="04aa2db1-2f78-241e-a12d-acbd49443a0f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.PlaySystemSound(System.Media.SystemSound)">
+      <topicdata group="api" />
+      <apidata name="PlaySystemSound" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="systemSound">
+          <type api="T:System.Media.SystemSound" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="4675f53f-a69b-d9bc-2fcb-a3b3d2499bcd" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Audio.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </containers>
+      <file name="1ec2b8af-df91-e554-2d27-24ccb3082e42" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Clock">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Clock" />
+      <apidata name="Clock" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Clock.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cd2ef57d-09a4-51d0-6423-46ad569b04fb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Clock">
+      <topicdata name="Clock" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Clock" />
+      <apidata name="Clock" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Clock.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Clock.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.GmtTime" />
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.LocalTime" />
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.TickCount" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" />
+      </containers>
+      <file name="6644d39f-14ee-2cbe-db00-d51bfd651068" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Clock">
+      <topicdata name="Clock" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Clock" />
+      <apidata name="Clock" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Clock.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" />
+      </containers>
+      <file name="c938d566-9538-456b-1c02-bfa93b102cfe" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Clock">
+      <topicdata name="Clock" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Clock" />
+      <apidata name="Clock" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Clock.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.GmtTime" />
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.LocalTime" />
+        <element api="P:Microsoft.VisualBasic.Devices.Clock.TickCount" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" />
+      </containers>
+      <file name="a02732f1-60f9-180d-f0bf-2da2ab419d89" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Clock.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" ref="true" />
+      </containers>
+      <file name="11b3d772-3b6b-ca1f-3b8d-d6ec30dd7dcf" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Clock.GmtTime">
+      <topicdata group="api" />
+      <apidata name="GmtTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GmtTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" ref="true" />
+      </containers>
+      <file name="28bc7d21-c8cb-752c-6d6d-d44ba89e4b41" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Clock.LocalTime">
+      <topicdata group="api" />
+      <apidata name="LocalTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LocalTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" ref="true" />
+      </containers>
+      <file name="00130b95-ea9b-f352-21a4-9b14abcf1b97" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Clock.TickCount">
+      <topicdata group="api" />
+      <apidata name="TickCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TickCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" ref="true" />
+      </containers>
+      <file name="960a0a48-9886-80f4-984c-85dbefa9c356" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Computer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Computer" />
+      <apidata name="Computer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Computer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f313f95f-9163-80f9-b220-ce8d39a0647a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Computer">
+      <topicdata name="Computer" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Computer" />
+      <apidata name="Computer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Computer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Computer.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Audio" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Clipboard" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Keyboard" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Mouse" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Ports" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Screen" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Clock" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.FileSystem" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Info" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Name" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Network" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Registry" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" />
+      </containers>
+      <file name="c17fce52-1f14-fe61-cf21-c0cef69ad5f9" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Computer">
+      <topicdata name="Computer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Computer" />
+      <apidata name="Computer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Computer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" />
+      </containers>
+      <file name="46865819-9b88-2039-35de-8636df09fd1d" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Computer">
+      <topicdata name="Computer" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Computer" />
+      <apidata name="Computer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Computer.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Audio" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Clipboard" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Keyboard" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Mouse" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Ports" />
+        <element api="P:Microsoft.VisualBasic.Devices.Computer.Screen" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Clock" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.FileSystem" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Info" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Name" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Network" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Registry" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" />
+      </containers>
+      <file name="cb99a42f-7e10-8e74-e061-a14dfc956c79" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Computer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="d24b9115-061c-249a-492d-cac4efe0afe3" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Audio">
+      <topicdata group="api" />
+      <apidata name="Audio" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Audio" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Audio" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="fe62a9de-54c7-f62c-b8e3-d6be8466c586" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Clipboard">
+      <topicdata group="api" />
+      <apidata name="Clipboard" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Clipboard" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="89349bf8-b964-7997-ed3f-c028593cc312" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Keyboard">
+      <topicdata group="api" />
+      <apidata name="Keyboard" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Keyboard" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="4bbb7548-44b4-5ecc-64e0-3c778af307c1" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Mouse">
+      <topicdata group="api" />
+      <apidata name="Mouse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Mouse" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="a7b2dcba-d790-c786-b252-565aa30331d7" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Ports">
+      <topicdata group="api" />
+      <apidata name="Ports" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Ports" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="420d422d-9f7c-d203-dd57-61f323bed2da" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Computer.Screen">
+      <topicdata group="api" />
+      <apidata name="Screen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Screen" />
+      <returns>
+        <type api="T:System.Windows.Forms.Screen" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+      </containers>
+      <file name="70f6827e-4f34-e492-e2c3-37990dba0a99" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.ComputerInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      <apidata name="ComputerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8513f7de-3976-45c2-a526-22edf11acb7c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.ComputerInfo">
+      <topicdata name="ComputerInfo" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      <apidata name="ComputerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailablePhysicalMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailableVirtualMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.InstalledUICulture" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSFullName" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSPlatform" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSVersion" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalPhysicalMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalVirtualMemory" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      </containers>
+      <file name="723ae08c-83fc-5329-dea6-fda4e676adb9" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.ComputerInfo">
+      <topicdata name="ComputerInfo" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      <apidata name="ComputerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      </containers>
+      <file name="d5342dad-7a82-1e26-7212-cd5e610c353c" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.ComputerInfo">
+      <topicdata name="ComputerInfo" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      <apidata name="ComputerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailablePhysicalMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailableVirtualMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.InstalledUICulture" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSFullName" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSPlatform" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSVersion" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalPhysicalMemory" />
+        <element api="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalVirtualMemory" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" />
+      </containers>
+      <file name="68564579-5242-3a55-d00b-2cfa1bd7aae0" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.ComputerInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <file name="b8a726ef-7bc2-10ff-61a1-40af1f053e11" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailablePhysicalMemory">
+      <topicdata group="api" />
+      <apidata name="AvailablePhysicalMemory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AvailablePhysicalMemory" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9f5c2868-bb41-0b36-2d35-d9b9384d259b" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.AvailableVirtualMemory">
+      <topicdata group="api" />
+      <apidata name="AvailableVirtualMemory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AvailableVirtualMemory" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dd7c457e-b285-b4db-92af-41c53cdbfd6c" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.InstalledUICulture">
+      <topicdata group="api" />
+      <apidata name="InstalledUICulture" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstalledUICulture" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <file name="08f5178c-a782-883d-4ebc-47d23125dd31" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSFullName">
+      <topicdata group="api" />
+      <apidata name="OSFullName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSFullName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <file name="695280fe-3853-9e33-ab3c-1bddb5c64cf5" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSPlatform">
+      <topicdata group="api" />
+      <apidata name="OSPlatform" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSPlatform" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <file name="c7cf2e7c-b936-86fe-5d9a-b62ee7b676ae" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.OSVersion">
+      <topicdata group="api" />
+      <apidata name="OSVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <file name="b5f39f70-c6ca-6825-af31-48e406ac3bb8" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalPhysicalMemory">
+      <topicdata group="api" />
+      <apidata name="TotalPhysicalMemory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TotalPhysicalMemory" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="229caa53-9401-764e-ce6d-6a5b650827fb" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ComputerInfo.TotalVirtualMemory">
+      <topicdata group="api" />
+      <apidata name="TotalVirtualMemory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TotalVirtualMemory" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7fe52cb0-a671-ab92-89af-67964c2554ae" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Keyboard">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cbd85aa7-67ec-0bd7-50a5-337b630aae1b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.AltKeyDown" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.CapsLock" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.CtrlKeyDown" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.NumLock" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.ScrollLock" />
+        <element api="Overload:Microsoft.VisualBasic.Devices.Keyboard.SendKeys">
+          <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String,System.Boolean)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.ShiftKeyDown" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      </containers>
+      <file name="f8c44cb7-0118-da73-2418-687e4a4ebe3f" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Keyboard.SendKeys">
+          <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      </containers>
+      <file name="e2945c16-1a90-2ce9-c1c6-ec3aba8afc11" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.AltKeyDown" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.CapsLock" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.CtrlKeyDown" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.NumLock" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.ScrollLock" />
+        <element api="P:Microsoft.VisualBasic.Devices.Keyboard.ShiftKeyDown" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" />
+      </containers>
+      <file name="e5987b9c-acca-cb2b-24d8-c308d2e1196e" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Keyboard.SendKeys">
+      <topicdata name="SendKeys" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Keyboard" />
+      <apidata name="SendKeys" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="0ab6d97f-e917-03ff-61b0-9325e45169bf" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Keyboard.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="f6e2affe-711f-b8c4-b8df-e0373f413c61" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.AltKeyDown">
+      <topicdata group="api" />
+      <apidata name="AltKeyDown" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AltKeyDown" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="bb26c271-4d60-19d9-05d4-2d6cd38c9cf6" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.CapsLock">
+      <topicdata group="api" />
+      <apidata name="CapsLock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CapsLock" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="4dbe5ff1-7556-0992-de34-9e1f21c2c307" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.CtrlKeyDown">
+      <topicdata group="api" />
+      <apidata name="CtrlKeyDown" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CtrlKeyDown" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="671b765a-bb89-f2f2-abc6-7c0085455ad6" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.NumLock">
+      <topicdata group="api" />
+      <apidata name="NumLock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NumLock" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="bd98b7a8-7e18-f6c4-23fe-0a213c275e14" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.ScrollLock">
+      <topicdata group="api" />
+      <apidata name="ScrollLock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScrollLock" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="b8f0c1a3-0ca4-39a6-7075-05a064ccd793" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String)">
+      <topicdata group="api" />
+      <apidata name="SendKeys" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Keyboard.SendKeys" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keys">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="1261f723-907c-2066-0369-7de966e1552f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Keyboard.SendKeys(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SendKeys" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Keyboard.SendKeys" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keys">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="wait">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="3e5b635c-3359-98b7-381a-434fefb0d5b0" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Keyboard.ShiftKeyDown">
+      <topicdata group="api" />
+      <apidata name="ShiftKeyDown" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ShiftKeyDown" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Keyboard" ref="true" />
+      </containers>
+      <file name="53de63e3-9836-fe40-2252-5d7036c2a920" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Mouse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Mouse.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6b1e9de4-bc16-d295-d323-0d55fa89b7ff" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Mouse.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Mouse.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.ButtonsSwapped" />
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.WheelExists" />
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.WheelScrollLines" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" />
+      </containers>
+      <file name="91a9248a-014b-8806-9ae4-d72eaf487d56" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Mouse.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" />
+      </containers>
+      <file name="94baa2a6-6f1b-063c-b755-c9ac6322f798" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Mouse.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.ButtonsSwapped" />
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.WheelExists" />
+        <element api="P:Microsoft.VisualBasic.Devices.Mouse.WheelScrollLines" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" />
+      </containers>
+      <file name="fd4a39bd-f47e-9ec0-78a9-2dfe6ad59680" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Mouse.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" ref="true" />
+      </containers>
+      <file name="224602b3-c3ce-8df1-8a83-b28d3011dce5" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Mouse.ButtonsSwapped">
+      <topicdata group="api" />
+      <apidata name="ButtonsSwapped" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ButtonsSwapped" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" ref="true" />
+      </containers>
+      <file name="b59f2541-7b4a-577d-5656-e76d487a59f6" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Mouse.WheelExists">
+      <topicdata group="api" />
+      <apidata name="WheelExists" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WheelExists" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" ref="true" />
+      </containers>
+      <file name="d5acc40b-6845-d85a-8661-fd135653570a" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Mouse.WheelScrollLines">
+      <topicdata group="api" />
+      <apidata name="WheelScrollLines" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WheelScrollLines" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Mouse" ref="true" />
+      </containers>
+      <file name="8e6e1e61-383e-7bdd-b78b-044ec5d6083d" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Network">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Network" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2745c92e-1855-8a94-691d-eb7fa0223f75" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Network">
+      <topicdata name="Network" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Network" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Devices.Network.IsAvailable" />
+        <element api="E:Microsoft.VisualBasic.Devices.Network.NetworkAvailabilityChanged" />
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.Ping">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" />
+      </containers>
+      <file name="762a7c2d-fcd6-fa7f-1dda-35d1821e57ec" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Network">
+      <topicdata name="Network" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Network" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.Ping">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri,System.Int32)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile">
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" />
+      </containers>
+      <file name="de7c544b-7f2d-1f9e-8324-7df5ff57cd60" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Network">
+      <topicdata name="Network" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Network" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Network.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" />
+      </containers>
+      <file name="da7347d0-4f5d-d25e-1c3a-13f09076e3b8" />
+    </api>
+    <api id="Events.T:Microsoft.VisualBasic.Devices.Network">
+      <topicdata name="Network" group="list" subgroup="Events" typeTopicId="T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Network" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Network.#ctor" />
+      <elements>
+        <element api="E:Microsoft.VisualBasic.Devices.Network.NetworkAvailabilityChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" />
+      </containers>
+      <file name="d8af154c-e094-046e-03ea-4e6aa755178a" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile">
+      <topicdata name="DownloadFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="99f46202-b077-b643-d1a4-273a2608969b" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Network.Ping">
+      <topicdata name="Ping" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="Ping" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="fcf00801-2b33-20df-6257-300421c756d3" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile">
+      <topicdata name="UploadFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Network" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="28921233-4944-2b8f-3773-99c323388023" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="3ee92930-5690-fbac-d9f8-5b4d7588d4b1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="579b0da8-557d-41d6-a03d-91d90fccdfa5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="341c37ec-c19f-b970-eb82-8e28f85edbe2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="7f7c99c8-914c-bd6e-ade6-b55f454a20ba" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="c760c44c-5d68-bcba-a93c-353e1086996b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="10a0dba0-31e1-95ff-18d0-68b5a7452626" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="networkCredentials">
+          <type api="T:System.Net.ICredentials" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="0f47f810-93a1-4fa3-e777-24a682232d87" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="networkCredentials">
+          <type api="T:System.Net.ICredentials" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="1eeab6b8-d70e-bc6c-efa9-943671c82202" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="a7334575-2736-7dec-b3b1-798b80129cfd" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="089e72e7-16b6-0922-8426-7a90c201b5e6" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.DownloadFile(System.Uri,System.String,System.String,System.String,System.Boolean,System.Int32,System.Boolean,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="DownloadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.DownloadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="fc6aaa68-0389-b961-2443-9665db58cc16" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Network.IsAvailable">
+      <topicdata group="api" />
+      <apidata name="IsAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="d4a52b29-41ae-c4ef-76da-e6d85cc76138" />
+    </api>
+    <api id="E:Microsoft.VisualBasic.Devices.Network.NetworkAvailabilityChanged">
+      <topicdata group="api" />
+      <apidata name="NetworkAvailabilityChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" call="true" />
+      <adder name="add_NetworkAvailabilityChanged" />
+      <remover name="remove_NetworkAvailabilityChanged" />
+      <eventhandler>
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="a0865a09-50cd-bd6e-456f-ba3bb3bd4697" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String)">
+      <topicdata group="api" />
+      <apidata name="Ping" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.Ping" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hostNameOrAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="74471a0d-bec0-58c1-0d23-a1657f06b839" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.Ping(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Ping" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.Ping" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hostNameOrAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="022a42aa-2787-fa10-309e-25b05ec2c4ad" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="Ping" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.Ping" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="9486ca84-288a-6a16-718a-70e3d76401a1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.Ping(System.Uri,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Ping" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.Ping" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="da2a3213-3d96-db3e-b69a-9d56d2dc1415" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="ac3bafcb-6f29-4143-d2ff-4fb4f63f8d64" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="9840bef2-f241-7a28-edfe-592c13b868f1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="03582d6b-ad6c-a170-41d6-3ada2094d28d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="113caa84-e17c-4e37-fa77-e9dc58fc7bde" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="ebe49cf2-43c5-161e-9ed9-662aa6a6227f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="networkCredentials">
+          <type api="T:System.Net.ICredentials" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="1eda2f51-60fc-998f-a762-97f340bb4e26" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.Net.ICredentials,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="networkCredentials">
+          <type api="T:System.Net.ICredentials" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="1604de2e-64a1-476e-10ff-d2f3049af33a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="97489bd6-f973-ee41-ac40-df9f65a86938" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="7179631b-f28f-d558-ecf3-a47e224282e4" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Network.UploadFile(System.String,System.Uri,System.String,System.String,System.Boolean,System.Int32,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="UploadFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Network.UploadFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="connectionTimeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </containers>
+      <file name="77f1be47-38e7-ea3e-5092-a2a9329d95f2" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      <apidata name="NetworkAvailableEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <file name="5dcff9d8-2bbe-78a6-a774-17e0c6a26bbb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs">
+      <topicdata name="NetworkAvailableEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      <apidata name="NetworkAvailableEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs.#ctor(System.Boolean)" />
+        <element api="P:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs.IsNetworkAvailable" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      </containers>
+      <file name="cca83acf-2a97-ab10-6112-2ad7f74ded13" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs">
+      <topicdata name="NetworkAvailableEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      <apidata name="NetworkAvailableEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      </containers>
+      <file name="e6630d01-7395-5769-236a-59784e086cb6" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs">
+      <topicdata name="NetworkAvailableEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      <apidata name="NetworkAvailableEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs.IsNetworkAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" />
+      </containers>
+      <file name="78ad85e8-4911-332d-c927-09e7f3b40c16" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="networkAvailable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" ref="true" />
+      </containers>
+      <file name="aef4965e-2bc3-05f8-6b29-1e87a6904bec" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs.IsNetworkAvailable">
+      <topicdata group="api" />
+      <apidata name="IsNetworkAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsNetworkAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" ref="true" />
+      </containers>
+      <file name="417d92a9-265b-7f7b-a1d8-b4f86e5590fe" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventHandler">
+      <topicdata group="api" />
+      <apidata name="NetworkAvailableEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.VisualBasic.Devices.NetworkAvailableEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c38f45d3-4f36-05b6-3189-e83e8b26cdfe" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.Ports">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Ports" />
+      <apidata name="Ports" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Ports.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d2193070-a4cf-9669-4739-64fd85c99726" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.Ports">
+      <topicdata name="Ports" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.Ports" />
+      <apidata name="Ports" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Ports.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.#ctor" />
+        <element api="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort">
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.Devices.Ports.SerialPortNames" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" />
+      </containers>
+      <file name="2078b2ef-4a62-c0bd-f9a5-b16bd8de80be" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.Ports">
+      <topicdata name="Ports" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.Ports" />
+      <apidata name="Ports" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Ports.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort">
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+          <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" />
+      </containers>
+      <file name="d5e11fd3-7974-125b-e596-76e363bc5dd9" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.Ports">
+      <topicdata name="Ports" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.Ports" />
+      <apidata name="Ports" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.Ports.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.Ports.SerialPortNames" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" />
+      </containers>
+      <file name="58af9f93-9914-0df7-687c-c4161ce60c41" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort">
+      <topicdata name="OpenSerialPort" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.Ports" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+        <element api="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="47982bfe-0e0b-89fc-7a75-5aacd7faa0ad" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="10b85f95-6715-c410-5da1-a20dcf7c0ed1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="db1592c9-6528-65e9-0726-5eb14e465521" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="7b235b8e-7eaa-b632-341c-3c760d8cc817" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity)">
+      <topicdata group="api" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="a50a4371-ecd7-ba33-8323-698821381cd8" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="78b79208-ca84-66e9-3da1-10c0b4f9504b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+      <topicdata group="api" />
+      <apidata name="OpenSerialPort" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Devices.Ports.OpenSerialPort" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="stopBits">
+          <type api="T:System.IO.Ports.StopBits" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="5096811c-3cff-d03e-e9a2-0c25443c59c5" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.Ports.SerialPortNames">
+      <topicdata group="api" />
+      <apidata name="SerialPortNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SerialPortNames" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.Ports" ref="true" />
+      </containers>
+      <file name="8dfac04f-7aaf-54fb-f51d-8f510a759757" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Devices.ServerComputer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      <apidata name="ServerComputer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.VisualBasic.Devices.Computer" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a77d9df0-9878-dd75-006a-801e3e964ea2" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Devices.ServerComputer">
+      <topicdata name="ServerComputer" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      <apidata name="ServerComputer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Clock" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.FileSystem" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Info" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Name" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Network" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Registry" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      </containers>
+      <file name="4432ecb1-69ba-f9f9-4e67-5fb465cf7507" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Devices.ServerComputer">
+      <topicdata name="ServerComputer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      <apidata name="ServerComputer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      </containers>
+      <file name="be04adb9-a7b1-be54-8e2c-9c9691557935" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Devices.ServerComputer">
+      <topicdata name="ServerComputer" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      <apidata name="ServerComputer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Clock" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.FileSystem" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Info" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Name" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Network" />
+        <element api="P:Microsoft.VisualBasic.Devices.ServerComputer.Registry" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" />
+      </containers>
+      <file name="1bdca9f3-1637-0b41-0146-e4944eaca203" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Devices.ServerComputer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="eac1bcfa-db06-67f4-d146-8693af95e10a" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.Clock">
+      <topicdata group="api" />
+      <apidata name="Clock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Clock" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Clock" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="8eb8a37e-fdb7-8a0c-2b5d-1d79c7dba49e" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.FileSystem">
+      <topicdata group="api" />
+      <apidata name="FileSystem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FileSystem" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="fb77cfd8-8e2c-6465-193f-e2e8dc5fce79" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.Info">
+      <topicdata group="api" />
+      <apidata name="Info" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Info" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.ComputerInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="d74db503-04c1-bfc1-e5bf-431b7022a478" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="bb824426-630f-c316-50cc-e6a3888760ae" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.Network">
+      <topicdata group="api" />
+      <apidata name="Network" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Network" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Devices.Network" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="12120b30-21cb-3cd8-cc63-56131c5aceda" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Devices.ServerComputer.Registry">
+      <topicdata group="api" />
+      <apidata name="Registry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Registry" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Devices" />
+        <type api="T:Microsoft.VisualBasic.Devices.ServerComputer" ref="true" />
+      </containers>
+      <file name="cac9c0b0-affc-324b-57e5-f38ac9ea1863" />
+    </api>
+  </apis>
+</reflection>

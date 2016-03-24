@@ -1,0 +1,1027 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Caching">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Caching.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>..\..\..\..\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Caching.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Caching.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+        <element api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+        <element api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+        <element api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      </elements>
+      <file name="d8685bfc-fb7b-b9ab-01f9-97134ded1765" />
+    </api>
+    <api id="T:System.Runtime.Caching.Configuration.CachingSectionGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      <apidata name="CachingSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSectionGroup" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+      </containers>
+      <file name="9c5879da-76e6-c014-ca4b-f6f225083535" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Configuration.CachingSectionGroup">
+      <topicdata name="CachingSectionGroup" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      <apidata name="CachingSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Caching.Configuration.CachingSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor" />
+        <element api="P:System.Runtime.Caching.Configuration.CachingSectionGroup.MemoryCaches" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      </containers>
+      <file name="0534d265-1cf6-d3ba-2edf-ed48dd7bfcca" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Configuration.CachingSectionGroup">
+      <topicdata name="CachingSectionGroup" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      <apidata name="CachingSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Caching.Configuration.CachingSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      </containers>
+      <file name="ec5c03cb-1e0c-1c77-0b2d-f0acf2699de8" />
+    </api>
+    <api id="Properties.T:System.Runtime.Caching.Configuration.CachingSectionGroup">
+      <topicdata name="CachingSectionGroup" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      <apidata name="CachingSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="P:System.Runtime.Caching.Configuration.CachingSectionGroup.MemoryCaches" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" />
+      </containers>
+      <file name="c6984ed8-9482-b391-86d0-2c977ff3c667" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.CachingSectionGroup.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" ref="true" />
+      </containers>
+      <file name="36244115-6fad-4481-063f-aa545e23d0f9" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.CachingSectionGroup.MemoryCaches">
+      <topicdata group="api" />
+      <apidata name="MemoryCaches" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MemoryCaches" />
+      <returns>
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.CachingSectionGroup" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>memoryCache</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fc0d41c7-b48f-41d9-fe48-204392025cba" />
+    </api>
+    <api id="T:System.Runtime.Caching.Configuration.MemoryCacheElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      <apidata name="MemoryCacheElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+      </containers>
+      <file name="b57195cf-ee36-cec4-1003-bd5aa9933390" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheElement">
+      <topicdata name="MemoryCacheElement" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      <apidata name="MemoryCacheElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheElement.#ctor(System.String)" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.CacheMemoryLimitMegabytes" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.Name" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PhysicalMemoryLimitPercentage" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PollingInterval" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      </containers>
+      <file name="3b9ea93b-2f70-e50e-514c-215e058bc32a" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Configuration.MemoryCacheElement">
+      <topicdata name="MemoryCacheElement" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      <apidata name="MemoryCacheElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      </containers>
+      <file name="b54380c7-62cd-bef3-aefe-da0eac9f4b13" />
+    </api>
+    <api id="Properties.T:System.Runtime.Caching.Configuration.MemoryCacheElement">
+      <topicdata name="MemoryCacheElement" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      <apidata name="MemoryCacheElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.CacheMemoryLimitMegabytes" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.Name" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PhysicalMemoryLimitPercentage" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PollingInterval" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" />
+      </containers>
+      <file name="957369dc-c38a-4e19-3826-d4ab9990d125" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheElement.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </containers>
+      <file name="fb7edc7e-e8e1-0de5-7318-f0e0ba968c50" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheElement.CacheMemoryLimitMegabytes">
+      <topicdata group="api" />
+      <apidata name="CacheMemoryLimitMegabytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CacheMemoryLimitMegabytes" />
+      <setter name="set_CacheMemoryLimitMegabytes" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>cacheMemoryLimitMegabytes</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cb72a691-c7ed-974c-a032-91521155c373" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheElement.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>name</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsKey">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.TypeConverterAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Configuration.WhiteSpaceTrimStringConverter" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>1</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="183b13a9-16f6-5c64-4ef7-7a09fc622e36" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PhysicalMemoryLimitPercentage">
+      <topicdata group="api" />
+      <apidata name="PhysicalMemoryLimitPercentage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PhysicalMemoryLimitPercentage" />
+      <setter name="set_PhysicalMemoryLimitPercentage" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>physicalMemoryLimitPercentage</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+          <assignment name="MaxValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>100</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ddb9e170-190e-477c-2941-cc97dfde8602" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheElement.PollingInterval">
+      <topicdata group="api" />
+      <apidata name="PollingInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PollingInterval" />
+      <setter name="set_PollingInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>pollingInterval</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>00:02:00</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.TypeConverterAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Configuration.InfiniteTimeSpanConverter" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61a62c0d-839b-8a9f-94b0-149e24f1ef1d" />
+    </api>
+    <api id="T:System.Runtime.Caching.Configuration.MemoryCacheSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      <apidata name="MemoryCacheSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+      </containers>
+      <file name="3e32679e-cc22-3f72-622b-b54a7e63cf11" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheSection">
+      <topicdata name="MemoryCacheSection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      <apidata name="MemoryCacheSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSection.NamedCaches" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      </containers>
+      <file name="068e43a8-4f6e-16ea-8fe5-6b7c5e047d13" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Configuration.MemoryCacheSection">
+      <topicdata name="MemoryCacheSection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      <apidata name="MemoryCacheSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      </containers>
+      <file name="99f2c121-7d25-2143-e056-911e0e931c99" />
+    </api>
+    <api id="Properties.T:System.Runtime.Caching.Configuration.MemoryCacheSection">
+      <topicdata name="MemoryCacheSection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      <apidata name="MemoryCacheSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSection.NamedCaches" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" />
+      </containers>
+      <file name="c0ab2ee9-39ae-8170-a771-c1dbb05b0732" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" ref="true" />
+      </containers>
+      <file name="5a342df4-08bc-12ac-4dde-4c9a2a9ed1e5" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheSection.NamedCaches">
+      <topicdata group="api" />
+      <apidata name="NamedCaches" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NamedCaches" />
+      <returns>
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>namedCaches</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="55f284ed-d2f6-75cb-d179-1f7a8be4f5a8" />
+    </api>
+    <api id="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      <apidata name="MemoryCacheSettingsCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+            </typeValue>
+          </argument>
+          <assignment name="CollectionType">
+            <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+            <enumValue>
+              <field name="AddRemoveClearMap" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="65a6d0e8-1b23-3180-e639-cfec2480648e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection">
+      <topicdata name="MemoryCacheSettingsCollection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      <apidata name="MemoryCacheSettingsCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Add(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Clear" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.CollectionType" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.IndexOf(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="Overload:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item">
+          <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.Int32)" />
+          <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.String)" />
+        </element>
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Remove(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      </containers>
+      <file name="2de8089e-85b9-b167-e6c3-409989d88b4b" />
+    </api>
+    <api id="Methods.T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection">
+      <topicdata name="MemoryCacheSettingsCollection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      <apidata name="MemoryCacheSettingsCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Add(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Clear" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.IndexOf(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Remove(System.Runtime.Caching.Configuration.MemoryCacheElement)" />
+        <element api="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      </containers>
+      <file name="c47c0fc1-3716-c5bd-5b30-f966fec49dfa" />
+    </api>
+    <api id="Properties.T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection">
+      <topicdata name="MemoryCacheSettingsCollection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      <apidata name="MemoryCacheSettingsCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.CollectionType" />
+        <element api="Overload:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item">
+          <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.Int32)" />
+          <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      </containers>
+      <file name="6c05b35d-e09e-244e-8dcd-542213db5465" />
+    </api>
+    <api id="Overload:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.Int32)" />
+        <element api="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="4f2acdde-6f4d-98fa-a46a-e47d772bd561" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="a2da0c6b-8e95-42ed-4358-f4855cb1bfb8" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Add(System.Runtime.Caching.Configuration.MemoryCacheElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cache">
+          <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="bc4ccbdd-c5f2-783a-6d86-2dc56ac1982b" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="300ccc41-eae3-9816-f5aa-a09491bea5b7" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.CollectionType">
+      <topicdata group="api" />
+      <apidata name="CollectionType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Configuration.ConfigurationElementCollection.CollectionType">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CollectionType" />
+      <returns>
+        <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="0f85e6c9-aa46-04b9-07f1-260c208c80e2" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.IndexOf(System.Runtime.Caching.Configuration.MemoryCacheElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cache">
+          <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="6e436f1b-771d-f870-782f-5c2264f89e9a" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="31a8e948-762a-2035-6c25-44d5000cb3f8" />
+    </api>
+    <api id="P:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="67390dee-9069-d57f-f9dd-33e129850928" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.Remove(System.Runtime.Caching.Configuration.MemoryCacheElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cache">
+          <type api="T:System.Runtime.Caching.Configuration.MemoryCacheElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="c886c141-304a-281e-051d-795c00152523" />
+    </api>
+    <api id="M:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Caching" module="System.Runtime.Caching" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Caching.Configuration" />
+        <type api="T:System.Runtime.Caching.Configuration.MemoryCacheSettingsCollection" ref="true" />
+      </containers>
+      <file name="797f31ca-d354-0506-7e3d-65107d8825b5" />
+    </api>
+  </apis>
+</reflection>

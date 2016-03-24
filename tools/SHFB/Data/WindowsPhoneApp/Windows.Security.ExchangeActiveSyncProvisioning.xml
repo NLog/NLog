@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.ExchangeActiveSyncProvisioning">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.ExchangeActiveSyncProvisioning" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </elements>
+      <file name="e6af8ffe-0cbe-658d-6039-4bb973ad57d7" />
+    </api>
+    <api id="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation" ref="true" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="819ff4a1-b65a-942c-0ceb-3e63d8e942e1" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="members" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemFirmwareVersion" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemHardwareVersion" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="650ef8a9-94d4-0f74-6232-0dffb6f9fba5" />
+    </api>
+    <api id="Methods.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="df811971-8443-6dd2-079f-e971629bc7b5" />
+    </api>
+    <api id="Properties.T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation">
+      <topicdata name="EasClientDeviceInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      <apidata name="EasClientDeviceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor" />
+      <elements>
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemFirmwareVersion" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemHardwareVersion" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName" />
+        <element api="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" />
+      </containers>
+      <file name="5d27ffda-bccb-c688-3800-e44dab0a638d" />
+    </api>
+    <api id="M:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="545071ea-8c0a-a19a-259f-f16e5dbf8741" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.FriendlyName">
+      <topicdata group="api" />
+      <apidata name="FriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="5ba7371b-2fc9-d0a7-3df0-0f54de799ee1" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="ca9134c3-ad26-60c7-fb27-330cd93c715d" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.OperatingSystem">
+      <topicdata group="api" />
+      <apidata name="OperatingSystem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OperatingSystem" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="693f0409-462f-b59c-703b-f0601f1bc238" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemFirmwareVersion">
+      <topicdata group="api" />
+      <apidata name="SystemFirmwareVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemFirmwareVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="622a655e-3e9d-abc5-cd43-118299d6c116" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemHardwareVersion">
+      <topicdata group="api" />
+      <apidata name="SystemHardwareVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemHardwareVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="9592ed00-6b73-4e15-f9fd-e33d413b162e" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemManufacturer">
+      <topicdata group="api" />
+      <apidata name="SystemManufacturer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemManufacturer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="e9eacf23-99b9-c2c5-7554-f3b28b1d6a2a" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemProductName">
+      <topicdata group="api" />
+      <apidata name="SystemProductName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemProductName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="92e694cd-a95d-027b-9170-c7f621313246" />
+    </api>
+    <api id="P:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation.SystemSku">
+      <topicdata group="api" />
+      <apidata name="SystemSku" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SystemSku" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.ExchangeActiveSyncProvisioning" />
+        <type api="T:Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation" ref="true" />
+      </containers>
+      <file name="2e66cb09-2a61-3ec9-8523-86e1f5c40b50" />
+    </api>
+  </apis>
+</reflection>

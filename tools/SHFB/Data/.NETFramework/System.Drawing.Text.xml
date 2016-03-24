@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Drawing">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Drawing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Drawing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Drawing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Drawing.Text">
+      <topicdata group="api" />
+      <apidata name="System.Drawing.Text" group="namespace" />
+      <elements>
+        <element api="T:System.Drawing.Text.FontCollection" />
+        <element api="T:System.Drawing.Text.GenericFontFamilies" />
+        <element api="T:System.Drawing.Text.HotkeyPrefix" />
+        <element api="T:System.Drawing.Text.InstalledFontCollection" />
+        <element api="T:System.Drawing.Text.PrivateFontCollection" />
+        <element api="T:System.Drawing.Text.TextRenderingHint" />
+      </elements>
+      <file name="87751553-1c2f-77c0-6b5b-700e64cb857b" />
+    </api>
+    <api id="T:System.Drawing.Text.FontCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Drawing.Text.FontCollection" />
+      <apidata name="FontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Drawing.Text.InstalledFontCollection" ref="true" />
+          <type api="T:System.Drawing.Text.PrivateFontCollection" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="f55bd641-aedc-31fd-6d1a-ed0abf187a63" />
+    </api>
+    <api id="AllMembers.T:System.Drawing.Text.FontCollection">
+      <topicdata name="FontCollection" group="list" subgroup="members" typeTopicId="T:System.Drawing.Text.FontCollection" />
+      <apidata name="FontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Drawing.Text.FontCollection.Dispose">
+          <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+          <element api="M:System.Drawing.Text.FontCollection.Dispose(System.Boolean)" />
+        </element>
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+        <element api="M:System.Drawing.Text.FontCollection.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" />
+      </containers>
+      <file name="3ff0a2d1-c6e8-8e04-440c-4093e4645289" />
+    </api>
+    <api id="Methods.T:System.Drawing.Text.FontCollection">
+      <topicdata name="FontCollection" group="list" subgroup="Methods" typeTopicId="T:System.Drawing.Text.FontCollection" />
+      <apidata name="FontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Drawing.Text.FontCollection.Dispose">
+          <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+          <element api="M:System.Drawing.Text.FontCollection.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Drawing.Text.FontCollection.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" />
+      </containers>
+      <file name="acae7852-bb96-df62-628f-c108c1d2e98f" />
+    </api>
+    <api id="Properties.T:System.Drawing.Text.FontCollection">
+      <topicdata name="FontCollection" group="list" subgroup="Properties" typeTopicId="T:System.Drawing.Text.FontCollection" />
+      <apidata name="FontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" />
+      </containers>
+      <file name="58408c42-bc6c-edfb-ecb5-ea35b56b22d5" />
+    </api>
+    <api id="Overload:System.Drawing.Text.FontCollection.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Drawing.Text.FontCollection" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+        <element api="M:System.Drawing.Text.FontCollection.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+      </containers>
+      <file name="32454f1d-8339-c608-40b2-5f82fe0fd5cf" />
+    </api>
+    <api id="M:System.Drawing.Text.FontCollection.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Drawing.Text.FontCollection.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+      </containers>
+      <file name="f212817a-1e32-05f8-9ac7-1fca33f5a678" />
+    </api>
+    <api id="M:System.Drawing.Text.FontCollection.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Drawing.Text.FontCollection.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+      </containers>
+      <file name="e0b184b5-f028-e2a8-2d38-1633c15f2b56" />
+    </api>
+    <api id="P:System.Drawing.Text.FontCollection.Families">
+      <topicdata group="api" />
+      <apidata name="Families" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Families" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Drawing.FontFamily" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+      </containers>
+      <file name="311a7d73-9f59-3911-a8e8-85ced0f5e9e5" />
+    </api>
+    <api id="M:System.Drawing.Text.FontCollection.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+      </containers>
+      <file name="3df4beff-5470-fa9d-b084-049452104b96" />
+    </api>
+    <api id="T:System.Drawing.Text.GenericFontFamilies">
+      <topicdata group="api" />
+      <apidata name="GenericFontFamilies" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Drawing.Text.GenericFontFamilies.Serif" />
+        <element api="F:System.Drawing.Text.GenericFontFamilies.SansSerif" />
+        <element api="F:System.Drawing.Text.GenericFontFamilies.Monospace" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="c6d5ddff-b362-99fc-02e1-b6ef6dedc020" />
+    </api>
+    <api id="F:System.Drawing.Text.GenericFontFamilies.Monospace">
+      <topicdata group="api" notopic="" />
+      <apidata name="Monospace" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </containers>
+      <file name="93fae82f-d531-3aef-932e-45a0fad957f4" />
+    </api>
+    <api id="F:System.Drawing.Text.GenericFontFamilies.SansSerif">
+      <topicdata group="api" notopic="" />
+      <apidata name="SansSerif" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </containers>
+      <file name="4ba1ef05-c261-e90f-6fe0-e18314738638" />
+    </api>
+    <api id="F:System.Drawing.Text.GenericFontFamilies.Serif">
+      <topicdata group="api" notopic="" />
+      <apidata name="Serif" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.GenericFontFamilies" ref="false" />
+      </containers>
+      <file name="710a987b-bbc1-4c2b-53e4-87c88d46c8ac" />
+    </api>
+    <api id="T:System.Drawing.Text.HotkeyPrefix">
+      <topicdata group="api" />
+      <apidata name="HotkeyPrefix" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Drawing.Text.HotkeyPrefix.None" />
+        <element api="F:System.Drawing.Text.HotkeyPrefix.Show" />
+        <element api="F:System.Drawing.Text.HotkeyPrefix.Hide" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="f53140a3-6a43-4eef-c213-d007b6b026fc" />
+    </api>
+    <api id="F:System.Drawing.Text.HotkeyPrefix.Hide">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hide" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </containers>
+      <file name="5a42c52b-4f05-7489-cc49-069b2f98da42" />
+    </api>
+    <api id="F:System.Drawing.Text.HotkeyPrefix.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </containers>
+      <file name="0fa1894c-9616-c53b-cb3f-f987dfc34d25" />
+    </api>
+    <api id="F:System.Drawing.Text.HotkeyPrefix.Show">
+      <topicdata group="api" notopic="" />
+      <apidata name="Show" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.HotkeyPrefix" ref="false" />
+      </containers>
+      <file name="e751670f-5dbb-a244-da57-018acf0614db" />
+    </api>
+    <api id="T:System.Drawing.Text.InstalledFontCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Drawing.Text.InstalledFontCollection" />
+      <apidata name="InstalledFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.InstalledFontCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="5b300803-d214-7e5c-58fc-a99750e583d3" />
+    </api>
+    <api id="AllMembers.T:System.Drawing.Text.InstalledFontCollection">
+      <topicdata name="InstalledFontCollection" group="list" subgroup="members" typeTopicId="T:System.Drawing.Text.InstalledFontCollection" />
+      <apidata name="InstalledFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.InstalledFontCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+        <element api="M:System.Drawing.Text.InstalledFontCollection.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.InstalledFontCollection" />
+      </containers>
+      <file name="2a918126-e72b-03af-7410-aee880570558" />
+    </api>
+    <api id="Methods.T:System.Drawing.Text.InstalledFontCollection">
+      <topicdata name="InstalledFontCollection" group="list" subgroup="Methods" typeTopicId="T:System.Drawing.Text.InstalledFontCollection" />
+      <apidata name="InstalledFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.InstalledFontCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.InstalledFontCollection" />
+      </containers>
+      <file name="f1d97e2a-2fff-c3a5-816d-0a96bbf28510" />
+    </api>
+    <api id="Properties.T:System.Drawing.Text.InstalledFontCollection">
+      <topicdata name="InstalledFontCollection" group="list" subgroup="Properties" typeTopicId="T:System.Drawing.Text.InstalledFontCollection" />
+      <apidata name="InstalledFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.InstalledFontCollection.#ctor" />
+      <elements>
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.InstalledFontCollection" />
+      </containers>
+      <file name="8ff3cb29-202f-a647-229a-9249c0f4a5df" />
+    </api>
+    <api id="M:System.Drawing.Text.InstalledFontCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.InstalledFontCollection" ref="true" />
+      </containers>
+      <file name="0e5961fe-ee53-7e7a-6bb3-6548e84c9423" />
+    </api>
+    <api id="T:System.Drawing.Text.PrivateFontCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Drawing.Text.PrivateFontCollection" />
+      <apidata name="PrivateFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.PrivateFontCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Drawing.Text.FontCollection" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="afb6d0c0-b04f-bea9-43d1-492929581cad" />
+    </api>
+    <api id="AllMembers.T:System.Drawing.Text.PrivateFontCollection">
+      <topicdata name="PrivateFontCollection" group="list" subgroup="members" typeTopicId="T:System.Drawing.Text.PrivateFontCollection" />
+      <apidata name="PrivateFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.PrivateFontCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+        <element api="M:System.Drawing.Text.PrivateFontCollection.#ctor" />
+        <element api="M:System.Drawing.Text.PrivateFontCollection.AddFontFile(System.String)" />
+        <element api="M:System.Drawing.Text.PrivateFontCollection.AddMemoryFont(System.IntPtr,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" />
+      </containers>
+      <file name="45d35826-cff8-64c7-10cc-a474fced40ce" />
+    </api>
+    <api id="Methods.T:System.Drawing.Text.PrivateFontCollection">
+      <topicdata name="PrivateFontCollection" group="list" subgroup="Methods" typeTopicId="T:System.Drawing.Text.PrivateFontCollection" />
+      <apidata name="PrivateFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.PrivateFontCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Drawing.Text.FontCollection.Dispose" />
+        <element api="M:System.Drawing.Text.PrivateFontCollection.AddFontFile(System.String)" />
+        <element api="M:System.Drawing.Text.PrivateFontCollection.AddMemoryFont(System.IntPtr,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" />
+      </containers>
+      <file name="fedb740c-4dfe-7ce5-a256-fa2e90e615de" />
+    </api>
+    <api id="Properties.T:System.Drawing.Text.PrivateFontCollection">
+      <topicdata name="PrivateFontCollection" group="list" subgroup="Properties" typeTopicId="T:System.Drawing.Text.PrivateFontCollection" />
+      <apidata name="PrivateFontCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Drawing.Text.PrivateFontCollection.#ctor" />
+      <elements>
+        <element api="P:System.Drawing.Text.FontCollection.Families" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" />
+      </containers>
+      <file name="7dd21d08-4a3a-eda2-8deb-2bdb6253e4a0" />
+    </api>
+    <api id="M:System.Drawing.Text.PrivateFontCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" ref="true" />
+      </containers>
+      <file name="16a1d129-3175-3443-f420-28cc45afaef8" />
+    </api>
+    <api id="M:System.Drawing.Text.PrivateFontCollection.AddFontFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddFontFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="filename">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" ref="true" />
+      </containers>
+      <file name="cd6aa687-db83-b97b-96e3-2333faddfb74" />
+    </api>
+    <api id="M:System.Drawing.Text.PrivateFontCollection.AddMemoryFont(System.IntPtr,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AddMemoryFont" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="memory">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.PrivateFontCollection" ref="true" />
+      </containers>
+      <file name="c2ba0778-aa08-79a7-9316-7c36c102c554" />
+    </api>
+    <api id="T:System.Drawing.Text.TextRenderingHint">
+      <topicdata group="api" />
+      <apidata name="TextRenderingHint" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Drawing.Text.TextRenderingHint.SystemDefault" />
+        <element api="F:System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit" />
+        <element api="F:System.Drawing.Text.TextRenderingHint.SingleBitPerPixel" />
+        <element api="F:System.Drawing.Text.TextRenderingHint.AntiAliasGridFit" />
+        <element api="F:System.Drawing.Text.TextRenderingHint.AntiAlias" />
+        <element api="F:System.Drawing.Text.TextRenderingHint.ClearTypeGridFit" />
+      </elements>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+      </containers>
+      <file name="9bf38e6c-a837-af40-6747-d28ad239be91" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.AntiAlias">
+      <topicdata group="api" notopic="" />
+      <apidata name="AntiAlias" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="031ec214-f240-11d7-29a5-c57ef9de8162" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.AntiAliasGridFit">
+      <topicdata group="api" notopic="" />
+      <apidata name="AntiAliasGridFit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="887904dc-f2da-5f10-688a-9b0dcc8b1b3a" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.ClearTypeGridFit">
+      <topicdata group="api" notopic="" />
+      <apidata name="ClearTypeGridFit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="5087b08f-a976-65eb-b1fc-14d4aa1a029b" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.SingleBitPerPixel">
+      <topicdata group="api" notopic="" />
+      <apidata name="SingleBitPerPixel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="003fee83-a5ea-e4bc-8386-60284e5dc49c" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit">
+      <topicdata group="api" notopic="" />
+      <apidata name="SingleBitPerPixelGridFit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="46d4a9a8-3385-cffc-19af-e1ba045a4de4" />
+    </api>
+    <api id="F:System.Drawing.Text.TextRenderingHint.SystemDefault">
+      <topicdata group="api" notopic="" />
+      <apidata name="SystemDefault" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Drawing" module="System.Drawing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Drawing.Text" />
+        <type api="T:System.Drawing.Text.TextRenderingHint" ref="false" />
+      </containers>
+      <file name="da497e95-8708-b0b6-907a-8171059e3ef7" />
+    </api>
+  </apis>
+</reflection>

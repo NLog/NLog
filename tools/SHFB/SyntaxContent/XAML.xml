@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_XAML Usage">XAML</item>
+  <item id="devlang_XamlUsage">XAML</item>
+  <item id="devlang_xaml">XAML</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_XAML Usage">XAML</item>
+  <item id="metaLang_XamlUsage">XAML</item>
+  <item id="metaLang_xaml">XAML</item>
+
+	<!-- XAML syntax section messages -->
+	<item id="classXamlSyntax_abstract">This class is abstract; see <strong><include item="familyTitle"/></strong> for derived non-abstract classes usable in XAML.</item>
+	<item id="classXamlSyntax_excludedSubClass">This managed class is not typically used in XAML.</item>
+	<item id="classXamlSyntax_noDefaultCtor">You cannot directly create an instance of this class in XAML.</item>
+	<item id="classXamlSyntax_noDefaultCtorWithTypeConverter"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="structXamlSyntax_nonXaml">You cannot use this managed structure in XAML.</item>
+	<item id="structXamlSyntax_attributeUsage"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="eventXamlSyntax_parentIsExcludedSubClass">Members of this class are either not typically used in XAML, or cannot be used in XAML.</item>
+	<item id="eventXamlSyntax_noXamlSyntaxForInterfaceMembers">You cannot use this event in XAML.</item>
+	<item id="eventXamlSyntax_nonXamlParent">You cannot use this event in XAML.</item>
+	<item id="eventXamlSyntax_notPublic">You cannot use this event in XAML.</item>
+	<item id="eventXamlSyntax_abstract">You cannot use this event in XAML.</item>
+	<item id="eventXamlSyntax_nonXaml">You cannot use this event in XAML.</item>  <!-- This id is not currently output by SyntaxBuilder -->
+
+	<item id="propertyXamlSyntax_parentIsExcludedSubClass">Members of this class are either not typically used in XAML, or cannot be used in XAML.</item>
+	<item id="propertyXamlSyntax_noXamlSyntaxForInterfaceMembers">You cannot set this property in XAML.</item>
+	<item id="propertyXamlSyntax_nonXamlParent">You cannot set this property in XAML.</item>
+	<item id="propertyXamlSyntax_notPublic">You cannot set this property in XAML.</item>
+	<item id="propertyXamlSyntax_abstract">You cannot set this property in XAML.</item>
+	<item id="propertyXamlSyntax_readOnly">You cannot set this property in XAML.</item>
+	<item id="propertyXamlSyntax_abstractType">For XAML information, see the {0} type.</item>
+	<item id="propertyXamlSyntax_nonXaml">You cannot set this property in XAML.</item>
+
+	<!-- Syntax used with all enumerations in XAML assemblies -->
+	<item id="enumerationOverviewXamlSyntax">&lt;<em>object property</em>="<em>enumerationMemberName</em>" .../&gt;</item>
+
+	<!-- Boilerplate used with all method, field, etc. in XAML assemblies -->
+	<item id="constructorOverviewXamlSyntax">You cannot use constructors in XAML.</item>
+	<item id="methodOverviewXamlSyntax">You cannot use methods in XAML.</item>
+	<item id="fieldOverviewXamlSyntax">You cannot use fields in XAML.</item>
+	<item id="delegateOverviewXamlSyntax">In XAML, you can use delegates but you cannot define your own.</item>
+	<item id="interfaceOverviewXamlSyntax">Interfaces cannot be used directly in XAML; see types that implement this interface.</item>
+
+	<!-- Boilerplate used with all types and members in all non-XAML assemblies -->
+	<item id="nonXamlAssemblyBoilerplate">Not applicable.</item>
+
+	<!-- XAML section headings -->
+	<item id="xamlAttributeUsageHeading">XAML Attribute Usage</item>
+	<item id="xamlObjectElementUsageHeading">XAML Object Element Usage</item>
+	<item id="xamlImplicitCollectionUsageHeading">XAML Implicit Collection Usage</item>
+	<item id="xamlPropertyElementUsageHeading">XAML Property Element Usage</item>
+	<item id="xamlContentElementUsageHeading">XAML Content Element Usage</item>
+	<item id="xamlValuesSectionHeading">XAML Values</item>
+	<item id="xamlSyntaxBoilerplateHeading">XAML</item>
+
+</content>

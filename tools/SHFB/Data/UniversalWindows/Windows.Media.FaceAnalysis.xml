@@ -1,0 +1,1112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.FaceAnalysis">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.FaceAnalysis" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.FaceAnalysis.DetectedFace" />
+        <element api="T:Windows.Media.FaceAnalysis.FaceTracker" />
+        <element api="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      </elements>
+      <file name="a091feaf-9dca-693d-6ebe-73ccb7296ee5" />
+    </api>
+    <api id="T:Windows.Media.FaceAnalysis.DetectedFace">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.FaceAnalysis.DetectedFace" />
+      <apidata name="DetectedFace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3c7a9458-dffb-2608-2fd8-ba37f4207f94" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.FaceAnalysis.DetectedFace">
+      <topicdata name="DetectedFace" group="list" subgroup="members" typeTopicId="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      <apidata name="DetectedFace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.FaceAnalysis.DetectedFace.FaceBox" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      </containers>
+      <file name="003f2163-fa78-3f87-0698-42bd9797103e" />
+    </api>
+    <api id="Methods.T:Windows.Media.FaceAnalysis.DetectedFace">
+      <topicdata name="DetectedFace" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      <apidata name="DetectedFace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      </containers>
+      <file name="8b36537c-bccd-efe4-72cc-39f3c2ec9710" />
+    </api>
+    <api id="Properties.T:Windows.Media.FaceAnalysis.DetectedFace">
+      <topicdata name="DetectedFace" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      <apidata name="DetectedFace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.FaceAnalysis.DetectedFace.FaceBox" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.DetectedFace" />
+      </containers>
+      <file name="8231c03d-3b44-bebd-ca3e-af7430acde61" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.DetectedFace.FaceBox">
+      <topicdata group="api" />
+      <apidata name="FaceBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FaceBox" />
+      <returns>
+        <type api="T:Windows.Graphics.Imaging.BitmapBounds" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.DetectedFace" ref="true" />
+      </containers>
+      <file name="eacaeb8f-7095-af00-e179-f3811e7987be" />
+    </api>
+    <api id="T:Windows.Media.FaceAnalysis.FaceDetector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.FaceAnalysis.FaceDetector" />
+      <apidata name="FaceDetector" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5fac1605-e223-35fb-00ed-fdec2e8dc5f3" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.FaceAnalysis.FaceDetector">
+      <topicdata name="FaceDetector" group="list" subgroup="members" typeTopicId="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      <apidata name="FaceDetector" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.CreateAsync" />
+        <element api="Overload:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync">
+          <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Graphics.Imaging.BitmapBounds)" />
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.GetSupportedBitmapPixelFormats" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.IsSupported" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.MaxDetectableFaceSize" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.MinDetectableFaceSize" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      </containers>
+      <file name="bd039689-1ff5-c110-4e87-c4919e042796" />
+    </api>
+    <api id="Methods.T:Windows.Media.FaceAnalysis.FaceDetector">
+      <topicdata name="FaceDetector" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      <apidata name="FaceDetector" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.CreateAsync" />
+        <element api="Overload:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync">
+          <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap)" />
+          <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Graphics.Imaging.BitmapBounds)" />
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.GetSupportedBitmapPixelFormats" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      </containers>
+      <file name="e09fa2ec-3d26-e55a-d354-c9e3ca2eae52" />
+    </api>
+    <api id="Properties.T:Windows.Media.FaceAnalysis.FaceDetector">
+      <topicdata name="FaceDetector" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      <apidata name="FaceDetector" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.IsSupported" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.MaxDetectableFaceSize" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceDetector.MinDetectableFaceSize" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" />
+      </containers>
+      <file name="dc510d23-fd58-a701-3d0e-79fcc56cbe54" />
+    </api>
+    <api id="Overload:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync">
+      <topicdata name="DetectFacesAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.FaceAnalysis.FaceDetector" />
+      <apidata name="DetectFacesAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap)" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Graphics.Imaging.BitmapBounds)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="592d5f7e-b848-13a9-28c0-2e9f77aab137" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceDetector.CreateAsync">
+      <topicdata group="api" />
+      <apidata name="CreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="15f2b4d7-9e1a-3f87-df85-583a405a8ae8" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap)">
+      <topicdata group="api" />
+      <apidata name="DetectFacesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="image" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Media.FaceAnalysis.DetectedFace" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DetectFacesAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="971e15d8-8996-999d-b658-6ae5630b4dea" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync(Windows.Graphics.Imaging.SoftwareBitmap,Windows.Graphics.Imaging.BitmapBounds)">
+      <topicdata group="api" />
+      <apidata name="DetectFacesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.FaceAnalysis.FaceDetector.DetectFacesAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="image" in="true">
+          <type api="T:Windows.Graphics.Imaging.SoftwareBitmap" ref="true" />
+        </parameter>
+        <parameter name="searchArea" in="true">
+          <type api="T:Windows.Graphics.Imaging.BitmapBounds" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Media.FaceAnalysis.DetectedFace" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DetectFacesWithSearchAreaAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f74c5c55-ed5e-8088-46f7-5e335b7d5b33" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceDetector.GetSupportedBitmapPixelFormats">
+      <topicdata group="api" />
+      <apidata name="GetSupportedBitmapPixelFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Imaging.BitmapPixelFormat" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="f0774b18-a9ce-9308-0e1b-e3d875c62c13" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceDetector.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)">
+      <topicdata group="api" />
+      <apidata name="IsBitmapPixelFormatSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bitmapPixelFormat" in="true">
+          <type api="T:Windows.Graphics.Imaging.BitmapPixelFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="0a1feee4-3b77-51d6-ad4b-305220a9364d" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceDetector.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="532fa547-523d-9664-5366-62afb7c2c27b" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceDetector.MaxDetectableFaceSize">
+      <topicdata group="api" />
+      <apidata name="MaxDetectableFaceSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxDetectableFaceSize" />
+      <setter name="set_MaxDetectableFaceSize" />
+      <returns>
+        <type api="T:Windows.Graphics.Imaging.BitmapSize" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="2b3a1745-4fdf-0d00-74a8-228843e1f677" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceDetector.MinDetectableFaceSize">
+      <topicdata group="api" />
+      <apidata name="MinDetectableFaceSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinDetectableFaceSize" />
+      <setter name="set_MinDetectableFaceSize" />
+      <returns>
+        <type api="T:Windows.Graphics.Imaging.BitmapSize" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceDetector" ref="true" />
+      </containers>
+      <file name="fb13206a-9d02-a076-61f8-1beb0d1dd7c9" />
+    </api>
+    <api id="T:Windows.Media.FaceAnalysis.FaceTracker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.FaceAnalysis.FaceTracker" />
+      <apidata name="FaceTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="655fc8bf-1994-9126-63e2-d3b5216d8e4a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.FaceAnalysis.FaceTracker">
+      <topicdata name="FaceTracker" group="list" subgroup="members" typeTopicId="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      <apidata name="FaceTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.CreateAsync" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.GetSupportedBitmapPixelFormats" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.IsSupported" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.MaxDetectableFaceSize" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.MinDetectableFaceSize" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.ProcessNextFrameAsync(Windows.Media.VideoFrame)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      </containers>
+      <file name="2e1ea798-6022-5bad-de74-b5976b8bf58b" />
+    </api>
+    <api id="Methods.T:Windows.Media.FaceAnalysis.FaceTracker">
+      <topicdata name="FaceTracker" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      <apidata name="FaceTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.CreateAsync" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.GetSupportedBitmapPixelFormats" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)" />
+        <element api="M:Windows.Media.FaceAnalysis.FaceTracker.ProcessNextFrameAsync(Windows.Media.VideoFrame)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      </containers>
+      <file name="ce95f3df-6eca-0fa0-316d-b5305186eae4" />
+    </api>
+    <api id="Properties.T:Windows.Media.FaceAnalysis.FaceTracker">
+      <topicdata name="FaceTracker" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      <apidata name="FaceTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.IsSupported" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.MaxDetectableFaceSize" />
+        <element api="P:Windows.Media.FaceAnalysis.FaceTracker.MinDetectableFaceSize" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" />
+      </containers>
+      <file name="af728e70-0c32-6d3b-19a6-10ec48a4c19a" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceTracker.CreateAsync">
+      <topicdata group="api" />
+      <apidata name="CreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="83cebaf2-30f4-739b-9557-02cb2cd50198" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceTracker.GetSupportedBitmapPixelFormats">
+      <topicdata group="api" />
+      <apidata name="GetSupportedBitmapPixelFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Imaging.BitmapPixelFormat" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <file name="878b6278-b42a-2da9-ed1f-9bea8b4aebd8" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceTracker.IsBitmapPixelFormatSupported(Windows.Graphics.Imaging.BitmapPixelFormat)">
+      <topicdata group="api" />
+      <apidata name="IsBitmapPixelFormatSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bitmapPixelFormat" in="true">
+          <type api="T:Windows.Graphics.Imaging.BitmapPixelFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <file name="ce3d686f-cb5a-4b4d-dde5-8b77ee292de8" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceTracker.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <file name="4344c190-9d4a-dc18-9353-4113a7b20734" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceTracker.MaxDetectableFaceSize">
+      <topicdata group="api" />
+      <apidata name="MaxDetectableFaceSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxDetectableFaceSize" />
+      <setter name="set_MaxDetectableFaceSize" />
+      <returns>
+        <type api="T:Windows.Graphics.Imaging.BitmapSize" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <file name="6aaaded2-f2d6-8fec-0528-85ad18b8cc39" />
+    </api>
+    <api id="P:Windows.Media.FaceAnalysis.FaceTracker.MinDetectableFaceSize">
+      <topicdata group="api" />
+      <apidata name="MinDetectableFaceSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinDetectableFaceSize" />
+      <setter name="set_MinDetectableFaceSize" />
+      <returns>
+        <type api="T:Windows.Graphics.Imaging.BitmapSize" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <file name="a5d36e42-2c22-7304-5edd-9fbab2e6ee62" />
+    </api>
+    <api id="M:Windows.Media.FaceAnalysis.FaceTracker.ProcessNextFrameAsync(Windows.Media.VideoFrame)">
+      <topicdata group="api" />
+      <apidata name="ProcessNextFrameAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="videoFrame" in="true">
+          <type api="T:Windows.Media.VideoFrame" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Media.FaceAnalysis.DetectedFace" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.FaceAnalysis" />
+        <type api="T:Windows.Media.FaceAnalysis.FaceTracker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6d67bbd5-0885-c9f1-7a85-3cc13a381646" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Resources">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Resources" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Resources.StreamResourceInfo" />
+      </elements>
+      <file name="a0f81ba6-6e00-c0f6-2951-7422d550644f" />
+    </api>
+    <api id="T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+      </containers>
+      <file name="c2212159-f67f-1b06-decd-a1af73d61c37" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="members" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Resources.StreamResourceInfo.#ctor(System.IO.Stream,System.String)" />
+        <element api="P:System.Windows.Resources.StreamResourceInfo.ContentType" />
+        <element api="P:System.Windows.Resources.StreamResourceInfo.Stream" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="60c1936a-778a-d229-046e-a9c539dad0d2" />
+    </api>
+    <api id="Methods.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="9034e2bf-30c3-a825-ac32-34928e7cc73e" />
+    </api>
+    <api id="Properties.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Resources.StreamResourceInfo.ContentType" />
+        <element api="P:System.Windows.Resources.StreamResourceInfo.Stream" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="bccdff0e-81a4-3d1d-6210-85a14a6891a8" />
+    </api>
+    <api id="M:System.Windows.Resources.StreamResourceInfo.#ctor(System.IO.Stream,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="contentType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="9565d773-5d08-39ca-11fd-67694b15b304" />
+    </api>
+    <api id="P:System.Windows.Resources.StreamResourceInfo.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="f7c854d9-9608-89fb-5267-679fea06d786" />
+    </api>
+    <api id="P:System.Windows.Resources.StreamResourceInfo.Stream">
+      <topicdata group="api" />
+      <apidata name="Stream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Stream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="c51a1e37-448c-5db3-e128-410e4a08af74" />
+    </api>
+  </apis>
+</reflection>

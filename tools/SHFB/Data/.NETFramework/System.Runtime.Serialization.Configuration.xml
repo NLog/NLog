@@ -1,0 +1,2332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Serialization">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Serialization.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Serialization.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Serialization.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+        <element api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+        <element api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+        <element api="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+        <element api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+        <element api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+        <element api="T:System.Runtime.Serialization.Configuration.TypeElement" />
+        <element api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+        <element api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      </elements>
+      <file name="32e8a67b-bcda-5900-8fc5-c4f85e52aa2f" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      <apidata name="DataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="02286376-63d4-b7eb-379a-47b9a5c2c8d3" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.DataContractSerializerSection">
+      <topicdata name="DataContractSerializerSection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      <apidata name="DataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor" />
+        <element api="P:System.Runtime.Serialization.Configuration.DataContractSerializerSection.DeclaredTypes" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      </containers>
+      <file name="6b0ce962-dd4a-c507-e94e-41a0b38170f3" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.DataContractSerializerSection">
+      <topicdata name="DataContractSerializerSection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      <apidata name="DataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      </containers>
+      <file name="3c3ca9c4-941c-d7f9-cd79-88d7b459c418" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.DataContractSerializerSection">
+      <topicdata name="DataContractSerializerSection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      <apidata name="DataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Runtime.Serialization.Configuration.DataContractSerializerSection.DeclaredTypes" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" />
+      </containers>
+      <file name="6e612aa9-a9d1-885f-beb7-cbe6ae8c7fab" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DataContractSerializerSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" ref="true" />
+      </containers>
+      <file name="b2466265-11e7-b50e-eedf-c7eab8277c0f" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.DataContractSerializerSection.DeclaredTypes">
+      <topicdata group="api" />
+      <apidata name="DeclaredTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeclaredTypes" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>declaredTypes</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="93693d5c-73f1-1551-613a-22c95475bd15" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      <apidata name="DeclaredTypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="22dd0ff3-f2ac-031b-442a-a0b066a25bf5" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElement">
+      <topicdata name="DeclaredTypeElement" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      <apidata name="DeclaredTypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor">
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.KnownTypes" />
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      </containers>
+      <file name="97705f91-e66a-867a-31d4-2479e770db85" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.DeclaredTypeElement">
+      <topicdata name="DeclaredTypeElement" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      <apidata name="DeclaredTypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      </containers>
+      <file name="cc20656e-4f0f-85ad-49fc-de54f0a50ddc" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.DeclaredTypeElement">
+      <topicdata name="DeclaredTypeElement" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      <apidata name="DeclaredTypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.KnownTypes" />
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      </containers>
+      <file name="2dfb96d6-17b4-0220-1c72-d3372e463c3e" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </containers>
+      <file name="f4873ca8-b4b5-1566-908a-3cfa36b8b861" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </containers>
+      <file name="504f41fd-b71d-92e9-e745-a8e69c693070" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElement.#ctor" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </containers>
+      <file name="4d34e125-65c3-4751-2b97-00101430a085" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.KnownTypes">
+      <topicdata group="api" />
+      <apidata name="KnownTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KnownTypes" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsDefaultCollection" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="131b77c6-51e7-46cc-0a84-e7262b052b8d" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.DeclaredTypeElement.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsKey" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8367f6ff-e113-ec05-0110-9c2443b509ce" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="DeclaredTypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d91617c6-02c1-3590-852d-1bc91b197604" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection">
+      <topicdata name="DeclaredTypeElementCollection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="DeclaredTypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Add(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Clear" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Contains(System.String)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item">
+          <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.Int32)" />
+          <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove">
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      </containers>
+      <file name="9a9ae104-8be6-9525-3747-8c7c72d101cd" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection">
+      <topicdata name="DeclaredTypeElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="DeclaredTypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Add(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Clear" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Contains(System.String)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove">
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+          <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.String)" />
+        </element>
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      </containers>
+      <file name="1d06a7e7-0d96-195b-2767-64f5ecf1436a" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection">
+      <topicdata name="DeclaredTypeElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="DeclaredTypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item">
+          <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.Int32)" />
+          <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      </containers>
+      <file name="0dcce113-4b11-1b62-3b61-e9dbf468d968" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.Int32)" />
+        <element api="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="2afd7554-3543-4b1f-6785-fc8aeb45d361" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove">
+      <topicdata name="Remove" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.Runtime.Serialization.Configuration.DeclaredTypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="144af2cf-2b4d-b369-cd59-d07315d8a471" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="bb5d97a5-45f1-1eab-2181-c499b7957847" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Add(System.Runtime.Serialization.Configuration.DeclaredTypeElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="429665de-f8b8-6c1c-6d7a-fc8927fdc8f9" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="d0bb6cdc-9677-2514-dcf5-ba09ac987515" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Contains(System.String)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="d2cfde75-f7b8-1d57-ee62-b494480b2659" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.DeclaredTypeElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="7ee2ae91-7d4c-2443-8914-609e0bfb4f5d" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="2d738566-e925-b170-6bbe-1b1d91df92ee" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="c478ddac-98f7-fad6-ed93-509088a4b120" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.Runtime.Serialization.Configuration.DeclaredTypeElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="69bdfec8-5ff6-75dc-4af9-727bdbef5576" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.Remove" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="0f5be9db-f576-2f59-1630-1cbc2c1c4eac" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection" ref="true" />
+      </containers>
+      <file name="28aeedda-f3c6-67e1-a7e4-56fce3b73bee" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      <apidata name="NetDataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="eda8ba0e-f75f-b95f-b46b-96564a1cce9a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection">
+      <topicdata name="NetDataContractSerializerSection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      <apidata name="NetDataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor" />
+        <element api="P:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.EnableUnsafeTypeForwarding" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      </containers>
+      <file name="e8adb787-d064-6bbc-23f6-0d88f826c776" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection">
+      <topicdata name="NetDataContractSerializerSection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      <apidata name="NetDataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      </containers>
+      <file name="0980074a-ae3a-5700-2559-71ac7d8b0e78" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection">
+      <topicdata name="NetDataContractSerializerSection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      <apidata name="NetDataContractSerializerSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.EnableUnsafeTypeForwarding" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" />
+      </containers>
+      <file name="cb646684-4828-305a-a643-0a779e9e4707" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" ref="true" />
+      </containers>
+      <file name="bb38ca6f-9b42-5766-0316-54fd163940d9" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection.EnableUnsafeTypeForwarding">
+      <topicdata group="api" />
+      <apidata name="EnableUnsafeTypeForwarding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EnableUnsafeTypeForwarding" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>enableUnsafeTypeForwarding</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0f6e11ee-e46b-c362-057f-d7da58164862" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.ParameterElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      <apidata name="ParameterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="a2fd5e69-acec-229f-d1c4-7d800393efe8" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.ParameterElement">
+      <topicdata name="ParameterElement" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      <apidata name="ParameterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.ParameterElement.#ctor">
+          <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+          <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.Int32)" />
+          <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Index" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Parameters" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      </containers>
+      <file name="6a6e9003-b22c-2fce-3366-e5d4ce794f66" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.ParameterElement">
+      <topicdata name="ParameterElement" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      <apidata name="ParameterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      </containers>
+      <file name="7343114d-1d55-a851-3875-79cad68b838b" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.ParameterElement">
+      <topicdata name="ParameterElement" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      <apidata name="ParameterElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Index" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Parameters" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      </containers>
+      <file name="f162d522-2b60-16a7-1649-e7f94e9ab95f" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Configuration.ParameterElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.ParameterElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <file name="d9392b0c-00c3-6f0a-4d8a-e1961d55334d" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <file name="69c501dd-c582-8dc7-3b06-82ce56fe8c60" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <file name="f87ddc1d-37c3-a02b-d154-ede2b846e4a4" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElement.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.ParameterElement.#ctor" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <file name="fdf18fe3-83e8-5592-9d18-020cd71496fc" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.ParameterElement.Index">
+      <topicdata group="api" />
+      <apidata name="Index" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Index" />
+      <setter name="set_Index" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>index</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f31ce781-dd88-5055-38ec-a199190aca95" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.ParameterElement.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsDefaultCollection" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b9b86168-e57a-1ca4-a5d6-2a7a4acf311a" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.ParameterElement.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2d8abfa7-e2f5-7afa-57d7-72666f3ccf1d" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.ParameterElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      <apidata name="ParameterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+            </typeValue>
+          </argument>
+          <assignment name="AddItemName">
+            <type api="T:System.String" ref="true" />
+            <value>parameter</value>
+          </assignment>
+          <assignment name="CollectionType">
+            <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+            <enumValue>
+              <field name="BasicMap" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="dc11943b-058f-7489-8e58-b491dfa20e65" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.ParameterElementCollection">
+      <topicdata name="ParameterElementCollection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      <apidata name="ParameterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Add(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Clear" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.CollectionType" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Contains(System.String)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.IndexOf(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.Item(System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Remove(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      </containers>
+      <file name="d0749a46-7b92-165a-40ad-1fcd327c5dc1" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.ParameterElementCollection">
+      <topicdata name="ParameterElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      <apidata name="ParameterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Add(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Clear" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Contains(System.String)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.IndexOf(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Remove(System.Runtime.Serialization.Configuration.ParameterElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      </containers>
+      <file name="38b30d99-d685-f28c-0e9a-bb9316b52613" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.ParameterElementCollection">
+      <topicdata name="ParameterElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      <apidata name="ParameterElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.CollectionType" />
+        <element api="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" />
+      </containers>
+      <file name="7730e72d-2d43-b311-53cc-f7a99f340429" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="b7f32624-63ff-22fd-912c-5a8e65ce3038" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Add(System.Runtime.Serialization.Configuration.ParameterElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="85b5c9de-690a-b4ac-b547-6c1b915916e4" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="a527edba-b40f-54a4-da7a-11346d63d5f6" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.CollectionType">
+      <topicdata group="api" />
+      <apidata name="CollectionType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Configuration.ConfigurationElementCollection.CollectionType">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CollectionType" />
+      <returns>
+        <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="ec58efe6-aebb-7d72-38d0-2640f95fa70d" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Contains(System.String)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="2236c59b-b943-0ac3-c0c4-f7e5e741c9c2" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.IndexOf(System.Runtime.Serialization.Configuration.ParameterElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="07938b51-d71e-4c3f-6181-e4c9590237af" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.ParameterElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="67b6bded-8bc0-5f0b-5fe8-ff72ea8b6e96" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.Remove(System.Runtime.Serialization.Configuration.ParameterElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.ParameterElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="73439bd4-c1b2-29a2-a3db-8ba9383ac67d" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.ParameterElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </containers>
+      <file name="91d701fd-9d66-52e5-8fb7-6e80f9901d92" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSectionGroup" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="c3fd70fa-f9d4-4892-8f27-1cc793813514" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.SerializationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+        <element api="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.DataContractSerializer" />
+        <element api="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+        <element api="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.NetDataContractSerializer" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="570dd559-9fd2-2cc4-f042-6add98e7350d" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.SerializationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="7111eeec-4224-316a-d1e3-532e234c7a40" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.SerializationSectionGroup">
+      <topicdata name="SerializationSectionGroup" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      <apidata name="SerializationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.DataContractSerializer" />
+        <element api="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.NetDataContractSerializer" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" />
+      </containers>
+      <file name="971e473a-e9d9-5198-24c0-0b7472a92fa2" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="c77cc90c-1256-57ab-ae96-f28d08901cb0" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.DataContractSerializer">
+      <topicdata group="api" />
+      <apidata name="DataContractSerializer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DataContractSerializer" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.DataContractSerializerSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="f0e0f1ee-b9b8-61c7-ed65-727406fae718" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.SerializationSectionGroup.GetSectionGroup(System.Configuration.Configuration)">
+      <topicdata group="api" />
+      <apidata name="GetSectionGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="config">
+          <type api="T:System.Configuration.Configuration" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="bdd8f34c-d834-36bf-292d-bd85f5747f58" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.SerializationSectionGroup.NetDataContractSerializer">
+      <topicdata group="api" />
+      <apidata name="NetDataContractSerializer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NetDataContractSerializer" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.NetDataContractSerializerSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.SerializationSectionGroup" ref="true" />
+      </containers>
+      <file name="c2754888-3405-0489-7067-e9702d81f62b" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.TypeElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.TypeElement" />
+      <apidata name="TypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <file name="ce4b6a0c-6539-30b3-3f90-e6ec0d55913a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.TypeElement">
+      <topicdata name="TypeElement" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      <apidata name="TypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.Runtime.Serialization.Configuration.TypeElement.#ctor">
+          <element api="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+          <element api="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Index" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Parameters" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      </containers>
+      <file name="3a7ff338-255a-7783-6f9e-3cc24c9ccd4b" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.TypeElement">
+      <topicdata name="TypeElement" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      <apidata name="TypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      </containers>
+      <file name="c8b70991-8581-5582-3c74-aa20cbf3b0af" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.TypeElement">
+      <topicdata name="TypeElement" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      <apidata name="TypeElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Index" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Parameters" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElement.Type" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" />
+      </containers>
+      <file name="2cfcaf88-1e2a-f55c-a426-665233426a4d" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Configuration.TypeElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.TypeElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <file name="13753d7d-7906-b459-35f3-e9383ef4fddf" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <file name="01f35f44-985f-e447-9a4e-8940a2ac2a40" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElement.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Configuration.TypeElement.#ctor" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <file name="d39c0336-409e-ed5b-317f-e963e6d86125" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.TypeElement.Index">
+      <topicdata group="api" />
+      <apidata name="Index" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Index" />
+      <setter name="set_Index" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>index</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e3d1c67a-459d-4497-2d98-c833ef5dad01" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.TypeElement.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.ParameterElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsDefaultCollection" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="56306f44-3fdc-9d92-660f-686e0599726c" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.TypeElement.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>type</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.StringValidatorAttribute" ref="true" />
+          <assignment name="MinLength">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="66dd3617-294b-8baa-f4c7-70e07475118b" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Configuration.TypeElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      <apidata name="TypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+            </typeValue>
+          </argument>
+          <assignment name="CollectionType">
+            <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+            <enumValue>
+              <field name="BasicMap" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d269b314-086a-4da0-2563-2f612b138919" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Configuration.TypeElementCollection">
+      <topicdata name="TypeElementCollection" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      <apidata name="TypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Add(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Clear" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElementCollection.CollectionType" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElementCollection.Item(System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Remove(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      </containers>
+      <file name="d7f7617f-eede-807f-bfd3-c5cfc80a2dd4" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Configuration.TypeElementCollection">
+      <topicdata name="TypeElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      <apidata name="TypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Add(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Clear" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Remove(System.Runtime.Serialization.Configuration.TypeElement)" />
+        <element api="M:System.Runtime.Serialization.Configuration.TypeElementCollection.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      </containers>
+      <file name="f4cbcdf1-b4f5-3fd1-0952-345499316642" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Configuration.TypeElementCollection">
+      <topicdata name="TypeElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      <apidata name="TypeElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElementCollection.CollectionType" />
+        <element api="P:System.Runtime.Serialization.Configuration.TypeElementCollection.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" />
+      </containers>
+      <file name="42224f20-2707-162d-5ec3-7f9a2a8bdba4" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="d12d08d9-48c7-3057-e955-47f8f3634880" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Add(System.Runtime.Serialization.Configuration.TypeElement)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="d9d65087-6d14-0897-b9cd-3d962e904927" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="98378a77-b531-acac-2fab-554dbd82ea1f" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.TypeElementCollection.CollectionType">
+      <topicdata group="api" />
+      <apidata name="CollectionType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Configuration.ConfigurationElementCollection.CollectionType">
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CollectionType" />
+      <returns>
+        <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="c5421653-d14d-c0d5-2731-751e5d26b3ef" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.IndexOf(System.Runtime.Serialization.Configuration.TypeElement)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="05ffac7f-d742-5c4d-8de1-84ba426c3f39" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Configuration.TypeElementCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="1068f03b-bbe1-01bd-591c-5fdfac4d5438" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.Remove(System.Runtime.Serialization.Configuration.TypeElement)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.Runtime.Serialization.Configuration.TypeElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="b5506af5-fd6d-fd49-b5be-90df59b3be58" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Configuration.TypeElementCollection.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Serialization" module="System.Runtime.Serialization" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Configuration" />
+        <type api="T:System.Runtime.Serialization.Configuration.TypeElementCollection" ref="true" />
+      </containers>
+      <file name="c4a2e53b-e6e6-170b-3111-d758d3827158" />
+    </api>
+  </apis>
+</reflection>

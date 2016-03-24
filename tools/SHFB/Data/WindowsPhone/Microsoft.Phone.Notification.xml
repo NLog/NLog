@@ -1,0 +1,1717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Notification">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Notification" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Notification.HttpNotification" />
+        <element api="T:Microsoft.Phone.Notification.ChannelPowerLevel" />
+        <element api="T:Microsoft.Phone.Notification.ChannelErrorType" />
+        <element api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" />
+        <element api="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+        <element api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+        <element api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+        <element api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+        <element api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+        <element api="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      </elements>
+      <file name="a5d58bb8-d287-533a-66d9-b8e008cc1e1b" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.ChannelConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="ChannelConnectionStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Notification.ChannelConnectionStatus.Connected" />
+        <element api="F:Microsoft.Phone.Notification.ChannelConnectionStatus.Disconnected" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="76e04eb0-295a-7b86-bc7a-7cb1b71bca69" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelConnectionStatus.Connected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </containers>
+      <file name="d8d86da2-6729-32eb-7e7a-8d46e8603563" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelConnectionStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </containers>
+      <file name="a2cb5e74-f757-a350-6b0c-6e5bca4db0e0" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.ChannelErrorType">
+      <topicdata group="api" />
+      <apidata name="ChannelErrorType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.ChannelOpenFailed" />
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.PayloadFormatError" />
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.MessageBadContent" />
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.NotificationRateTooHigh" />
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.PowerLevelChanged" />
+        <element api="F:Microsoft.Phone.Notification.ChannelErrorType.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="505c028d-229e-b5dc-6a3b-565846897419" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.ChannelOpenFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChannelOpenFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="ed204579-1264-e3a8-6b1d-7f4d81278bb9" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.MessageBadContent">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageBadContent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="e4c3832c-b202-d6a4-a0fb-66308d82c448" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.NotificationRateTooHigh">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotificationRateTooHigh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="797c0b04-ef4b-72a0-8534-132d2fff890e" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.PayloadFormatError">
+      <topicdata group="api" notopic="" />
+      <apidata name="PayloadFormatError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="bc32637a-4d7a-77a8-6767-bdb01a8d5363" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.PowerLevelChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="PowerLevelChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="2bacd02e-8006-8b27-a63b-9cf5e6d0d46b" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelErrorType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </containers>
+      <file name="ac529ab3-3940-c01e-2151-fffa46a7f8dd" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.ChannelPowerLevel">
+      <topicdata group="api" />
+      <apidata name="ChannelPowerLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Notification.ChannelPowerLevel.NormalPowerLevel" />
+        <element api="F:Microsoft.Phone.Notification.ChannelPowerLevel.LowPowerLevel" />
+        <element api="F:Microsoft.Phone.Notification.ChannelPowerLevel.CriticalLowPowerLevel" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="d8840ec5-e466-9335-0265-d01b9c077cb0" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelPowerLevel.CriticalLowPowerLevel">
+      <topicdata group="api" notopic="" />
+      <apidata name="CriticalLowPowerLevel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </containers>
+      <file name="49b1790b-de91-0d29-3978-dc6b2df8c5c5" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelPowerLevel.LowPowerLevel">
+      <topicdata group="api" notopic="" />
+      <apidata name="LowPowerLevel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </containers>
+      <file name="fca4cbe7-a8cc-019a-1ac2-d2850287eeff" />
+    </api>
+    <api id="F:Microsoft.Phone.Notification.ChannelPowerLevel.NormalPowerLevel">
+      <topicdata group="api" notopic="" />
+      <apidata name="NormalPowerLevel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.ChannelPowerLevel" ref="false" />
+      </containers>
+      <file name="7cad704d-f914-2c31-857b-1b5c49646ee0" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.HttpNotification">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.HttpNotification" />
+      <apidata name="HttpNotification" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Notification.HttpNotification.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="e77b99e2-4251-d614-2863-59618e95baf8" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.HttpNotification">
+      <topicdata name="HttpNotification" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.HttpNotification" />
+      <apidata name="HttpNotification" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Notification.HttpNotification.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Notification.HttpNotification.#ctor" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Body" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Channel" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Headers" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" />
+      </containers>
+      <file name="96cf2717-46d9-baa9-a408-917f3930f579" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.HttpNotification">
+      <topicdata name="HttpNotification" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.HttpNotification" />
+      <apidata name="HttpNotification" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Notification.HttpNotification.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" />
+      </containers>
+      <file name="4c410528-d58f-72eb-4555-331e2a15ece4" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.HttpNotification">
+      <topicdata name="HttpNotification" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.HttpNotification" />
+      <apidata name="HttpNotification" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Notification.HttpNotification.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Body" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Channel" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotification.Headers" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" />
+      </containers>
+      <file name="bfff2c73-4938-6f51-c9c0-7424c5672260" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotification.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" ref="true" />
+      </containers>
+      <file name="a76dff1f-2826-4f92-6dca-0bc1e09192e7" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotification.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Body" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" ref="true" />
+      </containers>
+      <file name="54293ed3-b4e4-686c-9a32-9e213914c9e5" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotification.Channel">
+      <topicdata group="api" />
+      <apidata name="Channel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Channel" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" ref="true" />
+      </containers>
+      <file name="eb31cba6-d926-f8f4-2bb6-a9a9031d8fa5" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotification.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Net.WebHeaderCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" ref="true" />
+      </containers>
+      <file name="7e623e19-d741-1abf-eef6-d13bb8e2be8b" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.HttpNotificationChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="HttpNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="113168cb-107b-73cf-f75b-2b2f0714e7af" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationChannel">
+      <topicdata name="HttpNotificationChannel" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="HttpNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor">
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String)" />
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile">
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile" />
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile(System.Collections.ObjectModel.Collection{System.Uri})" />
+        </element>
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellToast" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelName" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUri" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUriUpdated" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Close" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatus" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatusChanged" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Dispose" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ErrorOccurred" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Finalize" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Find(System.String)" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.HttpNotificationReceived" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellTileBound" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellToastBound" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Open" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ShellToastNotificationReceived" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellTile" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellToast" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      </containers>
+      <file name="63eaf145-1641-cef5-716c-580c30ee82f6" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.HttpNotificationChannel">
+      <topicdata name="HttpNotificationChannel" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="HttpNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile">
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile" />
+          <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile(System.Collections.ObjectModel.Collection{System.Uri})" />
+        </element>
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellToast" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Close" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Dispose" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Finalize" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Find(System.String)" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.Open" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellTile" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellToast" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      </containers>
+      <file name="ee5065f2-7f91-dd5f-8897-c91bf57cc315" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.HttpNotificationChannel">
+      <topicdata name="HttpNotificationChannel" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="HttpNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelName" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUri" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatus" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellTileBound" />
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellToastBound" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      </containers>
+      <file name="3139772b-c7bd-ba97-39b5-155e368c4053" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Notification.HttpNotificationChannel">
+      <topicdata name="HttpNotificationChannel" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="HttpNotificationChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUriUpdated" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatusChanged" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ErrorOccurred" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.HttpNotificationReceived" />
+        <element api="E:Microsoft.Phone.Notification.HttpNotificationChannel.ShellToastNotificationReceived" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      </containers>
+      <file name="6861328a-f49a-6dac-62d0-ef133aaea2e1" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String)" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="6dc38ce3-1a79-3d74-cdfa-bbf49edbafe2" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile">
+      <topicdata name="BindToShellTile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationChannel" />
+      <apidata name="BindToShellTile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile" />
+        <element api="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile(System.Collections.ObjectModel.Collection{System.Uri})" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="346f5988-906f-4850-325e-0a34a314ff0f" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor" />
+      <parameters>
+        <parameter name="channelName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="49204543-88a9-2be5-bf7d-ffc9aa6da90b" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.#ctor" />
+      <parameters>
+        <parameter name="channelName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="serviceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="3340a586-37ea-cee8-36b9-9a80a42cab1f" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile">
+      <topicdata group="api" />
+      <apidata name="BindToShellTile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="a118b76d-7433-50b2-05dd-669b1d636ee4" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile(System.Collections.ObjectModel.Collection{System.Uri})">
+      <topicdata group="api" />
+      <apidata name="BindToShellTile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellTile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="baseUri">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.Uri" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="b0341fd9-8c7b-90ab-12c3-3f3a9cfaf491" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.BindToShellToast">
+      <topicdata group="api" />
+      <apidata name="BindToShellToast" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="a98d4d53-f4ea-0112-b84a-2a7219d81b28" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="04de9707-205b-6a01-22f1-416ef222620e" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUri">
+      <topicdata group="api" />
+      <apidata name="ChannelUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChannelUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="11eed7b7-3a08-5b35-6b6b-d488846d33de" />
+    </api>
+    <api id="E:Microsoft.Phone.Notification.HttpNotificationChannel.ChannelUriUpdated">
+      <topicdata group="api" />
+      <apidata name="ChannelUriUpdated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ChannelUriUpdated" />
+      <remover name="remove_ChannelUriUpdated" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="337fe92f-20b9-c653-ed58-d8aee8ff40dd" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="977e6cc6-e0e9-3cee-2192-7c5b969cbb02" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionStatus" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="e27cd716-8757-d176-f8a7-f1db8a34227f" />
+    </api>
+    <api id="E:Microsoft.Phone.Notification.HttpNotificationChannel.ConnectionStatusChanged">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ConnectionStatusChanged" />
+      <remover name="remove_ConnectionStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="525eede0-4963-d5d4-6263-491bc8666f02" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="c9a65bed-ab59-191c-4eb2-607218866e52" />
+    </api>
+    <api id="E:Microsoft.Phone.Notification.HttpNotificationChannel.ErrorOccurred">
+      <topicdata group="api" />
+      <apidata name="ErrorOccurred" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorOccurred" />
+      <remover name="remove_ErrorOccurred" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="725b55f3-bb79-eb7c-b55b-9d1d1c0338f2" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="81727e20-6955-236b-5257-3888024286a0" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.Find(System.String)">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="channelName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="ecd6b5a0-8eee-4d2d-37d8-a6dcbbe6a5b9" />
+    </api>
+    <api id="E:Microsoft.Phone.Notification.HttpNotificationChannel.HttpNotificationReceived">
+      <topicdata group="api" />
+      <apidata name="HttpNotificationReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HttpNotificationReceived" />
+      <remover name="remove_HttpNotificationReceived" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="a5b777b3-0802-1430-0fa0-e640b94fe056" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellTileBound">
+      <topicdata group="api" />
+      <apidata name="IsShellTileBound" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsShellTileBound" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="db9d0b2a-7bec-8bfd-8db8-5c5c0f3229d0" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationChannel.IsShellToastBound">
+      <topicdata group="api" />
+      <apidata name="IsShellToastBound" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsShellToastBound" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="122c662b-c180-5d8d-970d-6ceceab2eac1" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="76d508d5-ccc8-6537-8e65-0f83f4db307e" />
+    </api>
+    <api id="E:Microsoft.Phone.Notification.HttpNotificationChannel.ShellToastNotificationReceived">
+      <topicdata group="api" />
+      <apidata name="ShellToastNotificationReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ShellToastNotificationReceived" />
+      <remover name="remove_ShellToastNotificationReceived" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="70df7971-19b4-5e21-3086-e8d7b1ad1813" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellTile">
+      <topicdata group="api" />
+      <apidata name="UnbindToShellTile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="6725956b-dea8-217d-8eef-a8ece8461d46" />
+    </api>
+    <api id="M:Microsoft.Phone.Notification.HttpNotificationChannel.UnbindToShellToast">
+      <topicdata group="api" />
+      <apidata name="UnbindToShellToast" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationChannel" ref="true" />
+      </containers>
+      <file name="21144dd9-252d-9ffb-abb6-c584e4574636" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.HttpNotificationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      <apidata name="HttpNotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="ad24eed9-d661-96f2-6e13-60460c776560" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.HttpNotificationEventArgs">
+      <topicdata name="HttpNotificationEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      <apidata name="HttpNotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationEventArgs.Notification" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      </containers>
+      <file name="73e3441f-5147-d75f-4967-494ed9e81668" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.HttpNotificationEventArgs">
+      <topicdata name="HttpNotificationEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      <apidata name="HttpNotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      </containers>
+      <file name="8a984d6d-f38e-f89a-89e1-873a8694116c" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.HttpNotificationEventArgs">
+      <topicdata name="HttpNotificationEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      <apidata name="HttpNotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.HttpNotificationEventArgs.Notification" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" />
+      </containers>
+      <file name="d4e3b09a-192b-feac-3dc0-1e3e81c55048" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.HttpNotificationEventArgs.Notification">
+      <topicdata group="api" />
+      <apidata name="Notification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Notification" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.HttpNotification" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.HttpNotificationEventArgs" ref="true" />
+      </containers>
+      <file name="321aaeb8-8d2f-545f-a42c-716d1190bf2c" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      <apidata name="NotificationChannelConnectionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="2be4890b-4c98-c690-baa3-92091143ae3c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs">
+      <topicdata name="NotificationChannelConnectionEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      <apidata name="NotificationChannelConnectionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs.ConnectionStatus" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      </containers>
+      <file name="b2c6118c-bdd0-1124-4c85-8c34ea4b25c6" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs">
+      <topicdata name="NotificationChannelConnectionEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      <apidata name="NotificationChannelConnectionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      </containers>
+      <file name="885f5829-86dd-26a4-4554-b78036bea9d8" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs">
+      <topicdata name="NotificationChannelConnectionEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      <apidata name="NotificationChannelConnectionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs.ConnectionStatus" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" />
+      </containers>
+      <file name="9f36de38-fbcc-85d1-8330-d9f3113fa7e4" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs.ConnectionStatus">
+      <topicdata group="api" />
+      <apidata name="ConnectionStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionStatus" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelConnectionStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelConnectionEventArgs" ref="true" />
+      </containers>
+      <file name="ebdbfd2b-5ffc-a578-c7bb-fa6552fe08b5" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      <apidata name="NotificationChannelErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="854ac799-85b5-2b37-5f73-9718929a399a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs">
+      <topicdata name="NotificationChannelErrorEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      <apidata name="NotificationChannelErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorAdditionalData" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorCode" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorType" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.Message" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      </containers>
+      <file name="34adff0c-03bb-8342-73a8-57bf464bf434" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs">
+      <topicdata name="NotificationChannelErrorEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      <apidata name="NotificationChannelErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      </containers>
+      <file name="e8c74c1b-c496-e3c2-5e95-d967decb0b35" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs">
+      <topicdata name="NotificationChannelErrorEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      <apidata name="NotificationChannelErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorAdditionalData" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorCode" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorType" />
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" />
+      </containers>
+      <file name="c0f0efe9-6882-2014-9397-1438a34e8737" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorAdditionalData">
+      <topicdata group="api" />
+      <apidata name="ErrorAdditionalData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorAdditionalData" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+      </containers>
+      <file name="7b0f9f71-62fc-5d1d-d565-71ae027a581a" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+      </containers>
+      <file name="d9e790d9-ed99-2559-ba16-16c2c4959536" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.ErrorType">
+      <topicdata group="api" />
+      <apidata name="ErrorType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorType" />
+      <returns>
+        <type api="T:Microsoft.Phone.Notification.ChannelErrorType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+      </containers>
+      <file name="0d674054-dd15-86a2-4f89-caf3b6bd4ae6" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelErrorEventArgs" ref="true" />
+      </containers>
+      <file name="a18c9312-1787-e8a8-2add-31587160416e" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      <apidata name="NotificationChannelUriEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="f220d143-f50f-9aa9-18cd-83e8a3b5d425" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs">
+      <topicdata name="NotificationChannelUriEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      <apidata name="NotificationChannelUriEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelUriEventArgs.ChannelUri" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      </containers>
+      <file name="810fb5a3-4a75-91a6-afbc-efda226c4d4e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs">
+      <topicdata name="NotificationChannelUriEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      <apidata name="NotificationChannelUriEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      </containers>
+      <file name="aa12a7eb-cb6e-2a79-f007-a44e1edaa131" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs">
+      <topicdata name="NotificationChannelUriEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      <apidata name="NotificationChannelUriEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationChannelUriEventArgs.ChannelUri" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" />
+      </containers>
+      <file name="66810f1c-54b8-c786-73b0-7ef936d51ef6" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationChannelUriEventArgs.ChannelUri">
+      <topicdata group="api" />
+      <apidata name="ChannelUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChannelUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationChannelUriEventArgs" ref="true" />
+      </containers>
+      <file name="306e1cb3-67a6-114e-8e6f-01797a8b59dc" />
+    </api>
+    <api id="T:Microsoft.Phone.Notification.NotificationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      <apidata name="NotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+      </containers>
+      <file name="55bb658e-f155-522e-b449-3d615b049b8a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Notification.NotificationEventArgs">
+      <topicdata name="NotificationEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      <apidata name="NotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationEventArgs.Collection" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      </containers>
+      <file name="e6ac352e-4219-dfde-ed6b-b96f7784e2a1" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Notification.NotificationEventArgs">
+      <topicdata name="NotificationEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      <apidata name="NotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      </containers>
+      <file name="ec8f10a3-216f-6fa9-b265-f6dfbb921d47" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Notification.NotificationEventArgs">
+      <topicdata name="NotificationEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      <apidata name="NotificationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Notification.NotificationEventArgs.Collection" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" />
+      </containers>
+      <file name="37f0f09c-5fec-5ab7-6f53-15b05953f85e" />
+    </api>
+    <api id="P:Microsoft.Phone.Notification.NotificationEventArgs.Collection">
+      <topicdata group="api" />
+      <apidata name="Collection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Collection" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Notification" />
+        <type api="T:Microsoft.Phone.Notification.NotificationEventArgs" ref="true" />
+      </containers>
+      <file name="c564727c-00fd-2398-6812-4c5918bb709a" />
+    </api>
+  </apis>
+</reflection>

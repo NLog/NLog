@@ -1,0 +1,1121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.Cache">
+      <topicdata group="api" />
+      <apidata name="System.Net.Cache" group="namespace" />
+      <elements>
+        <element api="T:System.Net.Cache.RequestCacheLevel" />
+        <element api="T:System.Net.Cache.RequestCachePolicy" />
+        <element api="T:System.Net.Cache.HttpRequestCacheLevel" />
+        <element api="T:System.Net.Cache.HttpCacheAgeControl" />
+        <element api="T:System.Net.Cache.HttpRequestCachePolicy" />
+      </elements>
+      <file name="9ccc3e18-6a3f-257e-a3e5-a12014894ccb" />
+    </api>
+    <api id="T:System.Net.Cache.HttpCacheAgeControl">
+      <topicdata group="api" />
+      <apidata name="HttpCacheAgeControl" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.None" />
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.MinFresh" />
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.MaxAge" />
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.MaxStale" />
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMinFresh" />
+        <element api="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMaxStale" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+      </containers>
+      <file name="51f92804-89da-6528-6965-30c720f18aab" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.MaxAge">
+      <topicdata group="api" notopic="" />
+      <apidata name="MaxAge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="775710b8-5e52-04ae-9aed-e5267f2a5234" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMaxStale">
+      <topicdata group="api" notopic="" />
+      <apidata name="MaxAgeAndMaxStale" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="517deffe-bac2-868e-588c-0315b4da03e3" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMinFresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="MaxAgeAndMinFresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="e3f4bc28-118a-ef74-029b-84331d388ab8" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.MaxStale">
+      <topicdata group="api" notopic="" />
+      <apidata name="MaxStale" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="423e442c-3209-9b3a-29ad-c82b23a7d599" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.MinFresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="MinFresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="0feb2ef0-97f6-063c-b530-517c5b8a2f95" />
+    </api>
+    <api id="F:System.Net.Cache.HttpCacheAgeControl.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+      </containers>
+      <file name="bef47b1d-cb95-75d4-b05c-082482a40360" />
+    </api>
+    <api id="T:System.Net.Cache.HttpRequestCacheLevel">
+      <topicdata group="api" />
+      <apidata name="HttpRequestCacheLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.Default" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.BypassCache" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.CacheOnly" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.CacheIfAvailable" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.Revalidate" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.Reload" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.NoCacheNoStore" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.CacheOrNextCacheOnly" />
+        <element api="F:System.Net.Cache.HttpRequestCacheLevel.Refresh" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+      </containers>
+      <file name="21cb1de4-8743-43f5-a6b9-45464fe9220d" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.BypassCache">
+      <topicdata group="api" notopic="" />
+      <apidata name="BypassCache" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="2e6cc3c8-e633-d4c1-7827-b78b37972208" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.CacheIfAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="CacheIfAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="f5876db6-b022-8a35-0acf-d7573439d13a" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.CacheOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="CacheOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="bb28a84a-0f49-936b-2f4a-503696711485" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.CacheOrNextCacheOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="CacheOrNextCacheOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="5caf4e6d-1a17-7031-5cbb-bd2f9903a6e0" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="79a8dfde-9779-ecfe-c285-d78beb1e1bb9" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.NoCacheNoStore">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoCacheNoStore" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="d68cf905-e0db-cfc2-5944-162894ce9187" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.Refresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="Refresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="75d2d288-149f-ceeb-a0dc-9732fc5afc1c" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.Reload">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reload" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="a043911d-a768-34d6-cb48-25bd8489e0ac" />
+    </api>
+    <api id="F:System.Net.Cache.HttpRequestCacheLevel.Revalidate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Revalidate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </containers>
+      <file name="d0131a1e-9be6-631d-cde7-a354089ff9b2" />
+    </api>
+    <api id="T:System.Net.Cache.HttpRequestCachePolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Cache.HttpRequestCachePolicy" />
+      <apidata name="HttpRequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+      </containers>
+      <file name="9d0b2413-b5c1-b751-798c-03e28bb74cfe" />
+    </api>
+    <api id="AllMembers.T:System.Net.Cache.HttpRequestCachePolicy">
+      <topicdata name="HttpRequestCachePolicy" group="list" subgroup="members" typeTopicId="T:System.Net.Cache.HttpRequestCachePolicy" />
+      <apidata name="HttpRequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor">
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.DateTime)" />
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpRequestCacheLevel)" />
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan)" />
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan)" />
+          <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan,System.DateTime)" />
+        </element>
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.CacheSyncDate" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.Level" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MaxStale" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MinFresh" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" />
+      </containers>
+      <file name="9472190f-cb38-e863-af94-9a1b71ac542f" />
+    </api>
+    <api id="Methods.T:System.Net.Cache.HttpRequestCachePolicy">
+      <topicdata name="HttpRequestCachePolicy" group="list" subgroup="Methods" typeTopicId="T:System.Net.Cache.HttpRequestCachePolicy" />
+      <apidata name="HttpRequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" />
+      </containers>
+      <file name="7a2f294f-5724-bf81-6eac-344220dd191b" />
+    </api>
+    <api id="Properties.T:System.Net.Cache.HttpRequestCachePolicy">
+      <topicdata name="HttpRequestCachePolicy" group="list" subgroup="Properties" typeTopicId="T:System.Net.Cache.HttpRequestCachePolicy" />
+      <apidata name="HttpRequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <elements>
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.CacheSyncDate" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.Level" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MaxStale" />
+        <element api="P:System.Net.Cache.HttpRequestCachePolicy.MinFresh" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" />
+      </containers>
+      <file name="b448bde3-07e3-1793-30c5-db3a7ae2b5de" />
+    </api>
+    <api id="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Cache.HttpRequestCachePolicy" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.DateTime)" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpRequestCacheLevel)" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan)" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan)" />
+        <element api="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan,System.DateTime)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="7213b282-31fd-354c-bf9f-0b4988ed248f" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="3989e26e-ff1d-44e4-9392-b35bd052fe88" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.DateTime)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="cacheSyncDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="3f53cee5-38fa-3720-5a3a-82351ca097f8" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="cacheAgeControl">
+          <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+        </parameter>
+        <parameter name="ageOrFreshOrStale">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="52050484-7701-e0b7-19af-6f94c637caef" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="cacheAgeControl">
+          <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+        </parameter>
+        <parameter name="maxAge">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="freshOrStale">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="873480a5-ec3a-149c-84c8-cdc0b032d8f1" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="cacheAgeControl">
+          <type api="T:System.Net.Cache.HttpCacheAgeControl" ref="false" />
+        </parameter>
+        <parameter name="maxAge">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="freshOrStale">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="cacheSyncDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="5bda47ed-5ba2-65be-0ffe-feaaf74e6c1e" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpRequestCacheLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.HttpRequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="level">
+          <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="275ba8cf-adc2-c0ef-f656-8a96fd26257f" />
+    </api>
+    <api id="P:System.Net.Cache.HttpRequestCachePolicy.CacheSyncDate">
+      <topicdata group="api" />
+      <apidata name="CacheSyncDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CacheSyncDate" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="fd67e398-6674-724f-30a8-32996602538b" />
+    </api>
+    <api id="P:System.Net.Cache.HttpRequestCachePolicy.Level">
+      <topicdata group="api" />
+      <apidata name="Level" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Level" />
+      <returns>
+        <type api="T:System.Net.Cache.HttpRequestCacheLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="a55f435b-3709-749a-a1b4-17cc6d2ddf11" />
+    </api>
+    <api id="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge">
+      <topicdata group="api" />
+      <apidata name="MaxAge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxAge" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="3f3b5ccc-6375-4423-4894-5f0e6deb1245" />
+    </api>
+    <api id="P:System.Net.Cache.HttpRequestCachePolicy.MaxStale">
+      <topicdata group="api" />
+      <apidata name="MaxStale" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxStale" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="b5094dc5-9102-fdc5-89dd-810ba55757b4" />
+    </api>
+    <api id="P:System.Net.Cache.HttpRequestCachePolicy.MinFresh">
+      <topicdata group="api" />
+      <apidata name="MinFresh" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MinFresh" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="895ec166-2d72-d090-cd57-3d0365760aa8" />
+    </api>
+    <api id="M:System.Net.Cache.HttpRequestCachePolicy.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.Cache.RequestCachePolicy.ToString">
+          <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+      </containers>
+      <file name="1f0a5871-b509-4510-5163-bed7a3113f7b" />
+    </api>
+    <api id="T:System.Net.Cache.RequestCacheLevel">
+      <topicdata group="api" />
+      <apidata name="RequestCacheLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Cache.RequestCacheLevel.Default" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.BypassCache" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.CacheOnly" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.CacheIfAvailable" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.Revalidate" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.Reload" />
+        <element api="F:System.Net.Cache.RequestCacheLevel.NoCacheNoStore" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+      </containers>
+      <file name="b948b6d4-20a2-4ee0-2a1e-aee72dc4981f" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.BypassCache">
+      <topicdata group="api" notopic="" />
+      <apidata name="BypassCache" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="193441ed-eb41-8f24-9919-9d46e527037c" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.CacheIfAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="CacheIfAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="44eb1355-d701-3e7a-0397-3a2f3891d7be" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.CacheOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="CacheOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="cf48c7e7-85ed-9af2-70e7-989685b623d4" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="a3941afe-cf45-3cd5-dabe-fd0cedfe902c" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.NoCacheNoStore">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoCacheNoStore" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="2f9363cc-215c-c440-8500-b3e253fff8fa" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.Reload">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reload" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="2809cd1a-ccc1-0c89-65cb-8c53ea4ecca0" />
+    </api>
+    <api id="F:System.Net.Cache.RequestCacheLevel.Revalidate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Revalidate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </containers>
+      <file name="aad19afd-a24a-b67d-9c38-d3f13649f75b" />
+    </api>
+    <api id="T:System.Net.Cache.RequestCachePolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Cache.RequestCachePolicy" />
+      <apidata name="RequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Net.Cache.HttpRequestCachePolicy" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+      </containers>
+      <file name="d9635711-3d44-c424-f2e4-71f4952a76eb" />
+    </api>
+    <api id="AllMembers.T:System.Net.Cache.RequestCachePolicy">
+      <topicdata name="RequestCachePolicy" group="list" subgroup="members" typeTopicId="T:System.Net.Cache.RequestCachePolicy" />
+      <apidata name="RequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Net.Cache.RequestCachePolicy.#ctor">
+          <element api="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+          <element api="M:System.Net.Cache.RequestCachePolicy.#ctor(System.Net.Cache.RequestCacheLevel)" />
+        </element>
+        <element api="P:System.Net.Cache.RequestCachePolicy.Level" />
+        <element api="M:System.Net.Cache.RequestCachePolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" />
+      </containers>
+      <file name="064dc278-d27e-c44d-583c-887679ac1866" />
+    </api>
+    <api id="Methods.T:System.Net.Cache.RequestCachePolicy">
+      <topicdata name="RequestCachePolicy" group="list" subgroup="Methods" typeTopicId="T:System.Net.Cache.RequestCachePolicy" />
+      <apidata name="RequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Net.Cache.RequestCachePolicy.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" />
+      </containers>
+      <file name="4fd7812f-10b8-4f5a-d0f7-862a1e378fac" />
+    </api>
+    <api id="Properties.T:System.Net.Cache.RequestCachePolicy">
+      <topicdata name="RequestCachePolicy" group="list" subgroup="Properties" typeTopicId="T:System.Net.Cache.RequestCachePolicy" />
+      <apidata name="RequestCachePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <elements>
+        <element api="P:System.Net.Cache.RequestCachePolicy.Level" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" />
+      </containers>
+      <file name="22e7fae5-4e26-4e8f-9a22-394f87ba2741" />
+    </api>
+    <api id="Overload:System.Net.Cache.RequestCachePolicy.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Cache.RequestCachePolicy" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Cache.RequestCachePolicy.#ctor" />
+        <element api="M:System.Net.Cache.RequestCachePolicy.#ctor(System.Net.Cache.RequestCacheLevel)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+      </containers>
+      <file name="d57c2eb1-8eac-7bf2-d174-eab6d691544a" />
+    </api>
+    <api id="M:System.Net.Cache.RequestCachePolicy.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+      </containers>
+      <file name="a4703c7d-f0cc-1f17-dca5-a23fe3a50de1" />
+    </api>
+    <api id="M:System.Net.Cache.RequestCachePolicy.#ctor(System.Net.Cache.RequestCacheLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Cache.RequestCachePolicy.#ctor" />
+      <parameters>
+        <parameter name="level">
+          <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+      </containers>
+      <file name="df798916-ac72-0279-ab1d-af0708dff366" />
+    </api>
+    <api id="P:System.Net.Cache.RequestCachePolicy.Level">
+      <topicdata group="api" />
+      <apidata name="Level" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Level" />
+      <returns>
+        <type api="T:System.Net.Cache.RequestCacheLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+      </containers>
+      <file name="b33b82cc-8efa-92c0-5789-4c8dc0c040d6" />
+    </api>
+    <api id="M:System.Net.Cache.RequestCachePolicy.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Cache" />
+        <type api="T:System.Net.Cache.RequestCachePolicy" ref="true" />
+      </containers>
+      <file name="d885e06a-06b7-a8a4-632b-876ac216b9a2" />
+    </api>
+  </apis>
+</reflection>

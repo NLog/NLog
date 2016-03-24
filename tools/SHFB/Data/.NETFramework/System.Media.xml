@@ -1,0 +1,1026 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Media">
+      <topicdata group="api" />
+      <apidata name="System.Media" group="namespace" />
+      <elements>
+        <element api="T:System.Media.SoundPlayer" />
+        <element api="T:System.Media.SystemSounds" />
+        <element api="T:System.Media.SystemSound" />
+      </elements>
+      <file name="a7d000c1-5b34-38b7-c996-0dd533a1ee1e" />
+    </api>
+    <api id="T:System.Media.SoundPlayer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Media.SoundPlayer" />
+      <apidata name="SoundPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Media.SoundPlayer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="UI">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="259b1fb9-5b75-3e0a-95d2-1b74616c158f" />
+    </api>
+    <api id="AllMembers.T:System.Media.SoundPlayer">
+      <topicdata name="SoundPlayer" group="list" subgroup="members" typeTopicId="T:System.Media.SoundPlayer" />
+      <apidata name="SoundPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Media.SoundPlayer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Media.SoundPlayer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Media.SoundPlayer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="Overload:System.Media.SoundPlayer.#ctor">
+          <element api="M:System.Media.SoundPlayer.#ctor" />
+          <element api="M:System.Media.SoundPlayer.#ctor(System.IO.Stream)" />
+          <element api="M:System.Media.SoundPlayer.#ctor(System.String)" />
+          <element api="M:System.Media.SoundPlayer.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        </element>
+        <element api="P:System.Media.SoundPlayer.IsLoadCompleted" />
+        <element api="M:System.Media.SoundPlayer.Load" />
+        <element api="M:System.Media.SoundPlayer.LoadAsync" />
+        <element api="E:System.Media.SoundPlayer.LoadCompleted" />
+        <element api="P:System.Media.SoundPlayer.LoadTimeout" />
+        <element api="M:System.Media.SoundPlayer.OnLoadCompleted(System.ComponentModel.AsyncCompletedEventArgs)" />
+        <element api="M:System.Media.SoundPlayer.OnSoundLocationChanged(System.EventArgs)" />
+        <element api="M:System.Media.SoundPlayer.OnStreamChanged(System.EventArgs)" />
+        <element api="M:System.Media.SoundPlayer.Play" />
+        <element api="M:System.Media.SoundPlayer.PlayLooping" />
+        <element api="M:System.Media.SoundPlayer.PlaySync" />
+        <element api="P:System.Media.SoundPlayer.SoundLocation" />
+        <element api="E:System.Media.SoundPlayer.SoundLocationChanged" />
+        <element api="M:System.Media.SoundPlayer.Stop" />
+        <element api="P:System.Media.SoundPlayer.Stream" />
+        <element api="E:System.Media.SoundPlayer.StreamChanged" />
+        <element api="M:System.Media.SoundPlayer.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Media.SoundPlayer.Tag" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" />
+      </containers>
+      <file name="82ac30d3-36b2-db5f-6e1e-400e7f7be70b" />
+    </api>
+    <api id="Methods.T:System.Media.SoundPlayer">
+      <topicdata name="SoundPlayer" group="list" subgroup="Methods" typeTopicId="T:System.Media.SoundPlayer" />
+      <apidata name="SoundPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Media.SoundPlayer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Media.SoundPlayer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Media.SoundPlayer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Media.SoundPlayer.Load" />
+        <element api="M:System.Media.SoundPlayer.LoadAsync" />
+        <element api="M:System.Media.SoundPlayer.OnLoadCompleted(System.ComponentModel.AsyncCompletedEventArgs)" />
+        <element api="M:System.Media.SoundPlayer.OnSoundLocationChanged(System.EventArgs)" />
+        <element api="M:System.Media.SoundPlayer.OnStreamChanged(System.EventArgs)" />
+        <element api="M:System.Media.SoundPlayer.Play" />
+        <element api="M:System.Media.SoundPlayer.PlayLooping" />
+        <element api="M:System.Media.SoundPlayer.PlaySync" />
+        <element api="M:System.Media.SoundPlayer.Stop" />
+        <element api="M:System.Media.SoundPlayer.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" />
+      </containers>
+      <file name="8128f4b5-7ddc-6982-28ff-d6fa35781242" />
+    </api>
+    <api id="Properties.T:System.Media.SoundPlayer">
+      <topicdata name="SoundPlayer" group="list" subgroup="Properties" typeTopicId="T:System.Media.SoundPlayer" />
+      <apidata name="SoundPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Media.SoundPlayer.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Media.SoundPlayer.IsLoadCompleted" />
+        <element api="P:System.Media.SoundPlayer.LoadTimeout" />
+        <element api="P:System.Media.SoundPlayer.SoundLocation" />
+        <element api="P:System.Media.SoundPlayer.Stream" />
+        <element api="P:System.Media.SoundPlayer.Tag" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" />
+      </containers>
+      <file name="925f82bd-6c60-210f-a7f8-e7eefaf54d3a" />
+    </api>
+    <api id="Events.T:System.Media.SoundPlayer">
+      <topicdata name="SoundPlayer" group="list" subgroup="Events" typeTopicId="T:System.Media.SoundPlayer" />
+      <apidata name="SoundPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Media.SoundPlayer.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Media.SoundPlayer.LoadCompleted" />
+        <element api="E:System.Media.SoundPlayer.SoundLocationChanged" />
+        <element api="E:System.Media.SoundPlayer.StreamChanged" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" />
+      </containers>
+      <file name="812abb43-a9b1-e499-c2e4-2bd7518c8344" />
+    </api>
+    <api id="Overload:System.Media.SoundPlayer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Media.SoundPlayer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Media.SoundPlayer.#ctor" />
+        <element api="M:System.Media.SoundPlayer.#ctor(System.IO.Stream)" />
+        <element api="M:System.Media.SoundPlayer.#ctor(System.String)" />
+        <element api="M:System.Media.SoundPlayer.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="ad099fa2-9013-1d01-83cd-680a372aaea4" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Media.SoundPlayer.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="597f7381-720e-02c5-8293-cfb37cfccd04" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Media.SoundPlayer.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="ed016ea5-adec-959f-97d2-5c767bd5717b" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Media.SoundPlayer.#ctor" />
+      <parameters>
+        <parameter name="serializationInfo">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="45e98634-304b-bb23-3619-3f1fe94c4562" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Media.SoundPlayer.#ctor" />
+      <parameters>
+        <parameter name="soundLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="af8a4e4c-fa87-4f87-9470-69a436d2792e" />
+    </api>
+    <api id="P:System.Media.SoundPlayer.IsLoadCompleted">
+      <topicdata group="api" />
+      <apidata name="IsLoadCompleted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsLoadCompleted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="020bc55e-1979-09a3-7eda-97c9132fc1af" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.Load">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="77e4d68d-666a-b7bd-89ab-06cce4551809" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.LoadAsync">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="75c5f7c5-7471-f9c4-c889-88ab500a1cc8" />
+    </api>
+    <api id="E:System.Media.SoundPlayer.LoadCompleted">
+      <topicdata group="api" />
+      <apidata name="LoadCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LoadCompleted" />
+      <remover name="remove_LoadCompleted" />
+      <eventhandler>
+        <type api="T:System.ComponentModel.AsyncCompletedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="bab15759-9d63-5306-7d5f-232ecde0373c" />
+    </api>
+    <api id="P:System.Media.SoundPlayer.LoadTimeout">
+      <topicdata group="api" />
+      <apidata name="LoadTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LoadTimeout" />
+      <setter name="set_LoadTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="6ea7ecfb-1acb-315b-4df0-472317f7a0a4" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.OnLoadCompleted(System.ComponentModel.AsyncCompletedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnLoadCompleted" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="a2cb6e3e-9d7e-3dea-da31-ea1c2e9e16e5" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.OnSoundLocationChanged(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnSoundLocationChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="45a243fa-15c9-a5a6-a99a-89de2d0694d5" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.OnStreamChanged(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnStreamChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="0d476ff6-a87e-05cd-91b2-45b1f0b6e42d" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="3a892fab-b269-53fb-84e1-cb98b640ebd8" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.PlayLooping">
+      <topicdata group="api" />
+      <apidata name="PlayLooping" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="b27370b4-b4fd-8961-8aca-558a1504a5b0" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.PlaySync">
+      <topicdata group="api" />
+      <apidata name="PlaySync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="a4ada340-54b5-e44b-6a5f-4557d3e8dcf4" />
+    </api>
+    <api id="P:System.Media.SoundPlayer.SoundLocation">
+      <topicdata group="api" />
+      <apidata name="SoundLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SoundLocation" />
+      <setter name="set_SoundLocation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="91906372-6794-f05d-6f23-dae68809195d" />
+    </api>
+    <api id="E:System.Media.SoundPlayer.SoundLocationChanged">
+      <topicdata group="api" />
+      <apidata name="SoundLocationChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SoundLocationChanged" />
+      <remover name="remove_SoundLocationChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="a6882328-910c-15cb-9f09-3e9a7fd2ce94" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="5d46636a-52e6-16e7-e8c4-cac659b8aef0" />
+    </api>
+    <api id="P:System.Media.SoundPlayer.Stream">
+      <topicdata group="api" />
+      <apidata name="Stream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Stream" />
+      <setter name="set_Stream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="8123c9ce-e5b8-0cc1-0afa-fa159627252c" />
+    </api>
+    <api id="E:System.Media.SoundPlayer.StreamChanged">
+      <topicdata group="api" />
+      <apidata name="StreamChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StreamChanged" />
+      <remover name="remove_StreamChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="977f928e-79b2-437c-05c1-587e771dcf2f" />
+    </api>
+    <api id="M:System.Media.SoundPlayer.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" eiiName="ISerializable.GetObjectData" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="aa3f6237-73fc-c445-3a5c-92e2ded547e0" />
+    </api>
+    <api id="P:System.Media.SoundPlayer.Tag">
+      <topicdata group="api" />
+      <apidata name="Tag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Tag" />
+      <setter name="set_Tag" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SoundPlayer" ref="true" />
+      </containers>
+      <file name="69bf8fbc-040d-3ff7-36ac-bcc4e09632a3" />
+    </api>
+    <api id="T:System.Media.SystemSound">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Media.SystemSound" />
+      <apidata name="SystemSound" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="UI">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ca794d78-8bbf-652b-4b64-5a087ad622b1" />
+    </api>
+    <api id="AllMembers.T:System.Media.SystemSound">
+      <topicdata name="SystemSound" group="list" subgroup="members" typeTopicId="T:System.Media.SystemSound" />
+      <apidata name="SystemSound" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Media.SystemSound.Play" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSound" />
+      </containers>
+      <file name="2cfcab87-9512-15ea-b229-b9e3ba555086" />
+    </api>
+    <api id="Methods.T:System.Media.SystemSound">
+      <topicdata name="SystemSound" group="list" subgroup="Methods" typeTopicId="T:System.Media.SystemSound" />
+      <apidata name="SystemSound" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Media.SystemSound.Play" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSound" />
+      </containers>
+      <file name="f266d41f-fa0b-f789-e69e-8ee2dbf006f2" />
+    </api>
+    <api id="M:System.Media.SystemSound.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </containers>
+      <file name="8989684c-7196-75c2-3050-679370ee9c0f" />
+    </api>
+    <api id="T:System.Media.SystemSounds">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Media.SystemSounds" />
+      <apidata name="SystemSounds" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="UI">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="70c3c971-4460-a15c-cf33-73dca6c2e562" />
+    </api>
+    <api id="AllMembers.T:System.Media.SystemSounds">
+      <topicdata name="SystemSounds" group="list" subgroup="members" typeTopicId="T:System.Media.SystemSounds" />
+      <apidata name="SystemSounds" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Media.SystemSounds.Asterisk" />
+        <element api="P:System.Media.SystemSounds.Beep" />
+        <element api="P:System.Media.SystemSounds.Exclamation" />
+        <element api="P:System.Media.SystemSounds.Hand" />
+        <element api="P:System.Media.SystemSounds.Question" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" />
+      </containers>
+      <file name="8b6c87af-b93e-4764-d4f1-3bcb8e1f25ef" />
+    </api>
+    <api id="Methods.T:System.Media.SystemSounds">
+      <topicdata name="SystemSounds" group="list" subgroup="Methods" typeTopicId="T:System.Media.SystemSounds" />
+      <apidata name="SystemSounds" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" />
+      </containers>
+      <file name="c5b2f362-5ebd-65df-0766-4d89794deb80" />
+    </api>
+    <api id="Properties.T:System.Media.SystemSounds">
+      <topicdata name="SystemSounds" group="list" subgroup="Properties" typeTopicId="T:System.Media.SystemSounds" />
+      <apidata name="SystemSounds" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Media.SystemSounds.Asterisk" />
+        <element api="P:System.Media.SystemSounds.Beep" />
+        <element api="P:System.Media.SystemSounds.Exclamation" />
+        <element api="P:System.Media.SystemSounds.Hand" />
+        <element api="P:System.Media.SystemSounds.Question" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" />
+      </containers>
+      <file name="352fca03-5fc3-35d8-73ef-6d0ed2292583" />
+    </api>
+    <api id="P:System.Media.SystemSounds.Asterisk">
+      <topicdata group="api" />
+      <apidata name="Asterisk" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Asterisk" />
+      <returns>
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" ref="true" />
+      </containers>
+      <file name="20845779-68a1-383e-bb34-cf3133c32bd9" />
+    </api>
+    <api id="P:System.Media.SystemSounds.Beep">
+      <topicdata group="api" />
+      <apidata name="Beep" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Beep" />
+      <returns>
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" ref="true" />
+      </containers>
+      <file name="255a980b-cb8a-404f-d568-b741fb74c1f3" />
+    </api>
+    <api id="P:System.Media.SystemSounds.Exclamation">
+      <topicdata group="api" />
+      <apidata name="Exclamation" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Exclamation" />
+      <returns>
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" ref="true" />
+      </containers>
+      <file name="ac364485-3e45-cbd3-ce8f-e6a29e2cf77a" />
+    </api>
+    <api id="P:System.Media.SystemSounds.Hand">
+      <topicdata group="api" />
+      <apidata name="Hand" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Hand" />
+      <returns>
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" ref="true" />
+      </containers>
+      <file name="71f64b79-7fe7-725f-92fb-49975500753b" />
+    </api>
+    <api id="P:System.Media.SystemSounds.Question">
+      <topicdata group="api" />
+      <apidata name="Question" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Question" />
+      <returns>
+        <type api="T:System.Media.SystemSound" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Media" />
+        <type api="T:System.Media.SystemSounds" ref="true" />
+      </containers>
+      <file name="a812a3a0-aad7-5197-2f35-493a7a2615b2" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_XAML Usage">XAML</item>
+  <item id="devlang_XamlUsage">XAML</item>
+  <item id="devlang_xaml">XAML</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_XAML Usage">XAML</item>
+  <item id="metaLang_XamlUsage">XAML</item>
+  <item id="metaLang_xaml">XAML</item>
+
+	<!-- XAML syntax section messages -->
+	<item id="classXamlSyntax_abstract">Этот класс является абстрактным; сведения о производных неабстрактных классах, используемых в языке XAML, см. в <strong><include item="familyTitle"/></strong>.</item>
+	<item id="classXamlSyntax_excludedSubClass">Этот управляемый класс обычно не используется в XAML.</item>
+	<item id="classXamlSyntax_noDefaultCtor">Невозможно непосредственно создать экземпляр этого класса в языке XAML.</item>
+	<item id="classXamlSyntax_noDefaultCtorWithTypeConverter"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="structXamlSyntax_nonXaml">Вы не можете использовать эту управляемую структуру в XAML.</item>
+	<item id="structXamlSyntax_attributeUsage"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="eventXamlSyntax_parentIsExcludedSubClass">Члены этого класса или обычно не используются в XAML, или не могут быть использованы в XAML.</item>
+	<item id="eventXamlSyntax_noXamlSyntaxForInterfaceMembers">Вы не можете использовать это событие в XAML.</item>
+	<item id="eventXamlSyntax_nonXamlParent">Вы не можете использовать это событие в XAML.</item>
+	<item id="eventXamlSyntax_notPublic">Вы не можете использовать это событие в XAML.</item>
+	<item id="eventXamlSyntax_abstract">Вы не можете использовать это событие в XAML.</item>
+	<item id="eventXamlSyntax_nonXaml">Вы не можете использовать это событие в XAML.</item>  <!-- This id is not currently output by SyntaxBuilder -->
+
+	<item id="propertyXamlSyntax_parentIsExcludedSubClass">Члены этого класса или обычно не используются в XAML, или не могут быть использованы в XAML.</item>
+	<item id="propertyXamlSyntax_noXamlSyntaxForInterfaceMembers">Вы не можете установить значения для этого свойства в XAML.</item>
+	<item id="propertyXamlSyntax_nonXamlParent">Вы не можете установить значения для этого свойства в XAML.</item>
+	<item id="propertyXamlSyntax_notPublic">Вы не можете установить значения для этого свойства в XAML.</item>
+	<item id="propertyXamlSyntax_abstract">Вы не можете установить значения для этого свойства в XAML.</item>
+	<item id="propertyXamlSyntax_readOnly">Вы не можете установить значения для этого свойства в XAML.</item>
+	<item id="propertyXamlSyntax_abstractType">Для получения информации об использовании в XAML см. тип {0}.</item>
+	<item id="propertyXamlSyntax_nonXaml">Вы не можете установить значения для этого свойства в XAML.</item>
+
+	<!-- Syntax used with all enumerations in XAML assemblies -->
+	<item id="enumerationOverviewXamlSyntax">&lt;объект <em>свойство</em>="<em>одно_из_значений_перечисления</em>" .../&gt;</item>
+
+	<!-- Boilerplate used with all method, field, etc. in XAML assemblies -->
+	<item id="constructorOverviewXamlSyntax">Вы не можете использовать конструкторы в XAML.</item>
+	<item id="methodOverviewXamlSyntax">Вы не можете использовать методы в XAML.</item>
+	<item id="fieldOverviewXamlSyntax">Вы не можете использовать поля в XAML.</item>
+	<item id="delegateOverviewXamlSyntax">В XAML, вы можете использовать существующие делегаты, но не можете объявлять новые.</item>
+	<item id="interfaceOverviewXamlSyntax">Интерфейсы не могут быть непосредственно использованы в XAML; см. типы, реализующие этот интерфейс.</item>
+
+	<!-- Boilerplate used with all types and members in all non-XAML assemblies -->
+	<item id="nonXamlAssemblyBoilerplate">Не применимо.</item>
+
+	<!-- XAML section headings -->
+	<item id="xamlAttributeUsageHeading">Использование атрибута XAML</item>
+	<item id="xamlObjectElementUsageHeading">Использование элемента объекта XAML</item>
+	<item id="xamlImplicitCollectionUsageHeading">Неявное использование коллекции XAML</item>
+	<item id="xamlPropertyElementUsageHeading">Использование элемента свойства XAML</item>
+	<item id="xamlContentElementUsageHeading">Использование элемента объекта XAML</item>
+	<item id="xamlValuesSectionHeading">Значения XAML</item>
+	<item id="xamlSyntaxBoilerplateHeading">XAML</item>
+
+</content>

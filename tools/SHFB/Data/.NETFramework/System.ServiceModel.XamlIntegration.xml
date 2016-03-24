@@ -1,0 +1,1955 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.XamlIntegration">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.XamlIntegration" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+        <element api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+        <element api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+        <element api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+        <element api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+        <element api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      </elements>
+      <file name="cc4befd5-7710-7592-cc8f-82f35031341e" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      <apidata name="EndpointIdentityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <file name="ce22f8e3-5d08-fc97-8c19-4c6e0567d07c" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter">
+      <topicdata name="EndpointIdentityConverter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      <apidata name="EndpointIdentityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      </containers>
+      <file name="ca259891-bbdc-9e4d-3480-a95528a64434" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter">
+      <topicdata name="EndpointIdentityConverter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      <apidata name="EndpointIdentityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      </containers>
+      <file name="5feb31fb-ec11-9723-7ecb-9cd8e36b65f8" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo">
+      <topicdata name="CanConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" ref="true" />
+      </containers>
+      <file name="6749cb25-b0d3-4a0b-0cb0-7456be166ee0" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo">
+      <topicdata name="ConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" ref="true" />
+      </containers>
+      <file name="4c5042fd-c86a-20b5-b6fc-b04e0fedfaa1" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" ref="true" />
+      </containers>
+      <file name="ca1ae0a9-38bb-e433-f934-604a2b83a5d4" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.CanConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" ref="true" />
+      </containers>
+      <file name="0f0f4d19-a945-7317-7d1c-64c1cd03eac6" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.EndpointIdentityConverter.ConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.EndpointIdentityConverter" ref="true" />
+      </containers>
+      <file name="d41ed439-f86a-ab6c-8e5f-4f04797d0c3c" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="ServiceXNameTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <file name="b33e218f-0cfd-f898-2836-6a2b07a9e943" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter">
+      <topicdata name="ServiceXNameTypeConverter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="ServiceXNameTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      </containers>
+      <file name="b3d0c17f-ba0e-14ed-463a-c25484a9691c" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter">
+      <topicdata name="ServiceXNameTypeConverter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="ServiceXNameTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      </containers>
+      <file name="e360703a-2327-6fa1-9475-42163daaf611" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="56425d63-c2cb-0620-227b-b936b011c359" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo">
+      <topicdata name="CanConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="a5c7fcc3-d172-5ffd-dfcc-04185eee2a2f" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="efbc19b5-ce72-2915-770d-14545077c29c" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo">
+      <topicdata name="ConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="3ef5211e-c6d7-9a87-9d96-474026f160a6" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="fcb935df-93c3-c1e5-dcd7-519b71c6bdb3" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="dd2f9440-ed66-d679-cd46-89948c5d84b4" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.CanConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="9b093a94-956f-9ef7-cb79-c3a454a2546f" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="f5f76000-7fa9-87b8-6eae-a6c51c900f41" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter.ConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.ServiceXNameTypeConverter" ref="true" />
+      </containers>
+      <file name="661bc589-a8cc-db26-9d1a-3176a6f0457b" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      <apidata name="SpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.MarkupExtensionReturnTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.ServiceModel.SpnEndpointIdentity" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7eb409b1-e18b-692f-a370-a05c15725d7d" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension">
+      <topicdata name="SpnEndpointIdentityExtension" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      <apidata name="SpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor">
+          <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+          <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor(System.ServiceModel.SpnEndpointIdentity)" />
+        </element>
+        <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)" />
+        <element api="P:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.SpnName" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      </containers>
+      <file name="b1e34699-d74d-38e5-a3a4-706e480840a5" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension">
+      <topicdata name="SpnEndpointIdentityExtension" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      <apidata name="SpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      </containers>
+      <file name="eba8d11a-0b27-299d-ef4a-cd19117cc9db" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension">
+      <topicdata name="SpnEndpointIdentityExtension" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      <apidata name="SpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.SpnName" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      </containers>
+      <file name="9b523ade-d546-2f00-e626-bdaa65543741" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+        <element api="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor(System.ServiceModel.SpnEndpointIdentity)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="9b1b7bea-a0b3-53d9-db01-aa9059a057b4" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="b278d230-1b34-9ca2-e810-60f523ed2d39" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor(System.ServiceModel.SpnEndpointIdentity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.#ctor" />
+      <parameters>
+        <parameter name="identity">
+          <type api="T:System.ServiceModel.SpnEndpointIdentity" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="595952bc-d491-2eb2-6cf1-2b53bf683db1" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)">
+      <topicdata group="api" />
+      <apidata name="ProvideValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.MarkupExtension.ProvideValue(System.IServiceProvider)">
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="e944d901-27c7-6914-9e21-8c10b34ab743" />
+    </api>
+    <api id="P:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension.SpnName">
+      <topicdata group="api" />
+      <apidata name="SpnName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SpnName" />
+      <setter name="set_SpnName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.SpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="dec1149e-d8eb-b530-3001-9085a42a2a99" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      <apidata name="UpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.MarkupExtensionReturnTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.ServiceModel.UpnEndpointIdentity" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6d2180d1-5b4c-d45a-1bd2-2e1a7f83573f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension">
+      <topicdata name="UpnEndpointIdentityExtension" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      <apidata name="UpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor">
+          <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+          <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor(System.ServiceModel.UpnEndpointIdentity)" />
+        </element>
+        <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)" />
+        <element api="P:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.UpnName" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      </containers>
+      <file name="2d005864-0812-8e6a-de57-58fc0082acb1" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension">
+      <topicdata name="UpnEndpointIdentityExtension" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      <apidata name="UpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      </containers>
+      <file name="dfbad5b2-79b8-298b-d5fd-e18cb4be3338" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension">
+      <topicdata name="UpnEndpointIdentityExtension" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      <apidata name="UpnEndpointIdentityExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.UpnName" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      </containers>
+      <file name="fdce1da2-11e0-d5b6-a2f0-b87164349171" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+        <element api="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor(System.ServiceModel.UpnEndpointIdentity)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="550baa12-6783-9729-a454-6e940349f91f" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="888287ec-6d31-8beb-adaa-a9f42260c715" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor(System.ServiceModel.UpnEndpointIdentity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.#ctor" />
+      <parameters>
+        <parameter name="identity">
+          <type api="T:System.ServiceModel.UpnEndpointIdentity" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="aecfaed2-ea37-79b3-1ac5-26ca7a64230e" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.ProvideValue(System.IServiceProvider)">
+      <topicdata group="api" />
+      <apidata name="ProvideValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.MarkupExtension.ProvideValue(System.IServiceProvider)">
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="40fd38d3-1b99-cb45-5f47-7b2877c88e80" />
+    </api>
+    <api id="P:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension.UpnName">
+      <topicdata group="api" />
+      <apidata name="UpnName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UpnName" />
+      <setter name="set_UpnName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.UpnEndpointIdentityExtension" ref="true" />
+      </containers>
+      <file name="d06a1339-8ebb-8b11-2908-93c67ca24e70" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      <apidata name="XPathMessageContextMarkupExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" contentProperty="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Namespaces</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4195df5-5e5c-cd32-c1a5-b013f2e5b739" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension">
+      <topicdata name="XPathMessageContextMarkupExtension" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      <apidata name="XPathMessageContextMarkupExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" contentProperty="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor">
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor(System.ServiceModel.Dispatcher.XPathMessageContext)" />
+        </element>
+        <element api="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      </containers>
+      <file name="305f8895-06fe-6828-32fa-7e94df2fe90e" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension">
+      <topicdata name="XPathMessageContextMarkupExtension" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      <apidata name="XPathMessageContextMarkupExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" contentProperty="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.ProvideValue(System.IServiceProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      </containers>
+      <file name="a29a6be7-dbba-1e51-b742-a8ea6605803d" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension">
+      <topicdata name="XPathMessageContextMarkupExtension" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      <apidata name="XPathMessageContextMarkupExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" contentProperty="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+      <elements>
+        <element api="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      </containers>
+      <file name="54e02df9-ffab-0f2d-1356-f7e91b91cda2" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor(System.ServiceModel.Dispatcher.XPathMessageContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" ref="true" />
+      </containers>
+      <file name="7d8199b7-bcff-1db9-e60e-d1a9775ae602" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" ref="true" />
+      </containers>
+      <file name="2deeaa36-0517-c61a-1efc-7baecd21428a" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor(System.ServiceModel.Dispatcher.XPathMessageContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.#ctor" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ServiceModel.Dispatcher.XPathMessageContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" ref="true" />
+      </containers>
+      <file name="0e09b989-0191-1e8d-8343-cb75ca7d5cda" />
+    </api>
+    <api id="P:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.Namespaces">
+      <topicdata group="api" />
+      <apidata name="Namespaces" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Namespaces" />
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" ref="true" />
+      </containers>
+      <file name="66da79df-d2cc-9a98-eb89-d72f0f51fbeb" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension.ProvideValue(System.IServiceProvider)">
+      <topicdata group="api" />
+      <apidata name="ProvideValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.MarkupExtension.ProvideValue(System.IServiceProvider)">
+          <type api="T:System.Windows.Markup.MarkupExtension" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceProvider">
+          <type api="T:System.IServiceProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextMarkupExtension" ref="true" />
+      </containers>
+      <file name="b221fe2e-a1ab-c8b0-069e-ce036ba7e682" />
+    </api>
+    <api id="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="XPathMessageContextTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+      </containers>
+      <file name="a85e7129-8b54-abed-64f5-9758afe5f669" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter">
+      <topicdata name="XPathMessageContextTypeConverter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="XPathMessageContextTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      </containers>
+      <file name="6fead54c-02cd-5317-192a-27e9513ffec7" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter">
+      <topicdata name="XPathMessageContextTypeConverter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="XPathMessageContextTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      </containers>
+      <file name="a2e09f6f-b079-f9e6-12ba-e0ee71621829" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="50c92b8d-f216-877a-052c-0ea3aa17d541" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo">
+      <topicdata name="CanConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="2205eee2-9080-1513-0776-9c34693ffcda" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="19e3ec8b-8cb9-072f-c862-e59e41580429" />
+    </api>
+    <api id="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo">
+      <topicdata name="ConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+        <element api="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="a16f9bd3-6a69-5094-071b-2e65a060953c" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="b61398a1-6467-fa69-04ec-b91bc3eb4bc7" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="13cf1605-66fe-28f3-4a51-4393f77c0aaf" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.CanConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="4a9d281e-59dc-4f1e-8897-f90f451f62d0" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="f597c30f-5711-5e87-b58c-8207fcc2a03a" />
+    </api>
+    <api id="M:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter.ConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.XamlIntegration" />
+        <type api="T:System.ServiceModel.XamlIntegration.XPathMessageContextTypeConverter" ref="true" />
+      </containers>
+      <file name="27523def-f842-22e8-1a61-eec91c1ffeb9" />
+    </api>
+  </apis>
+</reflection>

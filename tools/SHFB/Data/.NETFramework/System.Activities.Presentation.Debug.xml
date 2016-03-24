@@ -1,0 +1,1042 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.Debug">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.Debug" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.Debug.DebuggerService" />
+        <element api="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+        <element api="T:System.Activities.Presentation.Debug.BreakpointTypes" />
+      </elements>
+      <file name="5a11e647-d8d8-e879-587e-d009ecdd93ae" />
+    </api>
+    <api id="T:System.Activities.Presentation.Debug.BreakpointTypes">
+      <topicdata group="api" />
+      <apidata name="BreakpointTypes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Presentation.Debug.BreakpointTypes.None" />
+        <element api="F:System.Activities.Presentation.Debug.BreakpointTypes.Enabled" />
+        <element api="F:System.Activities.Presentation.Debug.BreakpointTypes.Bounded" />
+        <element api="F:System.Activities.Presentation.Debug.BreakpointTypes.Conditional" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9b9aefcb-dbd3-8e14-a2b2-b22d783633ea" />
+    </api>
+    <api id="F:System.Activities.Presentation.Debug.BreakpointTypes.Bounded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bounded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </containers>
+      <file name="161e8370-b931-adb1-7658-f03eb2b9fe60" />
+    </api>
+    <api id="F:System.Activities.Presentation.Debug.BreakpointTypes.Conditional">
+      <topicdata group="api" notopic="" />
+      <apidata name="Conditional" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </containers>
+      <file name="7a2583aa-8c47-7012-b371-90ec0e4830a0" />
+    </api>
+    <api id="F:System.Activities.Presentation.Debug.BreakpointTypes.Enabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </containers>
+      <file name="1d6c9603-7c3a-73a1-a9db-d539ab616d24" />
+    </api>
+    <api id="F:System.Activities.Presentation.Debug.BreakpointTypes.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+      </containers>
+      <file name="857d840a-be41-c655-8056-6644a896f80c" />
+    </api>
+    <api id="T:System.Activities.Presentation.Debug.DebuggerService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Debug.DebuggerService" />
+      <apidata name="DebuggerService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+      </containers>
+      <file name="3dd2b264-11ae-29a1-7b7c-03547f8ec2f0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Debug.DebuggerService">
+      <topicdata name="DebuggerService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Debug.DebuggerService" />
+      <apidata name="DebuggerService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.#ctor(System.Activities.Presentation.EditingContext)" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.CurrentContext" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.CurrentLocation" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.EnsureVisible(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.GetBreakpointLocations" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.GetExactLocation(System.Activities.Debugger.SourceLocation)" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.HideSourceFileName" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.IsDebugging" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.ResetBreakpoints" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.SelectedLocation" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.UpdateSourceLocations(System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" />
+      </containers>
+      <file name="a9f67139-80f1-fadc-22d0-5473a82edef6" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Debug.DebuggerService">
+      <topicdata name="DebuggerService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Debug.DebuggerService" />
+      <apidata name="DebuggerService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.EnsureVisible(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.GetBreakpointLocations" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.GetExactLocation(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.ResetBreakpoints" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="M:System.Activities.Presentation.Debug.DebuggerService.UpdateSourceLocations(System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" />
+      </containers>
+      <file name="03d7fe53-7945-c1a9-4fa1-b64d8cf9e86e" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Debug.DebuggerService">
+      <topicdata name="DebuggerService" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Debug.DebuggerService" />
+      <apidata name="DebuggerService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.CurrentContext" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.CurrentLocation" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.HideSourceFileName" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.IsDebugging" />
+        <element api="P:System.Activities.Presentation.Debug.DebuggerService.SelectedLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" />
+      </containers>
+      <file name="3abbc837-3e4f-b82e-40f8-b52fc2e3f469" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.#ctor(System.Activities.Presentation.EditingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.Presentation.EditingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="fbc44e2e-5bc7-ef7e-c54d-9173b8a8e7c4" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.DebuggerService.CurrentContext">
+      <topicdata group="api" />
+      <apidata name="CurrentContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentContext" />
+      <setter name="set_CurrentContext" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentContext">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="f937f42d-78f9-4180-256d-89201f674f1f" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.DebuggerService.CurrentLocation">
+      <topicdata group="api" />
+      <apidata name="CurrentLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentLocation" />
+      <setter name="set_CurrentLocation" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentLocation">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="4a972657-215b-73a9-0531-e68c8e426d78" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="DeleteBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="08df5670-968f-2724-aa1f-775785081946" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.EnsureVisible(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="EnsureVisible" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.EnsureVisible(System.Activities.Debugger.SourceLocation)">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="dceffd08-8ee6-3976-581c-0fd26529a268" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.GetBreakpointLocations">
+      <topicdata group="api" />
+      <apidata name="GetBreakpointLocations" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+            <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetBreakpointLocations">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="78cf15ed-98f5-a06a-de34-0eaf44d93ef7" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.GetExactLocation(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="GetExactLocation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="approximateLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetExactLocation(System.Activities.Debugger.SourceLocation)">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="a1433b65-2fc8-eae0-a03d-4a3bbd450b32" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.DebuggerService.HideSourceFileName">
+      <topicdata group="api" />
+      <apidata name="HideSourceFileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HideSourceFileName" />
+      <setter name="set_HideSourceFileName" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Presentation.Debug.IDesignerDebugView.HideSourceFileName">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="c590fa97-de3a-a906-d8ce-ea51456911a1" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+      <topicdata group="api" />
+      <apidata name="InsertBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+        <parameter name="breakpointType">
+          <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="6c45ccee-ac76-62cb-70dc-69141ffd0dbe" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.DebuggerService.IsDebugging">
+      <topicdata group="api" />
+      <apidata name="IsDebugging" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsDebugging" />
+      <setter name="set_IsDebugging" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Presentation.Debug.IDesignerDebugView.IsDebugging">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="2bfa19a3-814e-7281-db81-e5191a4e419a" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.ResetBreakpoints">
+      <topicdata group="api" />
+      <apidata name="ResetBreakpoints" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.ResetBreakpoints">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="32a94ffd-06fe-e1a6-10f4-6c6d2316b34a" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.DebuggerService.SelectedLocation">
+      <topicdata group="api" />
+      <apidata name="SelectedLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectedLocation" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Presentation.Debug.IDesignerDebugView.SelectedLocation">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="eceafacf-aa32-8ca3-2647-2999ae91fa5f" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+      <topicdata group="api" />
+      <apidata name="UpdateBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+        <parameter name="newBreakpointType">
+          <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Activities.Presentation.Debug.IDesignerDebugView.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+          <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="0a6507fd-de2c-7df1-9cdc-698c59af9164" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.DebuggerService.UpdateSourceLocations(System.Collections.Generic.Dictionary{System.Object,System.Activities.Debugger.SourceLocation})">
+      <topicdata group="api" />
+      <apidata name="UpdateSourceLocations" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="newSourceLocationMapping">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </containers>
+      <file name="4254232c-6c85-7f7d-3dfb-2ab60f50132d" />
+    </api>
+    <api id="T:System.Activities.Presentation.Debug.IDesignerDebugView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      <apidata name="IDesignerDebugView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Activities.Presentation.Debug.DebuggerService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+      </containers>
+      <file name="98e3f782-7a77-63a9-ca45-c4b714f4b4a0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Debug.IDesignerDebugView">
+      <topicdata name="IDesignerDebugView" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      <apidata name="IDesignerDebugView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentContext" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentLocation" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.EnsureVisible(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetBreakpointLocations" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetExactLocation(System.Activities.Debugger.SourceLocation)" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.HideSourceFileName" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.IsDebugging" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.ResetBreakpoints" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.SelectedLocation" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      </containers>
+      <file name="4bc42d6d-8066-299d-6f18-76a081d86129" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Debug.IDesignerDebugView">
+      <topicdata name="IDesignerDebugView" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      <apidata name="IDesignerDebugView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.EnsureVisible(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetBreakpointLocations" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetExactLocation(System.Activities.Debugger.SourceLocation)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.ResetBreakpoints" />
+        <element api="M:System.Activities.Presentation.Debug.IDesignerDebugView.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      </containers>
+      <file name="41b22d7b-45bb-91e4-feff-fd4080403c99" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Debug.IDesignerDebugView">
+      <topicdata name="IDesignerDebugView" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      <apidata name="IDesignerDebugView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentContext" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentLocation" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.HideSourceFileName" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.IsDebugging" />
+        <element api="P:System.Activities.Presentation.Debug.IDesignerDebugView.SelectedLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" />
+      </containers>
+      <file name="1171c4d9-76b1-f817-c1ee-610e264312f0" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentContext">
+      <topicdata group="api" />
+      <apidata name="CurrentContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentContext" />
+      <setter name="set_CurrentContext" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="71097829-f424-4750-d513-b785417caf51" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.IDesignerDebugView.CurrentLocation">
+      <topicdata group="api" />
+      <apidata name="CurrentLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentLocation" />
+      <setter name="set_CurrentLocation" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="5a11fd60-5ea6-40e5-6df5-9f70ee897527" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.DeleteBreakpoint(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="DeleteBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="5f4f71d7-2800-8d08-0a5a-553f3a4e2c82" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.EnsureVisible(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="EnsureVisible" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="eecf042c-1c6f-0491-8ae2-eaa908958738" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetBreakpointLocations">
+      <topicdata group="api" />
+      <apidata name="GetBreakpointLocations" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+            <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="3cca5cbc-8463-059c-bf2d-1af080875f9e" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.GetExactLocation(System.Activities.Debugger.SourceLocation)">
+      <topicdata group="api" />
+      <apidata name="GetExactLocation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="approximateLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="a8ea9fb5-672d-7e5e-f631-1cd631d371e8" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.IDesignerDebugView.HideSourceFileName">
+      <topicdata group="api" />
+      <apidata name="HideSourceFileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HideSourceFileName" />
+      <setter name="set_HideSourceFileName" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="fd04e11e-4e1a-9358-01dc-781aa7a32b84" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.InsertBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+      <topicdata group="api" />
+      <apidata name="InsertBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+        <parameter name="breakpointType">
+          <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="f29bbcc3-7401-321b-c2bb-ccfe33dc3be8" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.IDesignerDebugView.IsDebugging">
+      <topicdata group="api" />
+      <apidata name="IsDebugging" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsDebugging" />
+      <setter name="set_IsDebugging" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="0ad59507-5e1e-b30d-5088-3481bcf50f86" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.ResetBreakpoints">
+      <topicdata group="api" />
+      <apidata name="ResetBreakpoints" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="40efc851-8e2d-f888-e15d-27e807c31ee9" />
+    </api>
+    <api id="P:System.Activities.Presentation.Debug.IDesignerDebugView.SelectedLocation">
+      <topicdata group="api" />
+      <apidata name="SelectedLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectedLocation" />
+      <returns>
+        <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="e763cbf9-bd03-647e-d1cb-3ff214c04e26" />
+    </api>
+    <api id="M:System.Activities.Presentation.Debug.IDesignerDebugView.UpdateBreakpoint(System.Activities.Debugger.SourceLocation,System.Activities.Presentation.Debug.BreakpointTypes)">
+      <topicdata group="api" />
+      <apidata name="UpdateBreakpoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="sourceLocation">
+          <type api="T:System.Activities.Debugger.SourceLocation" ref="true" />
+        </parameter>
+        <parameter name="breakpointType">
+          <type api="T:System.Activities.Presentation.Debug.BreakpointTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Debug" />
+        <type api="T:System.Activities.Presentation.Debug.IDesignerDebugView" ref="true" />
+      </containers>
+      <file name="b0345cd6-65ff-dea6-3164-43254cbf9c62" />
+    </api>
+  </apis>
+</reflection>

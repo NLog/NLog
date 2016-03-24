@@ -44,7 +44,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="logLevel">The log level.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Log(this ILogger logger, LogLevel logLevel)
         {
@@ -56,7 +56,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Trace</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Trace(this ILogger logger)
         {
@@ -68,7 +68,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Debug</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Debug(this ILogger logger)
         {
@@ -80,7 +80,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Info</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Info(this ILogger logger)
         {
@@ -92,7 +92,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Warn</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Warn(this ILogger logger)
         {
@@ -104,7 +104,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Error</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Error(this ILogger logger)
         {
@@ -116,7 +116,7 @@ namespace NLog.Fluent
         /// Starts building a log event at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [CLSCompliant(false)]
         public static LogBuilder Fatal(this ILogger logger)
         {

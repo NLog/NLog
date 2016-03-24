@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Media.Media3D">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Media.Media3D" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+        <element api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      </elements>
+      <file name="353fe1a5-b7a9-2c57-d3f0-65850056eb4e" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Media.Media3D.Matrix3D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="25563677-f7a5-09bd-7493-934e1ebbb1be" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M11" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M12" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M13" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M14" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M21" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M22" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M23" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M24" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M31" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M32" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M33" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M34" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M44" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetX" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetY" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetZ" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="bc5e3105-6829-afe7-3b81-290fce636102" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="ca2fb0a1-3014-f4f3-f7a1-9a2d0796686e" />
+    </api>
+    <api id="Fields.T:Windows.UI.Xaml.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M11" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M12" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M13" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M14" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M21" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M22" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M23" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M24" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M31" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M32" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M33" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M34" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M44" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetX" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetY" />
+        <element api="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetZ" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="f3932695-7b3a-8ef7-fd5c-e02b2e161c3d" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M11">
+      <topicdata group="api" />
+      <apidata name="M11" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="ec97903f-b0a9-39af-94d7-f4a3d37abf8b" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M12">
+      <topicdata group="api" />
+      <apidata name="M12" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="eda1edc3-5c9b-b21f-5f6e-cf3c0e753088" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M13">
+      <topicdata group="api" />
+      <apidata name="M13" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="fae83afd-2a0a-09a2-2eda-1dd23d8afa00" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M14">
+      <topicdata group="api" />
+      <apidata name="M14" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="cc341ec0-1bd1-cb4d-78ba-9a289a0d8f56" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M21">
+      <topicdata group="api" />
+      <apidata name="M21" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="5958572f-b941-b60c-60b3-29881e79c16e" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M22">
+      <topicdata group="api" />
+      <apidata name="M22" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="8f9d4db0-deac-ed46-e74d-ed59f55bfefa" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M23">
+      <topicdata group="api" />
+      <apidata name="M23" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="a21256c6-dd79-1397-953f-cabb742676e4" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M24">
+      <topicdata group="api" />
+      <apidata name="M24" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="60712e7e-038d-b442-8e5f-fbf6f78a397d" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M31">
+      <topicdata group="api" />
+      <apidata name="M31" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="05343037-b39a-b500-86c4-f29b32317a50" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M32">
+      <topicdata group="api" />
+      <apidata name="M32" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="4a70dbfd-6d1a-c368-90b3-afbb2989ca9f" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M33">
+      <topicdata group="api" />
+      <apidata name="M33" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="02e63052-e294-3aea-16f3-edae15e93ecd" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M34">
+      <topicdata group="api" />
+      <apidata name="M34" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="8b736fc1-27f8-e6e2-3832-11be070b37fc" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.M44">
+      <topicdata group="api" />
+      <apidata name="M44" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="edb3b28c-2ced-2bd2-99a0-26438241d3aa" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetX">
+      <topicdata group="api" />
+      <apidata name="OffsetX" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="f22bd7c0-ff39-7ac9-cfef-29504d051c63" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetY">
+      <topicdata group="api" />
+      <apidata name="OffsetY" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="5455c776-95e1-6eb0-c425-9bb2e0f7d4b7" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Media.Media3D.Matrix3D.OffsetZ">
+      <topicdata group="api" />
+      <apidata name="OffsetZ" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="8db089e7-4788-30f7-a5bf-d51b824fe357" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      <apidata name="Matrix3DHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Media.Media3D.IMatrix3DHelper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7216eeab-8e1e-dc49-793a-86daa32c2ea8" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper">
+      <topicdata name="Matrix3DHelper" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      <apidata name="Matrix3DHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.FromElements(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetHasInverse(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetIsIdentity(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="P:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Identity" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Invert(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Multiply(Windows.UI.Xaml.Media.Media3D.Matrix3D,Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      </containers>
+      <file name="e3bb547d-210b-723c-57bc-e7be91e859db" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper">
+      <topicdata name="Matrix3DHelper" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      <apidata name="Matrix3DHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.FromElements(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetHasInverse(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetIsIdentity(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Invert(Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+        <element api="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Multiply(Windows.UI.Xaml.Media.Media3D.Matrix3D,Windows.UI.Xaml.Media.Media3D.Matrix3D)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      </containers>
+      <file name="e2ae66a1-ffad-85dc-ebf3-d078d6883c2c" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper">
+      <topicdata name="Matrix3DHelper" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      <apidata name="Matrix3DHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Identity" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" />
+      </containers>
+      <file name="97fb603d-e9fc-8286-cf0d-2a0ee938b305" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.FromElements(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name="FromElements" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="m11" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m12" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m13" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m14" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m21" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m22" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m23" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m24" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m31" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m32" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m33" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m34" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetX" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetY" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetZ" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m44" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="e8af32fc-5f2f-1225-f352-12df7b54e118" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetHasInverse(Windows.UI.Xaml.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="GetHasInverse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="3916d9ba-8880-e7d3-230e-0cf023b2739a" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.GetIsIdentity(Windows.UI.Xaml.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="GetIsIdentity" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="386f6d8a-b279-fd30-4b15-0b5e06c98a30" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Identity">
+      <topicdata group="api" />
+      <apidata name="Identity" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Identity" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="26676708-bbce-8456-241e-817baf9ef981" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Invert(Windows.UI.Xaml.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Invert" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="9f442dce-ba27-edd3-1231-b457054cfb46" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper.Multiply(Windows.UI.Xaml.Media.Media3D.Matrix3D,Windows.UI.Xaml.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Multiply" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matrix1" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+        <parameter name="matrix2" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Media.Media3D" />
+        <type api="T:Windows.UI.Xaml.Media.Media3D.Matrix3DHelper" ref="true" />
+      </containers>
+      <file name="e52048df-81f6-e6b9-857d-53606e46ba81" />
+    </api>
+  </apis>
+</reflection>

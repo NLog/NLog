@@ -1,0 +1,1510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Core.CoreApplication" />
+        <element api="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+        <element api="T:Windows.ApplicationModel.Core.IFrameworkView" />
+        <element api="T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+        <element api="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+        <element api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+        <element api="T:Windows.ApplicationModel.Core.UnhandledError" />
+      </elements>
+      <file name="c4451a8d-7577-aeae-4c6a-f5f09fe3a891" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.CoreApplication">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CoreApplication" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.StaticAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" ref="true" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="04d61d6e-5e1b-a79f-f46a-a1a94d6f03fe" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.CoreApplication">
+      <topicdata name="CoreApplication" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CoreApplication" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.ApplicationModel.Core.CoreApplication.CreateNewView">
+          <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView" />
+          <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.DecrementApplicationUseCount" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.Exit" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Exiting" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.GetCurrentView" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Id" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.IncrementApplicationUseCount" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.MainView" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Properties" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Resuming" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.Run(Windows.ApplicationModel.Core.IFrameworkViewSource)" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.RunWithActivationFactories(Windows.Foundation.IGetActivationFactory)" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Suspending" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.UnhandledErrorDetected" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Views" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" />
+      </containers>
+      <file name="4830eb42-ba13-2cd7-9911-3534e31690cc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.CoreApplication">
+      <topicdata name="CoreApplication" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CoreApplication" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.ApplicationModel.Core.CoreApplication.CreateNewView">
+          <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView" />
+          <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.DecrementApplicationUseCount" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.Exit" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.GetCurrentView" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.IncrementApplicationUseCount" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.Run(Windows.ApplicationModel.Core.IFrameworkViewSource)" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.RunWithActivationFactories(Windows.Foundation.IGetActivationFactory)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" />
+      </containers>
+      <file name="1c05123a-cfc3-436e-ef0c-45565ab42de9" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Core.CoreApplication">
+      <topicdata name="CoreApplication" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CoreApplication" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Id" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.MainView" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Properties" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplication.Views" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" />
+      </containers>
+      <file name="d3765a29-fcef-a908-5465-17f82cc02b49" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Core.CoreApplication">
+      <topicdata name="CoreApplication" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CoreApplication" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Exiting" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Resuming" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.Suspending" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplication.UnhandledErrorDetected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" />
+      </containers>
+      <file name="d31a4be8-d31a-709b-f29a-b87c2771fdb7" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Core.CoreApplication.CreateNewView">
+      <topicdata name="CreateNewView" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.CoreApplication" />
+      <apidata name="CreateNewView" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView" />
+        <element api="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="b7f1f4d5-a702-2aad-a5dc-2cfd973e1ec7" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView">
+      <topicdata group="api" />
+      <apidata name="CreateNewView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Core.CoreApplication.CreateNewView" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateNewViewFromMainView</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1967c5a6-ba8b-8102-f337-bf48872b8d4e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.CreateNewView(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateNewView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.Core.CoreApplication.CreateNewView" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="runtimeType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="entryPoint" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateNewView</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="cb2c3b4b-f8d6-baae-6563-3d3c29101aa9" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.DecrementApplicationUseCount">
+      <topicdata group="api" />
+      <apidata name="DecrementApplicationUseCount" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="a795e477-4514-a7bf-f19d-df7156ff3ffa" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.Exit">
+      <topicdata group="api" />
+      <apidata name="Exit" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="22afcf29-37f5-9156-8ba1-741ead0483ce" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.CoreApplication.Exiting">
+      <topicdata group="api" />
+      <apidata name="Exiting" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Exiting" />
+      <remover name="remove_Exiting" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="e4f1b63e-b25e-31cd-2fb0-11fb14730b36" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.GetCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="2fe51d59-a6e6-b60c-93a5-081e9f37c7fd" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplication.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="ed99666d-2a25-b466-62b4-a69ec6f4af6a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.IncrementApplicationUseCount">
+      <topicdata group="api" />
+      <apidata name="IncrementApplicationUseCount" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="9884b728-3652-950d-f074-1822216d1cfe" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplication.MainView">
+      <topicdata group="api" />
+      <apidata name="MainView" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MainView" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="4e9c4b02-abb0-d8d1-a71b-8a72d1b43356" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplication.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="68789cef-7b95-fac7-d0b7-72b6c178f3f4" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.CoreApplication.Resuming">
+      <topicdata group="api" />
+      <apidata name="Resuming" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Resuming" />
+      <remover name="remove_Resuming" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="a3b89377-6b24-1cdc-303c-ce6f9fc541db" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.Run(Windows.ApplicationModel.Core.IFrameworkViewSource)">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="viewSource" in="true">
+          <type api="T:Windows.ApplicationModel.Core.IFrameworkViewSource" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="91563c4c-c347-118a-adf9-cacc953563cc" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.CoreApplication.RunWithActivationFactories(Windows.Foundation.IGetActivationFactory)">
+      <topicdata group="api" />
+      <apidata name="RunWithActivationFactories" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="activationFactoryCallback" in="true">
+          <type api="T:Windows.Foundation.IGetActivationFactory" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="8b3cd8e0-173b-89dd-5fd9-5ff5ff1a4834" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.CoreApplication.Suspending">
+      <topicdata group="api" />
+      <apidata name="Suspending" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Suspending" />
+      <remover name="remove_Suspending" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.SuspendingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="7a61b612-a9eb-5aec-7fe1-ef59dae9910a" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.CoreApplication.UnhandledErrorDetected">
+      <topicdata group="api" />
+      <apidata name="UnhandledErrorDetected" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_UnhandledErrorDetected" />
+      <remover name="remove_UnhandledErrorDetected" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="687a0b2b-8457-084c-49c6-bb5879041260" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplication.Views">
+      <topicdata group="api" />
+      <apidata name="Views" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Views" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplication" ref="true" />
+      </containers>
+      <file name="b089404a-c1a3-bfaf-7945-5b2e9e66f8c9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.CoreApplicationView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      <apidata name="CoreApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Core.ICoreApplicationView" ref="true" />
+        <type api="T:Windows.ApplicationModel.Core.ICoreApplicationView2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f53d9926-404f-48d0-cfc4-5fb5c87a0929" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.CoreApplicationView">
+      <topicdata name="CoreApplicationView" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      <apidata name="CoreApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.ApplicationModel.Core.CoreApplicationView.Activated" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.CoreWindow" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.Dispatcher" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.IsHosted" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.IsMain" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      </containers>
+      <file name="7cae2e16-2732-d9f7-92c8-441fb4d923ba" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.CoreApplicationView">
+      <topicdata name="CoreApplicationView" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      <apidata name="CoreApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      </containers>
+      <file name="5752a6f3-4685-8fcb-5952-0ffb37792718" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Core.CoreApplicationView">
+      <topicdata name="CoreApplicationView" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      <apidata name="CoreApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.CoreWindow" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.Dispatcher" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.IsHosted" />
+        <element api="P:Windows.ApplicationModel.Core.CoreApplicationView.IsMain" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      </containers>
+      <file name="1ef16dbb-73a1-08e1-c5ad-1bd6e0dda4c1" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Core.CoreApplicationView">
+      <topicdata name="CoreApplicationView" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      <apidata name="CoreApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Core.CoreApplicationView.Activated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" />
+      </containers>
+      <file name="a167934d-3fdc-5702-30e8-2f866f317db3" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.CoreApplicationView.Activated">
+      <topicdata group="api" />
+      <apidata name="Activated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Activated" />
+      <remover name="remove_Activated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+            <type api="T:Windows.ApplicationModel.Activation.IActivatedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </containers>
+      <file name="745c2414-b7bb-0f23-d9f2-663665d86d3a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplicationView.CoreWindow">
+      <topicdata group="api" />
+      <apidata name="CoreWindow" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CoreWindow" />
+      <returns>
+        <type api="T:Windows.UI.Core.CoreWindow" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </containers>
+      <file name="08bde5b1-d860-7e40-06c6-91b06ca7b44b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplicationView.Dispatcher">
+      <topicdata group="api" />
+      <apidata name="Dispatcher" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Dispatcher" />
+      <returns>
+        <type api="T:Windows.UI.Core.CoreDispatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </containers>
+      <file name="abf0ac36-bd55-464c-9881-d90540dd4bec" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplicationView.IsHosted">
+      <topicdata group="api" />
+      <apidata name="IsHosted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsHosted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </containers>
+      <file name="f3badffc-fe00-7dc8-dbdb-57839a8d5b9d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.CoreApplicationView.IsMain">
+      <topicdata group="api" />
+      <apidata name="IsMain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsMain" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+      </containers>
+      <file name="07d4072a-3f4e-c2c6-9e39-23f5f3b1649d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+      <apidata name="ICoreApplicationUnhandledError" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4041362096</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>56585</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17121</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>176</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>224</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>225</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>49</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>247</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>141</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>126</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fb8f6792-3fc1-91ab-2276-1bb30d984664" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError">
+      <topicdata name="ICoreApplicationUnhandledError" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+      <apidata name="ICoreApplicationUnhandledError" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError.UnhandledErrorDetected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+      </containers>
+      <file name="8d464b3f-f3a0-84a0-d1e7-dd29ffb837d4" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError">
+      <topicdata name="ICoreApplicationUnhandledError" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+      <apidata name="ICoreApplicationUnhandledError" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError.UnhandledErrorDetected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" />
+      </containers>
+      <file name="a6ea192f-53ff-55f3-009e-4256f0728f96" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError.UnhandledErrorDetected">
+      <topicdata group="api" />
+      <apidata name="UnhandledErrorDetected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_UnhandledErrorDetected" />
+      <remover name="remove_UnhandledErrorDetected" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.ICoreApplicationUnhandledError" ref="true" />
+      </containers>
+      <file name="ee623859-a56a-8df5-1be1-f55088b81cbf" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.IFrameworkView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.IFrameworkView" />
+      <apidata name="IFrameworkView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Xaml.FrameworkView" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4205534416</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>35108</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17836</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>173</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>160</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>143</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>93</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>3</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>36</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="cc061d62-4ed5-6003-477c-aab2f429ca7a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.IFrameworkView">
+      <topicdata name="IFrameworkView" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.IFrameworkView" />
+      <apidata name="IFrameworkView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Initialize(Windows.ApplicationModel.Core.CoreApplicationView)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Load(System.String)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Run" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.SetWindow(Windows.UI.Core.CoreWindow)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Uninitialize" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" />
+      </containers>
+      <file name="7e82441f-5a5c-c283-14b9-42503cb76aad" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.IFrameworkView">
+      <topicdata name="IFrameworkView" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.IFrameworkView" />
+      <apidata name="IFrameworkView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Initialize(Windows.ApplicationModel.Core.CoreApplicationView)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Load(System.String)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Run" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.SetWindow(Windows.UI.Core.CoreWindow)" />
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkView.Uninitialize" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" />
+      </containers>
+      <file name="3066015a-5805-30b6-10c9-7058d929d236" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkView.Initialize(Windows.ApplicationModel.Core.CoreApplicationView)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="applicationView" in="true">
+          <type api="T:Windows.ApplicationModel.Core.CoreApplicationView" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </containers>
+      <file name="cff7b672-3792-f52a-8358-4b817b615dbd" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkView.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="entryPoint" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </containers>
+      <file name="f63aecc8-0d9b-1aa9-3365-3115073007ea" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkView.Run">
+      <topicdata group="api" />
+      <apidata name="Run" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </containers>
+      <file name="9ac9a0be-344a-b4f8-f626-3a3e3d929107" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkView.SetWindow(Windows.UI.Core.CoreWindow)">
+      <topicdata group="api" />
+      <apidata name="SetWindow" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="window" in="true">
+          <type api="T:Windows.UI.Core.CoreWindow" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </containers>
+      <file name="1d5771cc-1756-a309-b6eb-8ecf19d67ebc" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkView.Uninitialize">
+      <topicdata group="api" />
+      <apidata name="Uninitialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </containers>
+      <file name="7cb33b6b-4ee7-c006-ab83-50e6aede30d1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.IFrameworkViewSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+      <apidata name="IFrameworkViewSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Xaml.FrameworkViewSource" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3447129620</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>26052</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17004</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>148</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>148</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>52</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>252</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>85</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>72</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>98</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e729adb2-9fa9-3750-0c06-7c31d0741cfb" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.IFrameworkViewSource">
+      <topicdata name="IFrameworkViewSource" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+      <apidata name="IFrameworkViewSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkViewSource.CreateView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+      </containers>
+      <file name="1f9863ab-be7a-e80e-cdcb-875c1a1870b6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.IFrameworkViewSource">
+      <topicdata name="IFrameworkViewSource" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+      <apidata name="IFrameworkViewSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Core.IFrameworkViewSource.CreateView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkViewSource" />
+      </containers>
+      <file name="a7dcb5d4-cfec-727f-63b4-37d5e0751f1d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.IFrameworkViewSource.CreateView">
+      <topicdata group="api" />
+      <apidata name="CreateView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.IFrameworkViewSource" ref="true" />
+      </containers>
+      <file name="3d87d821-dbeb-e95a-df3b-4576fe5050c4" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.UnhandledError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.UnhandledError" />
+      <apidata name="UnhandledError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Core.IUnhandledError" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dcdb0bcd-010e-9d5d-ccd1-09d1d8e5cc1b" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.UnhandledError">
+      <topicdata name="UnhandledError" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledError" />
+      <apidata name="UnhandledError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Core.UnhandledError.Handled" />
+        <element api="M:Windows.ApplicationModel.Core.UnhandledError.Propagate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" />
+      </containers>
+      <file name="76038132-8eee-7f82-8391-07a53c4c7e77" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.UnhandledError">
+      <topicdata name="UnhandledError" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledError" />
+      <apidata name="UnhandledError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Core.UnhandledError.Propagate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" />
+      </containers>
+      <file name="e53bf86a-9a96-f456-ecf7-f8a06b842e24" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Core.UnhandledError">
+      <topicdata name="UnhandledError" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledError" />
+      <apidata name="UnhandledError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Core.UnhandledError.Handled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" />
+      </containers>
+      <file name="e204b915-14ea-25c6-08e7-466b2823c75f" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.UnhandledError.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" ref="true" />
+      </containers>
+      <file name="036ef75f-bf0d-a0e2-9eb6-8ba86acd60e4" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Core.UnhandledError.Propagate">
+      <topicdata group="api" />
+      <apidata name="Propagate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" ref="true" />
+      </containers>
+      <file name="1508dafe-7d7b-5d21-1c8e-5e0de07b6e38" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      <apidata name="UnhandledErrorDetectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Core.IUnhandledErrorDetectedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="013e189e-348d-a79d-ab8e-f2a4b8721c8e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs">
+      <topicdata name="UnhandledErrorDetectedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      <apidata name="UnhandledErrorDetectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs.UnhandledError" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      </containers>
+      <file name="f8f24e12-2de6-885c-3532-ab8d49fb628c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs">
+      <topicdata name="UnhandledErrorDetectedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      <apidata name="UnhandledErrorDetectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      </containers>
+      <file name="38fc91d3-c641-3b11-dc81-e64eea4014a0" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs">
+      <topicdata name="UnhandledErrorDetectedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      <apidata name="UnhandledErrorDetectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs.UnhandledError" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" />
+      </containers>
+      <file name="0d6c6904-1571-f30b-9369-515eecc20249" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs.UnhandledError">
+      <topicdata group="api" />
+      <apidata name="UnhandledError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UnhandledError" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Core.UnhandledError" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Core" />
+        <type api="T:Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs" ref="true" />
+      </containers>
+      <file name="ab771a10-7ae2-fc9d-6e74-72cb81a5b2b8" />
+    </api>
+  </apis>
+</reflection>

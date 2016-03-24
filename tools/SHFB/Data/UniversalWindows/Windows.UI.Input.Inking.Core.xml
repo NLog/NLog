@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Input.Inking.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Input.Inking.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      </elements>
+      <file name="e21e5704-d3b6-b861-1942-a6b44a0dfb06" />
+    </api>
+    <api id="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      <apidata name="CoreInkIndependentInputSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4d62c4f-b7a5-c3af-7e02-20492a60c4e6" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource">
+      <topicdata name="CoreInkIndependentInputSource" group="list" subgroup="members" typeTopicId="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      <apidata name="CoreInkIndependentInputSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.Create(Windows.UI.Input.Inking.InkPresenter)" />
+        <element api="P:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.InkPresenter" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerEntering" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerExiting" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerHovering" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerLost" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerMoving" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerPressing" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerReleasing" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      </containers>
+      <file name="fe1d5dd0-3027-df39-7553-b4f58f698d96" />
+    </api>
+    <api id="Methods.T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource">
+      <topicdata name="CoreInkIndependentInputSource" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      <apidata name="CoreInkIndependentInputSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.Create(Windows.UI.Input.Inking.InkPresenter)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      </containers>
+      <file name="dba492dc-5f33-f6ca-03e9-bfe0ca1bfa24" />
+    </api>
+    <api id="Properties.T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource">
+      <topicdata name="CoreInkIndependentInputSource" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      <apidata name="CoreInkIndependentInputSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.InkPresenter" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      </containers>
+      <file name="c44366cb-4dd5-8bf2-fca1-fb6446869194" />
+    </api>
+    <api id="Events.T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource">
+      <topicdata name="CoreInkIndependentInputSource" group="list" subgroup="Events" typeTopicId="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      <apidata name="CoreInkIndependentInputSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerEntering" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerExiting" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerHovering" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerLost" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerMoving" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerPressing" />
+        <element api="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerReleasing" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" />
+      </containers>
+      <file name="a566e98c-5777-e6a2-f6bf-7d61c0825929" />
+    </api>
+    <api id="M:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.Create(Windows.UI.Input.Inking.InkPresenter)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inkPresenter" in="true">
+          <type api="T:Windows.UI.Input.Inking.InkPresenter" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="0aff3f28-8399-a86d-3c3a-edfbf8132e15" />
+    </api>
+    <api id="P:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.InkPresenter">
+      <topicdata group="api" />
+      <apidata name="InkPresenter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InkPresenter" />
+      <returns>
+        <type api="T:Windows.UI.Input.Inking.InkPresenter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="31ab2173-4c87-5030-2567-0c51ce8f2ccd" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerEntering">
+      <topicdata group="api" />
+      <apidata name="PointerEntering" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerEntering" />
+      <remover name="remove_PointerEntering" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="4aa3bbde-997e-c28f-57a7-b188f4317f83" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerExiting">
+      <topicdata group="api" />
+      <apidata name="PointerExiting" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerExiting" />
+      <remover name="remove_PointerExiting" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="4ac390e2-2693-850a-6581-d066c4d421c5" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerHovering">
+      <topicdata group="api" />
+      <apidata name="PointerHovering" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerHovering" />
+      <remover name="remove_PointerHovering" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="11310dde-9a49-ac35-daf0-9e2a8e08a274" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerLost">
+      <topicdata group="api" />
+      <apidata name="PointerLost" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerLost" />
+      <remover name="remove_PointerLost" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="031a7c87-6493-5539-8854-f8c03e1bb016" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerMoving">
+      <topicdata group="api" />
+      <apidata name="PointerMoving" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerMoving" />
+      <remover name="remove_PointerMoving" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="61403168-1e1b-4ecd-f344-d14fc015cabc" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerPressing">
+      <topicdata group="api" />
+      <apidata name="PointerPressing" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerPressing" />
+      <remover name="remove_PointerPressing" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="6012e31d-1dbd-5621-852c-be98016a1f29" />
+    </api>
+    <api id="E:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource.PointerReleasing">
+      <topicdata group="api" />
+      <apidata name="PointerReleasing" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PointerReleasing" />
+      <remover name="remove_PointerReleasing" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+            <type api="T:Windows.UI.Core.PointerEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Input.Inking.Core" />
+        <type api="T:Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource" ref="true" />
+      </containers>
+      <file name="e24f41ea-f3b2-9aeb-3735-90c5e8e3edfe" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Contacts.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Contacts.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+        <element api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" />
+        <element api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      </elements>
+      <file name="a7640c36-5f50-27ef-87c9-e5898ead81fb" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult">
+      <topicdata group="api" />
+      <apidata name="AddContactResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.Added" />
+        <element api="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.AlreadyAdded" />
+        <element api="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.Unavailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="78ab1273-58ce-3664-86e4-8b5da6ad88fd" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.Added">
+      <topicdata group="api" notopic="" />
+      <apidata name="Added" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </containers>
+      <file name="413e709d-5b1d-c3dc-aaea-7e0eaaa65f4f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.AlreadyAdded">
+      <topicdata group="api" notopic="" />
+      <apidata name="AlreadyAdded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </containers>
+      <file name="89d5d612-d5f7-de99-7cc1-5c35087c4465" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Contacts.Provider.AddContactResult.Unavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </containers>
+      <file name="2116a8d1-e8ed-e245-078d-12f3c206b628" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="ContactPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.IContactPickerUI" ref="true" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3de7181a-957e-d495-4b39-3760371a8a2b" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI">
+      <topicdata name="ContactPickerUI" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="ContactPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact">
+          <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(Windows.ApplicationModel.Contacts.Contact)" />
+          <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(System.String,Windows.ApplicationModel.Contacts.Contact)" />
+        </element>
+        <element api="E:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContactRemoved" />
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContainsContact(System.String)" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFields" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFieldsWithContactFieldType" />
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.RemoveContact(System.String)" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.SelectionMode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      </containers>
+      <file name="8d855f59-cd52-0c39-0248-ee9049297ffc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI">
+      <topicdata name="ContactPickerUI" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="ContactPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact">
+          <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(Windows.ApplicationModel.Contacts.Contact)" />
+          <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(System.String,Windows.ApplicationModel.Contacts.Contact)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContainsContact(System.String)" />
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.RemoveContact(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      </containers>
+      <file name="f4db57ea-1100-1555-ba67-1907f824b548" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI">
+      <topicdata name="ContactPickerUI" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="ContactPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFields" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFieldsWithContactFieldType" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.SelectionMode" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      </containers>
+      <file name="c4e5ed5e-839a-be5f-cfd7-22dcbadef880" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI">
+      <topicdata name="ContactPickerUI" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="ContactPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContactRemoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      </containers>
+      <file name="4dd25324-d55f-2cee-87a4-a6060876e6b9" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact">
+      <topicdata name="AddContact" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" />
+      <apidata name="AddContact" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(Windows.ApplicationModel.Contacts.Contact)" />
+        <element api="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(System.String,Windows.ApplicationModel.Contacts.Contact)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="0200995a-ce41-f06a-4a09-996c4ac7c47a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(System.String,Windows.ApplicationModel.Contacts.Contact)">
+      <topicdata group="api" />
+      <apidata name="AddContact" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="contact" in="true">
+          <type api="T:Windows.ApplicationModel.Contacts.Contact" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddContact may be altered or unavailable for releases after Windows 8.1. Instead, use AddContact without the ID.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c7819d4-a968-ec1e-172f-914bfa0dbc1d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact(Windows.ApplicationModel.Contacts.Contact)">
+      <topicdata group="api" />
+      <apidata name="AddContact" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.AddContact" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="contact" in="true">
+          <type api="T:Windows.ApplicationModel.Contacts.Contact" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.AddContactResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="1f957bfd-517d-ba09-b0b2-bb4409a4d450" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContactRemoved">
+      <topicdata group="api" />
+      <apidata name="ContactRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ContactRemoved" />
+      <remover name="remove_ContactRemoved" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+            <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="c96cc4a1-541e-8326-f42e-2c73d2429e65" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.ContainsContact(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsContact" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="528dbd38-2cc5-c2a2-58d8-634b332ecefc" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFields">
+      <topicdata group="api" />
+      <apidata name="DesiredFields" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DesiredFields">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DesiredFields may be altered or unavailable for releases after Windows 8.1. Instead, use DesiredFieldsWithContactFieldType.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="6ed2dd1e-37ad-dc56-d6fa-9323139c735c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.DesiredFieldsWithContactFieldType">
+      <topicdata group="api" />
+      <apidata name="DesiredFieldsWithContactFieldType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DesiredFieldsWithContactFieldType" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Contacts.ContactFieldType" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="399bf34a-2ee3-337d-507d-228aab8fe510" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.RemoveContact(System.String)">
+      <topicdata group="api" />
+      <apidata name="RemoveContact" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="52082b5d-9376-8c05-d34e-d166457497fd" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI.SelectionMode">
+      <topicdata group="api" />
+      <apidata name="SelectionMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectionMode" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Contacts.ContactSelectionMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactPickerUI" ref="true" />
+      </containers>
+      <file name="93d57f9a-8c53-f8ff-92f4-8946b6459eb9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      <apidata name="ContactRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.IContactRemovedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e056b679-5e28-6a02-c343-816f7e1349b2" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs">
+      <topicdata name="ContactRemovedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      <apidata name="ContactRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      </containers>
+      <file name="a6a55981-11ff-fd3e-3b6f-233a7dee1ba3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs">
+      <topicdata name="ContactRemovedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      <apidata name="ContactRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      </containers>
+      <file name="f2a52f7d-443c-5126-9db9-7adf196b177b" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs">
+      <topicdata name="ContactRemovedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      <apidata name="ContactRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" />
+      </containers>
+      <file name="9bde3727-98af-ad1c-62ba-2bb7d7d8ec91" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Contacts.Provider" />
+        <type api="T:Windows.ApplicationModel.Contacts.Provider.ContactRemovedEventArgs" ref="true" />
+      </containers>
+      <file name="7daca4a1-1418-5bd2-fc8c-8e8becf6f7f6" />
+    </api>
+  </apis>
+</reflection>

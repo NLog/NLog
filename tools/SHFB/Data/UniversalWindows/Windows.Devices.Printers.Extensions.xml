@@ -1,0 +1,2486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Devices.Printers.Extensions.ExtensionsContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Printers.Extensions">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Printers.Extensions" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+        <element api="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+        <element api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" />
+        <element api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" />
+        <element api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+        <element api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      </elements>
+      <file name="db2cb206-623b-6fdf-ab5b-dcd9a32ae65a" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.ExtensionsContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+      <apidata name="ExtensionsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c7aeac8d-bc38-69ba-cbdd-c27c04b15316" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.ExtensionsContract">
+      <topicdata name="ExtensionsContract" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+      <apidata name="ExtensionsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+      </containers>
+      <file name="78629b7f-3f15-5e3a-ccbd-1fffb0cf01db" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.ExtensionsContract">
+      <topicdata name="ExtensionsContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+      <apidata name="ExtensionsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" />
+      </containers>
+      <file name="9d039082-3211-8408-6d17-d6982168daea" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.Print3DWorkflow">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      <apidata name="Print3DWorkflow" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="76e4c720-6bbd-9de7-b8f0-7e0d4b0b2f29" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.Print3DWorkflow">
+      <topicdata name="Print3DWorkflow" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      <apidata name="Print3DWorkflow" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.DeviceID" />
+        <element api="M:Windows.Devices.Printers.Extensions.Print3DWorkflow.GetPrintModelPackage" />
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.IsPrintReady" />
+        <element api="E:Windows.Devices.Printers.Extensions.Print3DWorkflow.PrintRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      </containers>
+      <file name="4b27e8da-006f-a969-7b64-936928f4ad7a" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.Print3DWorkflow">
+      <topicdata name="Print3DWorkflow" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      <apidata name="Print3DWorkflow" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.Print3DWorkflow.GetPrintModelPackage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      </containers>
+      <file name="4fd45977-3a35-05af-61b7-7db9425c142e" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.Print3DWorkflow">
+      <topicdata name="Print3DWorkflow" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      <apidata name="Print3DWorkflow" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.DeviceID" />
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.IsPrintReady" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      </containers>
+      <file name="6accb325-cfbc-2f60-def0-329d8d474b72" />
+    </api>
+    <api id="Events.T:Windows.Devices.Printers.Extensions.Print3DWorkflow">
+      <topicdata name="Print3DWorkflow" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      <apidata name="Print3DWorkflow" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Printers.Extensions.Print3DWorkflow.PrintRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" />
+      </containers>
+      <file name="28479c5d-4277-4921-3a0f-cb88194d3683" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.DeviceID">
+      <topicdata group="api" />
+      <apidata name="DeviceID" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceID" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" ref="true" />
+      </containers>
+      <file name="646aa7ba-8000-dbb5-e34c-a8037c37400a" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.Print3DWorkflow.GetPrintModelPackage">
+      <topicdata group="api" />
+      <apidata name="GetPrintModelPackage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" ref="true" />
+      </containers>
+      <file name="ec78e318-0edb-368a-6ef2-0b6311b16d75" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.Print3DWorkflow.IsPrintReady">
+      <topicdata group="api" />
+      <apidata name="IsPrintReady" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsPrintReady" />
+      <setter name="set_IsPrintReady" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" ref="true" />
+      </containers>
+      <file name="e0b00261-f445-33a8-0e02-a1912904f19b" />
+    </api>
+    <api id="E:Windows.Devices.Printers.Extensions.Print3DWorkflow.PrintRequested">
+      <topicdata group="api" />
+      <apidata name="PrintRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PrintRequested" />
+      <remover name="remove_PrintRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" ref="true" />
+            <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflow" ref="true" />
+      </containers>
+      <file name="6deb8a18-210c-4eb2-17a1-5f3dc9e7d0c6" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail">
+      <topicdata group="api" />
+      <apidata name="Print3DWorkflowDetail" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.Unknown" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.ModelExceedsPrintBed" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.UploadFailed" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidMaterialSelection" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidModel" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.ModelNotManifold" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidPrintTicket" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c69a93bb-5606-a090-ee23-668464e16f4e" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidMaterialSelection">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidMaterialSelection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="6cde6357-1ed8-73e3-f3e8-12c0e0ccee52" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidModel">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidModel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="9744f1f0-f2dc-0750-7607-2d6bedb26fd1" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.InvalidPrintTicket">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidPrintTicket" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="be2be01e-68f7-e9b5-58d8-38789e675669" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.ModelExceedsPrintBed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ModelExceedsPrintBed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="0198b406-4156-e556-29e2-edc49f507124" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.ModelNotManifold">
+      <topicdata group="api" notopic="" />
+      <apidata name="ModelNotManifold" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="a4d6cac7-2b88-fae4-531c-d5f70b066058" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="bbf9caaf-e00b-24c5-2bb8-4ffe000fb3e8" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail.UploadFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="UploadFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </containers>
+      <file name="70551726-5d90-ea4d-759e-50eee2831077" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      <apidata name="Print3DWorkflowPrintRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="46270766-5f74-de63-1c48-2795fff75feb" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs">
+      <topicdata name="Print3DWorkflowPrintRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      <apidata name="Print3DWorkflowPrintRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.ExtendedStatus" />
+        <element api="M:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.SetSource(System.Object)" />
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      </containers>
+      <file name="d8b4ae7a-3e21-596d-9b8c-77d82d1ad1e6" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs">
+      <topicdata name="Print3DWorkflowPrintRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      <apidata name="Print3DWorkflowPrintRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.SetSource(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      </containers>
+      <file name="9c36db5a-2c29-3f5f-1992-7676ad404353" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs">
+      <topicdata name="Print3DWorkflowPrintRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      <apidata name="Print3DWorkflowPrintRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.ExtendedStatus" />
+        <element api="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" />
+      </containers>
+      <file name="d9d81217-b9c2-a2c7-8686-f3d582181c2c" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.ExtendedStatus">
+      <topicdata group="api" />
+      <apidata name="ExtendedStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExtendedStatus" />
+      <setter name="set_ExtendedStatus" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowDetail" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="025af254-f595-004b-85cb-5f079675c956" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.SetSource(System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="source" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="a8825307-fd50-f6ca-bb4b-986ed31e7355" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Status" />
+      <setter name="set_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowPrintRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="2e72346a-fc51-483d-a7ee-aa69bb285810" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus">
+      <topicdata group="api" />
+      <apidata name="Print3DWorkflowStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Abandoned" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Canceled" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Failed" />
+        <element api="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Submitted" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7a45b7d0-aac3-cbc3-284e-933181bb9a1b" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Abandoned">
+      <topicdata group="api" notopic="" />
+      <apidata name="Abandoned" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </containers>
+      <file name="c3115309-4b04-ff97-1e1b-b917dc3cdeb8" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </containers>
+      <file name="13579740-3c5e-ef28-9675-0ba679fd1adb" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Failed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Failed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </containers>
+      <file name="b6b6bc71-dae2-271e-6f71-1c2dbcc6557d" />
+    </api>
+    <api id="F:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus.Submitted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Submitted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.Print3DWorkflowStatus" ref="false" />
+      </containers>
+      <file name="086025d7-bac9-58e7-c4ee-e4cf53c41ce4" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintExtensionContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+      <apidata name="PrintExtensionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="98030121-20ad-cd99-2d90-9cbfd30aebe2" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintExtensionContext">
+      <topicdata name="PrintExtensionContext" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+      <apidata name="PrintExtensionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintExtensionContext.FromDeviceId(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+      </containers>
+      <file name="84f4d63a-4f81-3da5-19f0-a81b048f42d2" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintExtensionContext">
+      <topicdata name="PrintExtensionContext" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+      <apidata name="PrintExtensionContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintExtensionContext.FromDeviceId(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" />
+      </containers>
+      <file name="723b5c03-e984-5be1-85d9-d1e79e9da25a" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.PrintExtensionContext.FromDeviceId(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromDeviceId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintExtensionContext" ref="true" />
+      </containers>
+      <file name="f6d743df-8141-c54a-bcbe-71aab2caccec" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      <apidata name="PrintNotificationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="299fcaec-e134-cec5-8f95-05ecf9ee119a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails">
+      <topicdata name="PrintNotificationEventDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      <apidata name="PrintNotificationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.EventData" />
+        <element api="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.PrinterName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      </containers>
+      <file name="52e1b036-e425-0519-73e8-cb6b9314ac95" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails">
+      <topicdata name="PrintNotificationEventDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      <apidata name="PrintNotificationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      </containers>
+      <file name="57ebfa1e-e279-0a94-0c1d-af65718cb556" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails">
+      <topicdata name="PrintNotificationEventDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      <apidata name="PrintNotificationEventDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.EventData" />
+        <element api="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.PrinterName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" />
+      </containers>
+      <file name="4eb1878d-efc2-b856-cb76-7ab24c3fb879" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.EventData">
+      <topicdata group="api" />
+      <apidata name="EventData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EventData" />
+      <setter name="set_EventData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" ref="true" />
+      </containers>
+      <file name="6807046b-0211-cac2-2980-56aa47ac9c22" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails.PrinterName">
+      <topicdata group="api" />
+      <apidata name="PrinterName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrinterName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintNotificationEventDetails" ref="true" />
+      </containers>
+      <file name="00131ee8-03df-88ba-335a-d2b1cd5589eb" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      <apidata name="PrintTaskConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dd37be41-6bb8-dd68-0cda-e97e55ce6bf7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration">
+      <topicdata name="PrintTaskConfiguration" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      <apidata name="PrintTaskConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.PrinterExtensionContext" />
+        <element api="E:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.SaveRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      </containers>
+      <file name="4bb048fd-8411-c2be-f659-12b360e0fad5" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration">
+      <topicdata name="PrintTaskConfiguration" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      <apidata name="PrintTaskConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      </containers>
+      <file name="f5cfb893-da65-6aca-100f-a53ff0e5d097" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration">
+      <topicdata name="PrintTaskConfiguration" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      <apidata name="PrintTaskConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.PrinterExtensionContext" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      </containers>
+      <file name="b6cc46df-7d79-7bbc-5a71-0679551aa953" />
+    </api>
+    <api id="Events.T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration">
+      <topicdata name="PrintTaskConfiguration" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      <apidata name="PrintTaskConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.SaveRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" />
+      </containers>
+      <file name="99a4d23d-0514-9018-33c4-d99f7c26fac6" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.PrinterExtensionContext">
+      <topicdata group="api" />
+      <apidata name="PrinterExtensionContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrinterExtensionContext" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" ref="true" />
+      </containers>
+      <file name="78637eb0-0ff9-4f6c-c401-7bbbc0592e1b" />
+    </api>
+    <api id="E:Windows.Devices.Printers.Extensions.PrintTaskConfiguration.SaveRequested">
+      <topicdata group="api" />
+      <apidata name="SaveRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SaveRequested" />
+      <remover name="remove_SaveRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" ref="true" />
+            <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfiguration" ref="true" />
+      </containers>
+      <file name="52761646-810b-ccdd-b611-883b83244a29" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      <apidata name="PrintTaskConfigurationSaveRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d0c263b-59b0-76f4-5e6c-6460c1117d4b" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest">
+      <topicdata name="PrintTaskConfigurationSaveRequest" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      <apidata name="PrintTaskConfigurationSaveRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Cancel" />
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Deadline" />
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.GetDeferral" />
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Save(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      </containers>
+      <file name="95d3d07b-2314-7377-a00f-4d8f0768ed6c" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest">
+      <topicdata name="PrintTaskConfigurationSaveRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      <apidata name="PrintTaskConfigurationSaveRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Cancel" />
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.GetDeferral" />
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Save(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      </containers>
+      <file name="a1f71c42-3387-296c-613e-a124e6ef71ae" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest">
+      <topicdata name="PrintTaskConfigurationSaveRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      <apidata name="PrintTaskConfigurationSaveRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" />
+      </containers>
+      <file name="85bb2a3b-6d4b-0a2e-eb08-f238537bbe8c" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" ref="true" />
+      </containers>
+      <file name="b4b4e6c5-a9a0-d0ea-7671-ee661cde6b76" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" ref="true" />
+      </containers>
+      <file name="a2398264-fbe7-5a4c-837c-454b468e210e" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" ref="true" />
+      </containers>
+      <file name="464fa142-1366-574e-7284-2977b8adf802" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest.Save(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Save" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="printerExtensionContext" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" ref="true" />
+      </containers>
+      <file name="59ef194b-6bc2-1292-8bc1-028826bc87da" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+      <apidata name="PrintTaskConfigurationSaveRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8d3fa4dc-9cf3-eb0a-bb96-bbf210e7eb53" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral">
+      <topicdata name="PrintTaskConfigurationSaveRequestedDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+      <apidata name="PrintTaskConfigurationSaveRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+      </containers>
+      <file name="baece304-d34b-4e68-2513-66ba5b189c7a" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral">
+      <topicdata name="PrintTaskConfigurationSaveRequestedDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+      <apidata name="PrintTaskConfigurationSaveRequestedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" />
+      </containers>
+      <file name="5d32de33-b612-fad2-3fdb-3cf717fd6cec" />
+    </api>
+    <api id="M:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral" ref="true" />
+      </containers>
+      <file name="662a4276-6330-78af-d81d-31cc3e457bac" />
+    </api>
+    <api id="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      <apidata name="PrintTaskConfigurationSaveRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.Printers.Extensions.ExtensionsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2c38077f-3269-3879-6482-fc48874c9349" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs">
+      <topicdata name="PrintTaskConfigurationSaveRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      <apidata name="PrintTaskConfigurationSaveRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      </containers>
+      <file name="e2417102-6630-731c-a867-17c47fb73e45" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs">
+      <topicdata name="PrintTaskConfigurationSaveRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      <apidata name="PrintTaskConfigurationSaveRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      </containers>
+      <file name="306cafae-8c14-a984-b5a3-b58bf94e823d" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs">
+      <topicdata name="PrintTaskConfigurationSaveRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      <apidata name="PrintTaskConfigurationSaveRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" />
+      </containers>
+      <file name="e8726146-b00c-bdbe-3bf7-501c33dde469" />
+    </api>
+    <api id="P:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.Printers.Extensions.ExtensionsContract" module="Windows.Devices.Printers.Extensions.ExtensionsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Printers.Extensions" />
+        <type api="T:Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="f8b252f5-9793-5d90-a494-ccede1bdb439" />
+    </api>
+  </apis>
+</reflection>

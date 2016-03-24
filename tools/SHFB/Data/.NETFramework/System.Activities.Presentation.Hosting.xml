@@ -1,0 +1,1970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.Hosting">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.Hosting" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+        <element api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+        <element api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+        <element api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+        <element api="T:System.Activities.Presentation.Hosting.CommandInfo" />
+        <element api="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+        <element api="T:System.Activities.Presentation.Hosting.ICommandService" />
+        <element api="T:System.Activities.Presentation.Hosting.CommandValues" />
+        <element api="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+        <element api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+        <element api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+        <element api="T:System.Activities.Presentation.Hosting.WindowMessage" />
+        <element api="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      </elements>
+      <file name="70dceb7e-ee47-b555-a232-4cf8951273b3" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      <apidata name="AssemblyContextControlItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="7ea7258e-5887-ffae-02b0-0695ddb12300" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.AssemblyContextControlItem">
+      <topicdata name="AssemblyContextControlItem" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      <apidata name="AssemblyContextControlItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.AllAssemblyNamesInContext" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetAssembly(System.Reflection.AssemblyName,System.Activities.Presentation.Hosting.IMultiTargetingSupportService)" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblies(System.Activities.Presentation.Hosting.IMultiTargetingSupportService)" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblyNames" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ItemType" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.LocalAssemblyName" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ReferencedAssemblyNames" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      </containers>
+      <file name="794f8fcf-4e62-59d8-fc84-e75af8936102" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.AssemblyContextControlItem">
+      <topicdata name="AssemblyContextControlItem" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      <apidata name="AssemblyContextControlItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetAssembly(System.Reflection.AssemblyName,System.Activities.Presentation.Hosting.IMultiTargetingSupportService)" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblies(System.Activities.Presentation.Hosting.IMultiTargetingSupportService)" />
+        <element api="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblyNames" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      </containers>
+      <file name="f25ad8d0-3ab1-2ee3-ae08-987698923bfe" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.AssemblyContextControlItem">
+      <topicdata name="AssemblyContextControlItem" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      <apidata name="AssemblyContextControlItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.AllAssemblyNamesInContext" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ItemType" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.LocalAssemblyName" />
+        <element api="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ReferencedAssemblyNames" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" />
+      </containers>
+      <file name="902bb3b8-34ca-fe3b-e7b9-7abaabd1d9ea" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="6fcbc4f3-8a0d-6d3d-1622-d7d5aea47900" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.AllAssemblyNamesInContext">
+      <topicdata group="api" />
+      <apidata name="AllAssemblyNamesInContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllAssemblyNamesInContext" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="1811100d-876c-0d63-fb11-b8d8f4773556" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetAssembly(System.Reflection.AssemblyName,System.Activities.Presentation.Hosting.IMultiTargetingSupportService)">
+      <topicdata group="api" />
+      <apidata name="GetAssembly" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+        <parameter name="multiTargetingService">
+          <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="bc2b66f7-f388-8c14-9226-b825d7291eca" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblies(System.Activities.Presentation.Hosting.IMultiTargetingSupportService)">
+      <topicdata group="api" />
+      <apidata name="GetEnvironmentAssemblies" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiTargetingService">
+          <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.Assembly" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="c9e7786f-d48d-8e74-8b13-9fca7e248feb" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.AssemblyContextControlItem.GetEnvironmentAssemblyNames">
+      <topicdata group="api" />
+      <apidata name="GetEnvironmentAssemblyNames" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.AssemblyName" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="756b4210-0116-2af0-e089-be19954e2bbd" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ItemType">
+      <topicdata group="api" />
+      <apidata name="ItemType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Activities.Presentation.ContextItem.ItemType">
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ItemType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="768e9b93-e03f-76ca-f756-e4db9bdad110" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.LocalAssemblyName">
+      <topicdata group="api" />
+      <apidata name="LocalAssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LocalAssemblyName" />
+      <setter name="set_LocalAssemblyName" />
+      <returns>
+        <type api="T:System.Reflection.AssemblyName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="112c24b7-2b29-86a3-98fd-4a49dd1a7cf4" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.AssemblyContextControlItem.ReferencedAssemblyNames">
+      <topicdata group="api" />
+      <apidata name="ReferencedAssemblyNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReferencedAssemblyNames" />
+      <setter name="set_ReferencedAssemblyNames" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.AssemblyName" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.AssemblyContextControlItem" ref="true" />
+      </containers>
+      <file name="3f7b0a32-e603-fa4b-a982-12c496d7c525" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.CommandInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.CommandInfo" />
+      <apidata name="CommandInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="30e57ca7-14d9-846f-952a-dbf8c2468d52" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.CommandInfo">
+      <topicdata name="CommandInfo" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      <apidata name="CommandInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Activities.Presentation.Hosting.CommandInfo.Command" />
+        <element api="P:System.Activities.Presentation.Hosting.CommandInfo.IsBindingEnabledInDesigner" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      </containers>
+      <file name="a11e0258-7dac-65c4-b297-f5e429f8d867" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.CommandInfo">
+      <topicdata name="CommandInfo" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      <apidata name="CommandInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      </containers>
+      <file name="9a8dae17-7982-3998-b49b-a72d0c33d248" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.CommandInfo">
+      <topicdata name="CommandInfo" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      <apidata name="CommandInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.CommandInfo.Command" />
+        <element api="P:System.Activities.Presentation.Hosting.CommandInfo.IsBindingEnabledInDesigner" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandInfo" />
+      </containers>
+      <file name="bb4d449a-d3c7-bb4d-6560-8a1401d3ebaa" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.CommandInfo.Command">
+      <topicdata group="api" />
+      <apidata name="Command" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Command" />
+      <returns>
+        <type api="T:System.Windows.Input.ICommand" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandInfo" ref="true" />
+      </containers>
+      <file name="0334b313-ef90-6185-da72-ced28156d47a" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.CommandInfo.IsBindingEnabledInDesigner">
+      <topicdata group="api" />
+      <apidata name="IsBindingEnabledInDesigner" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsBindingEnabledInDesigner" />
+      <setter name="set_IsBindingEnabledInDesigner" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandInfo" ref="true" />
+      </containers>
+      <file name="bbae0e71-07f6-bed4-cef7-7d25f5ecba5e" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.CommandValues">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.CommandValues" />
+      <apidata name="CommandValues" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="80f2ee01-1fe4-9165-3e3d-9b0c0a7dc10c" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.CommandValues">
+      <topicdata name="CommandValues" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.CommandValues" />
+      <apidata name="CommandValues" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.DeleteBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.DisableBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.EnableBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.InsertBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.ShowProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" />
+      </containers>
+      <file name="5a87a8e6-ecfe-3b57-1ffd-3b19ac57b31b" />
+    </api>
+    <api id="Fields.T:System.Activities.Presentation.Hosting.CommandValues">
+      <topicdata name="CommandValues" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Presentation.Hosting.CommandValues" />
+      <apidata name="CommandValues" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.DeleteBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.DisableBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.EnableBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.InsertBreakpoint" />
+        <element api="F:System.Activities.Presentation.Hosting.CommandValues.ShowProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" />
+      </containers>
+      <file name="3af6cd40-b75a-d2f3-ad46-4169ff93d256" />
+    </api>
+    <api id="F:System.Activities.Presentation.Hosting.CommandValues.DeleteBreakpoint">
+      <topicdata group="api" />
+      <apidata name="DeleteBreakpoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" ref="true" />
+      </containers>
+      <file name="234c749a-b4de-bf2f-e95b-95a5d11f8839" />
+    </api>
+    <api id="F:System.Activities.Presentation.Hosting.CommandValues.DisableBreakpoint">
+      <topicdata group="api" />
+      <apidata name="DisableBreakpoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" ref="true" />
+      </containers>
+      <file name="b262671d-4b97-c510-cfb3-be19d89cd05d" />
+    </api>
+    <api id="F:System.Activities.Presentation.Hosting.CommandValues.EnableBreakpoint">
+      <topicdata group="api" />
+      <apidata name="EnableBreakpoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" ref="true" />
+      </containers>
+      <file name="f7495ed9-4705-1302-0ddf-2f7c589d6503" />
+    </api>
+    <api id="F:System.Activities.Presentation.Hosting.CommandValues.InsertBreakpoint">
+      <topicdata group="api" />
+      <apidata name="InsertBreakpoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" ref="true" />
+      </containers>
+      <file name="d62f9966-dc6b-c725-f3b2-efd92637ef67" />
+    </api>
+    <api id="F:System.Activities.Presentation.Hosting.CommandValues.ShowProperties">
+      <topicdata group="api" />
+      <apidata name="ShowProperties" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.CommandValues" ref="true" />
+      </containers>
+      <file name="6691c789-06f3-e51f-4a71-2e6961358a4e" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.ICommandService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.ICommandService" />
+      <apidata name="ICommandService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="832bb5b9-26f3-11b7-6507-5e14e616d52e" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.ICommandService">
+      <topicdata name="ICommandService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.ICommandService" />
+      <apidata name="ICommandService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.CanExecuteCommand(System.Int32)" />
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.ExecuteCommand(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})" />
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.IsCommandSupported(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ICommandService" />
+      </containers>
+      <file name="7cf9e159-09fc-e500-b658-069813a95da7" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.ICommandService">
+      <topicdata name="ICommandService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.ICommandService" />
+      <apidata name="ICommandService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.CanExecuteCommand(System.Int32)" />
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.ExecuteCommand(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})" />
+        <element api="M:System.Activities.Presentation.Hosting.ICommandService.IsCommandSupported(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ICommandService" />
+      </containers>
+      <file name="d38f5a86-6228-d0dd-f636-0e01dd006349" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ICommandService.CanExecuteCommand(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CanExecuteCommand" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="commandId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ICommandService" ref="true" />
+      </containers>
+      <file name="b4e22d63-520a-f97d-b2da-dbc5073806a2" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ICommandService.ExecuteCommand(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+      <topicdata group="api" />
+      <apidata name="ExecuteCommand" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="commandId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parameters">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ICommandService" ref="true" />
+      </containers>
+      <file name="dc5ec441-9b6a-914f-5e3c-9787153d69c4" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ICommandService.IsCommandSupported(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="IsCommandSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="commandId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ICommandService" ref="true" />
+      </containers>
+      <file name="4ce68604-a1d1-4717-2741-65c80d16643a" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+      <apidata name="IDocumentPersistenceService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="729976e9-e69b-6ddf-f641-4b1fb82f7345" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.IDocumentPersistenceService">
+      <topicdata name="IDocumentPersistenceService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+      <apidata name="IDocumentPersistenceService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Flush(System.Object)" />
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Load(System.String)" />
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.OnModelChanged(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+      </containers>
+      <file name="d5fc0f68-c5b3-8358-915e-78eaf9066a2e" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.IDocumentPersistenceService">
+      <topicdata name="IDocumentPersistenceService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+      <apidata name="IDocumentPersistenceService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Flush(System.Object)" />
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Load(System.String)" />
+        <element api="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.OnModelChanged(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" />
+      </containers>
+      <file name="c6c81111-6f48-a371-7d55-5177380f606e" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Flush(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentRoot">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" ref="true" />
+      </containers>
+      <file name="b8c88d56-2b64-87c4-98ce-e2de880c2c74" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" ref="true" />
+      </containers>
+      <file name="2b33a5bd-8baa-0ccb-9457-f25d69166ce5" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IDocumentPersistenceService.OnModelChanged(System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnModelChanged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="documentRoot">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IDocumentPersistenceService" ref="true" />
+      </containers>
+      <file name="26714c1a-0e0e-ddd4-0727-75deb96663c5" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      <apidata name="ImportedNamespaceContextItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="9cf41b19-6e19-67a9-6a61-699998491225" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem">
+      <topicdata name="ImportedNamespaceContextItem" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      <apidata name="ImportedNamespaceContextItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor" />
+        <element api="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.EnsureInitialized(System.Activities.Presentation.EditingContext)" />
+        <element api="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ImportedNamespaces" />
+        <element api="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      </containers>
+      <file name="14e383c7-3a39-010c-cc85-6dd43eb0cfea" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem">
+      <topicdata name="ImportedNamespaceContextItem" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      <apidata name="ImportedNamespaceContextItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.EnsureInitialized(System.Activities.Presentation.EditingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      </containers>
+      <file name="8fa78e33-6c30-a7f5-3e90-61b43e271414" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem">
+      <topicdata name="ImportedNamespaceContextItem" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      <apidata name="ImportedNamespaceContextItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ImportedNamespaces" />
+        <element api="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" />
+      </containers>
+      <file name="6d76c539-ad7e-dc93-6e87-581cae652dd6" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" ref="true" />
+      </containers>
+      <file name="e4672912-8a54-c42f-437c-a91c831442cc" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.EnsureInitialized(System.Activities.Presentation.EditingContext)">
+      <topicdata group="api" />
+      <apidata name="EnsureInitialized" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.Presentation.EditingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" ref="true" />
+      </containers>
+      <file name="25474be7-f54a-0298-2f33-e132f36e7c3b" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ImportedNamespaces">
+      <topicdata group="api" />
+      <apidata name="ImportedNamespaces" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ImportedNamespaces" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" ref="true" />
+      </containers>
+      <file name="d3d4dc50-6f95-b951-19df-b92f37071d27" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem.ItemType">
+      <topicdata group="api" />
+      <apidata name="ItemType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Activities.Presentation.ContextItem.ItemType">
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ItemType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ImportedNamespaceContextItem" ref="true" />
+      </containers>
+      <file name="79ad0539-06c4-1ce9-ef01-ec8f52f3124e" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+      <apidata name="IMultiTargetingSupportService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="e5762238-e0f2-bc05-a313-83e19c386483" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService">
+      <topicdata name="IMultiTargetingSupportService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+      <apidata name="IMultiTargetingSupportService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)" />
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetRuntimeType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.IsSupportedType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+      </containers>
+      <file name="99a7f977-d070-f0a7-ffbf-97ca5023ac69" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService">
+      <topicdata name="IMultiTargetingSupportService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+      <apidata name="IMultiTargetingSupportService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)" />
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetRuntimeType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.IsSupportedType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" />
+      </containers>
+      <file name="24c420fd-5c8b-0dcd-c62a-f6cc759aba75" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)">
+      <topicdata group="api" />
+      <apidata name="GetReflectionAssembly" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="targetAssemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="e2c1a070-de82-4f32-feec-066344303d0b" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetRuntimeType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetRuntimeType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="reflectionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="c1e666cd-e62b-fbd8-1c05-7c61ce286771" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.IsSupportedType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsSupportedType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="fe95a51e-1ba4-98f4-1ebe-0dcede8aeade" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+      <apidata name="IWorkflowCommandExtensionCallback" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="fed6f84d-6d57-8eb1-6573-f825809c3ad4" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback">
+      <topicdata name="IWorkflowCommandExtensionCallback" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+      <apidata name="IWorkflowCommandExtensionCallback" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback.OnWorkflowCommandLoaded(System.Activities.Presentation.Hosting.CommandInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+      </containers>
+      <file name="732bfb49-96eb-2562-570f-ffe6b538e8e7" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback">
+      <topicdata name="IWorkflowCommandExtensionCallback" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+      <apidata name="IWorkflowCommandExtensionCallback" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback.OnWorkflowCommandLoaded(System.Activities.Presentation.Hosting.CommandInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" />
+      </containers>
+      <file name="4ca10e01-d32e-a646-d349-a8cb846115f4" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback.OnWorkflowCommandLoaded(System.Activities.Presentation.Hosting.CommandInfo)">
+      <topicdata group="api" />
+      <apidata name="OnWorkflowCommandLoaded" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="commandInfo">
+          <type api="T:System.Activities.Presentation.Hosting.CommandInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" ref="true" />
+      </containers>
+      <file name="834f21f6-d281-047e-314e-35f09ea5176d" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+      <apidata name="MultiTargetingSupportService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="8d96b9db-6ff4-9ea2-a854-666e9e045a8d" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.MultiTargetingSupportService">
+      <topicdata name="MultiTargetingSupportService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+      <apidata name="MultiTargetingSupportService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.#ctor" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetRuntimeType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.IsSupportedType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+      </containers>
+      <file name="18d19129-9d50-d2c3-2dc3-4f3a49879490" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.MultiTargetingSupportService">
+      <topicdata name="MultiTargetingSupportService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+      <apidata name="MultiTargetingSupportService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetRuntimeType(System.Type)" />
+        <element api="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.IsSupportedType(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" />
+      </containers>
+      <file name="81618cee-9f6f-cc28-c9c3-6923841afebd" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="ee92be58-9974-cc5d-7ea3-801a09e0ae14" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)">
+      <topicdata group="api" />
+      <apidata name="GetReflectionAssembly" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="targetAssemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetReflectionAssembly(System.Reflection.AssemblyName)">
+          <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="96bb340f-2ca2-af78-9047-7dd974afaa91" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetReflectionType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetReflectionType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="objectType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="b0253b73-2b91-7111-8c26-2f093caf7d58" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.GetRuntimeType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetRuntimeType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="reflectionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.GetRuntimeType(System.Type)">
+          <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="b6729e75-5146-1fd5-5d6b-66770828c1ed" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.MultiTargetingSupportService.IsSupportedType(System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsSupportedType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.Hosting.IMultiTargetingSupportService.IsSupportedType(System.Type)">
+          <type api="T:System.Activities.Presentation.Hosting.IMultiTargetingSupportService" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.MultiTargetingSupportService" ref="true" />
+      </containers>
+      <file name="1f075090-363a-ef38-bd6e-0825ec11e7ae" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.ReadOnlyState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      <apidata name="ReadOnlyState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="6210b779-9bdb-aa54-412a-7a099e029149" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.ReadOnlyState">
+      <topicdata name="ReadOnlyState" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      <apidata name="ReadOnlyState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor" />
+        <element api="P:System.Activities.Presentation.Hosting.ReadOnlyState.IsReadOnly" />
+        <element api="P:System.Activities.Presentation.Hosting.ReadOnlyState.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      </containers>
+      <file name="90461cb0-b697-2093-9bd1-a9009d5f85ec" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.ReadOnlyState">
+      <topicdata name="ReadOnlyState" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      <apidata name="ReadOnlyState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      </containers>
+      <file name="7412e493-1e5f-2f5c-8825-b2f89e97c30f" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.ReadOnlyState">
+      <topicdata name="ReadOnlyState" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      <apidata name="ReadOnlyState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.ReadOnlyState.IsReadOnly" />
+        <element api="P:System.Activities.Presentation.Hosting.ReadOnlyState.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" />
+      </containers>
+      <file name="a30e741b-0c69-d78e-2907-50c06bf29ec8" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.ReadOnlyState.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" ref="true" />
+      </containers>
+      <file name="2693799f-9c8b-5f22-5a63-a55afd91e85a" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.ReadOnlyState.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsReadOnly" />
+      <setter name="set_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" ref="true" />
+      </containers>
+      <file name="fbc951b2-49e4-3c66-b552-d50a093f8a44" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.ReadOnlyState.ItemType">
+      <topicdata group="api" />
+      <apidata name="ItemType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Activities.Presentation.ContextItem.ItemType">
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ItemType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.ReadOnlyState" ref="true" />
+      </containers>
+      <file name="b8a9aba4-809d-18e1-fdd0-f74c74079985" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.WindowHelperService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      <apidata name="WindowHelperService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="591ad5ec-9e5e-a58f-a4a5-0a11207556d1" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.WindowHelperService">
+      <topicdata name="WindowHelperService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      <apidata name="WindowHelperService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.#ctor(System.IntPtr)" />
+        <element api="P:System.Activities.Presentation.Hosting.WindowHelperService.ParentWindowHwnd" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.RegisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.TrySetWindowOwner(System.Windows.DependencyObject,System.Windows.Window)" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.UnregisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      </containers>
+      <file name="2db49d2a-e134-ebef-1fd0-3bfc3e8cb962" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.WindowHelperService">
+      <topicdata name="WindowHelperService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      <apidata name="WindowHelperService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.RegisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.TrySetWindowOwner(System.Windows.DependencyObject,System.Windows.Window)" />
+        <element api="M:System.Activities.Presentation.Hosting.WindowHelperService.UnregisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      </containers>
+      <file name="b93b5e54-8f73-e038-9500-162d7b0b3107" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.WindowHelperService">
+      <topicdata name="WindowHelperService" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      <apidata name="WindowHelperService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.WindowHelperService.ParentWindowHwnd" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" />
+      </containers>
+      <file name="a3593053-c8fe-a0af-6715-244e8cf18683" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WindowHelperService.#ctor(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="hwnd">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" ref="true" />
+      </containers>
+      <file name="451e91cd-f748-0b76-2e8f-1a012547d147" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.WindowHelperService.ParentWindowHwnd">
+      <topicdata group="api" />
+      <apidata name="ParentWindowHwnd" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ParentWindowHwnd" />
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" ref="true" />
+      </containers>
+      <file name="9c2aba55-be66-d651-f732-0b73b390f6ea" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WindowHelperService.RegisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)">
+      <topicdata group="api" />
+      <apidata name="RegisterWindowMessageHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.Activities.Presentation.Hosting.WindowMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" ref="true" />
+      </containers>
+      <file name="6109c4df-8453-f20e-6b4b-017085c6d6a1" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WindowHelperService.TrySetWindowOwner(System.Windows.DependencyObject,System.Windows.Window)">
+      <topicdata group="api" />
+      <apidata name="TrySetWindowOwner" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.Windows.Window" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" ref="true" />
+      </containers>
+      <file name="a67c9f88-3ec9-2ece-4e81-6c4b22e3562b" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WindowHelperService.UnregisterWindowMessageHandler(System.Activities.Presentation.Hosting.WindowMessage)">
+      <topicdata group="api" />
+      <apidata name="UnregisterWindowMessageHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.Activities.Presentation.Hosting.WindowMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WindowHelperService" ref="true" />
+      </containers>
+      <file name="28373dc0-0e64-485f-f3ba-3c208ecdb12a" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.WindowMessage">
+      <topicdata group="api" />
+      <apidata name="WindowMessage" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="msgId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parameter1">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="parameter2">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="6bd8d98e-058c-e6c0-b56d-70527dd46e03" />
+    </api>
+    <api id="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      <apidata name="WorkflowCommandExtensionItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+      </containers>
+      <file name="c1bb1a70-a4b8-6b81-722f-6317fcb3d1f0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem">
+      <topicdata name="WorkflowCommandExtensionItem" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      <apidata name="WorkflowCommandExtensionItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor">
+          <element api="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+          <element api="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor(System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback)" />
+        </element>
+        <element api="P:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      </containers>
+      <file name="e77a4e72-4d72-b4e5-3973-db75eb9e3fca" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem">
+      <topicdata name="WorkflowCommandExtensionItem" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      <apidata name="WorkflowCommandExtensionItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      </containers>
+      <file name="c531ca22-4f89-d9e0-ee32-b2ca402177cc" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem">
+      <topicdata name="WorkflowCommandExtensionItem" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      <apidata name="WorkflowCommandExtensionItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.ItemType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      </containers>
+      <file name="e85853ea-1de7-6030-8125-eddd7052625b" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+        <element api="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor(System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" ref="true" />
+      </containers>
+      <file name="02012f3a-432c-fcea-427c-ceccd37c2879" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" ref="true" />
+      </containers>
+      <file name="3a03861d-143c-1bb8-6af8-0d53b8cca076" />
+    </api>
+    <api id="M:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor(System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.#ctor" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.Activities.Presentation.Hosting.IWorkflowCommandExtensionCallback" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" ref="true" />
+      </containers>
+      <file name="498ec6bd-8b54-a585-6e88-91a28593455f" />
+    </api>
+    <api id="P:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem.ItemType">
+      <topicdata group="api" />
+      <apidata name="ItemType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Activities.Presentation.ContextItem.ItemType">
+          <type api="T:System.Activities.Presentation.ContextItem" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ItemType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Hosting" />
+        <type api="T:System.Activities.Presentation.Hosting.WorkflowCommandExtensionItem" ref="true" />
+      </containers>
+      <file name="4de0465b-17be-e002-235c-ed2f7b169025" />
+    </api>
+  </apis>
+</reflection>

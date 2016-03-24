@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Devices.Radio">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Devices.Radio" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Devices.Radio.RadioPowerMode" />
+        <element api="T:Microsoft.Devices.Radio.RadioRegion" />
+        <element api="T:Microsoft.Devices.Radio.FMRadio" />
+        <element api="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      </elements>
+      <file name="800eba78-e278-dd69-f113-15be06218621" />
+    </api>
+    <api id="T:Microsoft.Devices.Radio.FMRadio">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Radio.FMRadio" />
+      <apidata name="FMRadio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+      </containers>
+      <file name="365fb5e4-9c9c-aa27-ece2-5c863f00ec08" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Radio.FMRadio">
+      <topicdata name="FMRadio" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Radio.FMRadio" />
+      <apidata name="FMRadio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Radio.FMRadio.CurrentRegion" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.Frequency" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.Instance" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.PowerMode" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.SignalStrength" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" />
+      </containers>
+      <file name="7e1b1b6d-a249-b0fd-d5cd-62f6762f6065" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Radio.FMRadio">
+      <topicdata name="FMRadio" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Radio.FMRadio" />
+      <apidata name="FMRadio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" />
+      </containers>
+      <file name="60aa4464-b856-3ce8-9abf-a03203eac37a" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Radio.FMRadio">
+      <topicdata name="FMRadio" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Radio.FMRadio" />
+      <apidata name="FMRadio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Radio.FMRadio.CurrentRegion" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.Frequency" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.Instance" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.PowerMode" />
+        <element api="P:Microsoft.Devices.Radio.FMRadio.SignalStrength" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" />
+      </containers>
+      <file name="4681757d-3fd6-724a-f65b-0821e21fbe06" />
+    </api>
+    <api id="P:Microsoft.Devices.Radio.FMRadio.CurrentRegion">
+      <topicdata group="api" />
+      <apidata name="CurrentRegion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentRegion" />
+      <setter name="set_CurrentRegion" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </containers>
+      <file name="1c8d414f-5995-25e5-6ee6-a769c2a96e26" />
+    </api>
+    <api id="P:Microsoft.Devices.Radio.FMRadio.Frequency">
+      <topicdata group="api" />
+      <apidata name="Frequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Frequency" />
+      <setter name="set_Frequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </containers>
+      <file name="59af2828-70b5-a6a4-4964-f6e5e7b30ab9" />
+    </api>
+    <api id="P:Microsoft.Devices.Radio.FMRadio.Instance">
+      <topicdata group="api" />
+      <apidata name="Instance" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Instance" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </containers>
+      <file name="18956183-a4ad-a8b2-67af-749f99614eff" />
+    </api>
+    <api id="P:Microsoft.Devices.Radio.FMRadio.PowerMode">
+      <topicdata group="api" />
+      <apidata name="PowerMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PowerMode" />
+      <setter name="set_PowerMode" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioPowerMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </containers>
+      <file name="d04ba67a-83f1-44bb-6b14-4d1e5e481cc2" />
+    </api>
+    <api id="P:Microsoft.Devices.Radio.FMRadio.SignalStrength">
+      <topicdata group="api" />
+      <apidata name="SignalStrength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SignalStrength" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.FMRadio" ref="true" />
+      </containers>
+      <file name="444d6352-fddf-11f7-e917-493ae6e0a47e" />
+    </api>
+    <api id="T:Microsoft.Devices.Radio.RadioDisabledException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Radio.RadioDisabledException" />
+      <apidata name="RadioDisabledException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+      </containers>
+      <file name="2ff56cc6-9268-ed4e-c67f-9d9dbd7cda22" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Radio.RadioDisabledException">
+      <topicdata name="RadioDisabledException" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      <apidata name="RadioDisabledException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      </containers>
+      <file name="d0f5a6d1-353a-6ca7-c031-ebade8ee0a8c" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Radio.RadioDisabledException">
+      <topicdata name="RadioDisabledException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      <apidata name="RadioDisabledException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      </containers>
+      <file name="0e1ba276-9068-d12e-fbf0-c736e4ade317" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Radio.RadioDisabledException">
+      <topicdata name="RadioDisabledException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      <apidata name="RadioDisabledException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioDisabledException" />
+      </containers>
+      <file name="eeb0a9f0-70e6-8623-0bea-23adbfb60826" />
+    </api>
+    <api id="M:Microsoft.Devices.Radio.RadioDisabledException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioDisabledException" ref="true" />
+      </containers>
+      <file name="ddbe1910-b64a-bbf1-c331-52b5848e4a4d" />
+    </api>
+    <api id="T:Microsoft.Devices.Radio.RadioPowerMode">
+      <topicdata group="api" />
+      <apidata name="RadioPowerMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.Radio.RadioPowerMode.Off" />
+        <element api="F:Microsoft.Devices.Radio.RadioPowerMode.On" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+      </containers>
+      <file name="430ea766-f9b3-c00a-5aa5-2f8227948ed3" />
+    </api>
+    <api id="F:Microsoft.Devices.Radio.RadioPowerMode.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioPowerMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioPowerMode" ref="false" />
+      </containers>
+      <file name="ef1f70b2-3675-51db-e062-ae564a5c21b6" />
+    </api>
+    <api id="F:Microsoft.Devices.Radio.RadioPowerMode.On">
+      <topicdata group="api" notopic="" />
+      <apidata name="On" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioPowerMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioPowerMode" ref="false" />
+      </containers>
+      <file name="73a8198c-fca7-b55d-ac89-86253fafb7e2" />
+    </api>
+    <api id="T:Microsoft.Devices.Radio.RadioRegion">
+      <topicdata group="api" />
+      <apidata name="RadioRegion" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.Radio.RadioRegion.UnitedStates" />
+        <element api="F:Microsoft.Devices.Radio.RadioRegion.Japan" />
+        <element api="F:Microsoft.Devices.Radio.RadioRegion.Europe" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+      </containers>
+      <file name="6e751191-1460-3f90-c90a-e9e8923a9cac" />
+    </api>
+    <api id="F:Microsoft.Devices.Radio.RadioRegion.Europe">
+      <topicdata group="api" notopic="" />
+      <apidata name="Europe" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </containers>
+      <file name="9a06d659-8a0e-9570-37ad-3ddea9d3d114" />
+    </api>
+    <api id="F:Microsoft.Devices.Radio.RadioRegion.Japan">
+      <topicdata group="api" notopic="" />
+      <apidata name="Japan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </containers>
+      <file name="a97ec0eb-3afe-43d8-9ac4-498dbfb529e3" />
+    </api>
+    <api id="F:Microsoft.Devices.Radio.RadioRegion.UnitedStates">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnitedStates" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Radio" />
+        <type api="T:Microsoft.Devices.Radio.RadioRegion" ref="false" />
+      </containers>
+      <file name="02c34c22-4bf6-89b2-ada2-85aab1fd387a" />
+    </api>
+  </apis>
+</reflection>

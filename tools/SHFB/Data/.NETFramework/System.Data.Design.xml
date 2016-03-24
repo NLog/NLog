@@ -1,0 +1,1869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Design">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Design">
+      <topicdata group="api" />
+      <apidata name="System.Data.Design" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Design.TypedDataSetGeneratorException" />
+        <element api="T:System.Data.Design.MethodSignatureGenerator" />
+        <element api="T:System.Data.Design.ParameterGenerationOption" />
+        <element api="T:System.Data.Design.TypedDataSetGenerator" />
+        <element api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" />
+        <element api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+        <element api="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      </elements>
+      <file name="42bbd425-6c09-217e-b38d-b6f7c8c9b208" />
+    </api>
+    <api id="T:System.Data.Design.MethodSignatureGenerator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Design.MethodSignatureGenerator" />
+      <apidata name="MethodSignatureGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.MethodSignatureGenerator.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="e8c7b4a6-6b20-5107-e3ce-344fcb8f3351" />
+    </api>
+    <api id="AllMembers.T:System.Data.Design.MethodSignatureGenerator">
+      <topicdata name="MethodSignatureGenerator" group="list" subgroup="members" typeTopicId="T:System.Data.Design.MethodSignatureGenerator" />
+      <apidata name="MethodSignatureGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.MethodSignatureGenerator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.#ctor" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.CodeProvider" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.ContainerParameterType" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.DataSetClassName" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateMethod" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateMethodSignature" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateUpdatingMethods" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.IsGetMethod" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.PagingMethod" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.ParameterOption" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.SetDesignTableContent(System.String)" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.SetMethodSourceContent(System.String)" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.TableClassName" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" />
+      </containers>
+      <file name="d187e390-fa68-84cd-78da-83fa42d668ec" />
+    </api>
+    <api id="Methods.T:System.Data.Design.MethodSignatureGenerator">
+      <topicdata name="MethodSignatureGenerator" group="list" subgroup="Methods" typeTopicId="T:System.Data.Design.MethodSignatureGenerator" />
+      <apidata name="MethodSignatureGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.MethodSignatureGenerator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateMethod" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateMethodSignature" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.GenerateUpdatingMethods" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.SetDesignTableContent(System.String)" />
+        <element api="M:System.Data.Design.MethodSignatureGenerator.SetMethodSourceContent(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" />
+      </containers>
+      <file name="1b454d5b-edc7-5f54-dd62-08077e1f5543" />
+    </api>
+    <api id="Properties.T:System.Data.Design.MethodSignatureGenerator">
+      <topicdata name="MethodSignatureGenerator" group="list" subgroup="Properties" typeTopicId="T:System.Data.Design.MethodSignatureGenerator" />
+      <apidata name="MethodSignatureGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.MethodSignatureGenerator.#ctor" />
+      <elements>
+        <element api="P:System.Data.Design.MethodSignatureGenerator.CodeProvider" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.ContainerParameterType" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.DataSetClassName" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.IsGetMethod" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.PagingMethod" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.ParameterOption" />
+        <element api="P:System.Data.Design.MethodSignatureGenerator.TableClassName" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" />
+      </containers>
+      <file name="8b1178cb-a059-22a6-710b-0c9d735867c4" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="943f6e06-98c6-43bc-0c2d-e987a2e75300" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.CodeProvider">
+      <topicdata group="api" />
+      <apidata name="CodeProvider" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CodeProvider" />
+      <setter name="set_CodeProvider" />
+      <returns>
+        <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="a5a097f7-efeb-3fce-b1c9-153574a1a3ad" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.ContainerParameterType">
+      <topicdata group="api" />
+      <apidata name="ContainerParameterType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContainerParameterType" />
+      <setter name="set_ContainerParameterType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="d2ea00dd-40e0-1732-33de-bf14dd0513e7" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.DataSetClassName">
+      <topicdata group="api" />
+      <apidata name="DataSetClassName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DataSetClassName" />
+      <setter name="set_DataSetClassName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="ec12c13f-0813-4ff7-877a-cb1f38039a75" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.GenerateMethod">
+      <topicdata group="api" />
+      <apidata name="GenerateMethod" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.CodeDom.CodeMemberMethod" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="bf9820b7-a7cb-434a-3485-f11504a7c37d" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.GenerateMethodSignature">
+      <topicdata group="api" />
+      <apidata name="GenerateMethodSignature" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="19c07430-38a3-bc83-93d3-7ff8dd32565d" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.GenerateUpdatingMethods">
+      <topicdata group="api" />
+      <apidata name="GenerateUpdatingMethods" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.CodeDom.CodeTypeDeclaration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="b25c5e9a-1592-a5cf-be21-d7902f53e554" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.IsGetMethod">
+      <topicdata group="api" />
+      <apidata name="IsGetMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsGetMethod" />
+      <setter name="set_IsGetMethod" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="328b3827-2648-a250-4a3a-e58b657e28c1" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.PagingMethod">
+      <topicdata group="api" />
+      <apidata name="PagingMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PagingMethod" />
+      <setter name="set_PagingMethod" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="de6a118b-3ba6-51a9-d1be-2cd1851862b4" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.ParameterOption">
+      <topicdata group="api" />
+      <apidata name="ParameterOption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ParameterOption" />
+      <setter name="set_ParameterOption" />
+      <returns>
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="e953839c-4fb4-099b-0997-7065f9edd331" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.SetDesignTableContent(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetDesignTableContent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="designTableContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="d900e9de-b3ac-43cd-8e89-57b66527c8d6" />
+    </api>
+    <api id="M:System.Data.Design.MethodSignatureGenerator.SetMethodSourceContent(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetMethodSourceContent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="methodSourceContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="e4937e31-8712-4078-0dea-108d51cddc77" />
+    </api>
+    <api id="P:System.Data.Design.MethodSignatureGenerator.TableClassName">
+      <topicdata group="api" />
+      <apidata name="TableClassName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TableClassName" />
+      <setter name="set_TableClassName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.MethodSignatureGenerator" ref="true" />
+      </containers>
+      <file name="9c32d806-3577-e32c-55cb-6a9c6e8194a7" />
+    </api>
+    <api id="T:System.Data.Design.ParameterGenerationOption">
+      <topicdata group="api" />
+      <apidata name="ParameterGenerationOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.Design.ParameterGenerationOption.ClrTypes" />
+        <element api="F:System.Data.Design.ParameterGenerationOption.SqlTypes" />
+        <element api="F:System.Data.Design.ParameterGenerationOption.Objects" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="a9278c9b-e636-2ce9-fc88-070deb4f0bb9" />
+    </api>
+    <api id="F:System.Data.Design.ParameterGenerationOption.ClrTypes">
+      <topicdata group="api" notopic="" />
+      <apidata name="ClrTypes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </containers>
+      <file name="d1be8c33-ffed-32f7-e5ce-2659129489b6" />
+    </api>
+    <api id="F:System.Data.Design.ParameterGenerationOption.Objects">
+      <topicdata group="api" notopic="" />
+      <apidata name="Objects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </containers>
+      <file name="2d15b4f3-abe0-8a2c-d6c3-1e21e370e43a" />
+    </api>
+    <api id="F:System.Data.Design.ParameterGenerationOption.SqlTypes">
+      <topicdata group="api" notopic="" />
+      <apidata name="SqlTypes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.ParameterGenerationOption" ref="false" />
+      </containers>
+      <file name="268a3444-8275-12e4-8708-40bffab60c80" />
+    </api>
+    <api id="T:System.Data.Design.TypedDataSetGenerator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="TypedDataSetGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="b05ac21a-f111-5c9e-92db-f4d5c5b5aa57" />
+    </api>
+    <api id="AllMembers.T:System.Data.Design.TypedDataSetGenerator">
+      <topicdata name="TypedDataSetGenerator" group="list" subgroup="members" typeTopicId="T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="TypedDataSetGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetGenerator.Generate">
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.Data.DataSet,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Common.DbProviderFactory)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Data.Design.TypedDataSetGenerator.GetProviderName">
+          <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String,System.String)" />
+        </element>
+        <element api="P:System.Data.Design.TypedDataSetGenerator.ReferencedAssemblies" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" />
+      </containers>
+      <file name="41c943d3-11f1-16ce-5ca5-7ae9075dcea4" />
+    </api>
+    <api id="Methods.T:System.Data.Design.TypedDataSetGenerator">
+      <topicdata name="TypedDataSetGenerator" group="list" subgroup="Methods" typeTopicId="T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="TypedDataSetGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetGenerator.Generate">
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.Data.DataSet,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Common.DbProviderFactory)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Data.Design.TypedDataSetGenerator.GetProviderName">
+          <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" />
+      </containers>
+      <file name="e76e456f-142a-f592-1de0-c0823e46b561" />
+    </api>
+    <api id="Properties.T:System.Data.Design.TypedDataSetGenerator">
+      <topicdata name="TypedDataSetGenerator" group="list" subgroup="Properties" typeTopicId="T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="TypedDataSetGenerator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Data.Design.TypedDataSetGenerator.ReferencedAssemblies" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" />
+      </containers>
+      <file name="fffc8f90-6a25-85e9-b6e7-15caa22e8ddb" />
+    </api>
+    <api id="Overload:System.Data.Design.TypedDataSetGenerator.Generate">
+      <topicdata name="Generate" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.Data.DataSet,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Common.DbProviderFactory)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="671d436c-3fcb-fa1d-76ee-2d13bcd7f8a0" />
+    </api>
+    <api id="Overload:System.Data.Design.TypedDataSetGenerator.GetProviderName">
+      <topicdata name="GetProviderName" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetGenerator" />
+      <apidata name="GetProviderName" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String)" />
+        <element api="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="7e4b7859-5507-2964-573e-69cd3e81ab63" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.Data.DataSet,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dataSet">
+          <type api="T:System.Data.DataSet" ref="true" />
+        </parameter>
+        <parameter name="codeNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="26cdbf5f-cae8-3e58-e9b3-b0fceabbdbc2" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="bdfd3625-76e0-ef4e-ed97-7a0a4d6cd3b5" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="customDBProviders">
+          <type api="T:System.Collections.Hashtable" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="fd9ee615-a671-78dc-74c2-3181d02576c7" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="customDBProviders">
+          <type api="T:System.Collections.Hashtable" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="6ebdb35f-4c24-4c16-c037-ce1a94a8b48f" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="customDBProviders">
+          <type api="T:System.Collections.Hashtable" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="dataSetNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="c630abd1-3c88-3fca-e392-7168102358e0" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Collections.Hashtable,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="customDBProviders">
+          <type api="T:System.Collections.Hashtable" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="dataSetNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="basePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="ae0d0598-3168-fb82-0171-ab8bcd54d509" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Common.DbProviderFactory)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="specifiedFactory">
+          <type api="T:System.Data.Common.DbProviderFactory" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="46d279c9-0288-d64e-f1ad-845f15ec3c3d" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="db2c5eb4-f292-108e-ba88-43e62a9ef370" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="dataSetNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="090512e3-b68c-00ab-2dab-17ee65e1fd0f" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.Generate(System.String,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.CodeDom.Compiler.CodeDomProvider,System.Data.Design.TypedDataSetGenerator.GenerateOption,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Generate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.Generate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+        <parameter name="option">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="dataSetNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="basePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="a0b99599-88e1-eb50-280c-a8bea7a094a1" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetProviderName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.GetProviderName" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="9896aeed-6e89-0099-a863-961a01ee543a" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGenerator.GetProviderName(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetProviderName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Design.TypedDataSetGenerator.GetProviderName" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputFileContent">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="tableName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="3b3b062f-0851-e1e3-2a2b-077667753f0d" />
+    </api>
+    <api id="P:System.Data.Design.TypedDataSetGenerator.ReferencedAssemblies">
+      <topicdata group="api" />
+      <apidata name="ReferencedAssemblies" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReferencedAssemblies" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.Assembly" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <file name="cc0bb3b5-0094-cf84-1bc4-8a5fd5ed3d50" />
+    </api>
+    <api id="T:System.Data.Design.TypedDataSetGenerator.GenerateOption">
+      <topicdata group="api" />
+      <apidata name="GenerateOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.None" />
+        <element api="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.HierarchicalUpdate" />
+        <element api="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.LinqOverTypedDatasets" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9e26f18d-73f2-389a-43ae-dcc60e957ae9" />
+    </api>
+    <api id="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.HierarchicalUpdate">
+      <topicdata group="api" notopic="" />
+      <apidata name="HierarchicalUpdate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </containers>
+      <file name="f56c4a29-0d42-9e66-dcf3-9cba84ef1d52" />
+    </api>
+    <api id="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.LinqOverTypedDatasets">
+      <topicdata group="api" notopic="" />
+      <apidata name="LinqOverTypedDatasets" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </containers>
+      <file name="fcf55de8-5460-6e06-1175-7a5d00e4610d" />
+    </api>
+    <api id="F:System.Data.Design.TypedDataSetGenerator.GenerateOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+          <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+        </type>
+      </containers>
+      <file name="9d720059-1ff4-f708-3b77-c130230f0486" />
+    </api>
+    <api id="T:System.Data.Design.TypedDataSetGeneratorException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name="TypedDataSetGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Data.DataException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="ff13f9ea-a22e-ceb5-4195-6a1d40544469" />
+    </api>
+    <api id="AllMembers.T:System.Data.Design.TypedDataSetGeneratorException">
+      <topicdata name="TypedDataSetGeneratorException" group="list" subgroup="members" typeTopicId="T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name="TypedDataSetGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor">
+          <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+          <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Collections.IList)" />
+          <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String)" />
+          <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Data.Design.TypedDataSetGeneratorException.ErrorList" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" />
+      </containers>
+      <file name="a2ebc1b1-1a7b-df2f-d4ff-71f87943cfb2" />
+    </api>
+    <api id="Methods.T:System.Data.Design.TypedDataSetGeneratorException">
+      <topicdata name="TypedDataSetGeneratorException" group="list" subgroup="Methods" typeTopicId="T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name="TypedDataSetGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" />
+      </containers>
+      <file name="7cba9381-8c22-2e91-b14a-159c54a78896" />
+    </api>
+    <api id="Properties.T:System.Data.Design.TypedDataSetGeneratorException">
+      <topicdata name="TypedDataSetGeneratorException" group="list" subgroup="Properties" typeTopicId="T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name="TypedDataSetGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.Data.Design.TypedDataSetGeneratorException.ErrorList" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" />
+      </containers>
+      <file name="81ea204b-74fb-4a79-cba0-fa4acd48875d" />
+    </api>
+    <api id="Events.T:System.Data.Design.TypedDataSetGeneratorException">
+      <topicdata name="TypedDataSetGeneratorException" group="list" subgroup="Events" typeTopicId="T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name="TypedDataSetGeneratorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" />
+      </containers>
+      <file name="6d9d1bdc-f6b8-f293-df00-e55c4c3a540a" />
+    </api>
+    <api id="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetGeneratorException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Collections.IList)" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String)" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="876038e0-e5c3-a0da-4853-4ea67725da10" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="eff688f5-cb4f-86fb-4ec0-b6e2d73a3316" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Collections.IList)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <parameters>
+        <parameter name="list">
+          <type api="T:System.Collections.IList" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="f0d20ca3-df82-29a1-627f-1729bf9a9e0d" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="b27d8bdb-33ce-5a38-11cc-b669d940af97" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="210fcb85-53ae-ca92-38ca-8cd5af3728bd" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Design.TypedDataSetGeneratorException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="e7d970e8-76a2-7306-9084-83a3772f19d1" />
+    </api>
+    <api id="P:System.Data.Design.TypedDataSetGeneratorException.ErrorList">
+      <topicdata group="api" />
+      <apidata name="ErrorList" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorList" />
+      <returns>
+        <type api="T:System.Collections.IList" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="3561b0bd-c1ed-75f0-b731-0d6c85f4bf43" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetGeneratorException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetGeneratorException" ref="true" />
+      </containers>
+      <file name="31825a9a-886a-66b0-c756-feeb65b7c1e6" />
+    </api>
+    <api id="T:System.Data.Design.TypedDataSetSchemaImporterExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      <apidata name="TypedDataSetSchemaImporterExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.Serialization.Advanced.SchemaImporterExtension" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="13e6a173-13e1-542f-e9e6-44ed1c2c7b98" />
+    </api>
+    <api id="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtension">
+      <topicdata name="TypedDataSetSchemaImporterExtension" group="list" subgroup="members" typeTopicId="T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      <apidata name="TypedDataSetSchemaImporterExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor">
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor(System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+        </element>
+        <element api="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType">
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        </element>
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportAnyElement(System.Xml.Schema.XmlSchemaAny,System.Boolean,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportDefaultValue(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      </containers>
+      <file name="190cae3a-416f-9d43-55e8-db3871feb708" />
+    </api>
+    <api id="Methods.T:System.Data.Design.TypedDataSetSchemaImporterExtension">
+      <topicdata name="TypedDataSetSchemaImporterExtension" group="list" subgroup="Methods" typeTopicId="T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      <apidata name="TypedDataSetSchemaImporterExtension" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType">
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        </element>
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportAnyElement(System.Xml.Schema.XmlSchemaAny,System.Boolean,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportDefaultValue(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      </containers>
+      <file name="802e5d43-eaa7-57f5-59ab-49f10a482b75" />
+    </api>
+    <api id="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+        <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor(System.Data.Design.TypedDataSetGenerator.GenerateOption)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="fe776544-d73d-4762-0890-7f6c0c70b68f" />
+    </api>
+    <api id="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType">
+      <topicdata name="ImportSchemaType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtension" />
+      <apidata name="ImportSchemaType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="1c422241-8bbe-29b7-27a3-93d4f870ef40" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="9c0b33e7-45ec-5e83-7119-5c4168d33dea" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor(System.Data.Design.TypedDataSetGenerator.GenerateOption)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.#ctor" />
+      <parameters>
+        <parameter name="dataSetGenerateOptions">
+          <type api="T:System.Data.Design.TypedDataSetGenerator.GenerateOption" ref="false">
+            <type api="T:System.Data.Design.TypedDataSetGenerator" ref="true" />
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="03267d5b-f1a4-0b18-fea0-53400c40c3cd" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)">
+      <topicdata group="api" />
+      <apidata name="ImportSchemaType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)">
+          <type api="T:System.Xml.Serialization.Advanced.SchemaImporterExtension" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Xml.Schema.XmlSchemaObject" ref="true" />
+        </parameter>
+        <parameter name="schemas">
+          <type api="T:System.Xml.Serialization.XmlSchemas" ref="true" />
+        </parameter>
+        <parameter name="importer">
+          <type api="T:System.Xml.Serialization.XmlSchemaImporter" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:System.Xml.Serialization.CodeGenerationOptions" ref="false" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="0827a33d-9605-d782-4f62-c7cba62f189a" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)">
+      <topicdata group="api" />
+      <apidata name="ImportSchemaType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)">
+          <type api="T:System.Xml.Serialization.Advanced.SchemaImporterExtension" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Xml.Schema.XmlSchemaType" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Xml.Schema.XmlSchemaObject" ref="true" />
+        </parameter>
+        <parameter name="schemas">
+          <type api="T:System.Xml.Serialization.XmlSchemas" ref="true" />
+        </parameter>
+        <parameter name="importer">
+          <type api="T:System.Xml.Serialization.XmlSchemaImporter" ref="true" />
+        </parameter>
+        <parameter name="compileUnit">
+          <type api="T:System.CodeDom.CodeCompileUnit" ref="true" />
+        </parameter>
+        <parameter name="mainNamespace">
+          <type api="T:System.CodeDom.CodeNamespace" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:System.Xml.Serialization.CodeGenerationOptions" ref="false" />
+        </parameter>
+        <parameter name="codeProvider">
+          <type api="T:System.CodeDom.Compiler.CodeDomProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+      </containers>
+      <file name="320efa0e-dd09-c862-dcad-6ce587fdee92" />
+    </api>
+    <api id="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      <apidata name="TypedDataSetSchemaImporterExtensionFx35" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtension" ref="true" />
+          <type api="T:System.Xml.Serialization.Advanced.SchemaImporterExtension" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+      </containers>
+      <file name="c79828c6-92ff-2814-9b27-727f603cfdfc" />
+    </api>
+    <api id="AllMembers.T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35">
+      <topicdata name="TypedDataSetSchemaImporterExtensionFx35" group="list" subgroup="members" typeTopicId="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      <apidata name="TypedDataSetSchemaImporterExtensionFx35" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.ImportSchemaType">
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        </element>
+        <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.#ctor" />
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportAnyElement(System.Xml.Schema.XmlSchemaAny,System.Boolean,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportDefaultValue(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      </containers>
+      <file name="12ea8656-a6cc-c769-58d3-048da0c6e317" />
+    </api>
+    <api id="Methods.T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35">
+      <topicdata name="TypedDataSetSchemaImporterExtensionFx35" group="list" subgroup="Methods" typeTopicId="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      <apidata name="TypedDataSetSchemaImporterExtensionFx35" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.ImportSchemaType">
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.Xml.Schema.XmlSchemaType,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+          <element api="M:System.Data.Design.TypedDataSetSchemaImporterExtension.ImportSchemaType(System.String,System.String,System.Xml.Schema.XmlSchemaObject,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        </element>
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportAnyElement(System.Xml.Schema.XmlSchemaAny,System.Boolean,System.Xml.Serialization.XmlSchemas,System.Xml.Serialization.XmlSchemaImporter,System.CodeDom.CodeCompileUnit,System.CodeDom.CodeNamespace,System.Xml.Serialization.CodeGenerationOptions,System.CodeDom.Compiler.CodeDomProvider)" />
+        <element api="M:System.Xml.Serialization.Advanced.SchemaImporterExtension.ImportDefaultValue(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" />
+      </containers>
+      <file name="95ffa07e-0001-74fb-0837-aeedee07ef7f" />
+    </api>
+    <api id="M:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Design" />
+        <type api="T:System.Data.Design.TypedDataSetSchemaImporterExtensionFx35" ref="true" />
+      </containers>
+      <file name="136e9a40-b736-002a-8c86-9ecb870eb60b" />
+    </api>
+  </apis>
+</reflection>

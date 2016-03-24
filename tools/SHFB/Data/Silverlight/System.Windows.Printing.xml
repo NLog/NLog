@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Printing">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Printing" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Printing.PrintDocument" />
+        <element api="T:System.Windows.Printing.PrintPageEventArgs" />
+        <element api="T:System.Windows.Printing.BeginPrintEventArgs" />
+        <element api="T:System.Windows.Printing.EndPrintEventArgs" />
+        <element api="T:System.Windows.Printing.PrinterFallbackSettings" />
+      </elements>
+      <file name="33ab3acd-d866-5684-ee63-f09bb9e8a889" />
+    </api>
+    <api id="T:System.Windows.Printing.BeginPrintEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Printing.BeginPrintEventArgs" />
+      <apidata name="BeginPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.BeginPrintEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:MS.Internal.IManagedPeerBase" ref="true" />
+        <type api="T:MS.Internal.INativeCoreTypeWrapper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+      </containers>
+      <file name="06054bfc-513a-166a-b066-1af2e923214d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Printing.BeginPrintEventArgs">
+      <topicdata name="BeginPrintEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Printing.BeginPrintEventArgs" />
+      <apidata name="BeginPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.BeginPrintEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Printing.BeginPrintEventArgs.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.BeginPrintEventArgs" />
+      </containers>
+      <file name="80128709-2f44-92e1-82aa-5bf349a63790" />
+    </api>
+    <api id="Methods.T:System.Windows.Printing.BeginPrintEventArgs">
+      <topicdata name="BeginPrintEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Printing.BeginPrintEventArgs" />
+      <apidata name="BeginPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.BeginPrintEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.BeginPrintEventArgs" />
+      </containers>
+      <file name="e992a785-da51-915e-69a8-ab43c63a1b76" />
+    </api>
+    <api id="M:System.Windows.Printing.BeginPrintEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.BeginPrintEventArgs" ref="true" />
+      </containers>
+      <file name="8fd856d7-872e-a5b3-1539-248b5667330c" />
+    </api>
+    <api id="T:System.Windows.Printing.EndPrintEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Printing.EndPrintEventArgs" />
+      <apidata name="EndPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.EndPrintEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:MS.Internal.IManagedPeerBase" ref="true" />
+        <type api="T:MS.Internal.INativeCoreTypeWrapper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+      </containers>
+      <file name="475b9c53-3c4c-f10f-bf2b-4c596ba1e3b1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Printing.EndPrintEventArgs">
+      <topicdata name="EndPrintEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Printing.EndPrintEventArgs" />
+      <apidata name="EndPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.EndPrintEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Printing.EndPrintEventArgs.#ctor" />
+        <element api="P:System.Windows.Printing.EndPrintEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" />
+      </containers>
+      <file name="e8002ded-906c-bc4a-3f8b-35e311e2e69f" />
+    </api>
+    <api id="Methods.T:System.Windows.Printing.EndPrintEventArgs">
+      <topicdata name="EndPrintEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Printing.EndPrintEventArgs" />
+      <apidata name="EndPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.EndPrintEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" />
+      </containers>
+      <file name="2c205ef6-c6df-9932-f46a-a65980af28be" />
+    </api>
+    <api id="Properties.T:System.Windows.Printing.EndPrintEventArgs">
+      <topicdata name="EndPrintEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Printing.EndPrintEventArgs" />
+      <apidata name="EndPrintEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.EndPrintEventArgs.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Printing.EndPrintEventArgs.Error" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" />
+      </containers>
+      <file name="028f71ea-f61c-d3f3-9fd6-33f123308cdb" />
+    </api>
+    <api id="M:System.Windows.Printing.EndPrintEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" ref="true" />
+      </containers>
+      <file name="ceaa2df5-7a30-548e-359a-c24fb89f74d6" />
+    </api>
+    <api id="P:System.Windows.Printing.EndPrintEventArgs.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" ref="true" />
+      </containers>
+      <file name="1e5b0e40-6bb6-1e15-33c3-1ffed97b653f" />
+    </api>
+    <api id="T:System.Windows.Printing.PrintDocument">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+      </containers>
+      <file name="78b90a79-400b-18af-a0ca-dbe286fb91fa" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="members" typeTopicId="T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Printing.PrintDocument.#ctor" />
+        <element api="E:System.Windows.Printing.PrintDocument.BeginPrint" />
+        <element api="E:System.Windows.Printing.PrintDocument.EndPrint" />
+        <element api="Overload:System.Windows.Printing.PrintDocument.Print">
+          <element api="M:System.Windows.Printing.PrintDocument.Print(System.String)" />
+          <element api="M:System.Windows.Printing.PrintDocument.Print(System.String,System.Windows.Printing.PrinterFallbackSettings,System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Printing.PrintDocument.PrintBitmap(System.String)" />
+        <element api="P:System.Windows.Printing.PrintDocument.PrintedPageCount" />
+        <element api="F:System.Windows.Printing.PrintDocument.PrintedPageCountProperty" />
+        <element api="E:System.Windows.Printing.PrintDocument.PrintPage" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" />
+      </containers>
+      <file name="d3761b6c-930b-702f-50f6-4fb112c100fc" />
+    </api>
+    <api id="Methods.T:System.Windows.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Windows.Printing.PrintDocument.Print">
+          <element api="M:System.Windows.Printing.PrintDocument.Print(System.String)" />
+          <element api="M:System.Windows.Printing.PrintDocument.Print(System.String,System.Windows.Printing.PrinterFallbackSettings,System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Printing.PrintDocument.PrintBitmap(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" />
+      </containers>
+      <file name="7ca89429-d167-2138-f1f3-e67d71a0fc04" />
+    </api>
+    <api id="Properties.T:System.Windows.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Printing.PrintDocument.PrintedPageCount" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" />
+      </containers>
+      <file name="8442a220-5b7a-e75b-20b4-e2be03b106a6" />
+    </api>
+    <api id="Events.T:System.Windows.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Events" typeTopicId="T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Printing.PrintDocument.BeginPrint" />
+        <element api="E:System.Windows.Printing.PrintDocument.EndPrint" />
+        <element api="E:System.Windows.Printing.PrintDocument.PrintPage" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" />
+      </containers>
+      <file name="eb94d4ed-f214-15fc-9961-d82927df4ad9" />
+    </api>
+    <api id="Fields.T:System.Windows.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Printing.PrintDocument.PrintedPageCountProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" />
+      </containers>
+      <file name="090b55ec-c3b4-d478-d404-88419f06a88a" />
+    </api>
+    <api id="Overload:System.Windows.Printing.PrintDocument.Print">
+      <topicdata name="Print" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Printing.PrintDocument" />
+      <apidata name="Print" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Printing.PrintDocument.Print(System.String)" />
+        <element api="M:System.Windows.Printing.PrintDocument.Print(System.String,System.Windows.Printing.PrinterFallbackSettings,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="13b7d1f9-fb40-d75a-86de-6ad3892616d5" />
+    </api>
+    <api id="M:System.Windows.Printing.PrintDocument.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="91a91a8c-d4fe-0987-8bd5-126149f38b1a" />
+    </api>
+    <api id="E:System.Windows.Printing.PrintDocument.BeginPrint">
+      <topicdata group="api" />
+      <apidata name="BeginPrint" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BeginPrint" />
+      <remover name="remove_BeginPrint" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Printing.BeginPrintEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Printing.BeginPrintEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="a5b14f9d-35a7-1b66-0b52-7fd967b97958" />
+    </api>
+    <api id="E:System.Windows.Printing.PrintDocument.EndPrint">
+      <topicdata group="api" />
+      <apidata name="EndPrint" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EndPrint" />
+      <remover name="remove_EndPrint" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Printing.EndPrintEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Printing.EndPrintEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="3729c507-e709-b0d2-26bd-4ea2eea3cff4" />
+    </api>
+    <api id="M:System.Windows.Printing.PrintDocument.Print(System.String)">
+      <topicdata group="api" />
+      <apidata name="Print" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Printing.PrintDocument.Print" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="documentName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="c406838a-00ad-e62f-082c-9b82dbb21205" />
+    </api>
+    <api id="M:System.Windows.Printing.PrintDocument.Print(System.String,System.Windows.Printing.PrinterFallbackSettings,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Print" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Printing.PrintDocument.Print" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="documentName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="printerFallbackSettings">
+          <type api="T:System.Windows.Printing.PrinterFallbackSettings" ref="true" />
+        </parameter>
+        <parameter name="useDefaultPrinter" optional="true">
+          <type api="T:System.Boolean" ref="false" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="36bcf733-84bb-d0fe-5a26-95522841a2af" />
+    </api>
+    <api id="M:System.Windows.Printing.PrintDocument.PrintBitmap(System.String)">
+      <topicdata group="api" />
+      <apidata name="PrintBitmap" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="documentName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="eb231028-182c-c648-bff3-64fd73a62c4e" />
+    </api>
+    <api id="P:System.Windows.Printing.PrintDocument.PrintedPageCount">
+      <topicdata group="api" />
+      <apidata name="PrintedPageCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PrintedPageCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="43682dd9-037b-14d0-8438-2ff33226c543" />
+    </api>
+    <api id="F:System.Windows.Printing.PrintDocument.PrintedPageCountProperty">
+      <topicdata group="api" />
+      <apidata name="PrintedPageCountProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="e6ffdeb3-6f2a-1024-2435-2762a0044ece" />
+    </api>
+    <api id="E:System.Windows.Printing.PrintDocument.PrintPage">
+      <topicdata group="api" />
+      <apidata name="PrintPage" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PrintPage" />
+      <remover name="remove_PrintPage" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="5fc5b96a-353c-303a-672c-6b76020d87c8" />
+    </api>
+    <api id="T:System.Windows.Printing.PrinterFallbackSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Printing.PrinterFallbackSettings" />
+      <apidata name="PrinterFallbackSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrinterFallbackSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+      </containers>
+      <file name="0a14c731-b38b-d281-b39b-6c2355f84c1b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Printing.PrinterFallbackSettings">
+      <topicdata name="PrinterFallbackSettings" group="list" subgroup="members" typeTopicId="T:System.Windows.Printing.PrinterFallbackSettings" />
+      <apidata name="PrinterFallbackSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrinterFallbackSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Printing.PrinterFallbackSettings.#ctor" />
+        <element api="P:System.Windows.Printing.PrinterFallbackSettings.ForceVector" />
+        <element api="P:System.Windows.Printing.PrinterFallbackSettings.OpacityThreshold" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" />
+      </containers>
+      <file name="2afb2899-4e5e-5db9-45df-e2c44c73dba2" />
+    </api>
+    <api id="Methods.T:System.Windows.Printing.PrinterFallbackSettings">
+      <topicdata name="PrinterFallbackSettings" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Printing.PrinterFallbackSettings" />
+      <apidata name="PrinterFallbackSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrinterFallbackSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" />
+      </containers>
+      <file name="b13c554b-ed92-12f7-bdea-c6463b50ab0e" />
+    </api>
+    <api id="Properties.T:System.Windows.Printing.PrinterFallbackSettings">
+      <topicdata name="PrinterFallbackSettings" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Printing.PrinterFallbackSettings" />
+      <apidata name="PrinterFallbackSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Printing.PrinterFallbackSettings.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Printing.PrinterFallbackSettings.ForceVector" />
+        <element api="P:System.Windows.Printing.PrinterFallbackSettings.OpacityThreshold" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" />
+      </containers>
+      <file name="3b554aa7-5991-f08f-3ea1-b74b00afbc4d" />
+    </api>
+    <api id="M:System.Windows.Printing.PrinterFallbackSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" ref="true" />
+      </containers>
+      <file name="0bae655a-a00d-da93-f23b-fb697f25ef52" />
+    </api>
+    <api id="P:System.Windows.Printing.PrinterFallbackSettings.ForceVector">
+      <topicdata group="api" />
+      <apidata name="ForceVector" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ForceVector" />
+      <setter name="set_ForceVector" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" ref="true" />
+      </containers>
+      <file name="9c8c96f8-f9ea-bd7e-257b-ee1ceb3261b1" />
+    </api>
+    <api id="P:System.Windows.Printing.PrinterFallbackSettings.OpacityThreshold">
+      <topicdata group="api" />
+      <apidata name="OpacityThreshold" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OpacityThreshold" />
+      <setter name="set_OpacityThreshold" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrinterFallbackSettings" ref="true" />
+      </containers>
+      <file name="fec15ee5-dc10-8980-d84e-b8f336067f15" />
+    </api>
+    <api id="T:System.Windows.Printing.PrintPageEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Printing.PrintPageEventArgs" />
+      <apidata name="PrintPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintPageEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:MS.Internal.IManagedPeerBase" ref="true" />
+        <type api="T:MS.Internal.INativeCoreTypeWrapper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+      </containers>
+      <file name="6361f259-ed0e-f65f-6a7c-44248ccfcebf" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Printing.PrintPageEventArgs">
+      <topicdata name="PrintPageEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Printing.PrintPageEventArgs" />
+      <apidata name="PrintPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintPageEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Printing.PrintPageEventArgs.#ctor" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.HasMorePages" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PageMargins" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PageVisual" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PrintableArea" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" />
+      </containers>
+      <file name="04d8ea14-7baf-52b4-9fe0-6ba839846544" />
+    </api>
+    <api id="Methods.T:System.Windows.Printing.PrintPageEventArgs">
+      <topicdata name="PrintPageEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Printing.PrintPageEventArgs" />
+      <apidata name="PrintPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintPageEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" />
+      </containers>
+      <file name="671dc3e5-a810-bb7e-a51b-0d30fcae417e" />
+    </api>
+    <api id="Properties.T:System.Windows.Printing.PrintPageEventArgs">
+      <topicdata name="PrintPageEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Printing.PrintPageEventArgs" />
+      <apidata name="PrintPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Printing.PrintPageEventArgs.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.HasMorePages" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PageMargins" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PageVisual" />
+        <element api="P:System.Windows.Printing.PrintPageEventArgs.PrintableArea" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" />
+      </containers>
+      <file name="1aef283c-5de2-cba4-e64e-36d16b67b2fa" />
+    </api>
+    <api id="M:System.Windows.Printing.PrintPageEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </containers>
+      <file name="72ad6d22-c43f-ce84-0e6c-075d7945de5d" />
+    </api>
+    <api id="P:System.Windows.Printing.PrintPageEventArgs.HasMorePages">
+      <topicdata group="api" />
+      <apidata name="HasMorePages" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HasMorePages" />
+      <setter name="set_HasMorePages" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </containers>
+      <file name="113c0fcd-1237-78cb-ae87-271b084ba371" />
+    </api>
+    <api id="P:System.Windows.Printing.PrintPageEventArgs.PageMargins">
+      <topicdata group="api" />
+      <apidata name="PageMargins" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PageMargins" />
+      <returns>
+        <type api="T:System.Windows.Thickness" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </containers>
+      <file name="e5b3cc6c-effd-f7ae-81fa-cc4c7d493f2d" />
+    </api>
+    <api id="P:System.Windows.Printing.PrintPageEventArgs.PageVisual">
+      <topicdata group="api" />
+      <apidata name="PageVisual" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PageVisual" />
+      <setter name="set_PageVisual" />
+      <returns>
+        <type api="T:System.Windows.UIElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </containers>
+      <file name="741a9e90-61ce-0b81-60e2-2a4e7699244b" />
+    </api>
+    <api id="P:System.Windows.Printing.PrintPageEventArgs.PrintableArea">
+      <topicdata group="api" />
+      <apidata name="PrintableArea" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PrintableArea" />
+      <returns>
+        <type api="T:System.Windows.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Printing" />
+        <type api="T:System.Windows.Printing.PrintPageEventArgs" ref="true" />
+      </containers>
+      <file name="8484a362-3850-ddce-20c7-fc439e94de1a" />
+    </api>
+  </apis>
+</reflection>
